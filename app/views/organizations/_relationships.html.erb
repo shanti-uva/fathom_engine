@@ -1,0 +1,33 @@
+<br/><h2>Relationships</h2>
+<div id="relations" class="yui-navset">
+    <ul class="yui-nav">
+        <li class="selected"><a href="#members-tab"><em>Members</em></a></li>
+        <li><a href="#projects-tab"><em>Projects</em></a></li>
+    </ul>            
+    <div class="yui-content">				
+		<div id="members-tab">
+			<% 
+				member_list_options = { :partial => 'common/entity_list', :object => @organization.people, :allow_remove_self => true,
+					   :locals => { :empty_message => "This group has no members.", :parent_entity => @organization } }
+				member_list_options[:locals].merge!({:remove_action => 'remove_member'}) if full_access_organization_member?(@organization)
+			-%>					
+			<%= render member_list_options %>
+
+			<% if full_access_organization_member?(@organization) -%>
+				<p><%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => @organization.id ) %> | <%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => @organization.id ) %></p>
+			<% end -%>
+		</div>
+		<div id="projects-tab">
+			<% 
+				project_list_options = { :partial => 'common/entity_list', :object => @organization.projects, :allow_remove_self => true,
+						   				 :locals => { :empty_message => "This group has no sub-projects.", :parent_entity => @organization }}
+				project_list_options[:locals].merge!({:remove_action => 'remove_subproject'}) if full_access_organization_member?(@organization)
+			-%>
+			<%= render project_list_options %>
+
+			<% if full_access_organization_member?(@organization) -%>
+				<p><%= link_to 'Add Projects', url_for( :action => 'new_subproject', :id => @organization.id ) %></p>
+			<% end -%>
+		</div>
+	</div>
+</div>

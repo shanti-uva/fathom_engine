@@ -1,0 +1,60 @@
+<% project_profile = project.project_profile -%>
+
+<div id="contact-tab">
+	<div id="contact" class="item">			
+		<% unless project_profile.mailing_address_blank? %>
+			<h3>Mailing Address</h3>
+			<p class="address">
+				<% unless project_profile.address_one.blank? -%>						
+					<%= h(project_profile.address_one) %><br/>
+				<% end -%>
+				<% unless project_profile.address_two.blank? -%>
+					<%= h(project_profile.address_two) %><br/>
+				<% end -%>
+				<% unless project_profile.city.blank? -%>
+					<%= h(project_profile.city) %>, <%= h(project_profile.state) %>, <%= h(project_profile.zipcode) %><br/>
+				<% end -%>
+				<% unless project_profile.country.blank? -%>
+					<%= h(project_profile.country) %><br/>
+				<% end -%>
+			</p>
+		<% end -%>
+		
+		<% unless project_profile.direct_contact_blank? -%>
+			<h3>Direct Contact</h3>
+			<table class="entity-list-table">
+			
+			<% unless project_profile.phone.blank? %>
+			<tr>
+				<th scope="row">Phone Number:</th>
+				<td><%= h(project_profile.phone) %></td>					
+			</tr>
+			<% end -%>
+			
+			<% unless project_profile.fax.blank? -%>
+			<tr>
+				<th scope="row">Fax Number:</th>								
+				<td><%= h(project_profile.fax) %></td>					
+			</tr>
+			<% end -%>
+			
+			<% unless project_profile.contact_email.blank? -%>
+			<tr>
+				<th scope="row">Email:</th>
+				<td><%= h(project_profile.contact_email) %></td>
+			</tr>
+			<% end -%>
+			
+		</table>
+		
+		<% end -%>
+		
+		<% unless project_profile.notes.blank? -%>
+  		<h3>Notes</h3>
+  		<div class="message">
+  			<%= rc project_profile.notes %>
+  		</div>
+  	<% end -%>
+    
+	</div>
+</div>

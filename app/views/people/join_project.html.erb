@@ -1,0 +1,13 @@
+<div id="main">
+	<div id="main-content" class="narrow">		
+		<%= error_messages_for :person %>
+
+		<h2>Join Project</h2>
+		<p>Select the projects you wish to join.</p>
+			<%= render :partial => '/common/entity_list', :object => @projects, 
+					   :locals => { :empty_message => "There are no projects to join.",
+									:form_url => url_for({ :action => 'create_project_membership', :id => @person.id }),
+									:submit_message => "Join Selected Projects" } %>
+	</div>
+	<%= render :partial => '/common/media', :locals => { :entity => @person } %>
+</div>

@@ -1,0 +1,28 @@
+<div id="works-tab">
+	<div id="works" class="item">
+		<% unless @person.person_profile.works_overview.blank? -%>
+			<h3>Overview</h3>
+			<%= rc @person.person_profile.works_overview %>				
+		<% end -%>
+		
+		<% unless @person.person_profile.publications.blank? -%>
+			<h3>Publications</h3>	
+			<%= rc @person.person_profile.publications %>				
+		<% end -%>
+		
+		<% unless @person.person_profile.websites.blank? -%>
+			<h3>Websites</h3>
+			<%= rc @person.person_profile.websites %>				
+		<% end -%>
+    
+    <% unless @person.person_profile.tools.blank? -%>
+			<h3>Tools</h3>
+			<%= rc @person.person_profile.tools %>				
+		<% end -%>
+    
+		<% unless @person.person_profile.miscellaneous.blank? -%>
+			<h3>Miscellaneous</h3>
+			<%= rc @person.person_profile.miscellaneous %>	
+		<% end -%>			
+	</div> <!-- END WORKS -->
+</div> <!-- END WORKS TAB -->

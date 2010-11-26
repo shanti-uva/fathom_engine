@@ -1,0 +1,5 @@
+<% if registrant.image -%>
+	<%= link_to( image_tag(registrant.image.public_filename(:smaller), :alt => h(registrant.name) ), registrant, :class => "registrant-thm" ) %>
+<% end -%>
+<h4><%= link_to h(registrant.name), registrant %></h4>
+<h5><%= h(registrant.person_profile.title) %></h5>

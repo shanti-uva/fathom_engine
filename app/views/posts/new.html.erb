@@ -1,0 +1,37 @@
+
+<div id="main">
+  <div id="main-content">
+    <div class="error-messages">
+      <%= error_messages_for :post %>
+    </div>
+
+    <% form_for :post, :url => person_posts_url(@entity), :person_id => @entity_id do |f| -%>
+      <table id="post-header">
+        <tr>
+          <th scope="row" class="post-message">Title</th>
+          <td><%= f.text_field "subject" %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="post-message">Description</th>
+          <td><%= f.text_area("body") %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="post-message">Category</th>
+          <td><%= f.select :post_kind_id, PostKind.find(:all).map {|k| [k.post_kind_value, k.id]}, :prompt => "(please select a category)"%></td>
+        </tr>
+        <tr>
+          <th scope="row" class="post-message">Contact Information <br/>(e-mail or phone #)</th>
+          <td><%= f.text_field "response_email" %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="post-message">Expires on</th>
+          <td><%= date_select("post", "expiration_date", {:start_year => Time.now.year, :end_year => Time.now.year + 1}) %></td>
+        </tr>
+      </table>
+
+      <div class="gallery-button update">
+        <%=  f.submit("Create") %>
+        <%= link_to 'Cancel', url_for(@entity) %></div>
+      <% end -%>
+  </div> <!--END CONTENT-->
+</div><!--END MAIN-->

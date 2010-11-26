@@ -1,0 +1,223 @@
+/* --- FATHOM --- fathom.css */
+
+/*--------- HOME FUNCTIONALITY STYLE ------*/
+/*-----------------------------------------*/
+/* ---------- @ Page Structure -----------*/
+#home #featured-wrapper{background:#1c160d url(../images/bg_featured_wrapper.jpg) repeat-x left top; margin:0; padding:0; }
+#home #featured{background:url(../images/bg_featured.jpg) no-repeat 30% 0%; width:595px;border:3px double #f7f6f0; margin:0; padding:0px;}
+#home #main-content-wrapper{padding-top:10px; padding-bottom:100px}
+#home #main-content {width:600px; float:right; margin:0; padding:0;}
+#home #sidebar {float:left; width:255px; padding: 12px 15px 25px; margin-left:10px; margin-top:0px; border:3px double #e4dcce; background:#fff;}
+
+/* ---------- @ Headings for sidebar main-content & featured -----------*/
+#home #sidebar h2 { font-size:1.56em; margin:10px  0 5px; padding:0; color:#505050}
+#home #sidebar h3 { font-family:verdana, Arial,sans-serif; color:#3a5d92; font-weight:bold; font-size:1.06em; margin:10px 0 0px; padding:0; }
+#home #sidebar h3 a, #home #sidebar h3 a:visited{ color:#3a5d92; }
+#home #sidebar h3 a:hover{ color:#a9531e;}
+
+#home #main-content #news h3 { letter-spacing:1px; font-weight:normal; font-size:2.06em; margin:0 0 10px 1px; padding:0; }
+#home #ie-root #main-content #news h3 { margin:0 0 0 1px; }
+#home #main-content #news h3 a, #home #main-content #news h3 a:visited { color:#505050  }
+#home #main-content #news h3 a:hover{ color:#a9531e; }
+
+#home #featured h2{font-size:1.12em; font-style:italic; text-transform:none; color:#e39040; padding-top:10px; padding-bottom:3px; border-bottom:1px solid #555;}
+#home #featured h3 {letter-spacing:0px; font-size:1.32em; line-height:1.12em; margin:0; padding:4px 0 0px}
+#home #featured h3 a{color:#6abadf; text-decoration:none; font-size:1.0em;}
+#home #featured h3 a:hover{text-decoration:underline}
+
+/* ---------- @ Side Bar Content Styles -----------*/
+#home #sidebar .module{ border-bottom:3px solid #ccc; padding-bottom:20px;}
+#home #sidebar .module.last{ background:none;}
+#home #sidebar p { font-size:1em; margin-bottom:0; padding:0 3px; font-style:italic;}
+#home #sidebar p a, #home #sidebar p a:visited{ font-size:0.88em;font-weight:bold; text-decoration:underline;}
+#home #sidebar .module ul{ font-size:1.06em; margin-top:5px; list-style:none; }
+#home #sidebar .module ul li{ line-height:1.32em; padding:4px 0px; list-style:none; }
+#home #intro p {font-size:1.12em; border-top:3px solid #ccc; padding:10px 4px 0;}
+#home #intro.module {padding-bottom:12px; background-image:none; border-bottom:3px solid #ccc;}
+
+/* main-content blue buttons */
+#home #main-content div.wp-btn {margin-top:-10px; margin-left:455px; position:relative; left:0px; z-index:99;}
+#home #main-content div.wp-btn p a { background:url(../images/btnBR.gif) right top no-repeat; font: 1.06em arial,verdana,sans-serif; text-decoration:none; border:0; cursor:pointer; padding:0 16px 0 0; text-align:center; float:left;  display:block; width: auto;}
+#home #main-content div.wp-btn p a span { height:30px; line-height:30px; background:url(../images/btnBL.gif) left top no-repeat;color:#fff; position:relative; display:block; white-space:nowrap; padding:0 0 0 16px;}
+#home #main-content div.wp-btn p a:hover {background:url(../images/btnBR.gif) right bottom no-repeat; text-decoration:none;}
+#home #main-content div.wp-btn p a:hover span {background:url(../images/btnBL.gif) left bottom no-repeat; }
+/* style exceptions for all IE browsers */
+#home #ie-root #main-content div.wp-btn { width:auto; overflow:visible; margin-top:4px;}
+#home #ie-root #main-content div.wp-btn span { margin-top:0px; }
+
+/* sidebar blue buttons */
+#home #sidebar div.wp-btn {margin-top:20px; margin-left:3px; position:relative; left:0px;}
+#home #sidebar div.wp-btn p a { background:url(../images/btnBR.gif) right top no-repeat; font: 1.06em arial,verdana,sans-serif; text-decoration:none; border:0; cursor:pointer; padding:0 15px 0 0; text-align:center; float:left;  display:block; width: auto;}
+#home #sidebar div.wp-btn p a span { height:30px; line-height:30px; background:url(../images/btnBL.gif) left top no-repeat;color:#fff; position:relative; display:block; white-space:nowrap; padding:0 0 0 15px;}
+#home #sidebar div.wp-btn p a:hover {background:url(../images/btnBR.gif) right bottom no-repeat; text-decoration:none;}
+#home #sidebar div.wp-btn p a:hover span {background:url(../images/btnBL.gif) left bottom no-repeat; }
+/* style exceptions for all IE browsers */
+#home #ie-root #sidebar div.wp-btn { width:auto; overflow:visible; }
+#home #ie-root #sidebar div.wp-btn span { margin-top:0px; }
+
+/*------------------ News style ----------------*/
+#home #news{ position:relative; top:-30px; }
+#ie-root #home #news{ position:relative; top:4px}
+#home #news ul#news-list{margin:5px 0 0 3px; padding:0; list-style:none}
+#home #news ul#news-list li{ margin-bottom:10px; list-style:none}
+#home #news ul#news-list li a{font-weight:bold; font-family:"times new roman", georgia, serif; font-size:1.25em; }
+#home #news ul#news-list li span{color:#555; font-size:.82em;padding-left:2px;font-family:verdana, arial, sans-serif; }
+#home #news ul#news-list li p{margin-top:5px;padding-left:2px;}
+#home #news ul#news-list li p a{font-family:helvetica, arial, sans-serif; font-size:.88em;}
+
+
+/*----------------- Carousel ---------------------*/
+#home .jcarousel-container{position:relative}
+#home .jcarousel-clip {z-index: 2; padding: 0; margin: 0; overflow: hidden;position: relative; width:550px}
+#home #homepage_carousel{width:1000px; list-style:none; padding:15px 0 0 50px;}
+#home #homepage_carousel li{float:left; list-style-type:none !important; margin-bottom:0px}
+#home .jcarousel-list{ z-index:1; overflow:hidden; position:relative; top:0; left:0; margin:0; padding:0}
+
+/* We set the width/height explicitly. No width/height causes infinite loops. */
+#home .jcarousel-list li, 
+#home .jcarousel-item { overflow:hidden; width:550px; height:235px}
+
+/* carousel buttons */
+#home .jcarousel-next, 
+#home .jcarousel-prev{z-index:3; width:28px; height:137px; cursor:pointer; position:absolute; top:57px; display:none}
+#home .jcarousel-next{background:url(../images/hp_carousel_right_on.gif) no-repeat left top; right:0px}
+#home .jcarousel-next-disabled{background:url(../images/hp_carousel_right_off.gif) no-repeat left top; cursor:auto}
+#home .jcarousel-prev{background:url(../images/hp_carousel_left_on.gif) no-repeat left top; left:0px}
+#home .jcarousel-prev-disabled{background:url(../images/hp_carousel_left_off.gif) no-repeat left top; cursor:auto}
+
+#home #homepage_carousel a.featured-img{float:left; display:block; border-right:1px solid #3f3728; border-bottom:1px solid #3f3728; margin-top:13px}
+#home #homepage_carousel a.featured-img img{border:7px solid #68624c}
+
+#home #homepage_carousel .featured-main{float:left; max-width:300px; padding:0 15px}
+
+#home #homepage_carousel .featured-overview{font-size:1em; color:#d8caae; margin:7px 20px 10px 0}
+
+#home #homepage_carousel p{font-size:1em; color:#d8caae; margin:7px 20px 10px 0}
+
+#home #homepage_carousel a.view-details{display:block; float:left; color:#c2ab7d; font-size:.6em; text-transform:uppercase; text-decoration:none; border:1px solid #1c160c; padding:5px 12px 4px 20px; border-top:1px solid #625d49; border-left:1px solid #625d49; background:#534d3a url(../images/view_details_arrow.gif) no-repeat 3px 4px}
+#home #homepage_carousel a.view-details:hover{color:#d8caae}
+
+/* IE6 hacks */
+#ie-root-lte7 #home #homepage_carousel p{ width:380px;  margin:0px}
+#ie-root-lte7 #home #homepage_carousel a{ margin:0px}
+#ie-root-lte7 #home #homepage_carousel h3{ width:380px}
+
+/*-----------------------------------------------------------*/
+/* -----------------------END HOME STYLES -------------------*/
+
+/*-----------------------------------------------------------*/
+/* -----------------------GLOBAL STYLES  global-css ---------------------*/
+table{border-collapse:collapse; margin:5px 0}
+td, th{border-bottom:1px solid #e5e1d6; padding:6px 8px; color:#3c3c3c}
+th{font-weight:normal; text-align:right; width:4.5em; /*background:#dbd4c4; */}
+td{/*background:#efece5; */}
+
+
+
+/* ---  --- style-css */
+/* ---------- @ Page Structure -----------*/
+#main{padding-bottom:50px}
+#masthead, #main, #nav, #sub-nav{ width:918px; margin:0 auto; overflow:hidden}
+#content {min-height:10px;} /* override the content min height from thl_integration */
+
+
+#interior #main-content-wrapper, .news-blog #main-content-wrapper{ padding:7px 0 160px 0}
+
+#main-content{ width:730px; margin:0 auto; margin-left:85px}
+body.gallery #main-content{ width:917px;  margin:0 auto;  margin-left:0px}
+body.gallery #main-content.main-narrow{ width:730px; margin:0 auto; margin-left:85px}
+
+#main-content.narrow{ width:570px; float:right; color:#332b1b; min-height:380px; margin-right:100px; margin-left:0px}
+
+body.details #main-content.narrow{width:600px}
+body.details #main-content.narrow p{font-size:1em; margin:0 0 10px 0; line-height:1.5em}
+body.details #main-content.narrow ul{ padding:0 0 0 12px;  margin-left:10px}
+body.details #main-content.narrow ul li{ margin-left:10px; line-height:1.39em; margin-bottom:12px; font-size:1.12em; list-style-type:disc}
+
+.left{ float:left}
+.right{ float:right}
+.halfWidth{ width:48%}
+
+#flash-wrapper{ /*overflow:hidden; */ padding:20px 0px 50px;  /*border-bottom:3px solid #332b1b;*/  background-color:#e7e1d7}
+#flash-fullscreen{ margin:0 auto;  width:920px;  height:550px;  background:#f3f0ec}
+
+/* --- Headings -----------
+--------------------------*/
+
+
+/*#sidebar h4{margin-top:16px; margin-bottom:-5px; font-size:1.32em; color:#3a5d92; font-weight:bold; }*/
+#relationships h4{ font-size:.75em;  color:#a29479;  padding:6px 0 8px;  margin:0;  float:left}
+/*.profile-block h4{ font:.9em Arial,Verdana,Helvetica,sans-serif;  text-transform:none;  letter-spacing:normal;  margin:0}*/
+
+
+/* --- Content Styles -----------
+----------------------------------*/
+/* Details */
+.item{ margin-top:18px; margin-bottom:18px; padding-top:1px; background:url(../images/dots.gif) repeat-x left top}
+/* ie6 hack for .item*/
+#ie-root-lte7 .item{ background-image:none !important}
+
+
+#relationships a img{ border:none;  width:158px}
+#relationships a{ float:left;  display:block;  border:3px solid #c7c7c7}
+#relationships a:hover{ border:3px solid #d7d7d7}
+
+
+/* Gallery */
+.profile-block-wrapper{ float:left; overflow:hidden; width:418px; padding:0px 20px 20px 0px}
+.profile-block-wrapper.alt{    padding:0px 0px 20px 20px;  background:url(../images/dots_vert.gif) no-repeat left top}
+.profile-block{ overflow:hidden; padding:3px 7px 15px; background:url(../images/dots.gif) repeat-x left bottom; height:70px}
+.profile-block-main{    margin-left:80px}
+.profile-block a.profile-thm, .profile-block img.profile-thm{ float:left;  border:3px solid #fbfaf8}
+.profile-block a.profile-thm:hover{    border:3px solid #c0b5a1}
+.profile-block a.profile-thm img{    border:none}
+.profile-block div.date{    float:left;     font-size:.85em; color:#8f8c85; margin-top:6px; padding:3px 16px 3px 18px;  background:#dfd9cd url(../images/calendar.gif) no-repeat 3px 3px}
+.pagination{ list-style:none;  text-align:center;  margin:0 0 10px 0;  padding:30px 0 5px 0;  clear:both}
+.pagination span{ display:inline}
+.pagination span, .pagination a{ line-height:2em; text-decoration:none; font-size:.95em; font-weight:bold; color:#c0e6f8; padding:5px 7px;  margin-left:6px;  border:1px solid #6d93a0;  background:#6d93a0}
+.pagination span.disabled{ display:none}
+.pagination span.current{ color:#2b2a28; background:none}
+.pagination a:hover{ background:#265b79}
+.post{ clear:both;  margin-bottom:0; margin-top:9px; margin-left:5px; border-bottom: 3px double #e4dcce; }
+.post-actions{ float:right}
+.post-actions form.button-to{ float:left}
+.post-metadata-kind{ font-style:italic}
+/* Gallery Buttons */
+.gallery-button{ clear:both; margin-bottom:10px; margin-top:10px}
+.gallery-button a{ text-decoration:none; font-size:.95em; font-weight:bold; color:#c0e6f8 !important; padding:6px 9px; margin-left:6px;     border:1px solid #6d93a0;     background:#6d93a0;     border-width:3px;     border-style:double;     border-top-color:#C0E6F8;     border-left-color:#C0E6F8;     border-bottom-color:#A0C6D8;     border-right-color:#A0C6D8;     background-color:#6D93A0;     background-image:url(../images/button-surface.gif);  cursor:pointer}
+.gallery-button span.disabled{ display:none}
+.gallery-button a:hover{ background:#265b79}
+/* IE6 hack via conditional */
+#ie-root-lte7 #relationships-tab .gallery-button{ margin-top:10px;  margin-bottom:20px;  overflow:visible}
+
+
+/* --- Float Clearing -----------*/
+.clearfloat:after{ display:block;  visibility:hidden;  clear:both;  height:0;  content:"."}
+/*.clearfloat{ display:inline-block}*/
+.clearfloat{ display:block}
+
+
+
+/* auto-complete/tag fields */
+#interests-tab input.ac_input{ width:530px}
+#profile-tab input.ac_input{ width:530px}
+#description-tab input.ac_input{ width:530px}
+#technology-tab input.ac_input{ width:530px}
+#support-tab input.ac_input{ width:530px}
+#searchForm{ margin-bottom:.5em;  margin-top:1em}
+#searchForm input#s{ width:370px}
+
+
+/* --- Global Navigation ----------------
+----------------------------------------- */
+
+/* secondary nav(tab buttons) */
+#secondary-nav{ padding-left:10px; background:url(../images/bg_secondary_nav_tile.gif) repeat-x left bottom;  margin:5px 0 15px 0;  font-size:90%;  font-family:"Lucida Grande","Trebuchet MS",arial,helvetica}
+/* breaks TinyMCE#secondary-nav span{padding:6px 18px 0px 0px}*/
+#secondary-nav ul{ overflow:hidden; list-style:none; padding-top:0px}
+#secondary-nav ul li{ float:left; font-weight:bold; margin-bottom:-1px}
+#secondary-nav ul li a{ display:block; text-decoration:none; color:#fff; padding:5px 18px 5px; margin-right:3px; background:#568ea7 url(../images/tab-corner.gif) no-repeat scroll right top}
+#secondary-nav ul li a:hover, #secondary-nav ul li.current_page_item a, #secondary-nav ul li.current_page_ancestor a,
+#interior ul li.selected a{ background:#265b79 url(../images/tab-corner-select.gif) no-repeat scroll right top;     color:#fff}
+
+

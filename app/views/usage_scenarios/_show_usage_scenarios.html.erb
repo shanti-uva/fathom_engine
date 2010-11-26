@@ -1,0 +1,17 @@
+<% tool.usage_scenarios.find(:all, :order => 'id').each do |r| %>
+	<div id="<%= "#{r.id}_usagediv" %>">
+<%  if usage_scenario.nil? 		
+      if r.is_primary? %>
+		<%=   render :partial => 'usage_scenarios/show_expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+		<%=   render :partial => 'usage_scenarios/show_contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  else %>
+<%    if r == usage_scenario %>
+<%=     render :partial => 'usage_scenarios/show_expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+<%=     render :partial => 'usage_scenarios/show_contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  end %>
+    </div>
+<% end %>

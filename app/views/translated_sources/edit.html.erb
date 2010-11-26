@@ -1,0 +1,16 @@
+<h1>Editing translated_source</h1>
+
+<% form_for(@translated_source) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @translated_source %> |
+<%= link_to 'Back', translated_sources_path %>

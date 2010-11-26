@@ -1,0 +1,36 @@
+<% project_profile = project.project_profile -%>
+
+<div id="relationships-tab">
+	<div id="relations" class="item">
+		
+		<div class="clearfloat">
+	    
+	    <!-- MEMBERS -->
+	    <% # use a 2 column layout if the project type is an organization -%>
+  		<div class="<%= 'left halfWidth' if project_type==:organization %>">
+    		<h3>Members</h3>
+    		<%= render ({
+    			:partial => 'common/entity_list',
+    			:object => project.people,
+    			:allow_remove_self => true,
+    			:locals => { :empty_message => "Project has no members.", :parent_entity => project }
+    		}) -%>
+			</div>
+			
+  		<% if project_type == :organization -%>
+  		<!-- SUB-PROJECTS -->
+  		<div class="right halfWidth">
+  			<h3>Sub-Projects</h3>
+  			<%= render ({
+  			  :partial => 'common/entity_list',
+  			  :object => project.projects,
+  			  :allow_remove_self => true,
+          :locals => { :empty_message => "Organization has no sub-projects.", :parent_entity => project }
+        }) -%>
+  		</div>
+      <% end %>
+      
+    </div><!-- end div.clearfloat -->
+    
+	</div>
+</div>

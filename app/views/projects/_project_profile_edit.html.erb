@@ -1,0 +1,488 @@
+<%= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
+
+<%= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
+
+<% project_profile = project.project_profile -%>
+
+<%
+# because this page is working with /projects AND /organizations, these variables are created to help the javascript code along...
+object_path_method = "#{project_type}_path".to_sym
+collection_path = send("#{project_type.to_s.pluralize}_path")
+-%>
+
+<script>
+<% # given a type of 'member' or 'projects', this function returns the correct base path/url -%>
+function pathForAssociation(type){
+  if(type=='member'){
+    return '<%= people_path %>';
+  }else{
+    return '<%= projects_path %>';
+  }
+}
+
+<%
+# This function adds a new row to the people/projects table
+# The first argument is the type of association: "project" or "member"
+# The second argument is a hash that requires the following keys: id, name and thumb
+# The template that it uses, mirrors a "tr" from the "table" in views/common/_entity_list.html.erb
+-%>
+function addNewAssociationRow(type, data){
+  // build the template (the class for removing this row is either .memberRemove or .projectRemove)
+  var row_template_string='<tr> <td><a href=""><img src="" alt=""/></a></td> <td><a href=""></a></td> <td><div class="gallery-button"><a title="" class="' + type + 'Remove" href="#">remove</a></div></td> </tr>';
+  // jqueryize it
+  var row_template=$(row_template_string);
+  // set all hrefs to the "type" path
+  $('a', row_template).attr('href', pathForAssociation(type) + '/' + data['id']);
+  // setup the remove link handler
+  var remove_link = $('a.' + type + 'Remove', row_template);
+  // reset the href attribute to # (this link uses a javascript click handler)
+  remove_link.attr('href', '#');
+  // set the title to the id of the object (used by the click handler)
+  remove_link.attr('title', data['id']);
+  // assign the click handler to the removeAssociationHandler function
+  remove_link.click(function(){
+    removeAssociationHandler(type, $(this));
+  });
+  // setup the thumb
+  var img=$('img', row_template);
+  // set the src attribute
+  img.attr('src', data['thumb']);
+  // set the alt attribute
+  img.attr('alt', data['name'] + '_thumb');
+  // add main text link to the second column
+  $('td a', row_template).each(function(i,e){
+    // the name of the project/organization is in the second column
+    if(i==1){$(e).html(data['name'])}
+  });
+  var container=$('#' + type + 's'); // note: pluralized
+  var table=$('table', container);
+  if(table.length==0){
+    // page was loaded without any relationship table of this "type"
+    $(container).append('<table class="entity-list-table"></table>');
+  }
+  $('table', container).append(row_template);
+}
+
+// This function gets called from invite_member.html.erb (in a lightbox) after the form has been sent (via ajax)
+function successfullyInvitedTeamMembers(){alert('Your invitations have been sent.')}
+
+// This function gets called from find_member.html.erb (in a lightbox) after the form has been sent (via ajax)
+function successfullyAddedAssociation(type, object_ids){
+  // loop through all newly added members/sub-projects
+  for(i in object_ids){
+    // fetch the JSON associated with the current member id
+    $.getJSON(pathForAssociation(type) + '/' + object_ids[i] + '.json', function(data){
+      // add to the people/sub-project table
+      addNewAssociationRow(type, data);
+    });
+  }
+}
+
+// handler for removing a member/sub-project
+// sends a POST request to a project_path (project or organization)
+// removes the corresponding "tr" from the people table
+function removeAssociationHandler(type, el){
+  if(!confirm('Are you sure you want to remove this ' + type + '?')){return;}
+  el.parent().parent().parent().fadeOut('fast');
+  //var update_url='<%= escape_javascript url_for({:controller=>"projects", :action => "update", :id => project.id }) %>'
+  if('<%= project_type %>'== 'project'){
+    var update_url='<%= escape_javascript url_for({:controller=>"projects", :action => "index" }) %>'
+  }
+  else{
+    var update_url='<%= escape_javascript url_for({:controller=>"organizations", :action => "index" }) %>'
+  }
+  var query_string='/update/' + '<%= project.id %>'
+  query_string += '?<%= project_type %>[' + type + '_ids_to_delete][]=' + el.attr('title');
+ 
+  //var url='<%= send(object_path_method, project) %>';
+  //url += '?_method=put';
+  //url += '&authenticity_token=<%= form_authenticity_token %>';
+  //url += '&<%= project_type %>[' + type + '_ids_to_delete][]=' + el.attr('title');
+  
+  //$.post(url, function(){})
+  $.post(update_url + query_string);
+  return false;
+}
+
+jQuery(function(){
+  var $=jQuery;
+  
+  <%= generate_js_for_tag_autocomplete( @tag_combiner, :project_profile, {
+    :disciplines=>'project_profile_discipline_list',
+    :general_interests=>'project_profile_general_interest_list',
+    :time_periods_of_interest=>'project_profile_time_periods_of_interest_list',
+    :places_of_interest=>'project_profile_places_of_interest_list',
+    :technologies_of_interest=>'project_profile_technologies_of_interest_list'
+  }) %>
+  
+  // display default status of synopsis char limit:
+  //$('#charcount').html('0/400');
+  // count the lines in the synopsis (limited to 400 characters)
+  //$('#project_profile_synopsis').keyup(function(){
+  //  $('#charcount').html($(this).val().length + '/400');
+  //})
+  
+  // When a .subjectCheckbox element is checked, initially... nothing happens.
+  // If it's unchecked, a new element is placed into the form with the name "project_profile[subject_ids_for_deletion][]"
+  // and the value is set to the id of the "Subject" instance checked. This allows the server-side app
+  // to remove the association of the "Subject"; when a checkbox is unchecked, nothing is sent to the server.
+  // If the item is checked again (uncheck, re-check) the project_profile[subject_ids_for_deletion][] 
+  // for that "Subject" element is removed.
+  $('.subjectCheckbox').click(function(){
+    var el=$(this);
+    if(el.attr('checked')==true){
+      $('#removeSubject' + el.val()).remove();
+    }else{
+      $('#profileForm').append('<input type="hidden" name="project_profile[subject_ids_for_deletion][]" id="removeSubject' + el.val() + '" value="' + el.val() + '" />');
+    }
+  });
+  
+  $('.projectRemove').click(function(){
+    removeAssociationHandler('project', $(this));
+  });
+  $('.memberRemove').click(function(){
+    removeAssociationHandler('member', $(this));
+  });
+  
+  function ifNeg(l){
+  if(l > 400) {
+        $('#charcount').addClass('is_neg');
+        $('#charcount').html('Limit reached.');
+    } else {
+      $('#charcount').removeClass('is_neg');
+    }
+  };
+  // display default status of synopsis char limit:
+  $('#charcount').html(400 - $('#project_profile_synopsis').val().length);
+  ifNeg($('#project_profile_synopsis').val().length);
+  // count the lines in the synopsis (limited to 400 characters)
+  $('#project_profile_synopsis').keyup(function(){
+    var l=$(this).val().length;
+    $('#charcount').html(400 - l );
+    ifNeg(l);
+  });
+    // find the form... add a "submit" handler
+  $('#profileForm').submit(function(){
+    // check the length of the synopsis string value
+    if( $('#project_profile_synopsis').val().length > 400) {
+      // display alert...
+      alert('The project synopsis must be shorter than 400 characters in length.');
+      // return false to avoid submitting the form...
+      return false;
+    }
+  });
+
+});
+</script>
+
+<%= tinymce_reinitialization_script %>
+
+<div id="main-content" class="narrow">		
+	<% form_for( :project_profile, project_profile, :url => { :action => "update_profile", :id => project.id }, :html=>{:id=>'profileForm'} ) do |f| -%>
+	
+	<%= hidden_field_tag( :tab, @selected_tab ) %>
+	
+	<h2>Updating Profile </h2>
+        <h2 id="subject"><input name="project_profile[project_attrs][name]" type="text" value="<%=  @project.name if project_type==:project %><%=  @organization.name if project_type==:organization %>"/> </h2>
+        <%= error_messages_for 'project_profile', :object => project.project_profile, :message => '', :header_message => '' %>
+  <div class="yui-content">
+	  <div id="profile-tab">	
+  		<div id="profile" class="item">
+			<%= editor_note_tip %>
+  		<!-- Profile
+  			    Name
+  			    Home Page
+  			    Primary Image (could be logo or icon)
+  			    Images/Screenshots (likewise, allow for five if possible)
+  			    Technologies (text block for now; David wants to explore user-extensible controlled vocabulary later)   
+  			    Seeking (free-form, for now, as we discussed) -->
+					
+  				<table class="entity-list-table">
+  					<tr>
+  						<td><b>Home Page URL:</b></td>
+  						<td><%= f.text_field "home_page" %></td>
+  					</tr>
+  				</table>
+				  
+				  <h3>Focus</h3>
+				  <table class="entity-list-table">
+  					<% Subject.find(:all).each do |s| %>
+  					<tr>
+					    <td><%= check_box_tag "project_profile[subject_ids][]", s.id, project_profile.subjects.include?(s), :id=>"subject_#{s.id}", :class=>'subjectCheckbox' %></td>
+					    <td><label for="subject_<%= s.id %>"><%= s.name %></label></td>
+					  </tr>
+  					<% end %>
+  				</table>
+  
+                  <em>The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.</em>              
+				  <h3>Overview</h3>
+                                  <%=th f.text_area("overview", :class => 'mceEditor') %>
+				  
+				  <h3>People</h3>
+                                  <em>Describe directors, staff, participants, as you wish.</em>
+				  <%=th f.text_area("people", :class => 'mceEditor') %>
+				  
+				  <h3>Sponsors</h3>
+				  <%=th f.text_area("sponsors", :class => 'mceEditor') %>
+				  
+  		</div>
+  	</div>
+	
+    <div id="activities-tab">
+  		<div id="activities" class="item">	
+            <%= editor_note_tip %>
+    		<h3>Current Focus</h3>
+  			<%=th f.text_area(:current_directions, :class => 'mceEditor') %>
+
+    		<h3>Future Goals</h3>
+  			<%=th f.text_area(:outcomes, :class => 'mceEditor') %>
+  			
+  			<h3>History</h3>
+  			<%=th f.text_area(:history, :class => 'mceEditor') %>
+  			
+  		</div>
+    </div>
+    
+    <div id="interests-tab">	
+  		<div id="interests" class="item">
+  		<%= editor_note_tip %>
+  		<h3>Interests</h3>
+			<em>Describe relevant interests and special focuses.</em><br/>
+			
+			<%=th f.text_area('interests', :class => 'mceEditor') %>
+			
+			<p>
+			  <em>Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.</em>
+			</p>
+			
+			<h3>General Interests</h3>
+			<div><%= f.text_field(:general_interest_list) %></div>
+			
+			<h3>Scholarly Disciplines</h3>
+			<div><%= f.text_field(:discipline_list) %></div>
+			
+			<h3>Time Periods of Interest</h3>
+			<div><%= f.text_field(:time_periods_of_interest_list) %></div>
+			
+			<h3>Places of Interest</h3>
+			<div><%= f.text_field(:places_of_interest_list) %></div>
+			
+			<h3>Technologies of Interest</h3>
+			<div><%= f.text_field(:technologies_of_interest_list) %></div>
+  		
+<%
+=begin
+%>
+				<h3>Scholarly Disciplines</h3>
+				<table class="entity-list-table">
+         	<% Discipline.find(:all).each do |d| -%>
+         	<tr>
+            <td><%= check_box_tag "discipline[#{d.id}]", "true", project_profile.disciplines.include?(d), :id=>"discipline_#{d.id}" %></td>
+            <td><label for="discipline_<%= d.id %>"><%= d.name %></label></td>
+         	</tr>
+        	<% end -%>
+        </table>
+				
+				<h3>Time Periods of Interest</h3>
+                                <em>Indicate scholarly focus in terms of historical or current periods.</em>
+				<%=th f.text_area('time_periods_of_interest') %>
+				
+				<h3>Places of Interest</h3>
+                                <em>Indicate scholarly focus in terms of geographical and/or cultural regions.</em>
+				<%=th f.text_area('places_of_interest') %>
+				
+				<h3>Technologies</h3>
+                                <em>Indicate the technologies used by the organization.</em>
+				<%=th f.text_area('technologies') %>
+<%
+=end
+%>
+			</div> <!-- END INTERESTS -->
+    </div>
+    
+    <div id="services-tab">	
+  		<div id="services" class="item">
+          <em>Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.</em>
+  		  <br/><%= editor_note_tip %>
+  		  <h3>Data</h3>
+  		  <%=th f.text_area('data', :class => 'mceEditor') %>
+  		  
+  		  <h3>Tools</h3>
+  		  <%=th f.text_area('tools', :class => 'mceEditor') %>
+  		  
+  		  <h3>Training</h3>
+  		  <%=th f.text_area('training', :class => 'mceEditor') %>
+  		  
+  		  <h3>Events</h3>
+  		  <%=th f.text_area('events', :class => 'mceEditor') %>
+  		  
+  		  
+  		  <h3>Opportunities</h3>
+  		  <%=th f.text_area('opportunities', :class => 'mceEditor') %>
+  		  
+  		  <h3>Other</h3>
+  		  <%=th f.text_area('other', :class => 'mceEditor') %>
+  		  
+  		</div>
+    </div>
+    
+    <div id="relationships-tab">
+    	<div id="relations" class="item">
+    		<!-- 2 COL. LAYOUT -->
+    		<div class="clearfloat">
+    	    <!-- PEOPLE RELATIONSHIPS -->
+    	    <% # use a 2 column layout if the project type is an organization -%>
+      		<div class="<%= 'left halfWidth' if project_type==:organization %> peopleRelationships">
+      		
+        		<!--
+        		<% if (project_type == :project && full_access_project_member?(project)) || 
+    					  (project_type == :organization && full_access_organization_member?(project)) -%>
+    					<div class="gallery-button">
+    						<span><%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => project.id ) %></span>
+    						<span><%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => project.id ) %></span>
+    					</div>
+    				<% end -%>
+      		  -->
+      		  
+      		  <h3>People</h3>
+      		  
+      		  <p>
+      		  <% if (project_type == :project && full_access_project_member?(project)) || 
+    					  (project_type == :organization && full_access_organization_member?(project)) -%>
+        		<%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find Team Members' %>
+        		 | <%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Invite Team Members' %>
+      		  <% end -%>
+      		  </p>
+      		  
+      		  <%
+        			project_list = { :partial => 'common/entity_list', :object => project.people, 
+        							 :locals => { :empty_message => "No members in this project.",
+        						 				  :parent_entity => project } }
+        			#project_list[:locals].merge!({:remove_action => 'remove_member'}) if full_access_project_member?(project)
+        			project_list[:locals].merge!({
+        			  :remove_link_proc => proc{|entity|
+        			    content_tag(:div, link_to('Remove', '#', :class=>'memberRemove', :title=>entity.id), :class=>'gallery-button')
+        			  }
+        			}) if @allowed_to_edit
+        		-%>
+      		  
+        		<div id="members"><%= render project_list %></div>
+        	  
+      		</div>
+      		
+      		<% if project_type==:organization %>
+      		<!-- SUB-PROJECTS (for organizations only) -->
+      		<div class="right halfWidth subRelationships">
+      		  
+      		  <!--
+      		  <% if full_access_organization_member?(project) -%>
+      			<div class="gallery-button">
+      				<span><%= link_to 'Add Sub-Projects', url_for( :controller => 'organizations', :action => 'new_subproject', :id => project.id ) %></span>
+      			</div>
+      			<% end -%>
+      		  -->
+      		  
+      		  <h3>Sub-Projects</h3>
+      		  
+      		  <p>
+      		  <% if full_access_organization_member?(project) -%>
+        		  <%= link_to 'Add Sub-Projects', url_for( :controller => 'organizations', :action => 'new_subproject', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Add Sub-Projects' %>
+      		  <% end -%>
+      		  </p>
+      		  
+      		  <%
+      				list_render_options = { :partial => 'common/entity_list', :object => project.projects, :allow_remove_self => true,
+      					   				:locals =>{ :empty_message => "Organization has no sub-projects.", :parent_entity => project } }
+      				#list_render_options[:locals].merge!({:remove_action => 'remove_subproject'}) if full_access_project_member?(project) and @allowed_to_edit
+      				list_render_options[:locals].merge!({
+        			  :remove_link_proc => proc{|entity|
+        			    content_tag(:div, link_to('Remove', '#', :class=>'projectRemove', :title=>entity.id), :class=>'gallery-button')
+        			  }
+        			}) if @allowed_to_edit
+      			-%>
+      			
+      			<div id="projects"><%= render list_render_options %></div>
+      			
+      		</div><!-- END SUB-PROJECTS -->
+      		<% end %>
+      		
+  		  </div><!-- END clearfloat -->
+  		  
+    	</div> <!-- END RELATIONS -->
+    </div> <!-- END RELATIONS TAB -->
+    
+    <div id="contact-tab">
+		<div id="contact" class="item">
+			<%= editor_note_tip %>
+  			<h3>Mailing Address</h3>
+				<table class="entity-list-table">
+					<tr>							
+						<th>Address Line 1:</th>
+						<td><%= f.text_field "address_one" %></td>					
+					</tr>
+					<tr>							
+						<th>Address Line 2:</th>
+						<td><%= f.text_field "address_two" %></td>					
+					</tr>
+					<tr>
+						<th>City:</th>								
+						<td><%= f.text_field "city" %></td>					
+					</tr>
+					<tr>
+						<th>State/Province/Region:</th>		
+						<td><%= f.text_field 'state' %></td>					
+					</tr>
+					<tr>
+						<th>Zip/Postal Code:</th>
+						<td><%= f.text_field "zipcode" %></td>
+					</tr>
+					<tr>
+						<th>Country:</th>								
+						<td><%= f.select( "country", [[ "Select a Country", "" ]] + country_names )%></td>					
+					</tr>
+				</table>
+
+  			<h3>Direct Contact</h3>
+                        <em>For phone numbers, please specify your country code.  For example, use +1- for the US and Canada.</em>
+  			<table class="entity-list-table">
+  				<tr>							
+  					<th scope="row">Phone Number:</th>
+  					<td><%= f.text_field "phone" %></td>					
+  				</tr>
+  				<tr>
+  					<th scope="row">Fax Number:</th>								
+  					<td><%= f.text_field "fax" %></td>					
+  				</tr>
+  				<tr>
+  					<th scope="row">Email:</th>
+  					<td><%= f.text_field "contact_email" %></td>
+  				</tr>
+  			</table>
+  			
+  			
+  			<h3>Contact Notes</h3>
+				<%=th f.text_area(:notes, :class => 'mceEditor') %>
+  			
+  		</div>
+    </div>
+    
+    <% # Project and Organization Profiles use this form... switch between :full_access_project_member? and :full_access_organization_member? by evaling the project_type variable -%>
+    <% if send("full_access_#{project_type}_member?", project) -%>
+    <div id="admin-tab">
+      <div id="admin" class="item">
+        <p class="gallery-button delete">
+          <%= link_to( "Delete this #{project_type.to_s.capitalize}", send(object_path_method), :method => :delete, :confirm => "Are you sure you wish to delete this #{project_type}?") %>
+    		</p>
+      </div>
+    </div>
+    <% end %>
+    
+		<div class="gallery-button update">
+			<%= f.submit "Update" %>
+			<% cancel_path = project[:type] == "Project" ? project_path(project, :tab => @selected_tab) : organization_path(project, :tab => @selected_tab) -%>
+			<%= link_to 'Cancel', cancel_path, :id => 'cancel-button' %>
+		</div>
+
+	</div> <!-- END YUI CONTENT -->
+	<% end -%>
+</div> <!--END CONTENT-->

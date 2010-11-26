@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  var TARGET_PROFILE_BASE_URL = '<%= edit_organization_path(@organization) %>';
+	jQuery(document).ready(function() {
+		var tabView = new YAHOO.widget.TabView('secondary-nav');
+		tabView.addListener( 'click', updateEditProfileURL );	
+	});
+</script>
+
+<div id="main">
+	<div id="secondary-nav" class="yui-navset">
+		
+		<ul class="yui-nav">
+			<%= tab_tag( :profile, 'Profile', @selected_tab ) %>
+			<%= tab_tag( :activities, 'Activities', @selected_tab ) unless @organization.project_profile.activities_blank? %>
+			<%= tab_tag( :interests, 'Interests', @selected_tab ) unless @organization.project_profile.interests_blank? %>
+			<%= tab_tag( :services, 'Services', @selected_tab ) unless @organization.project_profile.services_blank? %>
+			<%= tab_tag( :relationships, 'Relationships', @selected_tab ) %>
+			<%= tab_tag( :contact, 'Contact', @selected_tab ) unless @organization.project_profile.contact_blank? %>
+		</ul>
+		
+	<div id="main-content" class="narrow">		
+		<h2 id="subject"><%= h(@organization.name) %> / <span class="page-type">Profile <% if full_access_organization_member?(@organization) -%><%= link_to '(Edit Profile)', edit_organization_path(@organization, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
+		
+<%
+=begin
+-%>
+		<% unless @organization.project_profile.home_page.blank? -%>
+		<h3 id="uri">Home Page: <a href="<%= @organization.project_profile.home_page %>"><%= h(@organization.project_profile.home_page) %></a></h3>
+		<% end -%>
+		<% if full_access_organization_member?(@organization) -%>
+			<p><%= button_to( "Delete this Organization", organization_url(@organization), :method => :delete,
+			   				:confirm => "Are you sure you wish to delete this organization?") %></p>
+		<% end -%>
+		<% if full_access? and !full_access_organization_member?(@organization) -%>
+			<%= button_to( "Join this Organization", url_for( :action => 'join_organization', :id => @organization) ) %>
+		<% end -%>
+<%
+=end
+-%>
+
+		<% unless @organization.project_profile.home_page.blank? -%>
+			<h3 id="uri">Home Page: <a href="<%= @organization.project_profile.home_page %>"><%= h(@organization.project_profile.home_page) %></a></h3>
+		<% end -%>
+
+		<% if full_access? and !full_access_organization_member?(@organization) -%>
+			<%= button_to( "Join this Organization", url_for( :action => 'join_organization', :id => @organization) ) %>
+		<% end -%>
+		<div class="yui-content">
+			<%= render :partial => '/projects/project_profile_show', :locals => { :project => @organization, :project_type => :organization } %>		
+		</div> <!-- END YUI CONTENT -->
+		</div> <!--END CONTENT-->
+	</div> <!-- END SECONDARY NAV -->
+	<div id="media">
+		<div id="carousel">
+      
+			<%= image_tag(@organization.image_src, :id => "main-img", :alt => h(@organization.name)) %> 
+      
+		<%= render :partial => '/common/image_carousel' %>
+		<%= render :partial => '/common/relationships' %>
+		</div><!--END CAROUSEL-->	
+	</div><!--END MEDIA-->
+</div><!--END MAIN-->

@@ -1,0 +1,6 @@
+<%= render :partial => '/tools/show_profile_tab', 				:locals => { :tool => tool } %>
+<%= render :partial => '/tools/show_description_tab', 		:locals => { :tool => tool } unless (tool.tool_profile.description_blank? and tool.usage_scenarios.empty?) -%>
+<%= render :partial => '/tools/show_reviews_tab',	:locals => { :tool => tool } unless tool.reviews.empty?  %>
+<%= render :partial => '/tools/show_technology_tab', 		:locals => { :tool => tool } unless tool.tool_profile.technology_blank? -%>
+<%= render :partial => '/tools/show_support_tab', 				:locals => { :tool => tool } unless tool.tool_profile.support_blank? %>
+<%= render :partial => '/tools/show_relationships_tab', 				:locals => { :tool => tool }  %>

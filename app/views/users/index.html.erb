@@ -1,0 +1,101 @@
+<style >
+	.banned-user {
+		text-decoration: line-through;
+	}
+	.user-table { padding: 0;
+	  margin: 0;
+	  border-collapse: collapse;
+	  border: 1px solid #333;
+	  /*font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	  font-size: 0.9em;
+	  color: #000;
+	}
+	.user-table th, .user-table td { padding: 0.5em; }
+	.user-table { border: 1px solid #333; }
+	.user-table th, .user-table td { border: 1px dotted #666; }
+	.user-table th[scope=col]
+	{
+	  border-bottom: 2px solid #333;
+	  border-right: 2px solid #333;
+	}
+	/*.user-table th+th[scope=col] { border-right: 1px dotted #666; }*/
+	.user-table th[scope=row] { border-right: 2px solid #333; }
+	.user-table th, .user-table td { color: #632a39; }
+	
+	/* Set colours for all header cells in the top row */ 
+	.user-table th[scope=col] { color: #000; background-color: #8fadcc; }
+
+	.user-table tr.alt th, .user-table tr.alt td
+	{
+	  color: #2a4763;
+	}
+	
+	
+	.user-table tr:hover th[scope=row], .user-table tr:hover td
+	{ 
+	  background-color: #7d98b3;
+	  color: #fff;
+	}
+	
+</style>
+<script type="text/javascript" src="/javascripts/jquery.cookie.js"></script>
+
+<script>
+ $(document).ready(function(){
+   scrollToSelected();
+
+  $("a").click(function(event){
+	var scrollTop1 = $(window).scrollTop();
+	$.cookie("scrollTop", scrollTop1);
+	//scrollTop1 = $.cookie("scrollTop");
+    //alert($.cookie("scrollTop"));
+   });
+
+  $(window).scroll(function () { 
+     //$("span").css("display", "inline").fadeOut("slow"); 
+     //scrollTop1 = $(window).scrollTop();
+   });
+
+ });
+
+// Scroll to saved element in the List
+function scrollToSelected() {
+		//alert(scrollTop1);
+		//var offset = jQuery("#container-right-5050 span.selected_branch").offset().top - 10;
+		jQuery('html,body').animate({scrollTop: $.cookie("scrollTop")}, 200);
+
+}
+</script>
+
+<div id="main">	
+	<div id="main-content">
+
+		<h1><%= 'User Access' %></h1>
+<table  class="user-table">
+  <tr>
+    <th scope="col"><%= 'Name' %></th>
+	<th scope="col"><%= 'E-mail' %></th>
+	<th scope="col"><%= 'Access Level' %></th>
+	<th scope="col"><%= 'Requests' %></th>
+	<th></th>
+	<th></th>
+  </tr>
+<% for user in @users %>
+  <tr>
+	<td><%= user.banned == true ? '<span class="banned-user">'+link_to(h(user.person.name), user)+'</span>' : link_to(h(user.person.name), user) %></td>
+	<td><%= user.banned == true ? '<span class="banned-user">'+link_to(h(user.email), user)+'</span>' : link_to(h(user.email), user) %></td>
+	<td><%= user.banned == true ? '<span class="banned-user">'+h(user.access_level)+'</span>' : h(user.access_level) %></td>
+
+	<td><%= user.request_full.blank? ? '' : (user.request_full == true ? 'Requests Full' : '' )%></td>
+	<td><%= link_to 'Ban User', ban_user_user_path(user), :confirm => 'Are you sure?', :method => :get  %></td>
+	<td><%= link_to 'Delete', user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
+	
+  </tr>
+<% end %>
+</table>
+
+<br/>
+<div class="gallery-button"><span><%= link_to "Regenerate Search Index", regenerate_index_path, :confirm => "This will take a little while. Are you sure?" %></span></div>
+
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<% unless SOLR_URL.nil? -%>
+	<script type="text/javascript">
+		function switchSearchType( searchType ) {	
+			if( searchType == "profiles" ) {
+				$('#search-form').attr('action', '/wordpress');
+				$('#s').val( 'search news' );
+				$('#search-type-link').html('search profiles');
+				$('#search-type-link').attr('href', 'javascript:switchSearchType("news");');
+			}
+			else {
+				$('#search-form').attr('action', '/search');
+				$('#s').val( 'search profiles' );
+				$('#search-type-link').html('search news');
+				$('#search-type-link').attr('href', 'javascript:switchSearchType("profiles");');			
+			}	
+		}
+				
+		function clearSearchBox() {
+			var searchText = $('#s').val();
+			if( searchText == "search profiles" || searchText == "search news" ) {
+				$('#s').val( '' );							
+			}
+		}
+		
+	</script>
+<% end -%>

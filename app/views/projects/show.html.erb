@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  var TARGET_PROFILE_BASE_URL = '<%= edit_project_path(@project) %>';
+	jQuery(document).ready(function() {
+		var tabView = new YAHOO.widget.TabView('secondary-nav');
+		tabView.addListener( 'click', updateEditProfileURL );	
+	});
+</script>
+
+<div id="main">
+  
+	<div id="secondary-nav" class="yui-navset">
+		<ul class="yui-nav">
+			<%= tab_tag( :profile, 'Profile', @selected_tab ) %>
+			<%= tab_tag( :activities, 'Activities', @selected_tab ) unless @project.project_profile.activities_blank? -%>
+			<%= tab_tag( :interests, 'Interests', @selected_tab ) unless @project.project_profile.interests_blank? -%>
+			<%= tab_tag( :services, 'Services', @selected_tab ) unless @project.project_profile.services_blank?%>
+			<%= tab_tag( :relationships, 'Relationships', @selected_tab ) %> 
+			<%= tab_tag( :contact, 'Contact', @selected_tab ) unless @project.project_profile.contact_blank? %>
+		</ul>
+
+	<div id="main-content" class="narrow">		
+		<h2 id="subject"><%= h(@project.name) %> / <span class="page-type">Profile <% if full_access_project_member?(@project) -%><%= link_to '(Edit Profile)', edit_project_path(@project, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
+		
+		<% unless @project.project_profile.home_page.blank? -%>
+			<h3 id="uri">Home Page: <a href="<%= @project.project_profile.home_page %>"><%= h(@project.project_profile.home_page) %></a></h3>
+		<% end -%>
+			
+		<% if full_access? and !full_access_project_member?(@project) and !private_user? -%>
+			<p id="add-button"><%= button_to( "Join this Project", url_for( :action => 'join_project', :id => @project) ) %></p>
+		<% end -%>
+		
+		<div class="yui-content">
+			<%= render :partial => 'project_profile_show', :locals => { :project => @project, :project_type => :project } %>		
+		</div> <!-- END YUI CONTENT -->
+		</div> <!--END CONTENT-->
+	</div> <!-- END SECONDARY NAV -->
+	<div id="media">
+		<div id="carousel">
+		
+		<%= image_tag(@project.image_src, :id => "main-img", :alt => h(@project.name)) %> 
+		
+		<% if @allowed_to_edit -%><h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @project ) %></h4><% end -%>		
+		<%= render :partial => '/common/image_carousel' %>
+		</div><!--END CAROUSEL-->
+		<%= render :partial => '/common/relationships' %>	
+	</div><!--END MEDIA-->
+</div><!--END MAIN-->

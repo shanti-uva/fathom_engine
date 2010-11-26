@@ -1,0 +1,33 @@
+<script type="text/javascript">
+ //<![CDATA[
+   setTextareaToTinyMCE('source_passage');
+   tinyMCE.execCommand('mceAddControl',false,'source_note');
+ //]]>
+ </script>
+
+<p><b>MMS Id</b><br />
+  <%= f.text_field :mms_id %>
+</p>
+<p><b>Volume Number</b><br />
+  <%= f.text_field :volume_number %>
+</p>
+<p><b>Start Page</b><br />
+	<%= f.text_field :start_page %>
+</p>
+<p><b>Start Line<b><br />
+	<%= f.text_field :start_line %>
+</p>
+<p><b>End Page</b><br />
+	<%= f.text_field :end_page %>
+</p>
+<p><b>End Line<b><br />
+	<%= f.text_field :end_line %>
+</p>
+<p><b><%= 'Passage' %></b><br />
+<%= f.text_area :passage, :rows => 16, :cols => 50 %>
+</p>
+<p><b><%= 'Note' %></b><br />
+<%= f.text_area :note, :rows => 16, :cols => 50 %>
+</p>
+   
+<div id="update_div"/>

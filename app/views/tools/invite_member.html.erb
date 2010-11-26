@@ -1,0 +1,6 @@
+<div id="main">
+	<div id="main-content" class="narrow">
+		<%= render :partial => 'common/invite_member', :locals => { :team => @tool, :team_type => :tool  } %>
+	</div> <!--END CONTENT-->
+	<%= render :partial => '/common/media', :locals => { :entity => @tool } unless params[:inline] %>
+</div><!--END MAIN-->

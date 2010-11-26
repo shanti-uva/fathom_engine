@@ -1,0 +1,28 @@
+<% tool_profile = tool.tool_profile -%>
+
+<div id="description-tab">
+	<div id="description" class="item">
+		<% unless tool_profile.features.blank? -%>
+			<h3>Features</h3>
+			<%=rc tool_profile.features %>
+		<% end -%>
+
+        <%  if !tool.usage_scenarios.empty? %>
+		<h3>Usage Scenarios</h3>
+		<%  end %>
+	      <div id='usage_scenarios_div'>
+		    <%  if !tool.usage_scenarios.empty? %>
+		    <%=     render :partial => 'usage_scenarios/show_usage_scenarios', :locals => {:tool => tool, :usage_scenario => nil} %>	
+		    <%  end %>
+		  </div>
+				
+		<% unless tool_profile.version_history.blank? -%>
+			<h3>Version and Plans</h3>
+			<%=rc tool_profile.version_history %>
+		<% end -%>
+		
+		<dl>
+		<%= entity_profile_tag_block @tag_combiner, tool, :languages, 'Interface Languages' %>
+		</dl>	
+	</div>
+</div>

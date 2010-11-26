@@ -1,0 +1,11 @@
+<% empty_message = "There are no items on this list." -%>
+
+<% unless item_list.empty? -%>
+	<ul>
+		<% for item in item_list -%>
+			<li><%= h(item.text) %></li>
+		<% end -%>
+	</ul>
+<% else -%>
+	<br/><p><%= empty_message %></p>
+<% end -%>

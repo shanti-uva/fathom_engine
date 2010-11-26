@@ -1,0 +1,48 @@
+<div id="relationships-tab">
+	<div id="relations" class="item">
+    
+		<div class="clearfloat">
+		  <div class="left halfWidth">
+    		<h3>Projects</h3>
+    		<% 
+    			project_list = { :partial => 'common/entity_list', :object => @person.projects, 
+    							 :locals => { :empty_message => "Not a member of any projects.",
+    						 				  :parent_entity => @person } }
+    		-%>					
+    		<%= render project_list %>
+    		<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+			  <h3>Tools</h3>
+    		  <% 
+    			tool_list = { :partial => 'common/entity_list', :object => @person.tools, 
+    							 :locals => { :empty_message => "Not a member of any tools.",
+    						 				  :parent_entity => @person } }
+    		  -%>					
+    		  <%= render tool_list %>
+			<% end %>
+    	</div>
+    	<div class="right halfWidth">
+    		<h3>Organizations</h3>
+    		<% 
+    			organization_list = {   :partial => 'common/entity_list', :object => @person.organizations, 
+    					   				:locals => { :empty_message => "Not a member of any organizations.",
+    									 			:parent_entity => @person } }
+    		-%>
+    		<%= render organization_list %>
+    	</div>
+  	</div>
+    
+<%
+=begin
+%>
+		<% if @allowed_to_edit and full_access? -%>
+			<div class="gallery-button">
+				<span><%= link_to 'Join a Project', url_for( :action => 'join_project', :id => @person.id ) %></span>
+				<span><%= link_to 'Join an Organization', url_for( :controller => 'people', :action => 'join_organization', :id => @person.id ) %></span>
+			</div>
+		<% end -%>
+<%
+=end
+%>
+  
+	</div> <!-- END RELATIONS -->
+</div> <!-- END RELATIONS TAB -->

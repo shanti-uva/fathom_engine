@@ -1,0 +1,69 @@
+<div id="contact-tab">
+	<div id="contact" class="item">			
+		<% unless @person.person_profile.address_blank? %>
+			<h3>Mailing Address</h3>
+			<p class="address">
+				<% unless @person.person_profile.address_one.blank? -%>						
+					<%= h(@person.person_profile.address_one) %><br/>
+				<% end -%>
+				<% unless @person.person_profile.address_two.blank? -%>
+					<%= h(@person.person_profile.address_two) %><br/>
+				<% end -%>
+				<% unless @person.person_profile.city.blank? -%>
+					<%= h(@person.person_profile.city) %>, <%= h(@person.person_profile.state) %>, <%= h(@person.person_profile.zipcode) %><br/>
+				<% end -%>
+				<% unless @person.person_profile.country.blank? -%>
+					<%= h(@person.person_profile.country) %><br/>
+				<% end -%>
+			</p>
+		<% end -%>
+	
+		<% unless @person.person_profile.direct_contact_blank? %>
+			<h3>Direct Contact</h3>
+			<table class="entity-list-table">
+				<% unless @person.person_profile.email.blank? -%>
+				<tr>							
+					<th scope="row">Email:</th>
+					<td><%= h(@person.person_profile.email) %></td>					
+				</tr>
+				<% end -%>
+				
+				<% unless @person.person_profile.office_phone.blank? -%>
+				<tr>							
+					<th scope="row">Office Phone:</th>
+					<td><%= h(@person.person_profile.office_phone) %></td>					
+				</tr>
+				<% end -%>
+				
+				
+				<% unless @person.person_profile.home_phone.blank? -%>
+				<tr>
+					<th scope="row">Home Phone:</th>
+					<td><%= h(@person.person_profile.home_phone) %></td>
+				</tr>
+				<% end -%>
+				
+				
+				<% unless @person.person_profile.cell_phone.blank? -%>
+				<tr>
+					<th scope="row">Cell Phone:</th>								
+					<td><%= h(@person.person_profile.cell_phone) %></td>					
+				</tr>
+				<% end -%>
+				<% unless @person.person_profile.other_contact.blank? -%>
+				<tr>
+					<th scope="row">Instant Message (IM):</th>
+					<td><%= h(@person.person_profile.other_contact) %> (<%= h(@person.person_profile.other_contact_type) %>)</td>
+				</tr>
+				<% end -%>
+			</table>
+	<% end -%>
+
+	<% unless @person.person_profile.notes.blank? -%>
+		<h3>Notes</h3>
+		<div class="message">
+			<%= rc @person.person_profile.notes %>
+		</div>
+	<% end -%>	
+ 	</div> <!-- END CONTACT -->
+</div> <!-- END CONTACT TAB -->

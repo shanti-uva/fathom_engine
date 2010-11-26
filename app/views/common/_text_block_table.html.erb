@@ -1,0 +1,22 @@
+<% unless entity.posts.empty? -%>
+	<table id="post-table" class="entity-list-table">
+  		<tr/>
+		<% for post in entity.posts -%>
+			<tr id="post-table-row<%= post.id %>">
+				<td><%= link_to post.subject, person_post_url(entity,post) %></td>
+				<% if allowed_to_edit?(entity) -%>
+					<td><%= link_to( 'Edit', edit_person_post_url(entity, post) ) %></td>
+					<td><%= button_to( "Remove", person_post_url(entity,post), :method => :delete ) %></td>
+				<% end -%>
+			</tr>			
+		<% end -%>
+	</table>
+<% else -%>
+	<br/><p><%= empty_message %></p>
+<% end -%>
+<% if allowed_to_edit?(entity) -%>
+	<p><%= link_to 'Add Post', new_person_post_path(entity), :id => 'add-post-button' %></p>
+
+	<div id="post-edit-panel" style="display:none">
+	</div>		
+<% end -%>

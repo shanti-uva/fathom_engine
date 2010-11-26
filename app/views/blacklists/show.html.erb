@@ -1,0 +1,25 @@
+<div id="main">
+<div id="secondary-nav" class="yui-navset">
+	<div id="main-content"  class="narrow">
+		<h1>Showing Blacklist</h1>
+<p>
+  <b>Email:</b>
+  <%=h @blacklist.email %>
+</p>
+
+<p>
+  <b>Attempts:</b>
+  <%=h @blacklist.attempts %>
+</p>
+
+<p>
+  <b>Last attempt:</b>
+  <%=h @blacklist.last_attempt %>
+</p>
+
+<%= link_to 'Edit', edit_blacklist_path(@blacklist) %> |
+<%= link_to 'Back to Black List', blacklists_path %>
+
+  </div> <!--END CONTENT-->
+</div> <!-- END SECONDARY NAV -->
+</div><!--END MAIN-->

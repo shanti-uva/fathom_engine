@@ -1,0 +1,35 @@
+<div class="search-result">
+  <% if search_result.doc_type == SearchResult::FRAGMENT_TYPE %>
+    <div class="search-result-image">
+      <%= link_to image_tag(search_result.entity_image_url), search_result.entity_url %>
+    </div>
+    <div class="search-result-details">
+      <div class="search-result-title"><%= link_to search_result.hit_name, search_result.hit_url %></div>
+      <p><i><%= search_result.text %></i></p>
+    </div>
+  <% elsif search_result.doc_type == SearchResult::EXTERNAL_TYPE %>
+    <div class="search-result-details">
+      <div class="search-result-title"><%= link_to search_result.post_title, search_result.url_path %></div>
+      <p><i><%= search_result.text %></i></p>
+    </div>
+  <% elsif search_result.doc_type == SearchResult::ENTITY_TYPE %>
+    <div class="search-result-image">
+      <%= link_to image_tag(search_result.entity_image_url), search_result.entity_url %>
+    </div>
+    <div class="search-result-metadata">
+      <div class="search-result-title"><%= link_to search_result.hit_name, search_result.entity_url %></div>
+      <div class="search-result-person-title"><%= !search_result.entity_title.nil? && !search_result.entity_title.blank? ?search_result.entity_title : '' %></div>
+      <div class="date"><span style="color: #999;">last updated on:</span> <%= simple_date(search_result.entity_last_updated_on) %></div>
+    </div>
+
+    <% unless search_result.associated_records.nil? || search_result.associated_records.empty? %>
+      <p>found <%= search_result.associated_records.size %> <%=
+      search_result.associated_records.size == 1 ? "match" : "match".pluralize -%>:</p>
+      <ul style="margin-left: 2em;">
+        <% search_result.associated_records.each { |subresult| -%>
+          <li><%= link_to subresult.hit_name, subresult.hit_url %>: <%= subresult.text %></li>
+        <% } -%>
+      </ul>
+    <% end -%>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div id="main">
+  <div id="main-content" class="main-narrow">
+	<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+	  <h3>Non-University of Virginia First Time Visitors to the SHANTI Portal using OpenId</h3>
+	<% else %>
+	  <h3>Sign up to Participate in the THL Interconnections Portal using OpenID</h3>
+	<% end %>
+	<div id="signupOpenId-page">
+	  
+	  <div id="form-wrapper">	
+        <% form_tag(openid_validate_path) do -%>
+          <p>
+            <label for="openid_url">OpenID URL</label><br/><%= text_field_tag 'openid_url' %>
+          </p>
+          <p>Not using OpenID? <%= link_to 'Skip this step.', signup_path %></p>
+          
+          <p><h3 id="login-error"><%= flash[:notice] %></h3></p>
+          <p><%= submit_tag 'Sign Up' %></p>
+        <% end -%>
+	  </div> 
+	</div>
+  </div>
+</div>

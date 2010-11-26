@@ -1,0 +1,36 @@
+<% if !params[:review_id].nil? %>
+<%   source_path = tool_review_source_path(@tool, @review,@source) %>
+<%   cancel_path = tool_review_sources_path(@tool, @review) %>
+<%   hash_destroy_path = hash_for_tool_review_source_path(:action => 'destroy') %>
+<%   div_updated = 'reviewsources_div' %>
+     <h4><%= 'Editing Source for '"<em>#{h(@review.title)}</em>" %></h4>
+<% else %>
+<%   if !params[:usage_scenario_id].nil? %>
+<%     source_path = tool_usage_scenario_source_path(@tool, @usage_scenario,@source) %>
+<%     cancel_path = tool_usage_scenario_sources_path(@tool, @usage_scenario) %>
+<%     hash_destroy_path = hash_for_tool_usage_scenario_source_path(:action => 'destroy') %>
+<%     div_updated = 'usagescenariosources_div' %>
+       <h4><%= 'Editing Source for '"<em>#{h(@usage_scenario.title)}</em>" %></h4>
+<%   else %>
+<%     source_path = tool_source_path(@tool,@source) %>
+<%     cancel_path = tool_sources_path(@tool) %>
+<%     hash_destroy_path = hash_for_tool_source_path(:action => 'destroy') %>
+<%     div_updated = 'toolsources_div' %>
+       <h4><%= 'Editing Source for '"<em>#{h(@tool.name)}</em>" %></h4>
+<%   end %>
+<% end %>
+
+<%= error_messages_for :source %>
+<%   remote_form_for(:source, :url => source_path, :before => "tinyMCE.triggerSave();", :update => div_updated, :html => { :method => :put}) do |f| %>
+
+<%=  render :partial => 'form', :locals => {:f => f} %>
+  <p>
+	
+	<%= submit_to_remote 'update_btn', 'Update Source', :url => { :action => 'update' }, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');", :update => div_updated, :html => { :method => :put} %>
+  </p>
+<% end %>
+<p>
+<%=  link_to_remote 'Delete', {:url => source_path, :confirm => 'Are you sure?', :update => div_updated, :method => :delete}, :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %> |
+
+<%= link_to_remote 'Cancel', {:url => cancel_path, :method => 'get'}, :onclick => "unsetTextareaToTinyMCE('source_passage');tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %>
+</p>

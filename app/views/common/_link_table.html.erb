@@ -1,0 +1,22 @@
+<% unless entity.links.empty? -%>
+	<table id="link-table" class="entity-list-table">
+  		<tr/>
+		<% for link in entity.links -%>
+			<tr id="link-table-row<%= link.id %>">
+				<td><a href="<%= link.url %>"><%= h(link.label) %></a></td>
+				<% if editable -%>
+					<td><%= button_to_function 'Edit', "showLinkForm('#{edit_person_link_url(entity, link)}')" %></td>
+					<td><%= button_to( "Remove", person_link_url(entity,link), :method => :delete ) %></td>
+				<% end -%>
+			</tr>			
+		<% end -%>
+	</table>
+<% else -%>
+	<br/><p><%= empty_message %></p>
+<% end -%>
+<% if editable -%>
+	<p><%= link_to_function 'Add Links', "showLinkForm('#{new_person_link_path(entity)}')", :id => 'add-links-button' %></p>
+
+	<div id="link-edit-panel" style="display:none">
+	</div>		
+<% end -%>

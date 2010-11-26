@@ -1,0 +1,38 @@
+<% if s.resource_type == 'Review' %>
+<%   edit_path = edit_tool_review_source_path(@tool, resource, s) %>
+<%   contract_path = contract_show_tool_review_source_path(@tool, resource, s) %>
+<%   hash_path = hash_for_edit_tool_review_source_path %>
+<%     div_updated = 'reviewsources_div' %>
+<% else %>
+<%   if s.resource_type == 'UsageScenario' %>
+<%     edit_path = edit_tool_usage_scenario_source_path(@tool, resource, s) %>
+<%     contract_path = contract_show_tool_usage_scenario_source_path(@tool, resource, s) %>
+<%     hash_path = hash_for_edit_tool_usage_scenario_source_path %>
+<%     div_updated = 'usagescenariosources_div' %>
+<%   else %>  
+<%     edit_path = edit_tool_source_path(@tool, s) %>
+<%     contract_path = contract_show_tool_source_path(@tool, s) %>
+<%     hash_path = hash_for_edit_tool_source_path %>
+<%     div_updated = 'toolsources_div' %>
+<%   end %>
+<% end %>
+
+<% form_remote_tag :url => edit_path , :update => div_updated, :method => :get do %>
+	<p>
+	<%=   link_to_remote '.', {:url => contract_path, :update => "#{s.id}_sourcediv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %>
+	<%=  'MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s) %>	
+  	</p>
+		<p>
+			<% if !s.passage.blank? %>	
+			  <b>Passage:</b>
+		  	  <%= s.passage %>
+		    <% end %>
+		</p>
+		<p>
+			<% if !s.note.blank? %>
+		  	  <b>Note:</b>
+		      <%= s.note %>
+		    <% end %>
+		</p>
+
+<% end %>

@@ -1,0 +1,66 @@
+<% tool_profile = tool.tool_profile -%>
+
+<div id="profile-tab">
+  
+	<div id="profile" class="item">
+    	<% unless tool_profile.summary.blank? -%>			
+        	<%= rc tool_profile.summary %>	
+		<% end -%>
+		<%  if !tool.sources.empty? %>
+		    <h4><div class='padded'>Summary Sources</div></h4>
+		 <%  end %>
+	      <div id='toolsources_div' class='padded'>
+		  <%  if !tool.sources.empty? %>
+		  <%=  render :partial => 'sources/show_sources', :locals => {:resource => tool} %>	
+		  <%  end %>
+		  </div>
+		
+    	<% unless tool_profile.tool_type_id.blank? -%>	
+			<h3>Tool Type</h3>		
+        	<%= rc tool_profile.tool_type.title %>	
+		<% end -%>
+        
+        <dl>  
+		<%= entity_profile_tag_block @tag_combiner, tool, :general_interests, 'General Associations' %>
+
+		<%= entity_profile_tag_block @tag_combiner, tool, :operating_systems, 'Operating Systems' %>
+        </dl>
+
+    	<% unless tool_profile.operating_system.blank? -%>			
+		<h3>Notes on Operating Systems</h3>
+        	<%= rc tool_profile.operating_system %>	
+		<% end -%>
+		
+		<dl>
+        <%= entity_profile_tag_block @tag_combiner, tool, :platforms, 'Platforms' %>
+		</dl>
+
+    	<% unless tool_profile.platform.blank? -%>			
+		<h3>Notes on Platforms</h3>
+        	<%= rc tool_profile.platform %>	
+		<% end -%>
+		
+    	<% unless tool_profile.system_requirements.blank? -%>			
+		<h3>System Requirements</h3>
+        	<%= rc tool_profile.system_requirements %>	
+		<% end -%>
+		
+		<dl>
+        <%= entity_profile_tag_block @tag_combiner, tool, :license_types, 'Licenses' %>
+		</dl>
+
+    	<% unless tool_profile.license.blank? -%>			
+		<h3>Notes on License</h3>
+        	<%= rc tool_profile.license %>	
+		<% end -%>
+
+
+
+    	<% unless tool_profile.cost.blank? -%>			
+		<h3>Cost</h3>
+        	<%= rc tool_profile.cost %>	
+		<% end -%>
+		
+	</div>
+	  
+</div>

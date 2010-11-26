@@ -1,0 +1,36 @@
+<p>
+	<%=   link_to_remote '.', {:url => contract_tool_review_path(tool,d), :update => "#{d.id}_descdiv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %> 
+	<% if !d.title.blank? %>  
+	<%   if !d.authors.empty? %>
+		   <b class='title'><%= d.title %></b>
+		   <span class='by'><%= ' by ' %></span>
+	       <span class='content_by'><%= "#{ join_with_and(d.authors.collect{|a| a.name})}" %></span>
+	<%   else %>
+	       <b class='title'><%= d.title %></b>
+	<%   end %>
+	<% else %>     
+	<%   if !d.authors.empty? %>
+	       <b class='title'>Review</b>
+	       <span class='by'><%= ' by ' %></span>
+		   <span class='content_by'><%= "#{ join_with_and(d.authors.collect{|a| a.name})}" %></span>
+	<%   end %>
+	<% end %>
+	<span class='last_updated'>(<%= 'last updated '"#{h(d.updated_at.to_date.to_formatted_s(:long))}" %>)</span>	
+</p>
+<p>
+	<%= d.content %>
+</p>
+    <div class='padded'><b>Review Sources</b>
+	<em>please note that in review sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button</em></div>
+    <div id='reviewsources_div' class='padded'>
+
+    <%=   render :partial => 'sources/index', :locals => {:resource => d} %>
+
+    </div>
+
+
+  <% if full_access? -%>
+	<p>
+  <%= link_to_remote 'edit review', :url => edit_tool_review_path(tool,d), :update => 'descriptions_div', :method => :get, :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+	</p>
+  <% end -%>

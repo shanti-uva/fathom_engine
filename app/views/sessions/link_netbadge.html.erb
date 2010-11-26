@@ -1,0 +1,12 @@
+<div id="main">
+	<h3>Link NetBadge ID?</h3>
+
+	<p>You are logged into NetBadge as: <b><%= h(@netbadgeid) %></b></p>
+	<p>You are logged into Digital Humanities Portal as: <b><%= h(current_user.email) %></b></p>
+
+	<p>Would you like to link this NetBadge ID with your Digital Humanities Portal account? NetBadge users have full access to the portal's capabilities, including joining <b>Projects</b> and <b>Organizations</b>, as well as creating new ones. Please note that only one account can be linked to a given NetBadge ID.</p> 
+	
+	<div class="gallery-button">
+		<%= link_to 'Yes, Link NetBadge ID', link_netbadge_path %> <%= link_to 'No Thanks', me_path() %> 
+	</div>
+</div>

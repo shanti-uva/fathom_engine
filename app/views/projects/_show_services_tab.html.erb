@@ -1,0 +1,37 @@
+<% project_profile = project.project_profile -%>
+
+<div id="services-tab">
+	<div id="services" class="item">	
+		
+		<% unless project_profile.data.blank? -%>
+		<h3>Data</h3>
+	  <%= project_profile.data %>
+	  <% end -%>
+	  
+	  <% unless project_profile.tools.blank? -%>
+	  <h3>Tools</h3>
+	  <%= project_profile.tools %>
+	  <% end -%>
+	  
+	  <% unless project_profile.training.blank? -%>
+	  <h3>Training</h3>
+	  <%= project_profile.training %>
+	  <% end -%>
+	  
+	  <% unless project_profile.events.blank? -%>
+	  <h3>Events</h3>
+	  <%= project_profile.events %>
+	  <% end -%>
+	  
+	  <% unless project_profile.opportunities.blank? -%>
+	  <h3>Opportunities</h3>
+	  <%= project_profile.opportunities %>
+	  <% end -%>
+	  
+	  <% unless project_profile.other.blank? -%>
+	  <h3>Other</h3>
+	  <%= project_profile.other %>
+	  <% end -%>
+		
+	</div>													
+</div>

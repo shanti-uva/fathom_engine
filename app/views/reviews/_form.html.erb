@@ -1,0 +1,24 @@
+<p>
+  <b>Review Title</b><br />
+  <em>Use title case for capitalization (e.g. An Exciting...)</em>
+  <%= f.text_field(:title, :size => 65) %>
+</p>
+<p>
+    <b><%= 'Review' %></b><br />
+    <%= f.text_area :content, :rows => 16, :cols => 65, :class => 'mceEditor' %>
+</p>
+<%= f.hidden_field :tool_id %>
+<script type="text/javascript">
+ //<![CDATA[
+   setTextareaToTinyMCE('review_content');
+ //]]>
+ </script>
+<p>
+<%= link_to_remote 'Add new Author', :url => add_author_tool_reviews_path(@tool), :update => 'update_div', :position => 'before', :method => 'get' %>
+</p>
+<div id="authors_div">
+<%  for author in @review.authors %>
+<%=    render :partial => 'reviews/authors_selector', :locals => {:selected => author.id} %>
+<%   end %>
+</div>    
+<div id="update_div"/>

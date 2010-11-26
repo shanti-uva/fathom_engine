@@ -1,0 +1,15 @@
+<div id="account-tab">
+	<div id="account-management" class="item">
+      If you wish, you can close your account and delete all associated data.
+
+      <% if @allowed_to_delete -%>
+        <div class="gallery-button" style="float: right;"><span>
+            <a style="background: darkred; color: white !important;"
+              href="<%= url_for(:action => 'delete', :id => @person) %>"
+              onclick="javascript:return confirm('Are you sure you want to PERMANENTLY DELETE your profile? This action cannot be undone.')">Permanently Delete Profile
+            </a>
+          </span>
+        </div>
+      <% end -%>
+ 	</div> <!-- END ACCOUNT MANAGEMENT -->
+</div> <!-- END ACCOUNT TAB -->

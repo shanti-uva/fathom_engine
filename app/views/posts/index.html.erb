@@ -1,0 +1,58 @@
+<div id="main">
+  <div id="main-content">
+    <style>
+      .listing {
+        margin-bottom: 20px;
+      }
+
+      .listing td {
+        background:#EFECE5 none repeat scroll 0% 0%;
+        margin:10px 0pt;
+        border-bottom:1px solid #E5E1D6;
+        color:#3C3C3C;
+        padding:6px 8px;
+        min-width:4.5em;
+      }
+
+      .listing th {
+        background:#DBD4C4 none repeat scroll 0% 0%;
+        font-weight: bold;
+        text-align: left;
+        width:auto;
+      }
+    </style>    
+	
+   <div id="post-page-wrapper">
+    <h2 class="section-title">Posts</h2>
+	<p>Posts can be made by anyone in SHANTI and should be used to advertise opportunities or needs that someone else could address. Thus you might be a student seeking an internship, a faculty seeking a programmer, a scholar seeking a collaborator on land-culture interaction studies, and so forth.</p>
+
+	<% if logged_in? and allowed_to_edit?(current_user.person) and !params[:inline] -%>
+      <div class="gallery-button"><span><%= link_to 'Add a Post', new_person_post_path(current_user.person) %></span></div>
+    <% end -%>
+    <table class="listing">
+      <tr>
+        <th scope="col">Subject</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+        <th scope="col">Posting date</th>
+        <th scope="col">Expiration date</th>
+      </tr>
+
+      <% if !@posts.empty? %>
+        <%# Sort posts in reverse chronological order (newest first). %>
+        <% for post in @posts.sort_by {|p| p.created_at}.reverse %>
+          <% if !post.expired? %>
+            <tr>
+              <td><%= link_to post.subject, post_path(post) %></td>
+              <td><%= link_to entity_for_post(post).name, url_for(entity_for_post(post)) %></td>
+              <td><%= post.post_kind.post_kind_value %></td>
+              <td><%= post.created_at.strftime("%B %e, %Y") %></td>
+              <td><%= post.expiration_date.strftime("%B %e, %Y") %></td>
+            </tr>
+          <% end -%>
+        <% end -%>
+      <% end -%>
+    </table>
+   </div>  <!-- END post-page-wrapper -->
+  </div> <!--END CONTENT-->
+</div><!--END MAIN-->

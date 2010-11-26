@@ -1,0 +1,37 @@
+<div id="main">
+  <div class="clearfloat">
+    <div class="right" id="facets">
+      <div id="reset-search"><%= link_to '&raquo; reset search', search_path %></div>
+
+      <% unless @search_results.nil? or @search_results.size==0 %>
+        <h3>Limit by...</h3>
+        <%= render :partial=>'facets' %>
+      <% end %>
+    </div>
+
+    <div class="left" id="searchResults">
+      <% search_for = @search_query.empty? ? '' : " for: '#{@search_query}'"%>
+
+      <% unless params[:s].blank? and params[:f].blank? %>
+        <% if @search_results.nil? or @search_results.size==0 %>
+          <%= render :partial=>'search_form' %>
+
+          <p>No records found<%= search_for %></p>
+        <% else %>
+          <%= render :partial=>'search_form' %>
+
+          <% s = @results_size > 1 ? "s" : "" -%>
+          <h2>
+            <%= @results_size %> Record<%= s %> Found<%= search_for %>
+          </h2>
+
+          <%= render :partial=>'result_list' %>
+          <%= will_paginate @search_results %>
+        <% end %>
+      <% else %>
+        <%= render :partial=>'search_form' %>
+        <p>To begin, enter search terms and click 'Search'.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

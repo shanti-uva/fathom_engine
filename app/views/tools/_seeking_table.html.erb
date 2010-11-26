@@ -1,0 +1,21 @@
+<% unless entity.posts.empty? -%>
+	<ul>
+		<% for post in entity.posts -%>
+			<li id="post-table-row<%= post.id %>"  class="seeking-post">
+				<div class="post-item">
+				<%= link_to post.subject, tool_post_url(entity,post), :class => "post-link" %>
+				<% if allowed_to_edit?(entity) -%>
+				<%= button_to( 'Edit', edit_tool_post_url(entity, post), :method => :get ) %>
+				<%= button_to( "Remove", tool_post_url(entity,post), :method => :delete, :confirm => "Are you sure you wish to delete this post?" ) %>
+				<% end -%>
+				</div>
+			</li>
+                        <div class="clearfloat"><!--float clear --></div>
+		<% end -%>
+	</ul>
+<% else -%>
+	<br/><p><%= empty_message %></p>
+<% end -%>
+<% if allowed_to_edit?(entity) -%>
+	<p><%= button_to 'Add a Message', new_tool_post_path(entity), :id => 'add-post-button', :method => :get  %></p>
+<% end -%>

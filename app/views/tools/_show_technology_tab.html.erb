@@ -1,0 +1,18 @@
+<% tool_profile = tool.tool_profile -%>
+
+<div id="technology-tab">
+	<div id="technology" class="item">
+		<% unless tool_profile.technical_details.blank? -%>
+			<h3>Technical Details</h3>
+			<%=rc tool_profile.technical_details %>
+		<% end -%>
+
+		<dl>
+		<%= entity_profile_tag_block @tag_combiner, tool, :technologies_of_interest, 'Technologies of Interest' %>
+
+		<%= entity_profile_tag_block @tag_combiner, tool, :developers, 'Developers' %>
+
+		<%= entity_profile_tag_block @tag_combiner, tool, :producers, 'Produced by' %>
+		</dl>		
+	</div>
+</div>

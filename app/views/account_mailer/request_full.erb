@@ -1,0 +1,18 @@
+
+Dear Portal Admins,
+
+The following user has requested that his or her account be upgraded to "full access" status:
+
+Name: <%= @person.name %>
+Email: <%= @person.user.email %>
+
+<% unless @request_text.blank? -%>
+Here is a message from this user: 
+
+<%= h(@request_text) %>
+<% end -%>
+
+To grant <%= @person.name %> full access, please login with your admin account and access the admin control panel. Please note that users with 'full' access status can create and join groups and projects, edit groups and projects and delete groups and projects. 
+
+Yours,
+- The Fathom

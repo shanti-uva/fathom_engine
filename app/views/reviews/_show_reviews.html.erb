@@ -1,0 +1,17 @@
+<% tool.reviews.find(:all, :order => 'id').each do |r| %>
+	<div id="<%= "#{r.id}_descdiv" %>">
+<%  if review.nil? 		
+      if r.is_primary? %>
+		<%=   render :partial => 'reviews/show_expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+		<%=   render :partial => 'reviews/show_contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  else %>
+<%    if r == review %>
+<%=     render :partial => 'reviews/show_expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+<%=     render :partial => 'reviews/show_contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  end %>
+    </div>
+<% end %>

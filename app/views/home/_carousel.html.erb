@@ -1,0 +1,9 @@
+<div id="featured-wrapper">
+	<div id="featured">
+				<ul id="homepage_carousel">
+					<% for featured_project in @featured_projects -%>
+						<li><%= render :partial => 'featured_project', :object => featured_project %></li>
+					<% end -%>
+				</ul>
+	</div><!--END FEATURED-->
+</div><!--END FEATURED-WRAPPER-->

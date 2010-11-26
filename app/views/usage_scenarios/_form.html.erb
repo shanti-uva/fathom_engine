@@ -1,0 +1,28 @@
+<p>
+  <b>Type of Usage Scenario</b><br />
+<%= f.select(:scenario_type_id, @scenario_types.collect {|l| [ h(l.title), l.id ] }, { :include_blank => false }) %>
+</p>
+<p>
+  <b>Usage Scenario Title</b><br />
+  <em>Use title case for capitalization (e.g. An Exciting...)</em>
+  <%= f.text_field(:title, :size => 65) %>
+</p>
+<p> 
+  <b><%= 'Usage Scenario' %></b><br />
+<%= f.text_area :content, :rows => 16, :cols => 65, :class => 'mceEditor' %>
+</p>
+<%= f.hidden_field :tool_id %>
+<script type="text/javascript">
+ //<![CDATA[
+   setTextareaToTinyMCE('usage_scenario_content');
+ //]]>
+ </script>
+<p>
+<%= link_to_remote 'Add new Author', :url => add_author_tool_usage_scenarios_path(@tool), :update => 'usageupdate_div', :position => 'before', :method => 'get' %>
+</p>
+<div id="usageauthors_div">
+<%  for author in @usage_scenario.authors %>
+<%=    render :partial => 'usage_scenarios/authors_selector', :locals => {:selected => author.id} %>
+<%   end %>
+</div>    
+<div id="usageupdate_div"/>

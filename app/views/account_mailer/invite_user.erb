@@ -1,0 +1,15 @@
+Dear <%= @invitee[:full_name] %>,
+
+<%= @inviter.person.name %> has invited you to join "<%= @project.name %>" at <%= APPLICATION_DOMAIN %>.
+
+If this is your first exposure to this site, welcome!  We believe you will find it to be an engaging space for promoting innovation and enabling collaboration in teaching and research here at UVa.
+
+To get started, head to http://<%= APPLICATION_DOMAIN %> and click on the "Login" button at the top of the page.  You then will be able to create a new account or log in if you already have a user name.  
+
+To join <%= @project.name %> after logging in, click on "My Profile" in the navigation bar then "Edit Profile" next to your name.  Under the "Relationships" tab, you can find and join <%= @project.name %> using the "Find Projects" link.  
+
+From there, jump in!  Fill out your profile, explore other projects, people, and organizations, and start making connections.  If you have any questions, please write us at <%= FATHOM_NO_REPLY_ADDRESS %>.
+
+--
+
+http://<%= APPLICATION_DOMAIN %>

@@ -1,0 +1,6 @@
+<%= render :partial => '/projects/show_profile_tab', 				:locals => { :project => project } %>
+<%= render :partial => '/projects/show_activities_tab', 		:locals => { :project => project } unless project.project_profile.activities_blank? -%>
+<%= render :partial => '/projects/show_interests_tab', 		:locals => { :project => project } unless project.project_profile.interests_blank? -%>
+<%= render :partial => '/projects/show_services_tab', 		:locals => { :project => project } unless project.project_profile.services_blank? -%>
+<%= render :partial => '/projects/show_relationships_tab',	:locals => { :project => project, :project_type => project_type  } %>
+<%= render :partial => '/projects/show_contact_tab', 				:locals => { :project => project } unless project.project_profile.contact_blank? %>

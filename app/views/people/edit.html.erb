@@ -1,0 +1,460 @@
+<%= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
+
+<%= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
+
+<script type="text/javascript">
+  var TARGET_PROFILE_BASE_URL = '<%= escape_javascript person_path(@person) %>';
+  // init this page
+  jQuery(document).ready(function() {
+    var tabView = new YAHOO.widget.TabView('secondary-nav');
+    tabView.addListener( 'click', updateShowProfileURL );
+  });
+</script>
+
+<script>
+<%
+# Sends request to /people/update_profile to remove relationship based on project_id
+# This handler first displays a confirmation message,
+# and if OK/Yes is clicked, the url for updating a person profile is requested/POST
+# and sent person_profile[person_attrs][relationships_to_delete_by_*_ids], where * is either
+# "project" or "organization" : see the PersonProfile.person_attrs= method and the Person.relationships_to_delete_by_*_ids= method
+# The AJAX callback then removes the links, parent table row from the HTML document.
+-%>
+  function removeRelationshipHandler(el){
+    // the update profile base url
+    var update_url='<%= escape_javascript url_for({:controller=>"people", :action => "update_profile", :id => @person.id }) %>'
+    // deduce the type of relationship by the class name
+    var type=(el.attr('class').search(/Project/)!=-1) ? 'project' : ((el.attr('class').search(/Organization/)!=-1) ? 'organization' : 'tool');
+    // be nice...
+    if(confirm('Are you sure you want to remove this ' + type + '?')){
+      // remove the table row that holds this relationship
+      el.parent().parent().parent().fadeOut('fast', function(){$(this).remove()});
+      // build the query string; set the type (project or organization) and the id of the project/organization from the "title" attribute...
+      var query_string='?person_profile[person_attrs][relationships_to_delete_by_' + type + '_ids][]=' + el.attr('title');
+      $.post(update_url + query_string);
+      //$.post(update_url + query_string, function(data){
+        // do nothing...
+      //});
+    }
+  }
+
+<%
+#  This function is called from the iframe/thickbox after a project/organization/tool has been joined.
+# 
+#  ******** see (projects and/or organization and/or tool)/index.html.erb for how this is called
+# 
+#  The iframe javascript calls this function with the type of relationship joined and the id (after the relationship has been established) 
+#  It then querys the /projects or /organizations controller for an item's data in JSON format.
+#  Once the JSON is received, a row template is prepared to be appended to the relationships (projects, orgs or tools) "table.entity-list-table" table; if the table doesn't exist, one is created
+#  The data within the row template is then updated using the JSON data.
+#  Finally, the row template is appended to the table.
+#  
+#  "type" is either 'project' or 'organization' or 'tool'
+#  "entity_id" is the ID of the project/org/tool that was "joined"
+#  
+-%>
+  function successfullyJoined(type, entity_id){
+    var opts={
+      'project':{
+        'container_class':'projectRelationships',
+        'table_selector':'.projectRelationships .entity-list-table',
+        'base_url':'<%= escape_javascript projects_path %>',
+        'remove_class':'removeProjectRelationship'
+      },
+      'organization':{
+        'container_class':'organizationRelationships',
+        'table_selector':'.organizationRelationships .entity-list-table',
+        'base_url':'<%= escape_javascript organizations_path %>',
+        'remove_class':'removeOrganizationRelationship'
+      },
+      'tool':{
+        'container_class':'toolRelationships',
+        'table_selector':'.toolRelationships .entity-list-table',
+        'base_url':'<%= escape_javascript tools_path %>',
+        'remove_class':'removeToolRelationship'
+      }
+    }
+    // switch the opts to the "type" variable key
+    opts=opts[type];
+    var $=jQuery;
+    var table_selector=opts['table_selector'];
+    // This template should really be in a partial, which could also used by the /common/_entity_list.html.erb template
+    var row_template_string="<tr><td><a href='" + opts['base_url'] + "/0'><img src='' alt=''/></a></td><td><a href='" + opts['base_url'] + "/0'></a></td><td><div class='gallery-button'><a title='' class='" + opts['remove_class'] + "' href='#'>Remove</a></div></td></tr>";
+    $.getJSON(opts['base_url'] + '/' + entity_id + '.json', function(data){
+      var row_template = $(row_template_string);
+      row_template.hide();
+      // reference to the links
+      var entity_link=$('td a', row_template);
+      // reset the href attribute (replace the id on the end of the path)
+      entity_link.attr('href', entity_link.attr('href').replace(/\d+$/, entity_id));
+      // reset the value of the title to the new entity_id (used for removing a relationship)
+      var remove_link=$('a.' + opts['remove_class'], row_template);
+      remove_link.attr('title', entity_id);
+      remove_link.attr('href', '#');
+      // apply the remove relationship handler to "a.removeXXXRelationship"
+      remove_link.click(function(){removeRelationshipHandler($(this))});
+      // reset the src to the new projects/organizations thumb src
+      var img=$('img', row_template);
+      img.attr('src', data['thumb']);
+      // set the image's alt attribute to the name of the project + _thumb
+      img.attr('alt', data['name'] + '_thumb');
+      // reset the text for the textual a/link
+      $('td a', row_template).each(function(i,e){
+        // the name of the project/organization is in the second column
+        if(i==1){$(e).html(data['name'])}
+      });
+      // attempt to use an existing table (normally created from looping through existing relationships using the common/_entity_list.html.erb template)
+      var table = $(table_selector);
+      if(table.length==0){
+        // if the table wasn't found, it means there were no relationships before this update
+        // ... there must be a table, so we create it via JS:
+        table=$('<table class="entity-list-table"></table>');
+        // remove the "Not a member of any projects/organizations." message (in p element)
+        $('.' + opts['container_class'] + ' p').remove();
+        // append the table the the relationships container
+        $('.' + opts['container_class']).append(table);
+      }
+      // append the cloned row to the table
+      table.append(row_template);
+      row_template.fadeIn('fast');
+    });
+  };
+
+  function successfullyUpdatedPicture(){
+    $('<p class="image_loading_text">LOADING NEW IMAGE...</p>').insertAfter('#main-img');
+    // Fade out previous image
+    $('#main-img').fadeOut();
+    // Grab the image url from the person's JSON and put it in the carousel, fading in
+    $.getJSON('<%= escape_javascript person_path(@person) %>.json', function(data){
+      $('.image_loading_text').hide();
+      $('#main-img').attr('src', data['image']);
+      $('#main-img').fadeIn();
+    });
+  };
+
+  jQuery(function(){
+    var $=jQuery;
+
+<%= generate_js_for_tag_autocomplete( @tag_combiner, :person_profile, {
+    :disciplines=>'person_profile_discipline_list',
+    :general_interests=>'person_profile_general_interest_list',
+    :time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
+    :places_of_interest=>'person_profile_places_of_interest_list',
+    :technologies_of_interest=>'person_profile_technologies_of_interest_list'
+  }) %>
+
+    // initialize the remove handlers...
+    // finds all links that use a class of "removeOrganizationRelationship" or "removeProjectRelationship" and then attaches click handlers.
+    $('a.removeOrganizationRelationship, a.removeProjectRelationship, a.removeToolRelationship').click(function(){
+      removeRelationshipHandler($(this));
+      return false;
+    });
+    // Used by Thickbox to display loading animation image
+    tb_pathToImage='<%= escape_javascript image_path('loadingAnimation.gif') %>';
+  });
+</script>
+
+<%= tinymce_reinitialization_script %>
+
+<div id="main">
+<div id="secondary-nav" class="yui-navset">
+  <ul class="yui-nav">
+    <%= tab_tag( :profile, 'Profile', @selected_tab ) %>
+    <%= tab_tag( :activities, 'Activities', @selected_tab ) %>
+    <%= tab_tag( :interests, 'Interests', @selected_tab ) %>
+    <%= tab_tag( :relationships, 'Relationships', @selected_tab ) %>
+    <%= tab_tag( :works, 'Works', @selected_tab ) %>
+    <%= tab_tag( :background, 'Background', @selected_tab ) %>
+    <%= tab_tag( :contact, 'Contact', @selected_tab ) %>
+    <%= tab_tag(:account, 'Account', @selected_tab) %>
+  </ul>
+
+  <div id="main-content"  class="narrow">
+    <% form_for( :person_profile, @person.person_profile, :url => { :action => "update_profile", :id => @person.id } ) do |f| -%>
+      <%= hidden_field_tag( :tab, @selected_tab ) %>
+      <h2>Updating Profile </h2>
+      <h2 id="subject"><input name="person_profile[person_attrs][name]" type="text" value="<%= @person.name %>"/></h2>
+      <div class="yui-content">
+
+        <div id="profile-tab">
+          <div id="overview" class="item">
+			<%= editor_note_tip %>
+            <table class="entity-list-table">
+              <tr>
+                <td><b>Title:</b><br/><em>Specify main professional title, such as<br/> "Assistant Professor" (use capital letters).</em></td>
+                <td><%= f.text_field "title" %></td>
+              </tr>
+              <tr>
+                <td><b>Primary Professional Profile:</b></td>
+                <td><%= f.select("professional_profile", professional_profile_options ) %></td>
+              </tr>
+              <tr>
+                <td><b>Additional Professional Profiles:</b></td>
+                <td><%= render :partial => 'select_professional_profile' %></td>
+              </tr>
+              <tr>
+                <td><b>Home Page URL:</b></td>
+                <td><%= f.text_field "home_page" %></td>
+              </tr>
+            </table>
+
+			<em>The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.</em>  
+            <h3>Overview</h3>
+            <%=th f.text_area('overview', :class => 'mceEditor') %>
+
+          </div><!--END OVERVIEW-->
+        </div> <!-- END PROFILE -->
+
+        <div id="activities-tab">
+          <div id="activities" class="item">
+			<%= editor_note_tip %>
+            <h3>Current Focus</h3>
+            <%=th f.text_area('focus', :class => 'mceEditor') %>
+
+            <h3>Future Goals</h3>
+            <%=th f.text_area('goals', :class => 'mceEditor') %>
+
+            <h3>History</h3>
+            <%=th f.text_area('activities_overview', :class => 'mceEditor') %>
+
+          </div> <!-- END ACTIVITIES -->
+        </div> <!-- END ACTIVITIES TAB -->
+
+
+        <div id="interests-tab">
+          <div id="interests" class="item">
+			<%= editor_note_tip %>
+            <h3>Interests</h3>
+            <em>Describe your relevant interests and special focuses.</em>
+            <%=th f.text_area('interests', :class => 'mceEditor') %>
+
+			<p>
+			  <em>Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.</em>
+			</p>
+
+            <h3>General Interests</h3>
+            <div><%= f.text_field(:general_interest_list) %></div>
+
+            <h3>Scholarly Disciplines</h3>
+            <div><%= f.text_field(:discipline_list) %></div>
+
+            <h3>Time Periods of Interest</h3>
+            <div><%= f.text_field(:time_periods_of_interest_list) %></div>
+
+            <h3>Places of Interest</h3>
+            <div><%= f.text_field(:places_of_interest_list) %></div>
+
+            <h3>Technologies of Interest</h3>
+            <div><%= f.text_field(:technologies_of_interest_list) %></div>
+
+          </div> <!-- END INTERESTS -->
+        </div> <!-- END INTERESTS TAB -->
+
+        <div id="relationships-tab">
+          <div id="relations" class="item">
+
+            <div class="clearfloat">
+              <!-- PROJECT RELATIONSHIPS -->
+              <div class="left halfWidth projectRelationships">
+
+                <h3>My Projects</h3>
+
+                <p><%= link_to 'Find Projects', projects_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find a Project to Join' %></p>
+
+                <%
+                project_list = { :partial => 'common/entity_list', :object => @person.projects,
+                  :locals => { :empty_message => "Not a member of any projects.",
+                    :parent_entity => @person } }
+                project_list[:locals].merge!({
+                    :remove_link_proc => proc{|entity|
+                      content_tag(:div, link_to('Remove', '#', :class=>'removeProjectRelationship', :title=>entity.id), :class=>'gallery-button')
+                    }
+                  }) if @allowed_to_edit
+                -%>
+                <%= render project_list %>
+              </div><!-- END PROJECT RELATIONSHIPS -->
+
+                <!-- ORGANIZATION RELATIONSHIPS -->
+              <div class="right halfWidth organizationRelationships">
+
+                <h3>My Organizations</h3>
+
+                <p><%= link_to 'Find Organizations', organizations_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find an Organization to Join' %></p>
+
+                <%
+                organization_list = {   :partial => 'common/entity_list', :object => @person.organizations,
+                  :locals => { :empty_message => "Not a member of any organizations.",
+                    :parent_entity => @person } }
+                organization_list[:locals].merge!({
+                    :remove_link_proc => proc{|entity|
+                      content_tag(:div, link_to('Remove', '#', :class=>'removeOrganizationRelationship', :title=>entity.id), :class=>'gallery-button')
+                    }
+                  }) if @allowed_to_edit
+                -%>
+                <%= render organization_list %>
+              </div><!-- END ORGANIZATION RELATIONSHIPS -->
+            </div>
+			<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+			<div class="clearfloat">
+              <!-- TOOL RELATIONSHIPS -->
+              <div class="left halfWidth toolRelationships">
+
+                <h3>My Tools</h3>
+
+                <p><%= link_to 'Find Tools', tools_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find a Tool to Relate' %></p>
+
+                <%
+                tool_list = { :partial => 'common/entity_list', :object => @person.tools,
+                  :locals => { :empty_message => "Not related to any tools.",
+                    :parent_entity => @person } }
+                tool_list[:locals].merge!({
+                    :remove_link_proc => proc{|entity|
+                      content_tag(:div, link_to('Remove', '#', :class=>'removeToolRelationship', :title=>entity.id), :class=>'gallery-button')
+                    }
+                  }) if @allowed_to_edit
+                -%>
+                <%= render tool_list %>
+              </div><!-- END TOOL RELATIONSHIPS -->
+			</div>
+			<% end %>
+          </div> <!-- END RELATIONS -->
+        </div> <!-- END RELATIONS TAB -->
+
+        <div id="works-tab">
+          <div id="works" class="item">
+			<%= editor_note_tip %>
+            <h3>Overview</h3>
+            <%=th f.text_area('works_overview', :class => 'mceEditor') %>
+
+            <h3>Publications</h3>
+            <%=th f.text_area('publications', :class => 'mceEditor') %>
+
+            <h3>Websites</h3>
+            <%=th f.text_area('websites', :class => 'mceEditor') %>
+
+            <h3>Tools</h3>
+            <%=th f.text_area('tools', :class => 'mceEditor') %>
+
+            <h3>Miscellaneous</h3>
+            <%=th f.text_area('miscellaneous', :class => 'mceEditor') %>
+          </div> <!-- END WORKS -->
+        </div> <!-- END WORKS TAB -->
+
+        <div id="background-tab">
+          <div id="background" class="item">
+			<%= editor_note_tip %>
+            <p><b>CV URL:</b> <%= f.text_field "cv_link" %></p>
+
+            <h3>Positions</h3>
+            <div id ="positions_div">
+				<%   remote_form_for(:line_item, :url => add_item_person_line_items_path(@person), :method => 'get') do |t| %>
+				<% end %>
+            	<%= render :partial => 'common/dynamic_list', :object => @positions, :locals => { :category => 'positions' } %>
+			</div>	
+			
+			<h3>Education/Credentials</h3>
+            <em>Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution &mdash; "Ph.D., University of Virginia"</em>
+			<div id ="credentials_div">
+				<%= render :partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => 'credentials' } %>
+			</div>
+			
+            <h3>Memberships/Affiliations</h3>
+			<div id ="affiliations_div">
+            	<%= render :partial => 'common/dynamic_list', :object => @affiliations, :locals => { :category => 'affiliations' } %>
+			</div>
+			
+            <h3>Skills</h3>
+            <em>Describe any relevant skills &mdash; languages, technologies, managerial, etc.</em>
+            <%=th f.text_area('skills', :class => 'mceEditor') %>
+
+          </div> <!-- END BACKGROUND -->
+        </div> <!-- END BACKGROUND TAB -->
+
+        <div id="contact-tab">
+          <div id="contact" class="item">
+			<%= editor_note_tip %>
+            <h3>Mailing Address</h3>
+            <table class="entity-list-table">
+              <tr>
+                <th>Address Line 1:</th>
+                <td><%= f.text_field "address_one" %></td>
+              </tr>
+              <tr>
+                <th>Address Line 2:</th>
+                <td><%= f.text_field "address_two" %></td>
+              </tr>
+              <tr>
+                <th>City:</th>
+                <td><%= f.text_field "city" %></td>
+              </tr>
+              <tr>
+                <th>State/Province/Region:</th>
+                <td><%= f.text_field 'state' %></td>
+              </tr>
+              <tr>
+                <th>Zip/Postal Code:</th>
+                <td><%= f.text_field "zipcode" %></td>
+              </tr>
+              <tr>
+                <th>Country:</th>
+                <td><%= f.select( "country", [[ "Select a Country", "" ]] + country_names )%></td>
+              </tr>
+            </table>
+
+            <h3>Direct Contact</h3>
+            <em>
+              For phone numbers, please specify your country code. For example, use +1- for the US and Canada.
+            </em>
+            <table class="entity-list-table">
+              <tr>
+                <th>Email:</th>
+                <td><%= f.text_field "email" %></td>
+              </tr>
+              <tr>
+                <th>Office Phone:</th>
+                <td><%= f.text_field "office_phone" %></td>
+              </tr>
+              <tr>
+                <th>Home Phone:</th>
+                <td><%= f.text_field "home_phone" %></td>
+              </tr>
+              <tr>
+                <th>Cell Phone:</th>
+                <td><%= f.text_field "cell_phone" %></td>
+              </tr>
+              <tr>
+                <th>Instant Message (IM):</th>
+                <td><%= f.text_field "other_contact" %></td>
+              </tr>
+              <tr>
+                <th>IM Account Type:</th>
+                <td><%= f.select("other_contact_type", [ 'AIM', 'MSN', 'Yahoo', 'Skype', 'Other' ] ) %></td>
+              </tr>
+            </table>
+
+            <h3>Contact Notes</h3>
+            <em>Indicate if you are away for a sustained period of time, or anything else about how to best contact you.</em>
+            <%=th f.text_area('notes', :class => 'mceEditor') %>
+
+          </div> <!-- END CONTACT -->
+        </div> <!-- END CONTACT TAB -->
+
+        <%= render :partial => 'show_account_tab' %>
+
+        <div class="gallery-button update"><%= f.submit "Update" %><%= link_to 'Cancel', person_path(@person, :tab => @selected_tab), :id => 'cancel-button' %></div>
+      <% end -%> <!-- END FORM -->
+    </div> <!-- END YUI CONTENT -->
+  </div> <!--END CONTENT-->
+</div> <!-- END SECONDARY NAV -->
+<div id="media">
+  <div id="carousel">
+
+    <%= image_tag(@person.image_src, :id => "main-img", :alt => h(@person.person_profile.first_name)) %>
+
+    <%= render :partial => '/common/image_carousel' %>
+
+    <% if @allowed_to_edit -%><h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @person, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %></h4><% end -%>
+    <%= render :partial => '/common/relationships' %>
+    </div><!--END CAROUSEL-->
+  </div><!--END MEDIA-->
+</div><!--END MAIN-->

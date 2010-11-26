@@ -1,0 +1,29 @@
+<div id="main">
+  <div id="main-content" class="main-narrow">
+	<h3>University of Virginia First Time Visitors to the SHANTI Portal</h3>
+	<div class="error-messages">
+		<%= error_messages_for :user %>
+	</div>
+	<p>SHANTI (Sciences, Humanities and the Arts Network of Technological Initiatives) promotes innovation in the humanities, social sciences, and arts at the University of Virginia through enabling advanced digital technology to be used effectively and broadly in research, teaching, publication and engagement.  Our focus is to make advanced technology widely and easily available to most faculty and students, and then build new patterns of community interaction to support the use of such technology and exploration of how it can help individuals and groups in sustainable ways.  Our programs include the deployment of community tools that are powerful, easy to use, and interoperable; our year-long Cohorts Fellowship to support groups of faculty, staff, and students with shared interests to use technologies to further their projects; the present portal with its profiling and networking facilities; and a curricular initiative aimed at broadening student understanding of digital technology.</p>
+	<p>Everyone at UVa, or working closely with UVa, is welcome to participate in any of our programs. Our advanced research support is focused on the humanities, social sciences, and arts, but our broader efforts in technology as well as the Cohort programs are also open to any faculty, graduate student, or staff at UVa, regardless of disciplinary focus.</p>
+
+
+	<div id="form-wrapper">
+		<% form_for :user, :url => users_path do |f| -%>
+			<table>			
+			<tr><td><label for="full_name">First Name:</label></td><td><%= f.text_field :first_name %></td></tr>
+			<tr><td><label for="full_name">Last Name:</label></td><td><%= f.text_field :last_name %></td></tr>
+			<tr><td><label for="professional_profile">Professional Profile:</label></td><td><%= f.select( :professional_profile, professional_profile_options ) %></td></tr>
+			<tr><td><label for="title">Job Title:</label></td><td><%= f.text_field :title %></td></tr>
+			<% unless @user.netbadgeid.blank? -%><tr><td><label for="netbadgeid">UVA NetBadge ID:</label></td><td><b><%= h(@user.netbadgeid) %></b></td></tr><% end -%>
+			<tr><td><label for="email">E-mail Address:</label></td><td><b><%= h(@user.email) %></b></td></tr>			
+			</table>
+			<%= f.hidden_field :email %>
+			<p class="button-to"><%= submit_tag 'Sign up' %></p>
+		<% end -%>
+	</div>
+  </div>
+</div>
+
+
+

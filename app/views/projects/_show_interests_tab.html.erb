@@ -1,0 +1,51 @@
+<% project_profile = project.project_profile -%>
+
+<div id="interests-tab">
+	
+	<div id="interests" class="item">	
+      <% unless project_profile.interests.blank? -%>
+		<h3>General Interests</h3>
+	    <%= project_profile.interests %>
+	  <% end -%>
+      <dl>
+		<%= entity_profile_tag_block @tag_combiner, project, :disciplines, 'Scholarly Disciplines' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, project, :general_interests, 'General Interests' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, project, :time_periods_of_interest, 'Time Periods of Interest' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, project, :places_of_interest, 'Places of Interest' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, project, :technologies_of_interest, 'Technologies of Interest' %>
+      </dl>
+<%
+=begin
+%>
+
+		<% unless project_profile.disciplines.size==0 -%>
+		<h3>Scholarly Disciplines</h3>
+		<p><%= rc project_profile.disciplines.map(&:name).join(', ') %></p>
+    <% end -%>
+    
+    <% unless project_profile.time_periods_of_interest.blank? -%>
+    <h3>Time Periods of Interest</h3>
+    <%= rc project_profile.time_periods_of_interest %>
+    <% end %>
+    
+    <% unless project_profile.places_of_interest.blank? %>
+    <h3>Places of Interest</h3>
+    <%= rc project_profile.places_of_interest %>
+    <% end %>
+    
+    <% unless project_profile.technologies.blank? %>
+    <h3>Technologies</h3>
+    <%= rc project_profile.technologies %>
+    <% end %>
+
+<%
+=end
+%>
+
+	</div>
+	
+</div>

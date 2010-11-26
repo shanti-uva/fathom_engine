@@ -1,0 +1,109 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+en:
+    activerecord:
+        # Model names will be kept in lower case. Invoke .capitalize or .titleize if you need them in uppercase.
+        models:
+            blacklist:
+                one: 'blacklist'
+                other: 'blacklists'
+            discipline:
+                one: 'discipline'
+                other: 'disciplines' 
+            disciplines_person_profile:
+                one: 'discipline person profile'
+                other: 'disciplines person profile'
+            disciplines_project_profile:
+                one: 'discipline project profile'
+                other: 'disciplines project profile'
+            entity:
+                one: 'entity'
+                other: 'entities'
+            image:
+                one: 'image'
+                other: 'images'
+            line_item:
+                one: 'line item'
+                other: 'line items' 
+            organization:
+                one: 'organization'
+                other: 'organizations' 
+            person:
+                one: 'person'
+                other: 'people'
+            person_profile:
+                one: 'person_profile'
+                other: 'person_profiles'
+            post:
+                one: 'post'
+                other: 'posts'
+            post_kind:
+                one: 'post kind'
+                other: 'post kinds'
+            professional_profile:
+                one: 'professional profile'
+                other: 'professional profiles'
+            professional_profile_link:
+                one: 'professional profile link'
+                other: 'professional profile links'
+            profile_tag_combiner:
+                one: 'professional tag combiner'
+                other: 'professional tag combiners'
+                         
+        # Attribute names will be titleized.
+        attributes:
+            blacklist:
+                email: 'E-mail'
+                first_name: 'First Name'
+                last_attempt: 'Last Attempt'
+                last_name: 'Last Name'
+            discipline:
+                name: 'Discipline Name'
+            entity:
+                name: 'Entity Name'
+            lineitem:
+                text: 'Line Item Description'
+            organization:
+                name: 'Organization Name'
+            person:
+                name: 'Person Name'  
+            person_profile:
+                activities_overview: 'History'
+                address_one: 'Address Line 1'
+                address_two: 'Address Line 2'
+                cell_phone: 'Cell Phone'
+                city: 'City'
+                country: 'Country'
+                cv_link: 'CV URL'
+                email: 'E-mail'
+                first_name: 'First Name'
+                focus: 'Current Focus'
+                goals: 'Future Goals'
+                home_page: 'Home Page URL'
+                home_phone: 'Home Phone'
+                interests: 'Interests'
+                last_name: 'Last Name'
+                middle_initial: 'Middle Initial'
+                miscellaneous: 'Miscellaneous'
+                notes: 'Contact Notes'
+                office_phone: 'Office Phone'
+                other_contact: 'Instant Message (IM)'
+                other_contact_type: 'IM Account Type'
+                overview: 'Overview'
+                professional_profile: 'Primary Professional Profile'
+                publications: 'Publications'
+                skills: 'Skills'
+                state: 'State/Province/Region'
+                title: 'Title'
+                tools: 'Tools'
+                websites: 'Websites'
+                works_overview: 'Overview'
+                zipcode: 'Zip/Postal Code'
+            post:
+                body: 'Description'
+                expiration_date: 'Expires on'
+                post_kind_id: 'Category'
+                subject: 'Title'
+                response_email: 'Contact Information'
+            
+                

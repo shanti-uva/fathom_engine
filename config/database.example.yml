@@ -1,0 +1,21 @@
+development:
+    adapter: mysql
+    database: dhp_dev
+    username: 
+    password: 
+    host: localhost
+    
+test:
+    adapter: mysql
+    database: dhp_test
+    username: 
+    password: 
+    host: localhost
+    
+production:
+    adapter: mysql
+    database: dhp_prod
+    username: 
+    password: 
+    host: localhost
+    

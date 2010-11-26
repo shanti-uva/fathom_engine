@@ -1,0 +1,11 @@
+<div id="main">
+	<div id="main-content">
+		<table id="post-header">
+			<tr><th scope="row" class="post-message"><h3>From:</h3></th><td><h3><%= h(@entity.name) %></h3></td></tr>
+			<tr><th scope="row" class="post-message"><h3>Subject:</h3></th><td><h3><%= h(@post.subject) %></h3></td></tr>
+			<tr><th scope="row" class="post-message"><h3>Message:</h3></th><td><p><%= rc @post.body %></p></td></tr>
+		</table>
+
+		<div class="gallery-button"><span><%= link_to 'Return to Profile', url_for(@entity) %></span></div>
+	</div> <!--END CONTENT-->
+</div><!--END MAIN-->

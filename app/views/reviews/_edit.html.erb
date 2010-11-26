@@ -1,0 +1,17 @@
+
+<h4><%= "Editing Review for <em>#{h(@tool.name)}</em>" %></h4>
+<%= error_messages_for :review %>
+<% remote_form_for(:review, :url => tool_review_path(@tool, @review), :before => "tinyMCE.triggerSave();", :update => 'descriptions_div', :html => { :method => :put}) do |f| %>
+ 
+</p>
+<%= render :partial => 'form', :locals => {:f => f, :default_author_id => nil} %> 
+<p>
+	<%= submit_to_remote 'update_btn', 'Update Review', :url => { :action => 'update' }, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('review_content');", :update => 'descriptions_div', :html => { :method => :put} %>
+	
+ </p>
+<% end %>
+<p>
+<%=  link_to_remote 'Delete', {:url => tool_review_path(@tool, @review), :confirm => 'Are you sure?', :update => 'descriptions_div', :method => :delete}, :onclick => "unsetTextareaToTinyMCE('review_content');" %> |
+
+<%= link_to_remote 'Cancel', {:url => tool_reviews_path(@tool), :method => 'get'}, :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+</p>

@@ -1,0 +1,14 @@
+<% if params[:inline] %>
+<%= javascript_include_tag 'add_ajax_multi_assoc' %>
+<script>
+jQuery(function(){addAjaxMultiAssoc('member')});
+</script>
+<% end %>
+
+<%= error_messages_for team_type %>
+<h2>Find Team Members</h2>
+<p>Select the members of this <%= team_type %>.</p>
+<%= render :partial => 'common/entity_list', :object => entity_list, 
+	 	   :locals => { :empty_message => "There is nobody who can be added as a member.",
+			 			:form_url => url_for({ :action => 'create_member', :id => team.id }),
+						:submit_message => "Add Selected People" } %>

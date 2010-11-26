@@ -1,0 +1,11 @@
+<div id="profile-tab">			
+  <% unless @person.person_profile.overview.blank? -%>
+    <div id="overview" class="item">
+      <%= rc @person.person_profile.overview %>
+    </div><!--END OVERVIEW-->
+  <% end -%>
+  <div id="seeking" class="item">
+    <%= render :partial => 'seeking_table', :locals => { :entity => @person,
+      :editable => @allowed_to_edit } %>
+  </div><!--END SEEKING-->
+</div> <!-- END PROFILE -->

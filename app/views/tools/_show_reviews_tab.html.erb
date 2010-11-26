@@ -1,0 +1,11 @@
+<% tool_profile = tool.tool_profile -%>
+<div id="reviews-tab">
+	<div id="reviews" class="item">
+		<h3>Reviews</h3>
+	      <div id='descriptions_div'>
+		    <%  if !tool.reviews.empty? %>
+		    <%=     render :partial => 'reviews/show_reviews', :locals => {:tool => tool, :review => nil} %>	
+		    <%  end %>
+		  </div>
+	</div>
+</div>

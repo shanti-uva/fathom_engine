@@ -1,0 +1,6 @@
+<% unless SOLR_URL.nil? -%>
+	<form method="get" id="search" action="/search" >
+		<input id="s" type="text" value="<%= @search_query ? @search_query : '' %>" name="s" />
+		<input type="image" id="submit" src="/images/transparent.gif" />		
+	</form> 
+<% end -%>

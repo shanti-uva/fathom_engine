@@ -1,0 +1,58 @@
+<script type="text/javascript">
+ //<![CDATA[
+   setTextareaToTinyMCE('translated_source_title');
+ //]]>
+ </script>
+
+<% if @source.resource_type == 'Review' %>
+<%   resource = Review.find(@source.resource_id)%>
+<%   translated_path = tool_review_source_translated_sources_path(@tool, resource, @source) %>
+<%   cancel_path = tool_review_sources_path(@tool, resource) %>
+<%   div_updated = 'reviewsources_div' %>
+<% else %>
+<%   if @source.resource_type == 'UsageScenario' %>
+<%     resource = UsageScenario.find(@source.resource_id) %>
+<%     translated_path = tool_usage_scenario_source_translated_sources_path(@tool, resource, @source) %>
+<%     cancel_path = tool_usage_scenario_sources_path(@tool, resource) %>
+<%     div_updated = 'usagescenariosources_div' %>
+<%   else %>
+<%     resource = Tool.find(@source.resource_id) %>
+<%     translated_path = tool_source_translated_sources_path(resource, @source) %>
+<%     cancel_path = tool_sources_path(@tool) %>
+<%     div_updated = 'toolsources_div' %>
+<%   end %>
+<% end %>
+<h4><%= ('Translation for '"<em>#{h('MMS #'"#{@source.mms_id}"', ' + formated_mms_pages(@source))}</em>") %></h4>
+<%= error_messages_for :translated_source %>
+<% remote_form_for(:translated_source, :url => translated_path, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('translated_source_title');", :update => div_updated) do |f| %>
+  <p>
+    <b>Language of Translation</b><br />
+<%= f.select(:language_id, @languages.collect {|l| [ h(l.title), l.id ] }, { :include_blank => false }) %>
+  </p>
+  <p>
+    <b>Translation</b><br />
+<%= f.text_area :title, :rows => 16, :cols => 50 %>
+  </p>
+  <p>
+  <%= link_to_remote 'Add new Author', :url => { :action => 'add_author', :source_id => @source}, :update => 'update_div', :position => 'before', :method => 'get' %>
+  </p>
+  <div id="authors_div">
+<% if @translated_source.authors.empty? && !current_user.person.nil? %>
+<%=  render :partial => 'authors_selector', :locals => {:selected => current_user.id} %>
+<% else
+     for author in @translated_source.authors %>
+<%=    render :partial => 'authors_selector', :locals => {:selected => author.id} %>
+<%   end
+   end %>
+  </div>  
+  <div id="update_div">  
+  </div>
+
+  <p>
+    <%= submit_to_remote 'update_btn', 'Create Translation', :url => { :action => 'create' }, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('translated_source_title');", :update => div_updated, :html => { :method => :put} %>
+  </p>
+
+<% end %>
+<p>
+<%= link_to_remote 'Cancel', {:url => cancel_path, :method => 'get'}, :onclick => "unsetTextareaToTinyMCE('translated_source_title');" %>
+</p>

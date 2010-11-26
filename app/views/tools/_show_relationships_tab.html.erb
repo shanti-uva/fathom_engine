@@ -1,0 +1,23 @@
+<% tool_profile = tool.tool_profile -%>
+
+<div id="relationships-tab">
+	<div id="relations" class="item">
+		
+		<div class="clearfloat">
+	    
+	    <!-- MEMBERS -->
+	 	<div class="peopleRelationships">
+    		<h3>Members</h3>
+    		<%= render ({
+    			:partial => 'common/entity_list',
+    			:object => tool.people,
+    			:allow_remove_self => true,
+    			:locals => { :empty_message => "Tool has no members.", :parent_entity => tool }
+    		}) -%>
+			</div>
+
+      
+    </div><!-- end div.clearfloat -->
+    
+	</div>
+</div>

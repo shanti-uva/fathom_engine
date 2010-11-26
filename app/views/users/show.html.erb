@@ -1,0 +1,48 @@
+<div id="main">
+  <div id="secondary-nav" class="yui-navset">
+	<!-- <ul class="yui-nav">
+      <%= tab_tag( :profile, 'User', @selected_tab ) %>
+    </ul> -->
+	<div id="main-content" class="narrow">
+		
+		
+			
+		<div class="yui-content">
+		   	<div id="profile-tab">
+			  <dl class="user-profile-metadata plain">
+				<dt id="subject"><%= h(@user.person.name) %></dt>			
+			 	<% unless @user.email.blank? -%>
+				<dd>E-mail:<%= h(@user.email) %> </dd>
+				<% end -%>
+
+				<% unless @user.background.blank? -%>
+				<dd>Background:<%= rc @user.background %> </dd>
+				<% end -%>
+				<% unless @user.access_level.blank? -%>
+				<dd>Access Level:<%= h(@user.access_level) %> </dd>
+				<% end -%>
+
+				<% unless @user.request_full.blank? -%>
+				<dd>Requests Full:<%= @user.request_full == true ? 'Yes' : 'No' %> </dd>
+				<% end -%>
+
+				<% unless @user.banned.blank? -%>
+				<dd>Banned:<%= @user.banned == 1 ? 'Yes' : 'No' %> </dd>
+				<% end -%>
+				
+				<% unless @user.private_profile.nil? -%>
+				<dd>Private:<%= @user.private_profile == true ? 'Yes' : 'No' %> </dd>
+				<% end -%>
+			  </dl>	
+			</div> <!-- END PROFILE -->   
+		</div> <!-- END YUI CONTENT -->
+		
+		<ul class="gallery-button update btn-three">
+		<li><%= link_to 'Edit', edit_user_path(@user) %> </li>
+		<li><%= link_to 'Delete', @user, :confirm => 'Are you sure?', :method => :delete %></li> 
+		<li><%= link_to 'Back to Admin', users_path %></li>
+		</ul>
+			
+	</div>
+  </div>
+</div>

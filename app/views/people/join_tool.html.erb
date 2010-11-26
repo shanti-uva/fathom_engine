@@ -1,0 +1,13 @@
+<div id="main">
+	<div id="main-content" class="narrow">		
+		<%= error_messages_for :person %>
+
+		<h2>Join Tool</h2>
+		<p>Select the tools you wish to join.</p>
+			<%= render :partial => '/common/entity_list', :object => @tools, 
+					   :locals => { :empty_message => "There are no tools to join.",
+									:form_url => url_for({ :action => 'create_tool_membership', :id => @person.id }),
+									:submit_message => "Join Selected Tools" } %>
+	</div>
+	<%= render :partial => '/common/media', :locals => { :entity => @person } %>
+</div>

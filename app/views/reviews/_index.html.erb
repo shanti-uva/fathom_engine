@@ -1,0 +1,22 @@
+<% tool.reviews.find(:all, :order => 'id').each do |r| %>
+	<div id="<%= "#{r.id}_descdiv" %>">
+<%  if review.nil? 		
+      if r.is_primary? %>
+		<%=   render :partial => 'reviews/expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+		<%=   render :partial => 'reviews/contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  else %>
+<%    if r == review %>
+<%=     render :partial => 'reviews/expanded', :locals => {:tool => tool, :d => r} %>
+<%	  else %>
+<%=     render :partial => 'reviews/contracted', :locals => {:tool => tool, :d => r} %>
+<%    end %>
+<%  end %>
+    </div>
+<% end %>
+<% if full_access? -%>
+  <p>
+  <%=  link_to_remote 'Add review', :url => new_tool_review_path(tool), :update => 'descriptions_div', :method => 'get', :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+  </p>
+<% end -%>

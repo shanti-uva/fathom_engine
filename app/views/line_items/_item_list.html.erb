@@ -1,0 +1,19 @@
+<% empty_message = "There are no items on this list." -%>
+<% @line_item = nil %>
+<div id="dynamic-list-table-<%= category %>">
+<% unless item_list.empty? -%>
+	<table class="entity-list-table">
+  		<tr/>
+		<% for item in item_list -%>
+			<tr id="link-table-row<%= item.id %>">
+				<td><%= h(item.text) %></td>
+				<td><%#= button_to_function 'Remove', 
+						"removeItem('#{ person_line_item_url( entity, item ) }', '#{ form_authenticity_token }')" %></td>
+				<td><%= link_to_remote 'Remove', {:url => remove_item_person_line_item_path(entity, item),  :method => 'get'} %></td>
+			</tr>			
+		<% end -%>
+	</table>
+<% else -%>
+	<br/><p><%= empty_message %></p>
+<% end -%>
+</div>

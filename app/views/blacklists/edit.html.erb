@@ -1,0 +1,24 @@
+<div id="main">
+<div id="secondary-nav" class="yui-navset">
+	<div id="main-content"  class="narrow">
+<h1>Editing blacklist</h1>
+
+<% form_for(@blacklist) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @blacklist %> |
+<%= link_to 'Back to Black List', blacklists_path %>
+
+  </div> <!--END CONTENT-->
+</div> <!-- END SECONDARY NAV -->
+</div><!--END MAIN-->

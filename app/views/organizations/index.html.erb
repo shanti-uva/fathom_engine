@@ -1,0 +1,75 @@
+<script>
+  jQuery(function(){
+    var $=jQuery;
+    var join_url="<%= url_for(:action=>'join_organization',:id=>nil) %>";
+    $('.joinOrganization').click(function(){
+      var el = $(this);
+      var item_id = el.attr('title');
+      var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
+      //$.post(url, function(data){
+      //  self.parent.tb_remove();
+      //  self.parent.successfullyJoined('organization', item_id);
+      //});
+      $.post(url);
+	  self.parent.tb_remove();
+      self.parent.successfullyJoined('organization', item_id);
+      return false;
+    })
+  })
+</script>
+
+<div id="main">
+  <% if full_access? and !params[:inline] -%>
+    <div class="gallery-button" style="float: right;"><span><%= link_to 'Create Organization', new_organization_path %></span></div>
+  <% end -%>
+
+  <%= render :partial => '/common/sort_tabs', :locals => { :url => organizations_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
+
+  <div id="main-content">	
+    <% i = 1 %>
+    <% for organization in @organizations -%>
+
+      <% # don't display the organization if it's in the "find organizations" popup view and the user already belongs to it -%>
+      <% next if params[:inline] and !logged_in? %>
+      <% next if params[:inline] and current_user.person.organizations.include?(organization) -%>
+
+      <% alt = ((i % 2) == 0) -%>
+      <div class="profile-block-wrapper <%= "alt" if alt %>">
+        <div class="profile-block">
+
+          <% unless params[:inline] %>
+            <%= link_to image_tag(organization.thumb_src),  organization, :class => "profile-thm" %>
+            <div class="profile-block-main">
+              <h3><%= link_to organization.name, organization %></h3>
+              <div class="date"><%= simple_date(organization.updated_at) %></div>
+            </div>
+          <% else %>
+
+            <%= image_tag(organization.thumb_src, :class => "profile-thm") %>
+
+            <div class="profile-block-main">
+              <h3><%= organization.name %></h3>
+              <div class="date"><%= simple_date(organization.updated_at) %></div>
+              <div class="right">
+                <% if full_access? and !full_access_organization_member?(@organization) -%>
+                  <% # javascript intercepts this click -%>
+                  <%= button_to( "Join this Organization", url_for( :action => 'join_organization', :id => @project), :class=>'joinOrganization', :title=>organization.id ) %>
+                <% end -%>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div><!--END PROFILE-BLOCK-WRAPPER-->
+      <% i = i + 1 -%>
+    <% end -%>
+
+    <% if params[:inline] and (@organizations - current_user.person.organizations).blank? -%>
+	  <h4>No organizations to join</h4>
+    <% end %>
+
+    <%= will_paginate @organizations %>
+
+  </div><!--END CONTENT-->
+
+</div><!--END MAIN-->

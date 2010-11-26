@@ -1,0 +1,39 @@
+<div id="main">
+  <div id="main-content" class="main-narrow">
+	<%#= render :partial => 'signup_openid' %>
+	<%= render :partial => 'common/signup_header' %>
+
+	<div id="form-wrapper">
+		<% form_for :user, :url => users_path do |f| -%>
+		
+			<table>				
+			<tr><td><label for="full_name">First Name:</label></td><td><%= f.text_field :first_name %></td></tr>
+			<tr><td><label for="full_name">Last Name:</label></td><td><%= f.text_field :last_name %></td></tr>
+			<tr><td><label for="professional_profile">Professional Profile:</label></td><td><%= f.select( :professional_profile, professional_profile_options ) %></td></tr>
+			<tr><td><label for="title">Job Title:</label></td><td><%= f.text_field :title %></td></tr>
+			
+			<% unless @identity_url.blank? -%><tr><td><label for="openid_url">OpenID URL:</label></td><td><%= h(@user.identity_url) %></td></tr><% end -%>
+			
+			<tr><td><label for="email">E-mail Address:</label></td><td><%= f.text_field :email %></td></tr>
+			
+			<% if @identity_url.blank?  %>
+			<tr><td><label for="password">Password:</label></td><td><%= f.password_field :password %></td></tr>
+			<tr><td><label for="password_confirmation">Confirm Password:</label></td><td><%= f.password_field :password_confirmation %></td></tr>
+			<% end %>
+			<tr><td><label for="background"> Please describe in a few sentences your relevant background so we can verify that you qualify for this portal:</label></td><td><%= f.text_area("background", :class => 'mceEditor2') %></td></tr>
+			
+			</table>
+			<%= f.hidden_field :identity_url %>
+			
+			<% if @identity_url.blank?  %>
+			  <%= recaptcha_tags %>
+			<% end %>
+			
+			<p class="button-to"><%= submit_tag 'Sign up' %></p>
+		<% end -%>
+	</div>
+  </div>
+</div>
+
+
+

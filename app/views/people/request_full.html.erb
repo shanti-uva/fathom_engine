@@ -1,0 +1,10 @@
+<%= tinymce_reinitialization_script %>
+
+<div id="main">
+	<h2>Request Full Access</h2>
+	<p>Please enter a brief message describing why you wish to be granted full access.</p>
+	<% form_for( @person, :url => { :action => 'submit_request', :id => @person.id }) do |f| %>
+		<%= f.text_area 'request_text', :class => 'mceEditor' %>
+		<p><%= f.submit "Submit" %></p>
+	<% end %>
+</div>

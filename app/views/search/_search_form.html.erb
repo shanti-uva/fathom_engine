@@ -1,0 +1,20 @@
+<div id="searchForm">
+  <% form_tag search_path, :method=>:get do %>
+    <fieldset>
+      <% if params[:f] %>
+        <% params[:f].each do |facet_field,values| %>
+          <% values.each do |v| %>
+            <%= hidden_field_tag "f[#{facet_field}][]", v %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= text_field_tag :s, params[:s] %>
+      &nbsp;&nbsp;
+      <%= radio_button_tag :stype, 'keyword', (params[:stype].nil? or params[:stype]=='keyword') %> <%= label_tag 'stype_keyword', 'keyword' %>
+      <%= radio_button_tag :stype, 'name', (params[:stype]=='name') %> <%= label_tag 'stype_name', 'name' %>
+      &nbsp;&nbsp;
+      <%= submit_tag 'Search' %>
+    </fieldset>
+  <% end %>
+</div>

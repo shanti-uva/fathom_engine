@@ -1,0 +1,10 @@
+<% tool_profile = tool.tool_profile -%>
+
+<div id="resources-tab">
+	<div id="resources" class="item">
+		<% unless tool_profile.tips.blank? -%>
+			<h3>Tips</h3>
+			<%=rc tool_profile.tips %>
+		<% end -%>
+	</div>
+</div>

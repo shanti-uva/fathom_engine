@@ -1,0 +1,19 @@
+<% if params[:inline] %>
+<%= javascript_include_tag 'add_ajax_multi_assoc' %>
+<script>
+jQuery(function(){addAjaxMultiAssoc('project')});
+</script>
+<% end %>
+
+<div id="main">
+	<div id="main-content" class="narrow">		
+		<%= error_messages_for :organization %>
+		<h2>Add Sub-Projects</h2>
+		<p>Select projects to associate with this organization.</p>
+			<%= render :partial => '/common/entity_list', :object => @projects, 
+					   :locals => { :empty_message => "There are no projects to add.",
+									:form_url => url_for({ :action => 'create_subproject', :id => @organization.id }),
+									:submit_message => "Add Selected Projects" } %>
+	</div> <!--END CONTENT-->
+	<%= render :partial => '/common/media', :locals => { :entity => @organization } unless params[:inline] %>
+</div><!--END MAIN-->

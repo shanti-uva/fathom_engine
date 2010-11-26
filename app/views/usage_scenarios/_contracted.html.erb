@@ -1,0 +1,24 @@
+<p>
+	<%= link_to_remote '.', {:url => expand_tool_usage_scenario_path(tool,d),  :method => 'get'},  { :class => 'descriptionplus_icon' } %>   
+	<% if !d.title.blank? %>  
+	<%   if !d.authors.empty? %>
+		   <b class='title'><%= d.title %></b>
+		   <span class='by'><%= ' by ' %></span>
+	       <span class='content_by'><%= "#{ join_with_and(d.authors.collect{|a| a.name})}" %></span>
+	<%   else %>
+	       <b class='title'><%= d.title %></b>
+	<%   end %>
+	<% else %>  
+	<%   if !d.authors.empty? %>
+	       <b class='title'>Usage Scenario</b>
+           <span class='by'><%= ' by ' %></span>
+	       <span class='content_by'><%= "#{ join_with_and(d.authors.collect{|a| a.name})}" %></span>
+	<%   end %>
+	<% end %> 
+	<span class='last_updated'>(<%= 'last updated '"#{h(d.updated_at.to_date.to_formatted_s(:long))}" %>)</span>	
+</p>
+  <% if full_access? -%>
+	<p>
+  <%= link_to_remote 'edit usage scenario', :url => edit_tool_usage_scenario_path(tool,d), :update => 'usage_scenarios_div', :method => :get, :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');" %>
+	</p>
+  <% end -%>

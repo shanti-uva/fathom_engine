@@ -1,0 +1,39 @@
+<div id="interests-tab">
+	<div id="interests" class="item">
+		
+		<h3>Interests</h3>
+		<%= rc @person.person_profile.interests %>
+		<dl>
+		<%= entity_profile_tag_block @tag_combiner, @person, :disciplines, 'Scholarly Disciplines' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, @person, :general_interests, 'General Interests' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, @person, :time_periods_of_interest, 'Time Periods of Interest' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, @person, :places_of_interest, 'Places of Interest' %>
+		
+		<%= entity_profile_tag_block @tag_combiner, @person, :technologies_of_interest, 'Technologies of Interest' %>
+		</dl>
+<%
+=begin
+%>
+		<% unless @person.person_profile.time_periods_of_interest.blank? -%>
+		<h3>Time Periods of Interest</h3>
+		<%= rc @person.person_profile.time_periods_of_interest %>
+		<% end -%>
+		
+		<% unless @person.person_profile.places_of_interest.blank? -%>
+		<h3>Places of Interest</h3>
+		<%= rc @person.person_profile.places_of_interest %>
+		<% end -%>
+		
+		<% unless @person.person_profile.technologies.blank? -%>
+			<h3>Technologies</h3>
+			<%= rc @person.person_profile.technologies %>				
+		<% end -%>
+<%
+=end
+%>
+
+	</div> <!-- END INTERESTS -->
+</div> <!-- END INTERESTS TAB -->

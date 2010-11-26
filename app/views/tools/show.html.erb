@@ -1,0 +1,53 @@
+<script type="text/javascript">
+  var TARGET_PROFILE_BASE_URL = '<%= edit_tool_path(@tool) %>';
+	jQuery(document).ready(function() {
+		var tabView = new YAHOO.widget.TabView('secondary-nav');
+		tabView.addListener( 'click', updateEditProfileURL );	
+	});
+</script>
+
+<div id="main">
+	<div id="secondary-nav" class="yui-navset">
+		<ul class="yui-nav">
+			<%= tab_tag( :profile, 'Profile', @selected_tab ) %>
+			<%= tab_tag( :description, 'Description', @selected_tab ) unless (@tool.tool_profile.description_blank? and @tool.usage_scenarios.empty?)  -%>
+			<%= tab_tag( :reviews, 'Reviews', @selected_tab ) unless @tool.reviews.empty?  %>
+			<%= tab_tag( :technology, 'Technology', @selected_tab ) unless @tool.tool_profile.technology_blank? -%>
+			<%= tab_tag( :support, 'Support', @selected_tab ) unless @tool.tool_profile.support_blank? %>
+			<%= tab_tag( :relationships, 'Relationships', @selected_tab ) %>
+		</ul>
+		
+		
+	  <div id="main-content" class="narrow">		
+	    <h2 id="subject"><%= h(@tool.name) %> / <span class="page-type">Profile <% if full_access? -%><%= link_to '(Edit Profile)', edit_tool_path(@tool, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
+		
+		<% unless @tool.tool_profile.home_page.blank? -%>
+		  <h3 id="uri">Home Page: <a href="<%= @tool.tool_profile.home_page %>"><%= h(@tool.tool_profile.home_page) %></a></h3>
+		<% end -%>
+
+		<% unless @tool.tool_profile.download_page.blank? -%>
+		  <h3 id="uri">Download Page: <a href="<%= @tool.tool_profile.download_page %>"><%= h(@tool.tool_profile.download_page) %></a></h3>
+		<% end -%>
+			
+		<% if full_access? and !full_access_tool_member?(@tool) and !private_user? -%>
+		  <p id="add-button"><%= button_to( "Relate to this tool", url_for( :action => 'join_tool', :id => @tool) ) %></p>
+		<% end -%>
+		
+		<div class="yui-content">
+			<%= render :partial => 'tool_profile_show', :locals => { :tool => @tool, :tool_type => :tool } %>		
+		</div> <!-- END YUI CONTENT -->
+	  </div> <!--END CONTENT-->
+	</div> <!-- END SECONDARY NAV -->
+	<div id="media">
+	  <div id="carousel">
+		
+		<%= image_tag(@tool.image_src, :id => "main-img", :alt => h(@tool.name)) %> 
+		
+		<% if @allowed_to_edit -%>
+		  <h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @tool ) %></h4>
+		<% end -%>		
+		<%= render :partial => '/common/image_carousel' %>
+		<%= render :partial => '/common/relationships' %>
+	  </div> <!-- END CAROUSEL -->		
+	</div><!--END MEDIA-->
+</div><!--END MAIN-->

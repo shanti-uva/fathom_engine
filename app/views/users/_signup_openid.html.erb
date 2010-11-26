@@ -1,0 +1,11 @@
+<div id="fathom-openidbox">		
+  <% form_tag(openid_validate_path) do -%>
+    <fieldset>
+	  <legend>Optional OpenID SignUp</legend>
+	  <label for="openid_url">OpenID URL</label><br/><%= text_field_tag 'openid_url' %>    
+      <%= submit_tag 'Sign Up' %>
+	  <br/>
+      <h3 id="login-error"><%= flash[:notice] %></h3>
+    </fieldset>
+  <% end -%>	
+</div>

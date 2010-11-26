@@ -1,0 +1,12 @@
+<h1>Editing image</h1>
+
+<%= error_messages_for :image %>
+
+<% form_for(@image) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @image %> |
+<%= link_to 'Back', images_path %>

@@ -1,0 +1,31 @@
+<% relation_browser_filename = @relation_browser_full ? 'RelationBrowserFull.swf' : 'RelationBrowser.swf' %>
+
+<script language="JavaScript" type="text/javascript">
+<!-- 
+var hasRightVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+if(hasRightVersion) {  // if we've detected an acceptable version
+    var oeTags = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"'
+    + 'width="100%" height="100%"'
+    + 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">'
+    + '<param name="movie" value="<%= relation_browser_filename %>" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />'
+    + '<embed src="<%= relation_browser_filename %>" quality="high" bgcolor="#ffffff" '
+    + 'width="100%" height="100%" name="RelationBrowser" align="middle"'
+    + 'play="true"'
+    + 'loop="false"'
+    + 'quality="high"'
+    + 'allowScriptAccess="sameDomain"'
+    + 'type="application/x-shockwave-flash"'
+    + 'pluginspage="http://www.macromedia.com/go/getflashplayer">'
+    + '<\/embed>'
+    + '<\/object>';
+    $('.flash-object').html(oeTags);   // embed the flash movie
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = '<p style="padding-left: 10px;">This page requires Flash in order to view. You can obtain the flash plugin '
+        + '<a href="http://www.macromedia.com/go/getflash/">here</a>.</p>';
+    $('.flash-object').html(alternateContent);   // embed the flash movie
+  }
+// -->
+</script>
+<noscript>
+	<p>This page requires Flash in order to view. You can obtain the flash plugin <a href="http://www.macromedia.com/go/getflash/">here</a>.</p>  	
+</noscript>

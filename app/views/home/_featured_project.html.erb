@@ -1,0 +1,19 @@
+<% if featured_project.image %>
+	<%= link_to( image_tag(featured_project.image.public_filename, :alt => h(featured_project.name) ), featured_project, :class => "featured-img" ) %> 
+<% end %>	
+
+<div class="featured-main">
+    <%  if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+	  <h2>A Featured UVa <%= featured_project[:type] %></h2>
+	<%  else %>
+	  <h2>A Featured <%= featured_project[:type] %></h2>
+	<%  end %>
+	<h3><%= link_to carousel_featured_title(featured_project.name), featured_project %></h3>
+        <% if not featured_project.project_profile.overview.nil? %>
+		<div class="featured-overview">
+          <%=  carousel_featured_overview(featured_project.project_profile.overview) %>
+		</div>
+
+        <% end %>
+	<a href="<%= url_for(featured_project) %>" class="view-details"><span>View Details</span></a>
+</div>

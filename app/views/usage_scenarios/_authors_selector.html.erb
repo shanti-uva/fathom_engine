@@ -1,0 +1,7 @@
+<div class="dropdown">
+<p>
+<%= select_tag 'usage_scenario[author_ids][]', options_for_select(@authors.collect{|a| [ a.name , a.id] }, selected.nil? ? nil : selected) %>
+<%= link_to_function 'remove', "$('.dropdown').click(function(e) {$ 
+(this).remove();});" %>
+</p>
+</div>

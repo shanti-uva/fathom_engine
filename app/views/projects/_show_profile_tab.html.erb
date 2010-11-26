@@ -1,0 +1,34 @@
+<% project_profile = project.project_profile -%>
+
+<div id="profile-tab">
+  
+	<div id="profile" class="item">
+         
+          
+	  <% unless project_profile.subjects.empty? -%>
+	  <h3>Focus</h3>
+	  <p><%= project_profile.subjects.map(&:name).join(', ') %></p>
+	  <% end %>
+	  
+		<% unless project_profile.overview.blank? -%>			
+			<h3>Overview</h3>
+			<%= rc project_profile.overview %>
+		<% end -%>
+		
+		<% unless project_profile.people.blank? -%>			
+			<h3>People</h3>
+			<%= rc project_profile.people %>	
+		<% end -%>
+		
+		<% unless project_profile.sponsors.blank? -%>			
+			<h3>Sponsors</h3>
+			<%= rc project_profile.sponsors %>	
+		<% end -%>
+	</div>
+	
+	<div id="seeking" class="item">
+		<%= render :partial => 'seeking_table', :locals => { :entity => project, 
+															 :editable => @allowed_to_edit } %>
+	</div>
+  
+</div>

@@ -1,0 +1,66 @@
+<div id="main">
+  
+	<%= render(
+	  :partial => '/common/sort_tabs',
+	  :locals => {
+	    :url => people_path(:inline=>params[:inline],
+	    :project_id=>params[:project_id]),
+	    :sort_order => @sort_order,
+		#:additional_tabls=>[{:profession=>ts('sort.profession')}]
+	    :additional_tabs=>[{:profession=>'Profession'}]
+	  }
+	) %>
+  
+	<div id="main-content">
+		<% i = 1 %>
+		<% for person in @people -%>
+		
+		<% # don't display the person in the "find people" popup view if the user already belongs to the project -%>
+		<% next if params[:inline] and person.projects.include?(@project) -%>
+		
+		<% alt = ((i % 2) == 0) -%>
+		<div class="profile-block-wrapper <%= "alt" if alt %>">
+			<% # if the view is NOT in a window ("Thickbox") -%>
+			<% unless params[:inline] %>
+			<div class="profile-block">
+			  
+				<%= link_to image_tag(person.thumb_src),  person, :class => "profile-thm" %>
+				
+				<div class="profile-block-main">
+					<h3><%= link_to person.name, person %></h3>
+					<h4><%= h(person.person_profile.title) %> <%= person.person_profile.title.blank? ? "" : "|" %> <%= h(person.person_profile.professional_profile) %>
+        </h4>
+					<div class="date"><%= simple_date(person.updated_at) %></div>
+				</div>
+			</div>
+			<% else %>
+			  
+			  <div class="profile-block">
+          
+  				image_tag(person.thumb_src, :class => "profile-thm")
+         
+  				<div class="profile-block-main">
+  					<h3><%= person.name %></h3>
+  					<h4><%= h(person.person_profile.title) %></h4>
+  					<div class="date"><%= simple_date(person.updated_at) %></div>
+  					<div class="right">
+  					<% if full_access? and ! person.projects.include?(@project) -%>
+  					  <% # javascript intercepts this click -%>
+        			<%= button_to( "Add this Person", url_for( :action => 'join_project', :id => person), :class=>'joinProject', :title=>@project.id ) %>
+        			<%#= button_to( ts('add.record', :what => t('this.record', :what => Person.human_name)), url_for( :action => 'join_project', :id => person), :class=>'joinProject', :title=>@project.id ) %>
+        		<% end -%>
+        		</div>
+  				</div>
+				</div>
+				
+			<% end %>
+		</div><!--END PROFILE-BLOCK-WRAPPER-->
+		
+		<% i = i + 1 -%>
+		<% end -%>
+		
+		<%= will_paginate @people %>		
+		
+	</div><!--END CONTENT-->
+
+</div><!--END MAIN-->

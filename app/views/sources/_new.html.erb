@@ -1,0 +1,29 @@
+
+<% if !params[:review_id].nil? %>
+<%   @path = tool_review_sources_path(@tool, @review) %>
+<%   div_updated = 'reviewsources_div' %>
+     <h4><%= 'Source for '"<em>#{h(@review.title)}</em>" %></h4>
+<% else %>
+<%   if !params[:usage_scenario_id].nil? %>
+<%     @path = tool_usage_scenario_sources_path(@tool, @usage_scenario) %>
+<%     div_updated = 'usagescenariosources_div' %>
+       <h4><%= 'Source for '"<em>#{h(@usage_scenario.title)}</em>" %></h4>
+<%   else %>
+<%     @path = tool_sources_path(@tool) %>
+<%     div_updated = 'toolsources_div' %>
+       <h4><%= 'Source for '"<em>#{h(@tool.name)}</em>" %></h4>
+<%   end %>
+<% end %>
+<%= error_messages_for :source %>
+<%   remote_form_for(:source, :url => @path, :before => "tinyMCE.triggerSave();", :update => div_updated) do |f| %>
+
+<%=  render :partial => 'form', :locals => {:f => f} %>
+
+  <p>
+    <%= submit_to_remote 'update_btn', 'Create Source', :url => { :action => 'create' }, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');", :update => div_updated, :html => { :method => :put} %>
+  </p>
+
+<% end %>
+<p>
+<%= link_to_remote 'Cancel', {:url => @path, :method => 'get'}, :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %>
+</p>

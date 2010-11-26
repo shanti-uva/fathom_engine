@@ -1,0 +1,53 @@
+<script type="text/javascript"> 
+	var TARGET_PROFILE_BASE_URL = '<%= tool_path(@tool) %>';
+	// init this page
+	jQuery(document).ready(function() {
+		var tabView = new YAHOO.widget.TabView('secondary-nav');
+		tabView.addListener( 'click', updateShowProfileURL );	
+	});
+  function successfullyUpdatedPicture(){
+    $('<p class="image_loading_text">LOADING NEW IMAGE...</p>').insertAfter('#main-img');
+    // Fade out previous image
+    $('#main-img').fadeOut();
+    // Grab the image url from the person's JSON and put it in the carousel, fading in
+    $.getJSON('<%= tool_path(@tool) %>.json', function(data){
+      $('.image_loading_text').hide();
+      $('#main-img').attr('src', data['image']);
+      $('#main-img').fadeIn();
+    });
+  };
+</script>
+
+<div id="main">
+	<div id="secondary-nav" class="yui-navset">
+		<ul class="yui-nav">
+			<%= tab_tag( :profile, 'Profile', @selected_tab ) %>
+			<%= tab_tag( :description, 'Description', @selected_tab ) %>
+			<%= tab_tag( :reviews, 'Reviews', @selected_tab ) %>
+			<%= tab_tag( :technology, 'Technology', @selected_tab ) %>
+			<%= tab_tag( :support, 'Support', @selected_tab ) %>
+			<%= tab_tag( :relationships, 'Relationships', @selected_tab ) %>
+			<% if full_access_tool_member?(@tool) -%>
+			<%= tab_tag :admin, 'Administrative', @selected_tab %>
+			<% end %>
+		</ul>
+    
+	<%= render :partial => 'tool_profile_edit', :locals => { :tool => @tool, :tool_type=>:tool } %>
+
+  </div> <!-- END SECONDARY NAV -->
+	<div id="media">
+		<div id="carousel">
+    
+		<%= image_tag(@tool.image_src, :id => "main-img", :alt => h(@tool.name)) %>
+		
+		<% if full_access? and !full_access_tool_member?(@tool) -%>
+			<%= button_to( "Relate to this Tool", url_for( :action => 'join_tool', :id => @tool) ) %>
+		<% end -%>
+		
+		<%= render :partial => '/common/image_carousel' %>
+
+		<% if full_access? -%><h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @tool, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %></h4><% end -%>		
+		<%= render :partial => '/common/relationships' %>
+	  </div><!--END CAROUSEL-->	
+	</div><!--END MEDIA-->
+</div><!--END MAIN-->

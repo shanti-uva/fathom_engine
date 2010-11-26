@@ -1,0 +1,41 @@
+
+<% if resource.class.name == 'Review' %>
+<%   tool = Tool.find(resource.tool_id) %>
+<%   new_legend = 'Add review source' %>
+<%   new_path = new_tool_review_source_path(tool,resource) %>
+<%   div_updated = 'reviewsources_div' %>
+<% else %>
+<%   if resource.class.name == 'UsageScenario' %>
+<%     tool = Tool.find(resource.tool_id) %>
+<%     new_legend = 'Add usage scenario source' %>
+<%     new_path = new_tool_usage_scenario_source_path(tool,resource) %>
+<%     div_updated = 'usagescenariosources_div' %>
+<%   else %>
+<%     tool = resource %>
+<%     new_legend = 'Add tool source' %>
+<%     new_path = new_tool_source_path(tool)%>
+<%     div_updated = 'toolsources_div'%>
+<%   end %>
+<% end %>
+
+<% if !resource.sources.empty? %>
+<p><b>Detail for textual sources:</b></p>
+<%   resource.sources.find(:all).each do |s| %>
+	   <div id="<%= "#{s.id}_sourcediv" %>">
+<%     if @source.nil? 	%>	
+<%=      render :partial => 'sources/contracted', :locals => {:resource => resource, :s => s} %>
+<%     else %>
+<%       if s == @source %>
+<%=        render :partial => 'sources/expanded', :locals => {:resource => resource, :s => s} %>
+<%	     else %>
+<%=        render :partial => 'sources/contracted', :locals => {:resource => resource, :s => s} %>
+<%       end %>
+<%     end %>
+       </div>
+<%   end %>
+<% end %>
+<% if full_access? -%>
+  <p>
+  <%=  link_to_remote new_legend, :url => new_path, :update => div_updated, :method => 'get', :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %>
+  </p>
+<% end -%>

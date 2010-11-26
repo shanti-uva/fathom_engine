@@ -1,0 +1,20 @@
+<% project_profile = project.project_profile -%>
+
+<div id="activities-tab">
+	<div id="activities" class="item">
+		<% unless project_profile.current_directions.blank? -%>
+			<h3>Current Focus</h3>
+			<%=rc project_profile.current_directions %>
+		<% end -%>
+    
+		<% unless project_profile.outcomes.blank? -%>
+			<h3>Future Goals</h3>
+			<%=rc project_profile.outcomes %>
+		<% end -%>
+		
+		<% unless project_profile.history.blank? -%>
+			<h3>History</h3>
+			<%=rc project_profile.history %>
+		<% end -%>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<div id="main">
+  <div id="main-content" class="main-narrow">	
+	<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>	
+	  <h3>Non-UVa Login</h3>
+	<% else %>
+	  <h3>Interconnections Login</h3>
+	<% end %>
+	<div id="login-page">
+			<% form_tag sessions_path, :id => 'login_form' do -%>
+				<table>
+					<tr>						
+						<td><label for="openid_url">OpenID URL:</label></td><td><%= text_field_tag 'openid_url', nil, :style => "color: black" %></td>
+					</tr>
+					<tr><td>
+				      <p>...or use:</p>
+				      </td>
+				      <td><p></p></td>
+					</tr>
+					<tr>						
+						<td><label for="login">E-mail:</label></td><td><%= text_field_tag 'login', nil, :style => "color: black" %></td>
+					</tr>
+					<tr>						
+						<td><label for="password">Password:</label></td><td><%= password_field_tag 'password' %></td>
+					</tr>
+					<tr>						
+						<td><label for="remember_me">Remember me:</label></td><td><%= check_box_tag 'remember_me' %></td>
+					</tr>
+				</table>
+				<p><h3 id="login-error"><%= flash[:notice] %></h3></p>
+				<p class="button-to"><%= submit_tag 'Log in', :class => 'button' %></p>
+				<p><%= link_to 'forgot your password?', forgot_path %>
+			<% end -%>
+
+            <p><hr/></p>
+
+    <% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+		<h3>University of Virginia Login</h3>
+		<p>People with a University of Virginia Computing ID Login <%= link_to 'here', netbadge_sessions_url %>.</p>
+		<p>You do not need to create a new account for SHANTI - your UVa computing ID will allow you to login to the SHANTI portal, after which you can create your own personal entry in the portal, as well as describe projects, organizations, and tools.</p>
+		
+		<h3>Non-UVa People Signup for a New Account</h3>
+	
+		<p><%= link_to 'Sign up for Guest Access', signup_openid_path %>. This will allow you to create a personal entry in the portal, as well as apply for full access, which will additionally allow you to make entries for projects, organizations, and tools.</p>
+	<% else %>
+		<br/>
+		<h3>Register for your Own Interconnections Account</h3>  
+		<p><%= link_to 'Sign up for Guest Access', signup_openid_path %>. This enables you to create an account to make your own entries in Interconnections for yourself, projects, and organizations.</p>
+	<% end %>
+				
+	</div>
+    
+  </div>              
+</div>

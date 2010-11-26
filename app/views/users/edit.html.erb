@@ -1,0 +1,45 @@
+<div id="main">
+<div id="secondary-nav" class="yui-navset">
+  <!-- <ul class="yui-nav">
+    <%= tab_tag( :user, 'User', @selected_tab ) %>
+  </ul> -->
+  <div id="main-content"  class="narrow">
+  <%= error_messages_for :user %>
+
+    <h2><%= 'Updating User' %></h2>
+    
+	<div class="yui-content">
+        <div id="profile-tab">
+		  <dl class="user-profile-metadata plain">
+				<dt id="subject"><%= h(@user.person.name) %></dt>
+				<% unless @user.email.blank? -%>
+					<dd>E-mail:<%= h(@user.email) %> </dd>
+				<% end -%>
+		  </dl>		
+			<% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
+			  
+			
+				
+				<label for="access_level">Access Level</label><br/>
+				<%= f.select("access_level", user_access_levels ) %>
+
+			    <% unless @user.private_profile.blank? -%>
+			      <% unless @user.private_profile == false -%>
+			        <label for="private_profile">Private</label><br/>
+					<%= f.check_box :private_profile %>
+				  <% end -%>
+				<% end -%>
+			  
+			<ul class="gallery-button update btn-four"><li><%= f.submit "Update" %></li>
+			<li><%= link_to 'Back', user_path(@user) %> </li>
+			<li><%= link_to 'Delete', user_path(@user), :confirm => 'Are you sure?', :method => :delete %> </li>
+			<li><%= link_to 'Back to Admin', users_path %></li>
+			</ul>
+		
+			<% end %> <!-- END FORM -->
+		  	
+		</div> <!-- END PROFILE -->
+    </div> <!-- END YUI CONTENT -->
+  </div> <!--END CONTENT-->
+</div> <!-- END SECONDARY NAV -->
+</div><!--END MAIN-->

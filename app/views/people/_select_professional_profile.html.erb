@@ -1,0 +1,5 @@
+<ul class="professional-profile-list">
+	<% for professional_profile in @professional_profiles -%>
+   	<li><%= check_box_tag "professional_profile[#{professional_profile.id}]", "true", @person.person_profile.professional_profiles.include?(professional_profile) %> <%= professional_profile.name %></li>
+	<% end -%>
+</ul>

@@ -1,0 +1,28 @@
+<div id="background-tab">
+  <div id="background" class="item">
+    <% unless @person.person_profile.cv_link.blank? -%>
+      <p><b>CV URL:</b> <a href="<%= @person.person_profile.cv_link %>"><%= h(@person.person_profile.cv_link) %></a></p>
+    <% end -%>
+
+    <% unless @positions.empty? -%>
+      <h3>Positions</h3>
+      <%= render :partial => 'dynamic_list_show', :locals => { :item_list => @positions } %>
+    <% end -%>
+
+    <% unless @credentials.empty? -%>
+      <h3>Education/Credentials</h3>
+      <%= render :partial => 'dynamic_list_show', :locals => { :item_list => @credentials } %>
+    <% end -%>
+
+    <% unless @affiliations.empty? -%>
+      <h3>Memberships/Affiliations</h3>
+      <%= render :partial => 'dynamic_list_show', :locals => { :item_list => @affiliations } %>
+    <% end -%>
+
+    <% unless @person.person_profile.skills.blank? -%>
+      <h3>Skills</h3>
+      <%= rc @person.person_profile.skills %>
+    <% end -%>
+
+  </div> <!-- END BACKGROUND -->
+</div> <!-- END BACKGROUND TAB -->

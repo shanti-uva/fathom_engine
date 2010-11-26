@@ -1,0 +1,79 @@
+<script>
+  jQuery(function(){
+    var $=jQuery;
+    var join_url="<%= url_for(:action=>'join_tool',:id=>nil) %>";
+    $('.joinTool').click(function(){
+      var el = $(this);
+      var item_id = el.attr('title');
+      var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
+      //$.post(url, function(data){
+      //  self.parent.tb_remove();
+      //  self.parent.successfullyJoined('tool', item_id);
+      //});
+	  $.post(url);
+      self.parent.tb_remove();
+      self.parent.successfullyJoined('tool', item_id);
+      return false;
+    })
+  })
+</script>
+
+<% # the :inline param is used for creating a view that fits into thickbox (no header, no footer) :: see layouts/main.html.erb for logic -%>
+
+<div id="main">
+  <% if full_access? and ! params[:inline] -%>
+    <div class="gallery-button" style="float: right;"><span><%= link_to 'Create Tool', new_tool_path %></span></div>
+  <% end -%>
+  <%= render :partial => '/common/sort_tabs', :locals => { :url => tools_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
+
+  <div id="main-content">
+    <% i = 1 %>
+    <% for tool in @tools -%>
+
+      <% # don't display the tool if it's in the "find tools" popup view and the user already belongs to it -%>
+      <% next if params[:inline] and !logged_in? %>
+	  <% next if params[:inline] and current_user.person.tools.include?(tool) -%>
+
+      <% alt = ((i % 2) == 0) -%>
+
+      <div class="profile-block-wrapper <%= "alt" if alt %>">
+        <div class="profile-block">
+          <% # if the view is NOT in a window ("Thickbox") -%>
+          <% unless params[:inline] %>
+
+            <%= link_to(image_tag(tool.thumb_src),  tool, :class => "profile-thm") %>
+
+            <div class="profile-block-main">
+              <h3><%= link_to tool.name, tool %></h3>
+              <div class="date"><%= simple_date(tool.updated_at) %></div>
+            </div>
+            <% # ... else the view is in a popup window ("Thickbox") set from ?inline=true. In this view, the links displayed will load content into the iframe unless intercepted by javascript. -%>
+          <% else %>
+
+            <%= image_tag(tool.thumb_src, :class => "profile-thm") %>
+
+            <div class="profile-block-main">
+              <h3><%= tool.name %></h3>
+              <div class="date"><%= simple_date(tool.updated_at) %></div>
+              <div class="right">
+                <% if full_access? and !full_access_tool_member?(@tool) and !private_user? -%>
+                  <% # javascript intercepts this click -%>
+                  <%= button_to( "Relate to this Tool", url_for( :action => 'join_tool', :id => @tool), :class=>'joinTool', :title=>tool.id ) %>
+                <% end -%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div><!--END PROFILE-BLOCK-WRAPPER-->
+      <% i = i + 1 -%>
+    <% end -%>
+
+	<% if params[:inline] and (@tools - current_user.person.tools).blank? -%>
+	  <h4>No tools to join</h4>
+    <% end %>
+
+    <%= will_paginate @tools %>
+
+  </div><!--END CONTENT-->
+
+</div><!--END MAIN-->

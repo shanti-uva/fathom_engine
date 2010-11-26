@@ -1,0 +1,12 @@
+<div id="main">
+  <h2>Search index regenerated</h2>
+  <div id="regeneration-results" style="padding-top: 1em;">Indexing complete. <%= @records_indexed %> records indexed:
+    <ul style="list-style-type: circle; margin-left: 3em;">
+      <% Entity::INDEXED_TYPES.each do |kind| %>
+        <%= render_result_size(kind) %>
+      <% end %>
+    </ul>
+
+    <% if admin? -%><%= link_to 'Return to administrative interface', admin_path %><% end -%>
+  </div>
+</div>

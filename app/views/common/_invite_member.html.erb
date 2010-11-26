@@ -1,0 +1,32 @@
+<%= tinymce_reinitialization_script %>
+
+<% if params[:inline] %>
+<script>
+jQuery(function(){
+  var $=jQuery;
+  // find the invite form and assign the submit handler
+  $('form.invite_form').submit(function(){
+    // create the ajax:success callback handler
+    var opts={
+      success:function(response){
+        // close thickbox
+        self.parent.tb_remove();
+        // callback function inside of parent window (if params[:inline] is set, then this is in a "lightbox")
+        self.parent.successfullyInvitedTeamMembers();
+      }
+    }
+    // submit the form...
+    $(this).ajaxSubmit(opts);
+    return false;
+  })
+})
+</script>
+<% end -%>
+
+<%= error_messages_for team_type %>
+<h2>Invite Team Members</h2>
+<% form_for(team, :url => { :action => 'create_member_email', :id => team.id }, :html=>{:class=>'invite_form'}) do |f| %>
+  <p>Invite team members to join the Digital Humanities Portal.<br/><strong>You must use the format "first name" last name" email</strong> (e.g. 'Joe Scholar joescholar@virginia.edu').<br/>Place additional invitees on separate lines.</p>
+	<%= f.text_area('invite_list', :class => 'mceEditor') %>
+	<p><%= f.submit "Invite" %></p>
+<% end %>

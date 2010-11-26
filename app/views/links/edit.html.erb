@@ -1,0 +1,11 @@
+<%= error_messages_for :link %>
+
+<% form_for :link, 
+            :url => person_link_url(@entity,@link), 
+            :person_id => @entity_id, 
+            :html => {:method => :put} do |f| -%>
+	<p>Label: <%= f.text_field "label" %></p>
+	<p>Link URL: <%= f.text_field "url" %></p>
+	<p><%= f.submit("Update") %> 
+	  <%= button_to_function 'Close', 'hideLinkForm()' %></p>
+<% end -%>

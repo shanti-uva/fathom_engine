@@ -1,0 +1,24 @@
+<% @facet_fields.each do |facet_field| %>
+  <%# Display facet values by descending integer value and then by lexicographic case-insensitive order. -%>
+  <% facet_values = @solr_result_set.field_facets(facet_field).sort_by {|f| [-f.value, f.name.downcase]} rescue next %>
+
+  <% next if facet_values.size == 0 %>
+
+  <div class="facetItem">
+    <h2><%= facet_field.sub(/_facet$/, '').humanize.titleize %></h2>
+
+    <ul>
+      <% facet_values.each do |facet| %>
+        <li>
+          <% if facet_in_params?(facet_field, facet.name) %>
+            <%= facet.name %> - <%= link_to 'remove', params_for_removing_facet(facet_field, facet.name), :class=>'remove' %>
+          <% else %>
+            <%= link_to facet.name, params_for_adding_facet(facet_field, facet.name) %>
+          <% end %>
+          (<%= facet.value %>)
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+<% end %>

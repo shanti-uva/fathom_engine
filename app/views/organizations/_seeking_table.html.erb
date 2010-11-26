@@ -1,0 +1,27 @@
+<%= empty_message ||= nil %>
+
+<% unless entity.posts.empty? -%>
+  <h3>Posts</h3>	
+  <div class="posts">
+    <% for post in entity.posts -%>
+      <div id="post-<%= post.id %>" class="post">
+        <% if allowed_to_edit?(entity) -%>
+          <div class="post-actions">
+            <%= button_to( 'Edit', edit_organization_post_url(entity, post), :method => :get ) %>
+            <%= button_to( "Delete", organization_post_url(entity,post), :method => :delete, :confirm => "Are you sure you wish to delete this post?", :class => "destructive-update" ) %>
+          </div>
+        <% end -%>
+        <div class="post-metadata">
+          <span class="post-metadata-subject"><%= link_to post.subject, {:controller => "posts", :action => "show", :id => post.id}, :class => "post-link" %></span>
+          <span class="dimmed">(expires on <%= post.expiration_date.strftime("%B %e, %Y") %>)</span>
+          <div class="post-metadata-kind"><%= post.post_kind.post_kind_value %></div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+<% else -%>
+  <br/><p><%= empty_message unless empty_message.nil? %></p>
+<% end -%>
+<% if allowed_to_edit?(entity) -%>
+  <p><%= button_to 'Add a Post', new_organization_post_path(entity), :id => 'add-post-button', :method => :get %></p>
+<% end -%>

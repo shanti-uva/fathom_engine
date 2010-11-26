@@ -1,0 +1,370 @@
+<%= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
+
+<%= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
+
+<% tool_profile = tool.tool_profile -%>
+
+<%= tinymce_reinitialization_script %>
+
+<%
+# because this page is working with /tools AND /organizations, these variables are created to help the javascript code along...
+object_path_method = "#{tool_type}_path".to_sym
+collection_path = send("#{tool_type.to_s.pluralize}_path")
+-%>
+
+<script>
+<% # given a type of 'member' or 'tools', this function returns the correct base path/url -%>
+function pathForAssociation(type){
+  if(type=='member'){
+    return '<%= people_path %>';
+  }else{
+    return '<%= tools_path %>';
+  }
+}
+
+<%
+# This function adds a new row to the people/tools table
+# The first argument is the type of association: "tool" or "member"
+# The second argument is a hash that requires the following keys: id, name and thumb
+# The template that it uses, mirrors a "tr" from the "table" in views/common/_entity_list.html.erb
+-%>
+function addNewAssociationRow(type, data){
+  // build the template (the class for removing this row is either .memberRemove or .toolRemove)
+  var row_template_string='<tr> <td><a href=""><img src="" alt=""/></a></td> <td><a href=""></a></td> <td><div class="gallery-button"><a title="" class="' + type + 'Remove" href="#">remove</a></div></td> </tr>';
+  // jqueryize it
+  var row_template=$(row_template_string);
+  // set all hrefs to the "type" path
+  $('a', row_template).attr('href', pathForAssociation(type) + '/' + data['id']);
+  // setup the remove link handler
+  var remove_link = $('a.' + type + 'Remove', row_template);
+  // reset the href attribute to # (this link uses a javascript click handler)
+  remove_link.attr('href', '#');
+  // set the title to the id of the object (used by the click handler)
+  remove_link.attr('title', data['id']);
+  // assign the click handler to the removeAssociationHandler function
+  remove_link.click(function(){
+    removeAssociationHandler(type, $(this));
+  });
+  // setup the thumb
+  var img=$('img', row_template);
+  // set the src attribute
+  img.attr('src', data['thumb']);
+  // set the alt attribute
+  img.attr('alt', data['name'] + '_thumb');
+  // add main text link to the second column
+  $('td a', row_template).each(function(i,e){
+    // the name of the tool/organization is in the second column
+    if(i==1){$(e).html(data['name'])}
+  });
+  var container=$('#' + type + 's'); // note: pluralized
+  var table=$('table', container);
+  if(table.length==0){
+    // page was loaded without any relationship table of this "type"
+    $(container).append('<table class="entity-list-table"></table>');
+  }
+  $('table', container).append(row_template);
+}
+
+// This function gets called from invite_member.html.erb (in a lightbox) after the form has been sent (via ajax)
+function successfullyInvitedTeamMembers(){alert('Your invitations have been sent.')}
+
+// This function gets called from find_member.html.erb (in a lightbox) after the form has been sent (via ajax)
+function successfullyAddedAssociation(type, object_ids){
+  // loop through all newly added members/sub-projects
+  for(i in object_ids){
+    // fetch the JSON associated with the current member id
+    $.getJSON(pathForAssociation(type) + '/' + object_ids[i] + '.json', function(data){
+      // add to the people/sub-project table
+      addNewAssociationRow(type, data);
+    });
+  }
+}
+
+// handler for removing a member
+// sends a POST request to a tool_path (tool)
+// removes the corresponding "tr" from the people table
+function removeAssociationHandler(type, el){
+  if(!confirm('Are you sure you want to remove this member?')){return;}
+  el.parent().parent().parent().fadeOut('fast');
+  //var url='<%= send(object_path_method, tool) %>';
+  //url += '?_method=put';
+  //url += '&authenticity_token=<%= form_authenticity_token %>';
+  //url += '&tool[member_ids_to_delete][]=' + el.attr('title');
+  //$.post(url, function(){})
+  var update_url='<%= escape_javascript url_for({:controller=>"tools", :action => "index" }) %>'
+  var query_string='/update/' + '<%= tool.id %>'
+  query_string += '?tool[member_ids_to_delete][]=' + el.attr('title');
+  $.post(update_url + query_string);
+  return false;
+}
+
+jQuery(function(){
+  var $=jQuery;
+  
+  <%= generate_js_for_tag_autocomplete( @tag_combiner, :tool_profile, {
+    :disciplines=>'tool_profile_discipline_list',
+    :general_interests=>'tool_profile_general_interest_list',
+    :time_periods_of_interest=>'tool_profile_time_periods_of_interest_list',
+    :places_of_interest=>'tool_profile_places_of_interest_list',
+    :technologies_of_interest=>'tool_profile_technologies_of_interest_list',
+	:languages=>'tool_profile_language_list',
+	:developers=>'tool_profile_developer_list',
+	:producers=>'tool_profile_producer_list',
+	:license_types=>'tool_profile_license_type_list',
+	:platforms=>'tool_profile_platform_list',
+	:operating_systems=>'tool_profile_operating_system_list'
+  }) %>
+  
+  // display default status of synopsis char limit:
+  //$('#charcount').html('0/400');
+  // count the lines in the synopsis (limited to 400 characters)
+  //$('#tool_profile_synopsis').keyup(function(){
+  //  $('#charcount').html($(this).val().length + '/400');
+  //})
+  
+  // When a .subjectCheckbox element is checked, initially... nothing happens.
+  // If it's unchecked, a new element is placed into the form with the name "tool_profile[subject_ids_for_deletion][]"
+  // and the value is set to the id of the "Subject" instance checked. This allows the server-side app
+  // to remove the association of the "Subject"; when a checkbox is unchecked, nothing is sent to the server.
+  // If the item is checked again (uncheck, re-check) the tool_profile[subject_ids_for_deletion][] 
+  // for that "Subject" element is removed.
+  $('.subjectCheckbox').click(function(){
+    var el=$(this);
+    if(el.attr('checked')==true){
+      $('#removeSubject' + el.val()).remove();
+    }else{
+      $('#profileForm').append('<input type="hidden" name="tool_profile[subject_ids_for_deletion][]" id="removeSubject' + el.val() + '" value="' + el.val() + '" />');
+    }
+  });
+  
+  $('.toolRemove').click(function(){
+    removeAssociationHandler('tool', $(this));
+  });
+  $('.memberRemove').click(function(){
+    removeAssociationHandler('member', $(this));
+  });
+  
+});
+</script>
+
+
+<div id="main-content" class="narrow">		
+	<% form_for( :tool_profile, tool_profile, :url => { :action => "update_profile", :id => tool.id }, :before => "tinyMCE.triggerSave(); ", :html=>{:id=>'profileForm'} ) do |f| -%>
+	
+	<%= hidden_field_tag( :tab, @selected_tab ) %>
+	
+
+	
+	<h2>Updating Profile </h2>
+        <h2 id="name"><input name="tool_profile[tool_attrs][name]" type="text" value="<%= @tool.name %>"/> </h2>
+        <%= error_messages_for 'tool_profile', :object => tool.tool_profile, :message => '', :header_message => '' %>
+  <div class="yui-content">
+	  <div id="profile-tab">	
+  		<div id="profile" class="item">
+			<em>The opening lines of the Summary will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.</em>  
+            <br/><%= editor_note_tip %>
+			<h3>Summary</h3>
+            <%= f.text_area("summary", :class => 'mceEditor') %>
+			
+			    <div class='padded'><b>Summary Sources</b>
+				<em>please note that in tool sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button</em></div>
+	  		    <div id='toolsources_div' class='padded'>
+			    
+			    <%=   render :partial => 'sources/index', :locals => {:resource => tool} %>
+
+			    </div>
+				
+			   
+			
+			<h3>Tool Type</h3>
+			  <p>
+			<%=  category_selector(@tool_type, :tool_profile, :tool_type, true, :hasTree => 'true', :singleSelectionTree => 'true')%>
+			  </p>
+			
+
+			<h3>General Associations</h3>
+			  <em>Indicate various general interests below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:general_interest_list) %></div>
+
+			<h3>Operating Systems</h3>
+			  <em>Indicate various operating systems below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:operating_system_list) %></div>
+			
+            <h3>Notes on Operating Systems</h3>
+            <%=th f.text_area("operating_system", :class => 'mceEditor') %>
+			
+			<h3>Platforms</h3>
+			  <em>Indicate various platforms below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:platform_list) %></div>
+
+            <h3>Notes on Platform</h3>
+            <%=th f.text_area("platform", :class => 'mceEditor') %>
+
+            <h3>System Requirements</h3>
+            <%=th f.text_area("system_requirements", :class => 'mceEditor') %>
+
+			<h3>Licenses</h3>
+			  <em>Indicate various licenses below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:license_type_list) %></div>
+			
+            <h3>Notes on License</h3>
+            <%=th f.text_area("license", :class => 'mceEditor') %>
+
+            <h3>Cost</h3>
+            <%=th f.text_area("cost", :class => 'mceEditor') %>
+
+			<table class="entity-list-table">
+				<tr>
+					<td><b>Home Page URL:</b></td>
+					<td><%= f.text_field "home_page" %></td>
+				</tr>
+				<tr>
+					<td><b>Download Page URL:</b></td>
+					<td><%= f.text_field "download_page" %></td>
+				</tr>
+			</table>
+				  
+  		</div>
+  	</div>
+	
+    <div id="description-tab">
+  		<div id="description" class="item">	
+          <%= editor_note_tip %>
+    		<h3>Features</h3>
+  			<%=th f.text_area(:features, :class => 'mceEditor') %>
+
+			<h3>Usage Scenarios</h3>
+				<em>please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button</em>
+	  		    <div id='usage_scenarios_div'>
+
+			      <%=     render :partial => 'usage_scenarios/index', :locals => {:tool => tool, :usage_scenario => nil} %>	
+
+			    </div>
+
+				
+  		  	<h3>Version and Plans</h3>
+  		  	<%=th f.text_area('version_history', :class => 'mceEditor') %>  			
+			  
+			<h3>Interface Languages</h3>
+			<em>Indicate various Interface Languages below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:language_list) %></div>
+
+  		</div>
+    </div>
+
+    <div id="reviews-tab">
+    	<div id="reviews" class="item">
+		  <%= editor_note_tip %>
+  		  <h3>Reviews</h3>
+			<em>please note that in reviews any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button</em>
+  		    <div id='descriptions_div'>
+		      
+		      <%=     render :partial => 'reviews/index', :locals => {:tool => tool, :review => nil} %>	
+		     
+		    </div>
+
+    	</div> 
+    </div>
+
+    <div id="technology-tab">	
+  		<div id="technology" class="item">
+  		  <%= editor_note_tip %>
+  			<h3>Technical Details</h3>
+			<%=th f.text_area('technical_details', :class => 'mceEditor') %>
+			  
+			<h3>Technologies of Interest</h3>
+			<p>
+			  <em>Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.</em>
+			</p>
+			
+			<em>Indicate various Technologies of Interest below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:technologies_of_interest_list) %></div>
+			
+  			<h3>Developers</h3>
+			<em>Indicate various Developers below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:developer_list) %></div>
+		
+  			<h3>Produced by</h3>
+			<em>Indicate various Producers below by typing in items separated by commas.</em>
+			<div><%= f.text_field(:producer_list) %></div>
+
+		</div>	
+    </div>
+    
+    <div id="support-tab">
+		<div id="support" class="item">
+		  <%= editor_note_tip %>
+  			<h3>UVa Support</h3>
+  		  	<%=th f.text_area('support', :class => 'mceEditor') %>
+
+  			<h3>Developer Resources</h3>
+  		  	<%=th f.text_area('developer_resources', :class => 'mceEditor') %>
+
+  			<h3>Mailing List</h3>
+  		  	<%=th f.text_area('mailing_list', :class => 'mceEditor') %>
+
+  			<h3>Discussion Forums / User Groups</h3>
+  		  	<%=th f.text_area('discussion_forums', :class => 'mceEditor') %>
+
+  			<h3>Tutorials/Training</h3>
+  		  	<%=th f.text_area('tutorials', :class => 'mceEditor') %>
+
+  		  	<h3>Tips</h3>
+  		  	<%=th f.text_area('tips', :class => 'mceEditor') %>
+
+  			<h3>More Information</h3>
+  		  	<%=th f.text_area('more_information', :class => 'mceEditor') %>
+  		</div>
+    </div>
+    
+	<div id="relationships-tab">
+    	<div id="relations" class="item">
+		  
+    		<div class="clearfloat">
+    	    <!-- PEOPLE RELATIONSHIPS -->
+    	  	<div class="peopleRelationships">    		  
+      		  <h3>People</h3>
+      		  <p>
+      		  <% if full_access_tool_member?(tool)  -%>
+        		<%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => tool.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find Team Members' %>
+        		 | <%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => tool.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Invite Team Members' %>
+      		  <% end -%>
+      		  </p>
+      		  
+      		  <%
+        			tool_list = { :partial => 'common/entity_list', :object => tool.people, 
+        							 :locals => { :empty_message => "No members in this tool.",
+        						 				  :parent_entity => tool } }
+        			tool_list[:locals].merge!({
+        			  :remove_link_proc => proc{|entity|
+        			    content_tag(:div, link_to('remove', '#', :class=>'memberRemove', :title=>entity.id), :class=>'gallery-button')
+        			  }
+        			}) if @allowed_to_edit
+        		-%>
+        		<div id="members"><%= render tool_list %></div>
+      		</div>
+  		  </div><!-- END clearfloat -->
+  		  
+    	</div> <!-- END RELATIONS -->
+    </div> <!-- END RELATIONS TAB -->
+
+    <% # Tool Profiles use this form... switch between :full_access_tool_member? and :full_access_organization_member? by evaling the tool_type variable -%>
+    <% if send("full_access_tool_member?", tool) -%>
+    <div id="admin-tab">
+      <div id="admin" class="item">
+        <p class="gallery-button delete">
+          <%= link_to( "Delete this Tool", send(object_path_method), :method => :delete, :confirm => "Are you sure you wish to delete this tool?") %>
+    		</p>
+      </div>
+    </div>
+    <% end %>
+    
+		<div class="gallery-button update">
+			<%= f.submit "Update", :onclick => "tinyMCE.triggerSave();" %>
+			<% cancel_path = tool[:type] == "Tool" ? tool_path(tool, :tab => @selected_tab) : organization_path(tool, :tab => @selected_tab) -%>
+			<%= link_to 'Cancel', cancel_path, :id => 'cancel-button' %>
+		</div>
+
+	</div> <!-- END YUI CONTENT -->
+	<% end -%>
+</div> <!--END CONTENT-->

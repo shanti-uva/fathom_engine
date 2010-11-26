@@ -1,0 +1,9 @@
+<table class="entity-list-table">
+ 	<tr/>
+	<% for discipline in @disciplines -%>
+ 	<tr>
+   		<td><%= check_box_tag "discipline[#{discipline.id}]", "true", @person.person_profile.disciplines.include?(discipline) %></td>
+   		<td><%= discipline.name %></td>
+ 	</tr>
+	<% end -%>
+</table>

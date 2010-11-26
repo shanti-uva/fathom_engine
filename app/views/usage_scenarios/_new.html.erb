@@ -1,0 +1,13 @@
+<h3><%= ('Usage Scenario for '"<em>#{h(@tool.name)}</em>") %></h3>
+<%= error_messages_for :usage_scenario %>
+  <% remote_form_for(:usage_scenario, :url => tool_usage_scenarios_path(@tool), :before => "tinyMCE.triggerSave();", :update => 'usage_scenarios_div') do |f| %>
+
+<%=  render :partial => 'usage_scenarios/form', :locals => {:f => f} %>
+
+<p>
+<%= submit_to_remote 'update_btn', 'Create Usage Scenario', :url => { :action => 'create' }, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('usage_scenario_content');", :update => 'usage_scenarios_div', :html => { :method => :put} %>
+</p>
+<% end %>
+<p>
+<%= link_to_remote 'Cancel', {:url => tool_usage_scenarios_path(@tool), :method => 'get'}, :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');" %>
+</p>

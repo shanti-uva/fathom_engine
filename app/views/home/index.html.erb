@@ -1,0 +1,22 @@
+<div id="main">
+
+	<div id="main-content">
+			<%= render :partial => '/home/carousel' %>
+			<div class="wp-btn clearfloat" style="position:relative; z-index:99;" >
+			  <% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>
+				<p><%= link_to content_tag( :span,'Events Calendar'), '/wordpress/?page_id=414',  { :title => "SHANTI Events Calendar" } %></p>
+			  <% else %>
+				<p><%= link_to content_tag( :span,'Events Calendar'), 'http://thlib.org/community/#wiki=/about/thdl%20community%20events.html',  { :title => "SHANTI Events Calendar" } %></p>			
+			  <% end %>
+			</div>
+			
+			<%= render :partial => '/home/news_posts'%>
+					
+		
+	</div><!--END CONTENT-->
+
+	<div id="sidebar">
+		<%= render :partial => 'home/intro' %>
+	</div><!--END SIDEBAR-->
+
+</div><!--END MAIN-->
