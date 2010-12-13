@@ -21,7 +21,13 @@ namespace :fathom do
         else
           LspImportation.do_lsp_importation(filename,organizationId)
         end
-      end
+      end  
+    end
+    
+    desc "Syncronize extra files for Fathom Engine plugin."
+    task :sync do
+      system "rsync -ruv --exclude '.*' vendor/plugins/fathom_engine/db/migrate db"
+      system "rsync -ruvK --exclude '.*' vendor/plugins/fathom_engine/public ."
       
     end
 end
