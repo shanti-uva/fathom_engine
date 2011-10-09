@@ -27,8 +27,8 @@
 				<%= link_to image_tag(person.thumb_src),  person, :class => "profile-thm" %>
 				
 				<div class="profile-block-main">
-					<h3><%= link_to person.name, person %></h3>
-					<h4><%= h(person.person_profile.title) %> <%= person.person_profile.title.blank? ? "" : "|" %> <%= h(person.person_profile.professional_profile) %>
+					<h3><%= link_to person.name.s, person %></h3>
+					<h4><%= person.person_profile.title.s %> <%= person.person_profile.title.blank? ? "" : "|" %> <%= h(person.person_profile.professional_profile) %>
         </h4>
 					<div class="date"><%= simple_date(person.updated_at) %></div>
 				</div>
@@ -40,8 +40,8 @@
   				image_tag(person.thumb_src, :class => "profile-thm")
          
   				<div class="profile-block-main">
-  					<h3><%= person.name %></h3>
-  					<h4><%= h(person.person_profile.title) %></h4>
+  					<h3><%= person.name.s %></h3>
+  					<h4><%= person.person_profile.title.s %></h4>
   					<div class="date"><%= simple_date(person.updated_at) %></div>
   					<div class="right">
   					<% if full_access? and ! person.projects.include?(@project) -%>

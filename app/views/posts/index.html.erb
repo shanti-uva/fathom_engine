@@ -43,8 +43,8 @@
         <% for post in @posts.sort_by {|p| p.created_at}.reverse %>
           <% if !post.expired? %>
             <tr>
-              <td><%= link_to post.subject, post_path(post) %></td>
-              <td><%= link_to entity_for_post(post).name, url_for(entity_for_post(post)) %></td>
+              <td><%= link_to post.subject.s, post_path(post) %></td>
+              <td><%= link_to entity_for_post(post).name.s, url_for(entity_for_post(post)) %></td>
               <td><%= post.post_kind.post_kind_value %></td>
               <td><%= post.created_at.strftime("%B %e, %Y") %></td>
               <td><%= post.expiration_date.strftime("%B %e, %Y") %></td>

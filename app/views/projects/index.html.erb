@@ -44,7 +44,7 @@
             <%= link_to(image_tag(project.thumb_src),  project, :class => "profile-thm") %>
 
             <div class="profile-block-main">
-              <h3><%= link_to project.name, project %></h3>
+              <h3><%= link_to project.name.s, project %></h3>
               <div class="date"><%= simple_date(project.updated_at) %></div>
             </div>
             <% # ... else the view is in a popup window ("Thickbox") set from ?inline=true. In this view, the links displayed will load content into the iframe unless intercepted by javascript. -%>
@@ -53,7 +53,7 @@
             <%= image_tag(project.thumb_src, :class => "profile-thm") %>
 
             <div class="profile-block-main">
-              <h3><%= project.name %></h3>
+              <h3><%= project.name.s %></h3>
               <div class="date"><%= simple_date(project.updated_at) %></div>
               <div class="right">
                 <% if full_access? and !full_access_project_member?(@project)  and !private_user?-%>

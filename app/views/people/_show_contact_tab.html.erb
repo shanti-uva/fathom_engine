@@ -4,13 +4,13 @@
 			<h3>Mailing Address</h3>
 			<p class="address">
 				<% unless @person.person_profile.address_one.blank? -%>						
-					<%= h(@person.person_profile.address_one) %><br/>
+					<%= rc @person.person_profile.address_one.s %><br/>
 				<% end -%>
 				<% unless @person.person_profile.address_two.blank? -%>
-					<%= h(@person.person_profile.address_two) %><br/>
+					<%= rc @person.person_profile.address_two.s %><br/>
 				<% end -%>
 				<% unless @person.person_profile.city.blank? -%>
-					<%= h(@person.person_profile.city) %>, <%= h(@person.person_profile.state) %>, <%= h(@person.person_profile.zipcode) %><br/>
+					<%= rc @person.person_profile.city.s %>, <%= rc @person.person_profile.state.s %>, <%= rc @person.person_profile.zipcode.s %><br/>
 				<% end -%>
 				<% unless @person.person_profile.country.blank? -%>
 					<%= h(@person.person_profile.country) %><br/>
@@ -53,16 +53,16 @@
 				<% unless @person.person_profile.other_contact.blank? -%>
 				<tr>
 					<th scope="row">Instant Message (IM):</th>
-					<td><%= h(@person.person_profile.other_contact) %> (<%= h(@person.person_profile.other_contact_type) %>)</td>
+					<td><%= rc @person.person_profile.other_contact.s %> (<%= rc @person.person_profile.other_contact_type.s %>)</td>
 				</tr>
 				<% end -%>
 			</table>
 	<% end -%>
 
 	<% unless @person.person_profile.notes.blank? -%>
-		<h3>Notes</h3>
+		<h3>Contact Notes</h3>
 		<div class="message">
-			<%= rc @person.person_profile.notes %>
+			<%= rc @person.person_profile.notes.s %>
 		</div>
 	<% end -%>	
  	</div> <!-- END CONTACT -->

@@ -5,7 +5,7 @@
 	<div id="interests" class="item">	
       <% unless project_profile.interests.blank? -%>
 		<h3>General Interests</h3>
-	    <%= project_profile.interests %>
+	    <%= project_profile.interests.s %>
 	  <% end -%>
       <dl>
 		<%= entity_profile_tag_block @tag_combiner, project, :disciplines, 'Scholarly Disciplines' %>

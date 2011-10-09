@@ -13,7 +13,7 @@
         <% end -%>
         <div class="post-metadata">
 	     <p>
-          <span class="post-metadata-subject"><%= link_to post.subject, {:controller => "posts", :action => "show", :id => post.id}, :class => "post-link" %></span>
+          <span class="post-metadata-subject"><%= link_to post.subject.s, {:controller => "posts", :action => "show", :id => post.id}, :class => "post-link" %></span>
           <span class="post-metadata-kind"><%= post.post_kind.post_kind_value %></span>
 		  <span class="post-metadata-date">(expires on <%= post.expiration_date.strftime("%B %e, %Y") %>)</span>
          </p>

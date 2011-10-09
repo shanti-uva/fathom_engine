@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => {:ban_user => :get, :unban_user => :get}
   map.resources :blacklists
   
-  map.resources :sessions
+  map.resources :sessions, :except => [:index]
   map.resources :relationships
   map.resources :languages
  
@@ -74,6 +74,7 @@ ActionController::Routing::Routes.draw do |map|
     project.resources :posts
     project.resources :people
   end
+  map.resources :tag_projects, :controller => 'projects', :path_prefix => 'tags/:tag_string'
   
   map.me '/me', :controller => 'people', :action => 'me', :requirements => { :method => :get }
   

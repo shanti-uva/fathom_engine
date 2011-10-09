@@ -2,17 +2,17 @@
 	<div id="activities" class="item">
 		<% unless @person.person_profile.focus.blank? -%>
 			<h3>Current Focus</h3>	
-			<%= rc @person.person_profile.focus %>
+			<%= rc @person.person_profile.focus.s %>
 		<% end -%>
     
 		<% unless @person.person_profile.goals.blank? -%>
 			<h3>Future Goals</h3>
-			<%= rc @person.person_profile.goals %>				
+			<%= rc @person.person_profile.goals.s %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.activities_overview.blank? -%>
     			<h3>History</h3>
-			<%= rc @person.person_profile.activities_overview %>
+			<%= rc @person.person_profile.activities_overview.s %>
 		<% end -%>
 	</div> <!-- END ACTIVITIES -->
 </div> <!-- END ACTIVITIES TAB -->

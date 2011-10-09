@@ -19,7 +19,7 @@
 		</ul>
 		
 	<div id="main-content" class="narrow">		
-		<h2 id="subject"><%= h(@organization.name) %> / <span class="page-type">Profile <% if full_access_organization_member?(@organization) -%><%= link_to '(Edit Profile)', edit_organization_path(@organization, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
+		<h2 id="subject"><%= @organization.name.s %> / <span class="page-type">Profile <% if full_access_organization_member?(@organization) -%><%= link_to '(Edit Profile)', edit_organization_path(@organization, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
 		
 <%
 =begin

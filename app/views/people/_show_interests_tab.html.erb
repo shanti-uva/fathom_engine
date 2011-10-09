@@ -2,7 +2,7 @@
 	<div id="interests" class="item">
 		
 		<h3>Interests</h3>
-		<%= rc @person.person_profile.interests %>
+		<%= rc @person.person_profile.interests.s %>
 		<dl>
 		<%= entity_profile_tag_block @tag_combiner, @person, :disciplines, 'Scholarly Disciplines' %>
 		

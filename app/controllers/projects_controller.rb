@@ -7,11 +7,21 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    # only accept valid sort param
-    @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
-    order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
-    # condition is necessary to fix a rails model caching bug in production mode.
-    @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
+    @tag_string = params[:tag_string]
+    if !@tag_string.nil?
+      @search_projects = get_by_solr_tag(@tag_string)
+      # only accept valid sort param
+      @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+      order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+      # condition is necessary to fix a rails model caching bug in production mode.
+      @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => {:id => @search_projects}
+    else
+      # only accept valid sort param
+      @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+      order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+      # condition is necessary to fix a rails model caching bug in production mode.
+      @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
+    end
     @profile_view = false    
     @current_style = :gallery
 
@@ -367,5 +377,36 @@ class ProjectsController < ApplicationController
     
     selected_tab
   end
+     
+  def get_by_solr_tag( tag_string)
+    @search_query = tag_string
+    @solr = SolrSearch.new( SOLR_URL )
+    
+    @facet_fields = ['type_facet']
+    ProfileTagCombiner::TAG_FIELDS.each do |tag|
+      @facet_fields << "#{tag}_facet"
+    end
+    
+    solr_params = {:facets=>{:fields=>@facet_fields, :mincount=>1}}
+    
+    solr_params[:filter_queries] = []
+    solr_params[:filter_queries] = "+type_facet:\"Project\" +(docType:\"entity\" docType:\"external\")"
+    
+    begin
+      @solr_result_set = @solr.search(@search_query, solr_params)
+    rescue Exception => e 
+     #ExceptionNotifier.deliver_exception_notification(e, self, request)
+    end
+    
+    unless @solr_result_set.nil?
+      @projects_by_tag = []
+      @search_results = @solr_result_set.hits.map
+      for search_result in @search_results        
+        #@project = Project.find(search_result["id"])
+        @projects_by_tag = @projects_by_tag << search_result["id"]
+      end
+    end
+    return @projects_by_tag
+  end   
       
 end

@@ -19,7 +19,7 @@
 		</ul>
 
 	<div id="main-content" class="narrow">		
-		<h2 id="subject"><%= h(@project.name) %> / <span class="page-type">Profile <% if full_access_project_member?(@project) -%><%= link_to '(Edit Profile)', edit_project_path(@project, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
+		<h2 id="subject"><%= @project.name.s %> / <span class="page-type">Profile <% if full_access_project_member?(@project) -%><%= link_to '(Edit Profile)', edit_project_path(@project, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
 		
 		<% unless @project.project_profile.home_page.blank? -%>
 			<h3 id="uri">Home Page: <a href="<%= @project.project_profile.home_page %>"><%= h(@project.project_profile.home_page) %></a></h3>

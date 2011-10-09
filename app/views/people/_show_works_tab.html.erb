@@ -2,27 +2,27 @@
 	<div id="works" class="item">
 		<% unless @person.person_profile.works_overview.blank? -%>
 			<h3>Overview</h3>
-			<%= rc @person.person_profile.works_overview %>				
+			<%= rc @person.person_profile.works_overview.s %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.publications.blank? -%>
 			<h3>Publications</h3>	
-			<%= rc @person.person_profile.publications %>				
+			<%= rc @person.person_profile.publications.s %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.websites.blank? -%>
 			<h3>Websites</h3>
-			<%= rc @person.person_profile.websites %>				
+			<%= rc @person.person_profile.websites.s %>				
 		<% end -%>
     
     <% unless @person.person_profile.tools.blank? -%>
 			<h3>Tools</h3>
-			<%= rc @person.person_profile.tools %>				
+			<%= rc @person.person_profile.tools.s %>				
 		<% end -%>
     
 		<% unless @person.person_profile.miscellaneous.blank? -%>
 			<h3>Miscellaneous</h3>
-			<%= rc @person.person_profile.miscellaneous %>	
+			<%= rc @person.person_profile.miscellaneous.s %>	
 		<% end -%>			
 	</div> <!-- END WORKS -->
 </div> <!-- END WORKS TAB -->

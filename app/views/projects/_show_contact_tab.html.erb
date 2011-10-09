@@ -6,13 +6,13 @@
 			<h3>Mailing Address</h3>
 			<p class="address">
 				<% unless project_profile.address_one.blank? -%>						
-					<%= h(project_profile.address_one) %><br/>
+					<%= rc project_profile.address_one.s %><br/>
 				<% end -%>
 				<% unless project_profile.address_two.blank? -%>
-					<%= h(project_profile.address_two) %><br/>
+					<%= rc project_profile.address_two.s %><br/>
 				<% end -%>
 				<% unless project_profile.city.blank? -%>
-					<%= h(project_profile.city) %>, <%= h(project_profile.state) %>, <%= h(project_profile.zipcode) %><br/>
+					<%= rc project_profile.city.s %>, <%= rc project_profile.state.s %>, <%= rc project_profile.zipcode.s %><br/>
 				<% end -%>
 				<% unless project_profile.country.blank? -%>
 					<%= h(project_profile.country) %><br/>
@@ -52,7 +52,7 @@
 		<% unless project_profile.notes.blank? -%>
   		<h3>Notes</h3>
   		<div class="message">
-  			<%= rc project_profile.notes %>
+  			<%= rc project_profile.notes.s %>
   		</div>
   	<% end -%>
     

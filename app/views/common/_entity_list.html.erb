@@ -19,7 +19,7 @@ remove_link_proc||=nil
 			end %>
 			<%= link_to image_tag(entity.thumb_src), entity  %>
 			</td>
-   			<td><%= link_to entity.name, entity %></td>
+   			<td><%= link_to entity.name.s, entity %></td>
 			<% if remove_action || ( allow_remove_self && entity.id == current_user.person.id ) -%>
   				<td><%= button_to("Remove", url_for( :action => remove_action, :id => parent_entity, :entity => entity.id ), 
 							    :confirm => "Are you sure you wish to remove #{entity.name}?" ) %></td>

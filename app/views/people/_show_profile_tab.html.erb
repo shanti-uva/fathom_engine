@@ -1,7 +1,7 @@
 <div id="profile-tab">			
   <% unless @person.person_profile.overview.blank? -%>
     <div id="overview" class="item">
-      <%= rc @person.person_profile.overview %>
+      <%= rc @person.person_profile.overview.s %>
     </div><!--END OVERVIEW-->
   <% end -%>
   <div id="seeking" class="item">

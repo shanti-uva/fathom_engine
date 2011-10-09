@@ -24,11 +24,11 @@
 
     <h2><%= h(@post.subject) %></h2>
     <table class="listing">
-      <tr><th scope="row">Author</th><td><%= link_to entity_for_post(@post).name, url_for(entity_for_post(@post)) %></td></tr>
+      <tr><th scope="row">Author</th><td><%= link_to entity_for_post(@post).name.s, url_for(entity_for_post(@post)) %></td></tr>
       <tr><th scope="row">Date</th><td><%= @post.created_at.strftime("%B %e, %Y") %></td></tr>
       <tr><th scope="row">Last updated</th><td><%= @post.updated_at.strftime("%B %e, %Y") %></td></tr>
-      <tr><th scope="row">Description</th><td><p><%= rc @post.body %></p></td></tr>
-      <tr><th scope="row">Contact Information</th><td><%= @post.response_email %></td></tr>
+      <tr><th scope="row">Description</th><td><p><%= rc @post.body.s %></p></td></tr>
+      <tr><th scope="row">Contact Information</th><td><%= @post.response_email.s %></td></tr>
       <tr><th scope="row">Expires on</th><td><%= @post.expiration_date.strftime("%B %e, %Y") %></td></tr>
     </table>
 

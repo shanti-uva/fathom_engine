@@ -194,7 +194,7 @@ module ApplicationHelper
         html += "<dd>"
         html += associated_tag_list.map do |t|
           link_params = search_path({:f=>{(tag_list_name.to_s + '_facet')=>[t.name]}})
-          "#{link_to(t.name, link_params)} <em>(#{complete_tag_list[t.name]})</em>"
+          "#{link_to(t.name.s, link_params)} <em>(#{complete_tag_list[t.name]})</em>"
         end.sort.join(', ')
         html += "</dd>"
 		end
@@ -264,7 +264,7 @@ module ApplicationHelper
       	#{ :id => :organizations, :text => 'Organizations', :link => organizations_path },	
         #{ :id => :tools, :text => 'Tools', :link => tools_path },
         #{ :id => :posts, :text => 'Posts', :link => posts_path },
-        { :id => :knowledge_base, :text => 'Knowledge Base', :link => 'https://wiki.shanti.virginia.edu/display/KB/SHANTI+Knowledge+Base' },
+        { :id => :knowledge_base, :text => 'Knowledge Base', :link => 'https://wiki.shanti.virginia.edu/x/o4G' },
       	{ :id => :community_tools, :text => 'Community Tools', :link => '/wordpress/?page_id=116' },
       	#{ :id => :uva_profiles, :text => "UVa Profiles", :link => home_page_path },
       	{ :id => :events, :text => 'Activities', :link => '/wordpress/?page_id=414' },
@@ -276,8 +276,8 @@ module ApplicationHelper
     
     #verification, to handle different menus for shanti & thl
     if APPLICATION_DOMAIN != 'shanti.virginia.edu'
-      #tools = main_navigation_items.select { |item| item[:id] == :tools }.first
-    	#@main_navigation_items.delete(tools)
+      tools = main_navigation_items.select { |item| item[:id] == :tools }.first
+    	@main_navigation_items.delete(tools)
     	kbase = main_navigation_items.select { |item| item[:id] == :knowledge_base }.first
     	@main_navigation_items.delete(kbase)
     	events = main_navigation_items.select { |item| item[:id] == :events }.first

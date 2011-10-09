@@ -40,7 +40,7 @@
           <% unless params[:inline] %>
             <%= link_to image_tag(organization.thumb_src),  organization, :class => "profile-thm" %>
             <div class="profile-block-main">
-              <h3><%= link_to organization.name, organization %></h3>
+              <h3><%= link_to organization.name.s, organization %></h3>
               <div class="date"><%= simple_date(organization.updated_at) %></div>
             </div>
           <% else %>
@@ -48,7 +48,7 @@
             <%= image_tag(organization.thumb_src, :class => "profile-thm") %>
 
             <div class="profile-block-main">
-              <h3><%= organization.name %></h3>
+              <h3><%= organization.name.s %></h3>
               <div class="date"><%= simple_date(organization.updated_at) %></div>
               <div class="right">
                 <% if full_access? and !full_access_organization_member?(@organization) -%>
