@@ -60,7 +60,7 @@ class PeopleController < ApplicationController
     if APPLICATION_DOMAIN != 'shanti.virginia.edu'
       @current_nav_item = :profile
     else
-      @current_nav_item = :home #:uva_profiles
+      @current_nav_item = :uva_profiles #:home
       @current_sub_nav_item = :profile
     end
     @current_style = :details
@@ -440,7 +440,7 @@ class PeopleController < ApplicationController
     if APPLICATION_DOMAIN != 'shanti.virginia.edu'
       @current_nav_item = :people
     else
-      @current_nav_item = :home #:uva_profiles
+      @current_nav_item = :uva_profiles #:home
       #@current_nav_item = :people
       @current_sub_nav_item = :people
     end

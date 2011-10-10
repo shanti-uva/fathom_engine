@@ -113,7 +113,7 @@ class PostsController < ApplicationController
         @current_nav_item = :posts
       end
     else
-      @current_nav_item = :home #:uva_profiles
+      @current_nav_item = :uva_profiles #:home
       if params[:person_id]
         #@current_nav_item = :people
         @current_sub_nav_item = :people

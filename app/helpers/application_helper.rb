@@ -230,7 +230,7 @@ module ApplicationHelper
     return @main_navigation_items if @main_navigation_items
     # basic menu options
     if APPLICATION_DOMAIN == 'shanti.virginia.edu'
-      home_text_link = 'UVa Profiles'
+      home_text_link = 'Home' #'UVa Profiles'
     else
       home_text_link = 'Connections'
     end
@@ -258,18 +258,19 @@ module ApplicationHelper
     else
       @main_navigation_items = [ 
       	{ :id => :home, :text => home_text_link, :link => home_page_path },
-      	#{ :id => :profile, :text => 'My Profile', :link => me_path },
-      	#{ :id => :people, :text => 'People', :link => people_path },
-      	#{ :id => :projects, :text => 'Projects', :link => projects_path },
-      	#{ :id => :organizations, :text => 'Organizations', :link => organizations_path },	
-        #{ :id => :tools, :text => 'Tools', :link => tools_path },
-        #{ :id => :posts, :text => 'Posts', :link => posts_path },
+      	{ :id => :uva_profiles, :text => "UVa Profiles", :link => people_path },
+      	  #{ :id => :profile, :text => 'My Profile', :link => me_path },
+      	  #{ :id => :people, :text => 'People', :link => people_path },
+      	  #{ :id => :projects, :text => 'Projects', :link => projects_path },
+      	  #{ :id => :organizations, :text => 'Organizations', :link => organizations_path },	
+          #{ :id => :tools, :text => 'Tools', :link => tools_path },
+          #{ :id => :posts, :text => 'Posts', :link => posts_path },
         { :id => :knowledge_base, :text => 'Knowledge Base', :link => 'https://wiki.shanti.virginia.edu/x/o4G' },
-      	{ :id => :community_tools, :text => 'Community Tools', :link => '/wordpress/?page_id=116' },
-      	#{ :id => :uva_profiles, :text => "UVa Profiles", :link => home_page_path },
+      	#{ :id => :community_tools, :text => 'Community Tools', :link => '/wordpress/?page_id=116' },
+      	  #{ :id => :uva_profiles, :text => "UVa Profiles", :link => home_page_path },
       	{ :id => :events, :text => 'Activities', :link => '/wordpress/?page_id=414' },
       	{ :id => :news, :text => 'News', :link => '/wordpress/?page_id=400' },
-      	#{ :id => :about_us, :text => 'SHANTI Activities', :link => '/wordpress/?page_id=6' },
+      	  #{ :id => :about_us, :text => 'SHANTI Activities', :link => '/wordpress/?page_id=6' },
       ]
     end
 
@@ -296,7 +297,7 @@ module ApplicationHelper
     return @secondary_navigation_items if @secondary_navigation_items
 
     @secondary_navigation_items = [
-    	{ :id => :home, :text => "Profiles", :link => home_page_path },
+    	#{ :id => :home, :text => "Profiles", :link => home_page_path },
     	{ :id => :profile, :text => 'My Profile', :link => me_path },
     	{ :id => :people, :text => 'People', :link => people_path },
     	{ :id => :projects, :text => 'Projects', :link => projects_path },
