@@ -7,7 +7,7 @@ module ApplicationHelper
   
   def stylesheet_files
     if APPLICATION_DOMAIN == 'shanti.virginia.edu'
-      super + ['fathom']
+      ['fathom'] + super
     else #'thlib.org'
       if @current_style == :details
         super + ['fathom','thickbox','communications'] 

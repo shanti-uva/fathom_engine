@@ -92,7 +92,7 @@
 
 #home #homepage_carousel .featured-overview{font-size:1em; color:#d8caae; margin:7px 20px 10px 0}
 
-#home #homepage_carousel p{font-size:1em; color:#d8caae; margin:7px 20px 10px 0}
+#home #homepage_carousel p{font-size:1em; color:#d8caae; margin:7px 20px 10px 0; line-height:1.32em;}
 
 #home #homepage_carousel a.view-details{display:block; float:left; color:#c2ab7d; font-size:.6em; text-transform:uppercase; text-decoration:none; border:1px solid #1c160c; padding:5px 12px 4px 20px; border-top:1px solid #625d49; border-left:1px solid #625d49; background:#534d3a url(../images/view_details_arrow.gif) no-repeat 3px 4px}
 #home #homepage_carousel a.view-details:hover{color:#d8caae}
