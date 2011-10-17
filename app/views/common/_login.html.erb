@@ -1,9 +1,10 @@
 <% if logged_in? -%>
 	<% if current_user.authenticated_with_netbadge? -%>
-		<li><p id="uvaprofiles-logout"><!--Logged in via <a href="https://netbadge.virginia.edu/">UVA NetBadge</a> as--> <%#=h current_user.login %><% if admin? -%> <!--|--> <%= link_to 'Admin', admin_path %><% end -%>
+		<li><% if admin? -%> <%= link_to 'Admin', admin_path %><% end -%>
 		</li>
 	<% else -%>
-		<li><p id="uvaprofiles-logout"><!--Logged in as <%=h current_user.login %> | --><% if admin? -%><%= link_to 'Admin', admin_path %> <!--|--> <% end -%>  <% if admin? -%><%= link_to 'Black List', blacklists_path %> <!--|--> <% end -%><%#= link_to 'Logout', logout_path %></p></li>
+		<li><% if admin? -%><%= link_to 'Admin', admin_path %> <% end -%></li>
+		<li><% if admin? -%><%= link_to 'Black List', blacklists_path %>  <% end -%></li>
 	<% end -%>
 <%# else -%>
 	<!--<p>Click <%#= link_to 'here', login_page_path %> to log in.</p>-->
