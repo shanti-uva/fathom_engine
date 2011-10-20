@@ -189,8 +189,8 @@ class UsersController < ApplicationController
           :password_confirmation => params[:user][:password_confirmation] })
 
       # If the user has a netbadge id, give them full access. Regular Users and OpenId users will have 'Pending' access_level
-      #@user.access_level = @user.netbadgeid.blank? ? 'Pending' : 'Full'
-      @user.access_level = 'Full' #temporarily disabled filter for a week.
+      @user.access_level = @user.netbadgeid.blank? ? 'Pending' : 'Full'
+      #@user.access_level = 'Full' #temporarily disabled filter for a week.
       
       @person = @user.create_person
       @person.name = "#{params[:user][:first_name]} #{params[:user][:last_name]}"    
