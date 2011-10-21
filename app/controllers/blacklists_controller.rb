@@ -105,7 +105,13 @@ class BlacklistsController < ApplicationController
   
   protected
   def main_nav
-    @current_nav_item = :blacklists
+    if APPLICATION_DOMAIN != 'shanti.virginia.edu'
+      @current_nav_item = :blacklists
+    else
+      @current_nav_item = :uva_profiles #:home
+      #@current_nav_item = :blacklists
+      @current_sub_nav_item = :blacklists
+    end
     @login_enabled = true
     @nav_enabled = true
     @profile_view = true        
