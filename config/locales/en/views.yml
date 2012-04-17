@@ -1,83 +1,83 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 en:
-    according_to: 'According to {{whom}}'
+    according_to: 'According to %{whom}'
     add:
-        record: 'Add {{what}}'
+        record: 'Add %{what}'
         this: 'Add'
-        this_record: 'Add this {{what}}'
+        this_record: 'Add this %{what}'
     advanced: 'Advanced'
     affirmation: 'Yes'
-    all: 'all {{what}}'
-    another: 'another {{what}}'
+    all: 'all %{what}'
+    another: 'another %{what}'
     application: 'Application'
     associate:
-        d: 'Associated {{what}}'
-        ion: '{{what}} Association'
-        record: 'Associate {{what}} to {{whom}}'
-        to: 'Associate to {{what}}'
-    available: 'Available {{what}}'
+        d: 'Associated %{what}'
+        ion: '%{what} Association'
+        record: 'Associate %{what} to %{whom}'
+        to: 'Associate to %{what}'
+    available: 'Available %{what}'
     back:
         this: 'Back'
-        to: 'Back to {{what}}'
-        to_in: 'Back to {{what}} in {{where}}'
+        to: 'Back to %{what}'
+        to_in: 'Back to %{what} in %{where}'
     browse:
-        by: 'Browse {{what}} {{whom}}'
-        records: 'Browse {{what}}'
+        by: 'Browse %{what} %{whom}'
+        records: 'Browse %{what}'
         this: 'Browse'
     cancel:
-        record: 'Cancel {{what}}'
+        record: 'Cancel %{what}'
         this: 'Cancel'
     changes: 'Changes'
     configure: 'Configure'
     copyright:
         message:
-            provider: 'This {{what}} was provided by {{whom}}.'
+            provider: 'This %{what} was provided by %{whom}.'
             holder:
-                one: 'The copyright holder is {{whom}}.'
-                other: 'The copyright holders are {{whom}}.'
+                one: 'The copyright holder is %{whom}.'
+                other: 'The copyright holders are %{whom}.'
     count:
-        one: '1 {{what}}'
-        other: '{{count}} {{what}}'
+        one: '1 %{what}'
+        other: '%{count} %{what}'
     create:
-        record: 'Create {{what}}'
+        record: 'Create %{what}'
         this: 'Create'
     delete:
         confirmation: 'Are you sure?'
-        successful: '{{what}} deleted succesfully.'
+        successful: '%{what} deleted succesfully.'
         this: 'Delete'
     dzongkha: 'Dzongkha'
     edit:
         ing:
-            record: 'Editing {{what}}'
+            record: 'Editing %{what}'
             this: 'Editing'
-        failure: 'Error updating {{what}}.'
-        record: 'Edit {{what}}'
+        failure: 'Error updating %{what}.'
+        record: 'Edit %{what}'
         this: 'Edit'
-        successful: '{{what}} was successfully updated.'
+        successful: '%{what} was successfully updated.'
     english: 'English'
     execute: 'Execute'
-    for: '{{what}} for {{whom}}'
-    found: 'Found {{what}}'
-    get: 'Get {{what}}'
+    for: '%{what} for %{whom}'
+    found: 'Found %{what}'
+    get: 'Get %{what}'
     go: 'Go'
     home:
         this: 'Home'
-        for: '{{what}} Home'
-    id: '{{what}} ID'
-    in: '{{what}} in {{where}}'
+        for: '%{what} Home'
+    id: '%{what} ID'
+    in: '%{what} in %{where}'
     join:
         this: 'Join'
-        this_record: 'Join this {{what}}'    
+        this_record: 'Join this %{what}'    
     list:
         ing:
-            in: 'Listing {{what}} in {{where}}'
-            records: 'Listing {{what}}'
+            in: 'Listing %{what} in %{where}'
+            records: 'Listing %{what}'
     manage:
-        ment: '{{what}} Management'
-        record: 'Manage {{what}}'
+        ment: '%{what} Management'
+        record: 'Manage %{what}'
         this: 'Manage'
-    master: 'Master {{what}}'
+    master: 'Master %{what}'
     material: 'material'
     media:
         none: 'No media found'
@@ -85,37 +85,37 @@ en:
     more:
         this: 'More'
     name:
-        for: '{{what}} Name'
-        in: 'Name ({{what}})'
+        for: '%{what} Name'
+        in: 'Name (%{what})'
     negation: 'No'
     new:
-        major: 'New Major {{what}}'
-        record: 'New {{what}}'
-        successful: '{{what}} was successfully created.'
+        major: 'New Major %{what}'
+        record: 'New %{what}'
+        successful: '%{what} was successfully created.'
         this: 'New'
-        under: 'New {{what}} under {{where}}'
+        under: 'New %{what} under %{where}'
     none: 'None'
     options: 'Options'
     or: 'or'
     parent: 
-        of: 'Parent {{who}}'
+        of: 'Parent %{who}'
     results:
         next: 'Next'
         none: 'No results found!'
         previous: 'Previous'
-    save: 'Save {{what}}'
+    save: 'Save %{what}'
     settings: 'Settings'
     sign:
         in: 'Sign in'
         out: 'sign out'
     search: 
         full_text: 'Full-text'
-        record: '{{what}} Search'
+        record: '%{what} Search'
         results: 'Search Results'
         this: 'Search'
         tips: 'search tips'
     see:
-        record: 'See {{what}}'
+        record: 'See %{what}'
     select:
         all: 'Select all'
     sort:
@@ -133,9 +133,9 @@ en:
         ion: 'translation'
     update:
         this: 'Update'
-        d: 'Last updated {{when}}'
+        d: 'Last updated %{when}'
     url_for_reference: 'URL for reference'
-    what_is: 'what is {{what}}?'
+    what_is: 'what is %{what}?'
     
     date:
       order: [ :day, :month, :year ]
