@@ -1,141 +1,96 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 en:
-    according_to: 'According to {{whom}}'
     add:
-        record: 'Add {{what}}'
-        this: 'Add'
         this_record: 'Add this {{what}}'
-    advanced: 'Advanced'
-    affirmation: 'Yes'
-    all: 'all {{what}}'
-    another: 'another {{what}}'
-    application: 'Application'
     associate:
         d: 'Associated {{what}}'
         ion: '{{what}} Association'
         record: 'Associate {{what}} to {{whom}}'
         to: 'Associate to {{what}}'
-    available: 'Available {{what}}'
-    back:
-        this: 'Back'
-        to: 'Back to {{what}}'
-        to_in: 'Back to {{what}} in {{where}}'
-    browse:
-        by: 'Browse {{what}} {{whom}}'
-        records: 'Browse {{what}}'
-        this: 'Browse'
-    cancel:
-        record: 'Cancel {{what}}'
-        this: 'Cancel'
-    changes: 'Changes'
-    configure: 'Configure'
-    copyright:
-        message:
-            provider: 'This {{what}} was provided by {{whom}}.'
-            holder:
-                one: 'The copyright holder is {{whom}}.'
-                other: 'The copyright holders are {{whom}}.'
-    count:
-        one: '1 {{what}}'
-        other: '{{count}} {{what}}'
-    create:
-        record: 'Create {{what}}'
-        this: 'Create'
-    delete:
-        confirmation: 'Are you sure?'
-        successful: '{{what}} deleted succesfully.'
-        this: 'Delete'
+    change_picture: 'Change Picture'
+    contact_notes: 
+        this: 'Contact Notes'
+        tip: 'Indicate if you are away for a sustained period of time, or anything else about how to best contact you.'
     dzongkha: 'Dzongkha'
-    edit:
-        ing:
-            record: 'Editing {{what}}'
-            this: 'Editing'
-        failure: 'Error updating {{what}}.'
-        record: 'Edit {{what}}'
-        this: 'Edit'
-        successful: '{{what}} was successfully updated.'
+    direct_contact: 
+        this: 'Direct Contact' 
+        tip: 'For phone numbers, please specify your country code. For example, use +1- for the US and Canada.'       
+    dynamic_list:
+        education: 
+            this: 'Education/Credentials'
+            tip_one: 'Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution'
+            tip_two: '"Ph.D., University of Virginia"'
+        members: 'Memberships/Affiliations'     
+        positions: 'Positions'
+        skills: 
+            tip_one: 'Describe any relevant skills' 
+            tip_two: 'languages, technologies, managerial, etc.'
     english: 'English'
-    execute: 'Execute'
-    for: '{{what}} for {{whom}}'
-    found: 'Found {{what}}'
-    get: 'Get {{what}}'
-    go: 'Go'
-    home:
-        this: 'Home'
-        for: '{{what}} Home'
-    id: '{{what}} ID'
-    in: '{{what}} in {{where}}'
+    facets:
+        general_interests: 'General Interests'
+        scholarly_disciplines: 'Scholarly Disciplines'
+        time_periods_of_interest: 'Time Periods of Interest'
+        places_of_interest: 'Places of Interest'
+        technologies_of_interest: 'Technologies of Interest'
+    find: 
+        record: 'Find {{what}}'
+        a_join: 'Find a {{what}} to Join'
+        an_join: 'Find an {{what}} to Join'
+        to_relate: 'Find a {{what}} to Relate'
+        join_empty_message: 'Not a member of any {{what}}.'
+        relate_empty_message: 'Not related to any {{what}}.'
+        team_members: 
+            invite: 'Invite Team Members'
+            this: 'Find Team Members'
+            empty: 'No members in this {{what}}.'
+    tool_facets:
+        general_interest_list: 
+            tip: 'Indicate various general interests below by typing in items separated by commas.'
+            title: 'General Associations'
+        operating_system_list:
+            tip: 'Indicate various operating systems below by typing in items separated by commas.'
+            title: 'Operating Systems'
+        
     join:
         this: 'Join'
         this_record: 'Join this {{what}}'    
-    list:
-        ing:
-            in: 'Listing {{what}} in {{where}}'
-            records: 'Listing {{what}}'
-    manage:
-        ment: '{{what}} Management'
-        record: 'Manage {{what}}'
-        this: 'Manage'
-    master: 'Master {{what}}'
-    material: 'material'
-    media:
-        none: 'No media found'
-    member: 'Member'
-    more:
-        this: 'More'
-    name:
-        for: '{{what}} Name'
-        in: 'Name ({{what}})'
-    negation: 'No'
-    new:
-        major: 'New Major {{what}}'
-        record: 'New {{what}}'
-        successful: '{{what}} was successfully created.'
-        this: 'New'
-        under: 'New {{what}} under {{where}}'
-    none: 'None'
-    options: 'Options'
-    or: 'or'
-    parent: 
-        of: 'Parent {{who}}'
-    results:
-        next: 'Next'
-        none: 'No results found!'
-        previous: 'Previous'
-    save: 'Save {{what}}'
-    settings: 'Settings'
-    sign:
-        in: 'Sign in'
-        out: 'sign out'
-    search: 
-        full_text: 'Full-text'
-        record: '{{what}} Search'
-        results: 'Search Results'
-        this: 'Search'
-        tips: 'search tips'
-    see:
-        record: 'See {{what}}'
-    select:
-        all: 'Select all'
+    instructions:
+        interest:
+            describe: 
+                this: 'Describe relevant interests and special focuses.'
+                your: 'Describe your relevant interests and special focuses.'
+            indicate: 
+                part_one: 'Indicate various interests below by typing in items separated by commas in the relevant boxes.'
+                part_two: 'These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.'
+            this: 'Interests'
+        paste: 'NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.'
+        services: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'    
+    my: 
+        this: 'My {{what}}'
+    mailing_address: 'Mailing Address'
+    overview:
+        tip: 'The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.'
+    people:
+        tip: 'Describe directors, staff, participants, as you wish.'  
+    relationships:
+        people: 'People'
+        organizations:
+            sub_projects_empty: 'Organization has no sub-projects.'
+    remove: 'Remove'   
     sort:
         by: 'Sort by'
         name: 'Name'
         most_recent: 'Most Recent'
-        profession: 'Profession'
-    show : 'Show'
-    tibetan:
-        script: 'Tibetan script'
-        transliteration: 'Tibetan transliteration'
-    this: 'this'
-    translat:
-        e: 'Translate'
-        ion: 'translation'
-    update:
-        this: 'Update'
-        d: 'Last updated {{when}}'
-    url_for_reference: 'URL for reference'
-    what_is: 'what is {{what}}?'
-    
-    date:
-      order: [ :day, :month, :year ]
+        profession: 'Profession' 
+    sub_projects: 'Sub-Projects'
+    summary_sources:  
+        this: 'Summary Sources'
+        tip: 'please note that in tool sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button.'
+    title:
+        this: 'Title'
+        part_one: 'Specify main professional title, such as'
+        part_two: '"Assistant Professor" (use capital letters)'
+    tool_type: 'Tool Type'
+    updat:
+        ing: 'Updating {{what}}'

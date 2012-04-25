@@ -49,7 +49,12 @@ en:
             profile_tag_combiner:
                 one: 'professional tag combiner'
                 other: 'professional tag combiners'
-                         
+            project:
+                one: 'project'
+                other: 'projects'
+            tool:
+                one: 'tool'
+                other: 'tools'             
         # Attribute names will be titleized.
         attributes:
             blacklist:
@@ -105,5 +110,39 @@ en:
                 post_kind_id: 'Category'
                 subject: 'Title'
                 response_email: 'Contact Information'
-            
+            project: 
+                name: 'Project Name'
+            project_profile:
+                address_one: 'Address Line 1'
+                address_two: 'Address Line 2'
+                cell_phone: 'Cell Phone'
+                city: 'City'
+                contact_email: 'Email'
+                country: 'Country'
+                current_directions: 'Current Focus'
+                data: 'Data'
+                events: 'Events'
+                fax: 'Fax Number'
+                history: 'History'
+                notes: 'Contact Notes'
+                opportunities: 'Opportunities'
+                other: 'Other'
+                outcomes: 'Future Goals'
+                overview: 'Overview'
+                phone: 'Phone Number'
+                people: 'People'
+                state: 'State/Province/Region'
+                sponsors: 'Sponsors'
+                tools: 'Tools'
+                training: 'Training'
+                zipcode: 'Zip/Postal Code'
+            tool:
+                name: 'Tool Name'
+            tool_profile:    
+                summary: 'Summary'
+                operating_system: 'Notes on Operating Systems'
+                
+                
+                
+                
                 
