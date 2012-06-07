@@ -1,5 +1,4 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# Localization file for English of fathom engines.
 en:
     activerecord:
         # Model names will be kept in lower case. Invoke .capitalize or .titleize if you need them in uppercase.
@@ -9,7 +8,7 @@ en:
                 other: 'blacklists'
             discipline:
                 one: 'discipline'
-                other: 'disciplines' 
+                other: 'disciplines'
             disciplines_person_profile:
                 one: 'discipline person profile'
                 other: 'disciplines person profile'
@@ -24,10 +23,10 @@ en:
                 other: 'images'
             line_item:
                 one: 'line item'
-                other: 'line items' 
+                other: 'line items'
             organization:
                 one: 'organization'
-                other: 'organizations' 
+                other: 'organizations'
             person:
                 one: 'person'
                 other: 'people'
@@ -52,18 +51,49 @@ en:
             project:
                 one: 'project'
                 other: 'projects'
-            translation:
-                one: 'translation'
-                other: 'translations'
+            project_profile:
+                one: 'project profile'
+                other: 'project profiles'
+            relation_type:
+                one: 'relation type'
+                other: 'relation types'
+            relationship:
+                one: 'relationship'
+                other: 'relationships'
+            review:
+                one: 'review'
+                other: 'reviews'
+            scenario_type:
+                one: 'scenario type'
+                other: 'scenario types'
+            search_result:
+                one: 'search result'
+                other: 'search results'
+            source:
+                one: 'source'
+                other: 'sources'
+            subject:
+                one: 'Focus'
+                #other
             tool:
                 one: 'tool'
-                other: 'tools'   
+                other: 'tools'
+            tool_profile:
+                one: 'tool profile'
+                other: 'tool profiles'
+            translated_source:
+                one: 'translated source'
+                other: 'translated sources'
             usage_scenario:
                 one: 'usage scenario'
-                other: 'usage scenarios'          
+                other: 'usage scenarios'
+            user:
+                one: 'user'
+                other: 'users'
         # Attribute names will be titleized.
         attributes:
             blacklist:
+                attempts: 'Attempts'
                 email: 'E-mail'
                 first_name: 'First Name'
                 last_attempt: 'Last Attempt'
@@ -77,7 +107,7 @@ en:
             organization:
                 name: 'Organization Name'
             person:
-                name: 'Person Name'  
+                name: 'Person Name'
             person_profile:
                 activities_overview: 'History'
                 address_one: 'Address Line 1'
@@ -112,43 +142,49 @@ en:
                 zipcode: 'Zip/Postal Code'
             post:
                 body: 'Description'
+                created_at: 'Posted'
+                entity_id: 'Author'
                 expiration_date: 'Expires on'
                 post_kind_id: 'Category'
                 subject: 'Title'
                 response_email: 'Contact Information'
-            project: 
+            project:
                 name: 'Project Name'
             project_profile:
                 address_one: 'Address Line 1'
                 address_two: 'Address Line 2'
-                cell_phone: 'Cell Phone'
                 city: 'City'
-                contact_email: 'Email'
+                contact_email: 'E-mail'
                 country: 'Country'
                 current_directions: 'Current Focus'
                 data: 'Data'
+                discipline_list: 'Scholarly Disciplines'
                 events: 'Events'
                 fax: 'Fax Number'
+                general_interest_list: 'General Interests'
                 history: 'History'
+                home_page: 'Home Page URL'
+                interests: 'Interests'
                 notes: 'Contact Notes'
                 opportunities: 'Opportunities'
                 other: 'Other'
                 outcomes: 'Future Goals'
                 overview: 'Overview'
-                phone: 'Phone Number'
                 people: 'People'
-                state: 'State/Province/Region'
+                phone: 'Phone Number'
+                places_of_interest_list: 'Places of Interest'
                 sponsors: 'Sponsors'
+                state: 'State/Province/Region'
+                technologies_of_interest_list: 'Technologies of Interest'
+                time_periods_of_interest_list: 'Time Periods of Interest'
                 tools: 'Tools'
                 training: 'Training'
                 zipcode: 'Zip/Postal Code'
             review:
-                content: 'Review'
                 title: 'Review Title'
+                content: 'Review'
             source:
                 mms_id: 'MMS Id'
-                note: 'Note'
-                passage: 'Passage'
                 volume_number: 'Volume Number'
                 start_page: 'Start Page'
                 start_line: 'Start Line'
@@ -156,34 +192,50 @@ en:
                 end_line: 'End Line'
                 passage: 'Passage'
                 note: 'Note'
-            translation:
-                title: 'Translation'
             tool:
                 name: 'Tool Name'
-            tool_profile:    
-                summary: 'Summary'
-                operating_system: 'Notes on Operating Systems'
-                platform: 'Notes on Platform'
-                system_requirements: 'System Requirements'
-                license: 'Notes on License'
+            tool_profile:
                 cost: 'Cost'
-                home_page: 'Home Page URL'
+                developer_list: 'Developers'
+                developer_resources: 'Developer Resources'
+                discussion_forums: 'Discussion Forums / User Groups'
                 download_page: 'Download Page URL'
                 features: 'Features'
-                version_history: 'Version and Plans'
-                technical_details: 'Technical Details'
-                support: 'UVa Support'
-                developer_resources: 'Developer Resources'
+                general_interest_list: 'General Associations'
+                home_page: 'Home Page URL'
+                language_list: 'Interface Languages'
+                license: 'Notes on License'
+                license_type_list: 'Licenses'
                 mailing_list: 'Mailing List'
-                discussion_forums: 'Discussion Forums / User Groups'
-                tutorials: 'Tutorials/Training'
-                tips: 'Tips'
                 more_information: 'More Information'
-            usage_scenarios:
+                operating_system: 'Notes on Operating Systems'
+                operating_system_list: 'Operating Systems'
+                platform: 'Notes on Platform'
+                platform_list: 'Platforms'
+                producer_list: 'Produced by'
+                system_requirements: 'System Requirements'
+                summary: 'Summary'
+                support: 'UVa Support'
+                technical_details: 'Technical Details'
+                technologies_of_interest_list: 'Technologies of Interest'
+                tips: 'Tips'
+                tool_type_id: 'Tool Type'
+                tutorials: 'Tutorials/Training'
+                version_history: 'Version and Plans'
+            translated_source:
+                title: 'Translation'
+            usage_scenario:
                 content: 'Usage Scenario'
-                title: 'Usage Scenario Title'
                 scenario_type_id: 'Type of Usage Scenario'
-                
-                
-                
-                
+                title: 'Usage Scenario Title'
+            user:
+                background: 'Please describe in a few sentences your relevant background so we can verify that you qualify for this portal'
+                email: 'E-mail Address'
+                first_name: 'First Name'
+                identity_url: 'OpenID URL'
+                last_name: 'Last Name'
+                netbadgeid: 'UVA NetBadge ID'
+                password: 'Password'
+                password_confirmation: 'Confirm Password'
+                professional_profile: 'Professional Profile'
+                title: 'Job Title'

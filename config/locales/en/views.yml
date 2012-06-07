@@ -1,83 +1,116 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# Localization file for English of fathom engines.
 en:
+    a:
+        record: 'A {{what}}'
+    activities: 'Activities'
+    access: 'Access'
+    account:
+        type: 'Account Type'
     add:
         this_record: 'Add this {{what}}'
     admin: 'Admin'
+    author: 'Author'
     associate:
         d: 'Associated {{what}}'
         ion: '{{what}} Association'
         record: 'Associate {{what}} to {{whom}}'
         to: 'Associate to {{what}}'
+    background:
+        this: 'Background'
     blacklist:
         attempts: 'Attempts'
         email: 'Email'
         last_attempt: 'Last attempt'
         this: 'Black List'
-    change_picture: 'Change Picture'
-    contact_notes: 
+    change:
+        picture: 'Change Picture'
+        instruction1: 'Please try to use a picture that is generally square shaped.'
+        instruction2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
+    contact_notes:
         this: 'Contact Notes'
         tip: 'Indicate if you are away for a sustained period of time, or anything else about how to best contact you.'
+    continue: 'Continue'
     dzongkha: 'Dzongkha'
     delete:
         confirm: 'Are you sure you wish to delete this {{what}}?'
-    direct_contact: 
-        this: 'Direct Contact' 
-        tip: 'For phone numbers, please specify your country code. For example, use +1- for the US and Canada.'       
+    direct_contact:
+        this: 'Direct Contact'
+        tip: 'For phone numbers, please specify your country code. For example, use +1- for the US and Canada.'
+    disciplines: 'Disciplines'
     dynamic_list:
-        education: 
+        education:
             this: 'Education/Credentials'
             tip_one: 'Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution'
             tip_two: '"Ph.D., University of Virginia"'
-        members: 'Memberships/Affiliations'     
+        members: 'Memberships/Affiliations'
         positions: 'Positions'
-        skills: 
-            tip_one: 'Describe any relevant skills' 
+        skills:
+            tip_one: 'Describe any relevant skills'
             tip_two: 'languages, technologies, managerial, etc.'
     english: 'English'
-    events_calendar: 
+    events_calendar:
         shanti: 'SHANTI Events Calendar'
         this: 'Events Calendar'
+    expire:
+        s: 'Expires'
+        this: 'Expire'
     facets:
         general_interests: 'General Interests'
         scholarly_disciplines: 'Scholarly Disciplines'
         time_periods_of_interest: 'Time Periods of Interest'
         places_of_interest: 'Places of Interest'
         technologies_of_interest: 'Technologies of Interest'
-    find: 
+    featured:
+        connections: 'A Featured {{what}}'
+        shanti: 'A Featured UVA {{what}}'
+        type: 'Featured {{what}}'
+        this: 'Featured'
+    find:
         record: 'Find {{what}}'
         a_join: 'Find a {{what}} to Join'
         an_join: 'Find an {{what}} to Join'
-        to_relate: 'Find a {{what}} to Relate'
+        empty_message: 'There is nobody who can be added as a member.'
+
         join_empty_message: 'Not a member of any {{what}}.'
         relate_empty_message: 'Not related to any {{what}}.'
-        team_members: 
+        team_members:
             invite: 'Invite Team Members'
             this: 'Find Team Members'
             empty: 'No members in this {{what}}.'
             nobody: 'There is nobody who can be added as a member.'
             select: 'Select the members of this {{what}}'
             selected_people: 'Selected People'
-            
+            submit_message: 'Add Selected People'
+        record: 'Find {{what}}'
+        to_relate: 'Find a {{what}} to Relate'
+    focus: 'Focus'
+    forgot:
+        password:
+            question: 'Forgot your Password?'
+            title: 'Please enter your email address used to subscribe to this application.'
+    full: 'Full'
+    has:
+        not: '{{who}} has no {{what}}'
+        record: '{{what}} in {{where}}'
     join:
         this: 'Join'
-        this_record: 'Join this {{what}}'  
+        this_record: 'Join this {{what}}'
     here:
-        all_caps: 'HERE'  
+        all_caps: 'HERE'
     home:
         featured:
-            projects: 
+            projects:
                 shanti: 'A Featured UVa {{what}}'
                 interconnections: 'A Featured'
             programs:
                 curricular_activities:
                     intro: 'Courses to broaden student understanding of digital technology...'
                     title: 'Curricular Activities'
-                digital_departments: 
+                digital_departments:
                     intro: 'The initiative employs a two-pronged approach to creating and sustaining a dynamic digital infrastructure....'
                     title: 'Digital Departments'
                 this: 'Featured Programs'
-                mandala_project: 
+                mandala_project:
                     intro: 'A scholar’s system for creating powerful websites without the programmers.....'
                     title: 'Mandala Project'
                 shanti_networking:
@@ -89,31 +122,44 @@ en:
                 uva_knowledge_base:
                     intro: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
                     title: 'UVa Knowledge Base'
-         intro: 
-             this:'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
-         uva_om_initiative: 'UVa OM initiative'
-         read_more: 'Read more'
-         suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
+        for: '{{what}} Home'
+        intro:
+            this:'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
+        uva_om_initiative: 'UVa OM initiative'
+        page: 'Home Page'
+        read_more: 'Read more'
+        suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
+        this: 'Home'
+
     instructions:
         interest:
-            describe: 
+            describe:
                 this: 'Describe relevant interests and special focuses.'
                 your: 'Describe your relevant interests and special focuses.'
-            indicate: 
+            indicate:
                 part_one: 'Indicate various interests below by typing in items separated by commas in the relevant boxes.'
                 part_two: 'These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.'
             this: 'Interests'
         paste: 'NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.'
-        services: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'    
+        services: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'
+    invalid:
+        link: 'Invalid Link'
+        title1: 'We apologize but we are unable to verify the link you are using to access this page.'
+        title2: 'Please try again or select "continue" to return to the main page.'
+
     invite:
         members:
             section1: 'Invite team members to join the Digital Humanities Portal.'
             section2: 'You must use the format "first name" last name" email'
             section3: '(e.g. Joe Scholar joescholar@virginia.edu).'
             section4: 'Place additional invitees on separate lines.'
+        record: 'Invite {{what}}'
         this: 'Invite'
+    item_list:
+        empty_message: 'There are no items on this list.'
+
     last_updated: 'last updated'
-    latest_news: 
+    latest_news:
         title: 'Read SHANTI News'
         this: 'Latest News'
     link:
@@ -125,20 +171,20 @@ en:
             paragraph1: 'People with a University of Virginia Computing ID Login '
             here: 'here'
             paragraph2: 'You do not need to create a new account for SHANTI - your UVa computing ID will allow you to login to the SHANTI portal, after which you can create your own personal entry in the portal, as well as describe projects, organizations, and tools.'
-            sign_up: 
+            sign_up:
                 title: 'Non-UVa People Signup for a New Account'
-                guest_access: 
+                guest_access:
                     link: 'Sign up for Guest Access'
                     tip: 'This will allow you to create a personal entry in the portal, as well as apply for full access, which will additionally allow you to make entries for projects, organizations, and tools.'
-                
+
         interconnection:
             title: 'Interconnections Login'
             sign_up:
                 title: 'Register for your Own Interconnections Account'
-                guest_access: 
+                guest_access:
                     link: 'Sign up for Guest Access'
                     tip: 'This enables you to create an account to make your own entries in Interconnections for yourself, projects, and organizations.'
-                    
+
         or_use: '...or use'
         openid_url: 'OpenID URL'
         login: 'E-mail'
@@ -146,7 +192,32 @@ en:
         remember_me: 'Remember me'
         forgot_password: 'forgot your password?'
 
-    my: 
+    join:
+        empty_message: 'There are no {{what}} to join.'
+        record: 'Join {{what}}'
+        submit_message: 'Join Selected {{what}}'
+        this: 'Join'
+        title: 'Select the {{what}} you wish to join.'
+    knowledgeBase:
+        text: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
+        this: 'KnowledgeBase'
+    last:
+        updated: 'Last Updated'
+    latest: 'Latest'
+    level: 'Level'
+    link: 'Link'
+    list:
+        ing: 'Listing'
+        this: 'List'
+    mailing:
+        address: 'Mailing Address'
+        this: 'Mailing'
+    member: #modified for fathom  #member: 'Member'
+        s: 'Members'  #added for fathom
+        this: 'Member'
+        no: 'No members in this {{what}}.'
+    memberships_affiliations: 'Memberships/Affiliations'
+    my:
         this: 'My {{what}}'
     mailing_address: 'Mailing Address'
     netbadge:
@@ -159,26 +230,77 @@ en:
             no: 'No Thanks'
         login_link: 'login link for UVa people'
         uva: 'UVa NetBadge'
+        title: 'University of Virginia First Time Visitors to the SHANTI Portal'
+        paragraph1: 'SHANTI (Sciences, Humanities and the Arts Network of Technological Initiatives) promotes innovation in the humanities, social sciences, and arts at the University of Virginia through enabling advanced digital technology to be used effectively and broadly in research, teaching, publication and engagement.  Our focus is to make advanced technology widely and easily available to most faculty and students, and then build new patterns of community interaction to support the use of such technology and exploration of how it can help individuals and groups in sustainable ways.  Our programs include the deployment of community tools that are powerful, easy to use, and interoperable; our year-long Cohorts Fellowship to support groups of faculty, staff, and students with shared interests to use technologies to further their projects; the present portal with its profiling and networking facilities; and a curricular initiative aimed at broadening student understanding of digital technology.'
+        paragraph2: 'Everyone at UVa, or working closely with UVa, is welcome to participate in any of our programs. Our advanced research support is focused on the humanities, social sciences, and arts, but our broader efforts in technology as well as the Cohort programs are also open to any faculty, graduate student, or staff at UVa, regardless of disciplinary focus.'
+    no: 'No {{what}}'
+    networking:
+        text: 'This website portal with its profiling and networking facilities for UVa people, projects, and organizations...'
+        this: 'Networking'
+    news: 'News'
+    newsletter: 'Newsletter'
+    openid:
+        this: 'OpenID'
+        title1: 'Non-University of Virginia First Time Visitors to the SHANTI Portal using OpenId'
+        title2: 'Sign up to Participate in the THL Interconnections Portal using OpenID'
+        not_using: 'Not using OpenID?'
+    optional: 'Optional'
     overview:
         tip: 'The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.'
     people:
-        tip: 'Describe directors, staff, participants, as you wish.' 
+        tip: 'Describe directors, staff, participants, as you wish.'
         this: 'People'
     posts:
-        title: 'Posts can be made by anyone in SHANTI and should be used to advertise opportunities or needs that someone else could address. Thus you might be a student seeking an internship, a faculty seeking a programmer, a scholar seeking a collaborator on land-culture interaction studies, and so forth.'   
+        title: 'Posts can be made by anyone in SHANTI and should be used to advertise opportunities or needs that someone else could address. Thus you might be a student seeking an internship, a faculty seeking a programmer, a scholar seeking a collaborator on land-culture interaction studies, and so forth.'
         list:
             created_at: 'Posting date'
             entity_for_post: 'Author'
             expiration_date: 'Expiration date'
             subject: 'Subject'
-            post_kind: 'Category'      
+            post_kind: 'Category'
+
+    pending:
+        shanti: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at {{mail_to}}.'
+        connections: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at {{mail_to}}.'
+    positions: 'Positions'
+    public: 'Public'
+    private: 'Private'
+    profile: 'Profile'
+    regenerate:
+        search:
+            index:
+                question: 'Regenerate Search Index'
+                confirm: 'This will take a little while. Are you sure?'
+    register: 'Register'
+    rejected:
+        shanti:
+            paragraph1: 'Your email account has been banned from SHANTI'
+        connections:
+            paragrapsh2: 'Your email account has been banned from Interconnections.'
+        paragraph2: 'Thanks for applying to our portal. However, this email address is on our list of banned email addresses due to our identifying you as engaged in spamming or other prohibited activities. If you think we have acted in error, please contact us at {{mail_to}}'
+    relationbrowser:
+        missing_plugin: 'This page requires Flash in order to view. You can obtain the flash plugin'
+        my:
+            projects: 'My Projects'
+            organizations: 'My Organizations'
+            tools: 'My Tools'
     relationships:
         people: 'People'
         organizations:
             sub_projects_empty: 'Organization has no sub-projects.'
         this: 'Relationships'
         no_flash: 'This page requires Flash in order to view. You can obtain the flash plugin '
-    remove: 'Remove'  
+    request:
+        ed: 'Requested'
+        record: 'Request {{what}}'
+        this: 'Request'
+        title: 'Please enter a brief message describing why you wish to be granted full access.'
+    remove: 'Remove'
+    reset:
+        password: 'Reset Password'
+        title: 'Pick a new password for {{mail_to}}'
+    return:
+        to: 'Return to {{what}}'
     review:
         tip: 'Use title case for capitalization (e.g. An Exciting...)'
     reviews:
@@ -201,6 +323,18 @@ en:
         indexing_complete: 'Indexing complete.'
         records_indexed: 'records indexed'
         return_to_admin: 'Return to administrative interface'
+        instructions: 'Use the search box below to explore our community, or register to make your own entries.....'
+    sent:
+        title: 'Thank you. Your request has been sent and will be considered by our staff.'
+        code_generated: 'A link has been sent to your email address. Please click on it and then reset your password.'
+        this: 'Sent'
+    services:
+        lineq: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'
+        this: 'Services'
+    shanti: 'SHANTI {{what}}'
+    skills:
+        message: 'Describe any relevant skills &mdash; languages, technologies, managerial, etc.'
+
     signup:
         header:
             title: 'Non-University of Virginia First Time Visitors to the SHANTI Portal'
@@ -212,14 +346,26 @@ en:
         by: 'Sort by'
         name: 'Name'
         most_recent: 'Most Recent'
-        profession: 'Profession' 
+        profession: 'Profession'
+    source:
+        for: 'Source for {{what}}'
+    sub_project:
+        s: 'Sub-Projects'
+        this: 'Sub-Project'
+    subscribe:
+        to: 'Subscribe to {{what}}'
 
-    sub_projects: 'Sub-Projects'
-    summary_sources:  
+    summary_sources:
         this: 'Summary Sources'
         tip: 'please note that in tool sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button.'
+    tag:
+        s: 'Tags'
+        this: 'Tag'
+    team: 'Team'
+    thl: 'THL'
+
     translation:
-        for: 'Translation for'
+        for: 'Translation for {{what}}'
         in: 'in'
         from: 'from'
         s:
@@ -229,12 +375,12 @@ en:
         this: 'Title'
         part_one: 'Specify main professional title, such as'
         part_two: '"Assistant Professor" (use capital letters)'
-    
+
     tool_facets:
         developer_list:
             tip: 'Indicate various Developers below by typing in items separated by commas.'
             title: 'Developers'
-        general_interest_list: 
+        general_interest_list:
             tip: 'Indicate various general interests below by typing in items separated by commas.'
             title: 'General Associations'
         operating_system_list:
@@ -255,9 +401,10 @@ en:
         technologies_of_interests:
             tip: 'Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.'
             title: 'Technologies of Interest'
-        technologies_of_interest_list:    
+        technologies_of_interest_list:
             tip: 'Indicate various Technologies of Interest below by typing in items separated by commas.'
     tool_type: 'Tool Type'
+    turn: 'turn'
     usage_scenario:
         a: 'A {{what}} Usage Scenario'
         author: 'Author'
@@ -274,13 +421,17 @@ en:
     tool_usage_scenarios:
         tip: 'please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
         title: 'Usage Scenarios'
-        
+
     updat:
         ing: 'Updating {{what}}'
     upload:
         image: 'Upload Image'
-        tip1: 'Please try to use a picture that is generally square shaped. 
+        tip1: 'Please try to use a picture that is generally square shaped.'
         tip2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
         this: 'Upload'
+
+    url: 'URL'
+    uva: 'UVa {{what}}'
     view:
         details: 'View Details'
+    works: 'Works'
