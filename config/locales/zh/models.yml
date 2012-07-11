@@ -1,0 +1,242 @@
+# Localization file for Chinese of fathom engines.
+zh:
+    activerecord:
+        # Model names will be kept in lower case. Invoke .capitalize or .titleize if you need them in uppercase.
+        models:
+            blacklist:
+                one: '黑名单'
+                other: '黑名单'
+            discipline:
+                one: '学科'
+                other: '学科'
+            disciplines_person_profile:
+                one: '学科人员介绍'
+                other: '学科人员介绍'
+            disciplines_project_profile:
+                one: '学科项目介绍'
+                other: '学科项目介绍'
+            entity:
+                one: '成员'
+                other: '成员'
+            image:
+                one: '图片'
+                other: '图片'
+            line_item:
+                one: '行列项目'
+                other: '行列项目'
+            organization:
+                one: '组织'
+                other: '组织'
+            person:
+                one: '人'
+                other: '人们'
+            person_profile:
+                one: '个人资料'
+                other: '个人资料'
+            post:
+                one: '帖子'
+                other: '帖子'
+            post_kind:
+                one: '帖子类型'
+                other: '帖子类型'
+            professional_profile:
+                one: '工作履历'
+                other: '工作履历'
+            professional_profile_link:
+                one: '职业资料链接'
+                other: '工作履历链接'
+            profile_tag_combiner:
+                one: '职业标签组合器'
+                other: '职业标签组合器'
+            project:
+                one: '项目'
+                other: '项目'
+            project_profile:
+                one: '项目描述'
+                other: '项目描述'
+            relation_type:
+                one: '关系类型'
+                other: '关系类型'
+            relationship:
+                one: '关系'
+                other: '关系'
+            review:
+                one: '评论'
+                other: '评论'
+            scenario_type:
+                one: '脚本类型'
+                other: '脚本类型'
+            search_result:
+                one: '搜索结果'
+                other: '搜索结果'
+            source:
+                one: '信息来源'
+                other: '信息来源'
+            subject:
+                one: '焦点'
+                #other
+            tool:
+                one: '工具'
+                other: '工具'
+            tool_profile:
+                one: '工具描述'
+                other: '工具描述'
+            translated_source:
+                one: '译文来源'
+                other: '译文来源'
+            usage_scenario:
+                one: '使用方案'
+                other: '使用方案'
+            user:
+                one: '用户'
+                other: '用户'
+
+        # Attribute names will be titleized.
+        attributes:
+            blacklist:
+                attempts: '尝试'
+                email: '电子邮件'
+                first_name: '名'
+                last_attempt: '最后一次尝试'
+                last_name: '姓'
+            discipline:
+                name: '科目名称'
+            entity:
+                name: '个体名称'
+            lineitem:
+                text: '行列项目名称'
+            organization:
+                name: '组织名称'
+            person:
+                name: '人名'
+            person_profile:
+                activities_overview: '历史'
+                address_one: '地址第一行'
+                address_two: '地址第二行'
+                cell_phone: '移动电话'
+                city: '城市'
+                country: '国家'
+                cv_link: '简历URL'
+                email: '电子邮件'
+                first_name: '名'
+                focus: '当前工作重点'
+                goals: '未来的目标'
+                home_page: '主页URL'
+                home_phone: '家庭电话'
+                interests: '兴趣'
+                last_name: '姓'
+                middle_initial: '中名简写'
+                miscellaneous: '其他'
+                notes: '联系便条'
+                office_phone: '办公电话'
+                other_contact: '即时通讯器(IM)'
+                other_contact_type: '即时通讯器(IM)帐号类型'
+                overview: '概况'
+                professional_profile: '主要职业介绍'
+                publications: '出版物'
+                skills: '技能'
+                state: '国家/省/地区'
+                title: '职位'
+                tools: '工具'
+                websites: '网址'
+                works_overview: '概述'
+                zipcode: '邮政编码'
+            post:
+                body: '描述'
+                created_at: '发布的'
+                entity_id: '作者'
+                expiration_date: '失效于'
+                post_kind_id: '类别'
+                subject: '职位'
+                response_email: '联系方式'
+            project:
+                name: '项目名称'
+            project_profile:
+                address_one: '地址第一行'
+                address_two: '地址第二行'
+                city: '城市'
+                contact_email: '电子邮件'
+                country: '国家'
+                current_directions: '当前工作重点'
+                data: '数据'
+                discipline_list: '学术学科'
+                events: '事件'
+                fax: '传真号码'
+                general_interest_list: '主要兴趣'
+                history: '历史'
+                home_page: '主页URL'
+                interests: '兴趣'
+                notes: '联系便条'
+                opportunities: '机会'
+                other: '其他'
+                outcomes: '未来的目标'
+                overview: '概述'
+                people: '人们'
+                phone: '电话号码'
+                places_of_interest_list: '感兴趣的地方'
+                sponsors: '资助者'
+                state: '国家/省/地区'
+                technologies_of_interest_list: '感兴趣的技术'
+                time_periods_of_interest_list: '感兴趣的时间周期'
+                tools: '工具'
+                training: '培训'
+                zipcode: '邮政编码'
+            review:
+                title: '评估标题'
+                content: '评论'
+            source:
+                mms_id: 'MMS用户名'
+                volume_number: '卷号'
+                start_page: '起始页'
+                start_line: '起始行'
+                end_page: '尾页'
+                end_line: '尾行'
+                passage: '章节'
+                note: '注释'
+            tool:
+                name: '工具名称'
+            tool_profile:
+                cost: '成本'
+                developer_list: '开发者'
+                developer_resources: '开发者资源'
+                discussion_forums: '论坛/用户组'
+                download_page: '下载页面URL'
+                features: '特征'
+                general_interest_list: '一般特征'
+                home_page: '主页URL'
+                language_list: '界面语言'
+                license: '许可证注意事项'
+                license_type_list: '许可证'
+                mailing_list: '邮件组'
+                more_information: '更多信息'
+                operating_system: '操作系统注意事项'
+                operating_system_list: '操作系统'
+                platform: '平台注意事项'
+                platform_list: '平台'
+                producer_list: '制作者'
+                system_requirements: '系统要求'
+                summary: '总结'
+                support: '弗吉尼亚大学支持'
+                technical_details: '技术细节'
+                technologies_of_interest_list: '感兴趣的技术'
+                tips: '提示'
+                tool_type_id: '工具类型'
+                tutorials: '培训'
+                version_history: '版本和计划'
+            translated_source:
+                title: '翻译'
+            usage_scenario:
+                content: '使用方案'
+                scenario_type_id: 'Type of Usage Scenario'
+                title: '使用方案名称'
+            user:
+                background: '请用几句话来描述你相关的背景,以便我们确认您符合本站的要求'
+                email: '电子邮件地址'
+                first_name: '名'
+                identity_url: 'OpenID URL'
+                last_name: '姓'
+                netbadgeid: '弗吉尼亚大学网关用户名'
+                password: '密码'
+                password_confirmation: '确认密码'
+                professional_profile: '职业介绍'
+                title: '工作职位'

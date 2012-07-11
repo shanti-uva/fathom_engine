@@ -1,36 +1,36 @@
-# Localization file for English of fathom engines.
-en:
+# Localization file for Chinese of fathom engines.
+zh:
     a:
-        record: 'A %{what}'
-    activities: 'Activities'
-    access: 'Access'
+        record: '一个%{what}'
+    activities: '活动'
+    access: '访问'
     account:
-        type: 'Account Type'
+        type: '帐号类型'
     add:
         this_record: 'Add this %{what}'
-    admin: 'Admin'
-    author: 'Author'
+    admin: '行政的'
+    author: '作者'
     background:
-        this: 'Background'
+        this: '背景'
     blacklist:
         attempts: 'Attempts'
         email: 'Email'
         last_attempt: 'Last attempt'
         this: 'Black List'
     change:
-        picture: 'Change Picture'
-        instruction1: 'Please try to use a picture that is generally square shaped.'
-        instruction2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
+        picture: '更换图片'
+        instruction1: '请使用正方形的照片'
+        instruction2: '图片不必完全为正方形，但是请确保图片的左右或上下两端过于长'
     contact_notes:
-        this: 'Contact Notes'
-        tip: 'Indicate if you are away for a sustained period of time, or anything else about how to best contact you.'
-    continue: 'Continue'
+        this: '联系方式'
+        tip: '显示联系您的最佳方式，在您需要离开一段时间的时候'
+    continue: '继续'
     delete:
         confirm: 'Are you sure you wish to delete this %{what}?'
     direct_contact:
-        this: 'Direct Contact'
-        tip: 'For phone numbers, please specify your country code. For example, use +1- for the US and Canada.'
-    disciplines: 'Disciplines'
+        this: '直接联系'
+        tip: '请您在您的电话号码前标出国家代码， 如＋1为美国和加拿大的国家代码'
+    disciplines: '学科'
     dynamic_list:
         education:
             this: 'Education/Credentials'
@@ -45,8 +45,8 @@ en:
         shanti: 'SHANTI Events Calendar'
         this: 'Events Calendar'
     expire:
-        s: 'Expires'
-        this: 'Expire'
+        s: '过期'
+        this: '实效'
     facets:
         general_interests: 'General Interests'
         scholarly_disciplines: 'Scholarly Disciplines'
@@ -54,15 +54,15 @@ en:
         places_of_interest: 'Places of Interest'
         technologies_of_interest: 'Technologies of Interest'
     featured:
-        connections: 'A Featured %{what}'
-        shanti: 'A Featured UVA %{what}'
-        type: 'Featured %{what}'
-        this: 'Featured'
+        connections: '有特色的%{what}'
+        shanti: '有特色的弗吉尼亚大学%{what}'
+        type: '有特色的%{what}'
+        this: '有特色的'
     find:
-        record: 'Find %{what}'
+        record: '搜索%{what}'
         a_join: 'Find a %{what} to Join'
         an_join: 'Find an %{what} to Join'
-        empty_message: 'There is nobody who can be added as a member.'
+        empty_message: '这里没有谁可以加入成为会员'
         join_empty_message: 'Not a member of any %{what}.'
         relate_empty_message: 'Not related to any %{what}.'
         team_members:
@@ -73,19 +73,19 @@ en:
             select: 'Select the members of this %{what}'
             selected_people: 'Selected People'
             submit_message: 'Add Selected People'
-        record: 'Find %{what}'
+        record: '搜索%{what}'
         to_relate: 'Find a %{what} to Relate'
     focus: 'Focus'
     forgot:
         password:
-            question: 'Forgot your Password?'
-            title: 'Please enter your email address used to subscribe to this application.'
-    full: 'Full'
+            question: '忘记密码？'
+            title: '请输入您注册本应用所使用的电子邮箱地址'
+    full: '全部'
     has:
-        not: '%{who} has no %{what}'
-        record: '%{what} in %{where}'
+        not: '%{who}没有%{what}'
+        record: '在%{where}的%{what}'
     join:
-        this: 'Join'
+        this: '加入'
         this_record: 'Join this %{what}'
     here:
         all_caps: 'HERE'
@@ -114,14 +114,14 @@ en:
                 uva_knowledge_base:
                     intro: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
                     title: 'UVa Knowledge Base'
-        for: '%{what} Home'
+        for: '%{what} 的主页'
         intro:
             this: 'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
         uva_om_initiative: 'UVa OM initiative'
-        page: 'Home Page'
+        page: '主页'
         read_more: 'Read more'
         suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
-        this: 'Home'
+        this: '主页'
     instructions:
         interest:
             describe:
@@ -134,20 +134,20 @@ en:
         paste: 'NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.'
         services: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'
     invalid:
-        link: 'Invalid Link'
-        title1: 'We apologize but we are unable to verify the link you are using to access this page.'
-        title2: 'Please try again or select "continue" to return to the main page.'
+        link: '无效的链接'
+        title1: '对于无法核实你访问本站所使用的链接, 我们表示抱歉.'
+        title2: '请重试或点击"继续"返回至主页'
     invite:
         members:
             section1: 'Invite team members to join the Digital Humanities Portal.'
             section2: 'You must use the format "first name" last name" email'
             section3: '(e.g. Joe Scholar joescholar@virginia.edu).'
             section4: 'Place additional invitees on separate lines.'
-        record: 'Invite %{what}'
-        this: 'Invite'
+        record: '邀请%{what}'
+        this: '邀请'
     item_list:
-        empty_message: 'There are no items on this list.'
-    last_updated: 'last updated'
+        empty_message: '本列表中无任何项目'
+    last_updated: '最近更新'
     latest_news:
         title: 'Read SHANTI News'
         this: 'Latest News'
@@ -179,33 +179,33 @@ en:
         remember_me: 'Remember me'
         forgot_password: 'forgot your password?'
     join:
-        empty_message: 'There are no %{what} to join.'
-        record: 'Join %{what}'
-        submit_message: 'Join Selected %{what}'
-        this: 'Join'
-        title: 'Select the %{what} you wish to join.'
+        empty_message: '这里没有%{what}可以加入'
+        record: '加入%{what}'
+        submit_message: '加入所选的%{what}'
+        this: '加入'
+        title: '选择%{what}你希望加入的'
     knowledgeBase:
-        text: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
-        this: 'KnowledgeBase'
+        text: '在弗吉尼亚大学通过数字技术进行研究, 教学及合作的说明, 模式和贴士'
+        this: '知识库'
     last:
-        updated: 'Last Updated'
-    latest: 'Latest'
-    level: 'Level'
-    link: 'Link'
+        updated: '最近更新'
+    latest: '最新的'
+    level: '层次'
+    link: '链接'
     list:
-        ing: 'Listing'
-        this: 'List'
+        ing: '列表'
+        this: '目录(清单)'
     mailing:
-        address: 'Mailing Address'
-        this: 'Mailing'
+        address: '邮件地址'
+        this: '邮件'
     member:
         s: 'Members'
-        this: 'Member'
-        no: 'No members in this %{what}.'
-    memberships_affiliations: 'Memberships/Affiliations'
+        this: '成员'
+        no: '%{what}里没有成员'
+    memberships_affiliations: '成员/隶'
     my:
         this: 'My %{what}'
-    mailing_address: 'Mailing Address'
+    mailing_address: '邮件地址'
     netbadge:
         link_netbadge:
             link: 'Link NetBadge ID?'
@@ -216,23 +216,23 @@ en:
             no: 'No Thanks'
         login_link: 'login link for UVa people'
         uva: 'UVa NetBadge'
-        title: 'University of Virginia First Time Visitors to the SHANTI Portal'
-        paragraph1: 'SHANTI (Sciences, Humanities and the Arts Network of Technological Initiatives) promotes innovation in the humanities, social sciences, and arts at the University of Virginia through enabling advanced digital technology to be used effectively and broadly in research, teaching, publication and engagement.  Our focus is to make advanced technology widely and easily available to most faculty and students, and then build new patterns of community interaction to support the use of such technology and exploration of how it can help individuals and groups in sustainable ways.  Our programs include the deployment of community tools that are powerful, easy to use, and interoperable; our year-long Cohorts Fellowship to support groups of faculty, staff, and students with shared interests to use technologies to further their projects; the present portal with its profiling and networking facilities; and a curricular initiative aimed at broadening student understanding of digital technology.'
-        paragraph2: 'Everyone at UVa, or working closely with UVa, is welcome to participate in any of our programs. Our advanced research support is focused on the humanities, social sciences, and arts, but our broader efforts in technology as well as the Cohort programs are also open to any faculty, graduate student, or staff at UVa, regardless of disciplinary focus.'
-    no: 'No %{what}'
+        title: '首次访问SHANTI站点的弗吉尼亚大学用户'
+        paragraph1: 'SHANTI（科学，人文及艺术学科的技术革新网络）是弗吉尼亚大学通过在其教学，研究，出版等方面广泛、有效地应用高级的数码技术来推动本校自然科学，人文科学以及艺术学科的共同发展的一种创新学科。 我们的主要目的在于使更多的教师、学生广泛、便捷的使用高科技技术，然后建立一种新的社区交流模式来支持这些技术的使用，以及探索新的模式如何能够以一种可持续的方式来支持个人或组织。项目包括为个人或组织提供有效、简便并具有互动性的社区工具；对于从事使用技术来推动项目的教师、学生组织提供一年期的奖学金；具有社交功能的专业网站；以及以开阔学生对数码技术认识为目的的课程开发计划。'
+        paragraph2: '我们诚挚的欢迎任何弗吉尼亚大学的成员及与弗吉尼亚大学有合作关系的人员参与到我们的项目中. 我们提供的高级研究支持技术主要着眼于人文, 社会科学和艺术方面. 但是我们在技术领域和群组研究方面所做的工作也将广泛的服务于弗吉尼亚大学的教员, 研究生及其他工作人员。'
+    no: '没有%{what}'
     networking:
-        text: 'This website portal with its profiling and networking facilities for UVa people, projects, and organizations...'
-        this: 'Networking'
-    news: 'News'
-    newsletter: 'Newsletter'
+        text: '本网站为弗吉尼亚大学的个人、项目及组织提供社交网络的功能'
+        this: '网络'
+    news: '新闻'
+    newsletter: '简讯'
     openid:
         this: 'OpenID'
-        title1: 'Non-University of Virginia First Time Visitors to the SHANTI Portal using OpenId'
-        title2: 'Sign up to Participate in the THL Interconnections Portal using OpenID'
-        not_using: 'Not using OpenID?'
-    optional: 'Optional'
+        title1: '非弗吉尼亚大学用户第一次访问SHANTI门户网站, 请使用OpenID'
+        title2: '请使用OpenID来注册使用THL互动门户网站'
+        not_using: '不使用OpenID?'
+    optional: '可选的'
     overview:
-        tip: 'The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.'
+        tip: '概况的起始行在不同的情况下可以对相关的条目进行不同的文字描述, 例如: 在主页上, 缩略图和字幕的显示位置. 然后"阅读更多"将显示条目的全部内容.'
     people:
         tip: 'Describe directors, staff, participants, as you wish.'
         this: 'People'
@@ -247,45 +247,45 @@ en:
     pending:
         shanti: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at %{mail_to}.'
         connections: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at %{mail_to}.'
-    positions: 'Positions'
-    public: 'Public'
-    private: 'Private'
-    profile: 'Profile'
+    positions: '位置'
+    public: '公众'
+    private: '个人'
+    profile: '简介'
     regenerate:
         search:
             index:
-                question: 'Regenerate Search Index'
-                confirm: 'This will take a little while. Are you sure?'
-    register: 'Register'
+                question: '重新生成搜索索引'
+                confirm: '这需要一些时间, 您确定吗?'
+    register: '注册'
     rejected:
         shanti:
-            paragraph1: 'Your email account has been banned from SHANTI'
+            paragraph1: '您的电子邮件账号已被SHNATI屏蔽'
         connections:
-            paragrapsh2: 'Your email account has been banned from Interconnections.'
-        paragraph2: 'Thanks for applying to our portal. However, this email address is on our list of banned email addresses due to our identifying you as engaged in spamming or other prohibited activities. If you think we have acted in error, please contact us at %{mail_to}'
+            paragrapsh2: '您的电子邮件账户已经被禁止互连'
+        paragraph2: '感谢注册我们的网站。 然而， 您所使用的电子邮件地址被系统视为被禁止的电子邮件地址，基于我们认定您可能是垃圾邮件的发送者或从事其它被禁止的活动。如果您认为我们认定错误， 请您联系我们%{mail_to}。'
     relationbrowser:
-        missing_plugin: 'This page requires Flash in order to view. You can obtain the flash plugin'
+        missing_plugin: '浏览本网页要求Flash技术. 您可以下载Flash插件'
         my:
-            projects: 'My Projects'
-            organizations: 'My Organizations'
-            tools: 'My Tools'
+            projects: '我的项目'
+            organizations: '我的组织'
+            tools: '我的工具'
     relationships:
         people: 'People'
         organizations:
             sub_projects_empty: 'Organization has no sub-projects.'
-        this: 'Relationships'
+        this: '关系'
         no_flash: 'This page requires Flash in order to view. You can obtain the flash plugin '
     request:
-        ed: 'Requested'
-        record: 'Request %{what}'
-        this: 'Request'
-        title: 'Please enter a brief message describing why you wish to be granted full access.'
-    remove: 'Remove'
+        ed: '请求'
+        record: '申请%{what}'
+        this: '请求'
+        title: '请简单的阐述你需要获得完全访问权的原因'
+    remove: '删除'
     reset:
-        password: 'Reset Password'
-        title: 'Pick a new password for %{mail_to}'
+        password: '重置密码'
+        title: '为%{mail_to}选择新的密码'
     return:
-        to: 'Return to %{what}'
+        to: '返回%{what}'
     review:
         tip: 'Use title case for capitalization (e.g. An Exciting...)'
     reviews:
@@ -294,8 +294,8 @@ en:
         title: 'Reviews'
         by: ' by '
         sources:
-            tip: 'please note that in review sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button'
-            title: 'Review Sources'
+            tip: '请注意您在评论部分所做的任何修改都将立即提交系统。儿其它项目中的任何修改必须在完成点击更新后才能提交系统。'
+            title: '评论出处'
     search:
         last_updated_on: 'last updated on'
         found: 'found'
@@ -310,15 +310,15 @@ en:
         return_to_admin: 'Return to administrative interface'
         instructions: 'Use the search box below to explore our community, or register to make your own entries.....'
     sent:
-        title: 'Thank you. Your request has been sent and will be considered by our staff.'
-        code_generated: 'A link has been sent to your email address. Please click on it and then reset your password.'
-        this: 'Sent'
+        title: '谢谢.您的请求已经发送, 我们的工作人员将尽快给您回复.'
+        code_generated: '我们已经将确认函通过链接的形式发送到您的电子邮箱中.请您点击链接并重置您的密码.'
+        this: '发送'
     services:
-        lineq: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'
-        this: 'Services'
+        lineq: '请您详细描述您的项目或组织所提供的服务，以及此种服务形式，如网站（数据），研讨会，工具或其它形式。'
+        this: '服务'
     shanti: 'SHANTI %{what}'
     skills:
-        message: 'Describe any relevant skills &mdash; languages, technologies, managerial, etc.'
+        message: '请描述任何相关的技能, 语言,技术,管理能力等'
     signup:
         header:
             title: 'Non-University of Virginia First Time Visitors to the SHANTI Portal'
@@ -327,32 +327,32 @@ en:
             paragraph3: 'Use of SHANTIs portal does not require a login account. However, if you want to create your own descriptions of your self, projects, or organizational units, you will need one. University of Virginia faculty, staff, and students should use their UVa Computing ID to login %{here} they do not need a separate account. If you do not have a UVa Computing ID, please fill out the form below to request a SHANTI account. You will be granted Guest Access and can request Full Access from your profile page, which will allow you to describe projects, organizations, and tools. SHANTI accounts are only available for individuals who have an ongoing relationship with UVa on academic work and/or technology.'
             paragraph4: 'UNIVERSITY OF VIRGINIA PEOPLE SHOULD NOT FILL THIS FORM OUT - INSTEAD USE YOUR UVA COMPUTING ID TO LOGIN TO SHANTI %{here}'
     sort:
-        by: 'Sort by'
-        name: 'Name'
-        most_recent: 'Most Recent'
-        profession: 'Profession'
+        by: '排序方式'
+        name: '名称'
+        most_recent: '最近的'
+        profession: '职业'
     source:
-        for: 'Source for %{what}'
+        for: '%{what}的来源'
     sub_project:
-        s: 'Sub-Projects'
-        this: 'Sub-Project'
+        s: '子项目(复数)'
+        this: '子项目'
     subscribe:
-        to: 'Subscribe to %{what}'
+        to: '订阅%{what}'
     summary_sources:
         this: 'Summary Sources'
         tip: 'please note that in tool sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button.'
     tag:
-        s: 'Tags'
-        this: 'Tag'
-    team: 'Team'
+        s: '标签(复数)'
+        this: '标签'
+    team: '小组'
     thl: 'THL'
     translation:
-        for: 'Translation for %{what}'
+        for: '%{what}的翻译'
         in: 'in'
         from: 'from'
         s:
-            title: 'Source Translations'
-        this: 'Source Translation'
+            title: '翻译'
+        this: '翻译'
     title:
         this: 'Title'
         part_one: 'Specify main professional title, such as'
@@ -385,7 +385,7 @@ en:
         technologies_of_interest_list:
             tip: 'Indicate various Technologies of Interest below by typing in items separated by commas.'
     tool_type: 'Tool Type'
-    turn: 'turn'
+    turn: '转换'
     usage_scenario:
         a: 'A %{what} Usage Scenario'
         author: 'Author'
@@ -410,10 +410,10 @@ en:
         tip2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
         this: 'Upload'
     url: 'URL'
-    uva: 'UVa %{what}'
+    uva: '弗吉尼亚大学%{what}'
     view:
         details: 'View Details'
-    works: 'Works'
+    works: '作品'
     workshops:
-        text: 'Ongoing workshops to help you start using new digital technologies, or take your knowledge to new levels...'
-        this: 'Workshops'
+        text: '帮助开始使用新的数码技术或提高技术水平的定期培训班'
+        this: '研讨班'

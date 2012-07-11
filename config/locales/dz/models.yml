@@ -1,0 +1,242 @@
+# Localization file for Dzongkha of fathom engines.
+dz:
+    activerecord:
+        # Model names will be kept in lower case. Invoke .capitalize or .titleize if you need them in uppercase.
+        models:
+            blacklist:
+                one: 'ནག་ཐོ།'
+                other: 'ནག་ཐོ་ཚུ།'
+            discipline:
+                one: 'སྒྲིགས་ཁྲིམས།'
+                other: 'སྒྲིགས་ཁྲིམས་ཚུ།'
+            disciplines_person_profile:
+                one: 'སྒྲིགས་ཁྲིམས་གང་ཟག་གསལ་སྡུད།'
+                other: 'སྒྲིགས་ཁྲིམས་ཚུ་གི་གང་ཟག་གསལ་སྡུད།'
+            disciplines_project_profile:
+                one: 'སྒྲིགས་ཁྲིམས་ལས་འགུལ་གསལ་སྡུད།'
+                other: 'སྒྲིགས་ཁྲིམས་ཚུ་གི་་ལས་འགུལ་གསལ་སྡུད།'
+            entity:
+                one: 'ངོ་བོ།'
+                other: 'ངོ་བོ་ཚུ།'
+            image:
+                one: 'གཟུགས་བརྙན།'
+                other: 'གཟུགས་བརྙན་ཚུ།'
+            line_item:
+                one: 'གྲལ་ཐིག་དངོས་གྲངས།'
+                other: 'གྲལ་ཐིག་དངོས་གྲངས་ཚུ།'
+            organization:
+                one: 'ལས་སྡེ།'
+                other: 'ལས་སྡེ་ཚུ།'
+            person:
+                one: 'གང་ཟག'
+                other: 'མི།'
+            person_profile:
+                one: 'གང་ཟག་_གསལ་སྡུད།'
+                other: 'གང་ཟག་_གསལ་སྡུད་ཚུ།'
+            post:
+                one: 'གློག་ཐོག་ཡིག་བཀོད།'
+                other: 'གློག་ཐོག་ཡིག་བཀོད་ཚུ།'
+            post_kind:
+                one: 'གློག་ཐོག་ཡིག་བཀོད་རིགས།'
+                other: 'གློག་ཐོག་ཡིག་བཀོད་རིགས་ཚུ།'
+            professional_profile:
+                one: 'ཁྱད་རིག་གསལ་སྡུད།'
+                other: 'ཁྱད་རིག་གསལ་སྡུད་ཚུ།'
+            professional_profile_link:
+                one: 'ཁྱད་རིག་གསལ་སྡུད་ཚུ་འབྲེལ་ལམ།'
+                other: 'ཁྱད་རིག་གསལ་སྡུད་འབྲེལ་ལམ་ཚུ།'
+            profile_tag_combiner:
+                one: 'ཁྱད་རིག་ངོ་རྟགས་མཉམ་མཐུད་པ།'
+                other: 'ཁྱད་རིག་ངོ་རྟགས་མཉམ་མཐུད་པ་ཚུ།'
+            project:
+                one: 'ལས་འགུལ།'
+                other: 'ལས་འགུལ་ཚུ།'
+            project_profile:
+                one: 'ལས་འགུལ་གསལ་སྡུད།'
+                other: 'ལས་འགུལ་གསལ་སྡུད་ཚུ།'
+            relation_type:
+                one: 'འབྲེལ་རིགས།'
+                other: 'འབྲེལ་རིགས་ཚུ།'
+            relationship:
+                one: 'འབྲེལ་བ།'
+                other: 'འབྲེལ་བ་ཚུ།'
+            review:
+                one: 'བསྐྱར་ཞིབ།'
+                other: 'བསྐྱར་ཞིབ་ཚུ།'
+            scenario_type:
+                one: 'འཆར་སྣང་རིགས།'
+                other: 'འཆར་སྣང་རིགས་ཚུ།'
+            search_result:
+                one: 'འཚོལ་ཞིབ་གྲུབ་འབྲས།'
+                other: 'འཚོལ་ཞིབ་གྲུབ་འབྲས་ཚུ།'
+            source:
+                one: 'འབྱུང་ས།'
+                other: 'འབྱུང་ས་ཚུ།'
+            subject:
+                one: 'ཆེད་དམིགས།'
+                #other
+            tool:
+                one: 'ལག་ཆས།'
+                other: 'ལག་ཆས་ཚུ།'
+            tool_profile:
+                one: 'ལག་ཆས་གསལ་སྡུད།'
+                other: 'ལག་ཆས་གསལ་སྡུད་ཚུ།'
+            translated_source:
+                one: 'སྐད་བསྒྱུར་འབད་ཡོད་པའི་འབྱུང་སས།'
+                other: 'སྐད་བསྒྱུར་འབད་ཡོད་པའི་འབྱུང་ས་ཚུ།'
+            usage_scenario:
+                one: 'བེད་སྤྱོད་འཆར་སྣང་།'
+                other: 'བེད་སྤྱོད་འཆར་སྣང་ཚུ།'
+            user:
+                one: 'ལག་ལེན་པ།'
+                other: 'ལག་ལེན་པ་ཚུ།'
+
+        # Attribute names will be titleized.
+        attributes:
+            blacklist:
+                attempts: 'དཔའ་བཅམ།'
+                email: 'གློག་འཕྲིན།'
+                first_name: 'འགོ་མིང་།'
+                last_attempt: 'དཔའ་བཅམ་མཇུག'
+                last_name: 'མཇུག་མིང་།'
+            discipline:
+                name: 'སྒྲིགས་མིང་།'
+            entity:
+                name: 'ངོ་བོའི་མིང་།'
+            lineitem:
+                text: 'གྲལ་ཐིག་དངོས་གྲངས་འགྲེལ་བཤད།'
+            organization:
+                name: 'ལས་སྡེ་མིང་།'
+            person:
+                name: 'གང་ཟག་མིང་།'
+            person_profile:
+                activities_overview: 'སྤྱོད་བཤུལ།'
+                address_one: 'ཁ་བྱང་གྲལ་ཐིག་༡'
+                address_two: 'ཁ་བྱང་གྲལ་ཐིག་༢'
+                cell_phone: 'འགྲུལ་འཕྲིན།'
+                city: 'གྲོང་སྡེ།'
+                country: 'རྒྱལ་ཁབ།'
+                cv_link: 'སི་ཝི་ ཡུ་ཨར་ཨེལ།'
+                email: 'གློག་འཕྲིན།'
+                first_name: 'འགོ་མིང་།'
+                focus: 'ད་ལྟོའི་ཆེད་དམིགས།'
+                goals: 'མ་འོངས་དམིགས་དོན།'
+                home_page: 'མ་ཤོག་ཨུ་ཨར་ཨེལ།'
+                home_phone: 'ཁྱིམ་གྱི་བརྒྱུད་འཕྲིན།'
+                interests: 'སྤྲོ་བ།'
+                last_name: 'མཇུག་མིང་།'
+                middle_initial: 'བར་མིང་མགོ'
+                miscellaneous: 'སྣ་ཚོགས།'
+                notes: 'འབྲེལ་སའི་དྲན་འཛིན།'
+                office_phone: 'ཡིག་ཚང་བརྒྱུད་འཕྲིན།'
+                other_contact: 'ཁ་སླབ་འཕྲིན་དོན།(ཨའི་ཨེམ་)'
+                other_contact_type: 'ཨའི་ཨེམ་ རྩིས་ཐོའི་དབྱེ་བ།'
+                overview: 'སྤྱི་མཐོང་།'
+                professional_profile: 'གཞི་རིམ་ཁྱད་རིག་གསལ་སྡུད།'
+                publications: 'པར་འགྲེམས།'
+                skills: 'རིག་རྩལ།'
+                state: 'མངའ་སྡེ་/མངའ་རིས་/ལུང་ཕྱོགས།'
+                title: 'མགོ་མིང་།'
+                tools: 'ལག་ཆས།'
+                websites: 'ཡོངས་འབྲེལ་ས་ཁེངས།'
+                works_overview: 'སྤྱི་མཐོང་།'
+                zipcode: 'གནས་/འགྲེམ་ཨང་།'
+            post:
+                body: 'འགྲེལ་བཤད།'
+                created_at: 'གློག་ཐོག་བཀོད་ཡོདཔ།'
+                entity_id: 'རྩོམ་པ་པོ།'
+                expiration_date: 'དུས་ཡོལ་དུས་ཚེས།'
+                post_kind_id: 'དབྱེ་རིམ།'
+                subject: 'མགོ་མིང་།'
+                response_email: 'འབྲེལ་སའི་བརྡ་དོན།'
+            project:
+                name: 'ལས་འགུལ་མིང་།'
+            project_profile:
+                address_one: 'ཁ་བྱང་གྲལ་ཐིག་༡'
+                address_two: 'ཁ་བྱང་གྲལ་ཐིག་༢'
+                city: 'གྲོང་སྡེ།'
+                contact_email: 'གློག་འཕྲིན།'
+                country: 'རྒྱལ་ཁབ།'
+                current_directions: 'ད་ལྟོའི་ཆེད་དམིགས།'
+                data: 'གནད་སྡུད།'
+                discipline_list: 'ཤེས་ཡོན་ལྡན་པའི་སྒྲིགས་ཁྲིམས།'
+                events: 'བྱུང་ལས།'
+                fax: 'དཔར་འཕྲིན་ཨང་།'
+                general_interest_list: 'སྤྱིར་བཏང་སྤྲོ་བ།'
+                history: 'སྤྱོད་བཤུལ།'
+                home_page: 'མ་ཤོག་ཨུ་ཨར་ཨེལ།'
+                interests: 'སྤྲོ་བ།'
+                notes: 'འབྲེལ་སའི་དྲན་འཛིན།'
+                opportunities: 'གོ་སྐབས།'
+                other: 'གཞན།'
+                outcomes: 'མ་འོངས་དམིགས་དོན།'
+                overview: 'སྤྱི་མཐོང་།'
+                people: 'མི་སེར།'
+                phone: 'བརྒྱུད་འཕྲིན་ཨང་།'
+                places_of_interest_list: 'སྤྲོ་བའི་ས་གནས་ཚུ།'
+                sponsors: 'ཟད་འགྲོ་བཏང་མི།'
+                state: 'མངའ་སྡེ་/མངའ་རིས་/ལུང་ཕྱོགས།'
+                technologies_of_interest_list: 'སྤྲོ་བའི་འཕྲིལ་རིག'
+                time_periods_of_interest_list: 'སྤྲོ་བའི་དུས།'
+                tools: 'ལག་ཆས།'
+                training: 'སྦྱོང་བརྡར།'
+                zipcode: 'གནས་/འགྲེམ་ཨང་།'
+            review:
+                title: 'བསྐྱར་ཞིབ་མགོ་མིང་།'
+                content: 'སྤྱི་མཐོང་།'
+            source:
+                mms_id: 'ཨེམ་ཨེམ་ཨེསི་ ཨའི་ཌི།'
+                volume_number: 'གླེགས་བམ་ཨང་།'
+                start_page: 'འགོ་བཙུགས་ཤོག་ལེབ།'
+                start_line: 'འགོ་ཐིག'
+                end_page: 'མཇུག་ཤོག'
+                end_line: 'མཇུག་ཐིག'
+                passage: 'ཡིག་རྒྱུགས་ལེའུ་ཚན།'
+                note: 'དྲན་འཛིན།'
+            tool:
+                name: 'ལག་ཆས་མིང་།'
+            tool_profile:
+                cost: 'རིན།'
+                developer_list: 'བཟོ་མི།'
+                developer_resources: 'བཟོ་མི་ཐབས་རིག'
+                discussion_forums: 'གྲོས་གནས་/ལག་ལེན་པའི་སྡེ་ཚན།'
+                download_page: 'ཤོག་ལེབ་ཨུ་ཨར་ཨེལ་ཕབ་ལེན་འབད།'
+                features: 'ཁྱད་ཆོས།'
+                general_interest_list: 'སྤྱིར་བཏང་འབྲེལ་ཚོགས།'
+                home_page: 'མ་ཤོག་ཨུ་ཨར་ཨེལ།'
+                language_list: 'ངོས་འདྲ་བའི་སྐད་ཡིག'
+                license: 'ཆོག་ཐམ་གྱི་དྲན་འཛིན།'
+                license_type_list: 'ཆོག་ཐམ།'
+                mailing_list: 'ཡིག་འཕྲིན་ཐོ།'
+                more_information: 'ཁ་སྐོང་བརྡ་དོན།'
+                operating_system: 'བཀོལ་སྤྱོད་རིམ་ལུགས་ཀྱི་དྲན་འཛིན།'
+                operating_system_list: 'བཀོལ་སྤྱོད་རིམ་ལུགས།'
+                platform: 'མཉེན་རིམ་གྱི་དྲན་འཛིན།'
+                platform_list: 'མཉེན་རིམ།'
+                producer_list: 'བཟོ་བསྐྲུན་འབད་མི།'
+                system_requirements: 'དགོས་མཁོ་ཡོད་པའི་རིམ་ལུགས།'
+                summary: 'བཅུད་དོན།'
+                support: 'ཡུ་ཝི་ཨེ་ ངོས་ལེན།'
+                technical_details: 'འཕྲུལ་རིག་ཁ་གསལ།'
+                technologies_of_interest_list: 'སྤྲོ་བའི་འཕྲུལ་རིག'
+                tips: 'ཕན་བསླབ།'
+                tool_type_id: 'ལག་ཆས་དབྱེ་བ།'
+                tutorials: 'སློབ་སྟོན་/སྦྱོང་བརྡར།'
+                version_history: 'ཐོན་རིམ་དང་འཆར་གཞི།'
+            translated_source:
+                title: 'སྐྐད་བསྒྱུར།'
+            usage_scenario:
+                content: 'ལག་ལེན་འཆར་སྣང་།'
+                scenario_type_id: 'Type of Usage Scenario'
+                title: 'ལག་ལེན་འཆར་སྣང་མགོ་མིང་།'
+            user:
+                background: 'ཁྱོད་རའི་གཞི་ཁུངས་དང་འབྲེལ་བ་ཡོད་པའི་སྐོར་ལས་དུམ་གྲ་ཅིག་འགྲེལ་བཤད་རྐྱབ་པ་ཅིན་ ཁྱོད་ལུ་ གཞུང་སྒོ་འདི་ནང་འཛུལ་ཆོག་པའི་བདེན་སྦོར་འབད་འོང་།'
+                email: 'གློག་འཕྲིན་ཁ་བྱང་།'
+                first_name: 'འགོ་མིང་།'
+                identity_url: 'ཨོ་པཱན་ ཡུ་ཨར་ཨེལ།'
+                last_name: 'མཇུག་མིང་།'
+                netbadgeid: 'ཡུ་ཝི་ཨེ་ ནེཊི་བེཇ་ ཨའི་ཌི།'
+                password: 'ཆོག་ཡིག'
+                password_confirmation: 'ཆོག་ཡིག་ངེས་དཔྱད་འབད།'
+                professional_profile: 'ཁྱད་རིག་གསལ་སྡུད།'
+                title: 'ལས་གཡོག་མགོ་མིང་།'

@@ -1,0 +1,422 @@
+# Localization file for Dzongkha of fathom engines.
+dz:
+    a:
+        record: '%{what} ཅིག།'
+    activities: 'ལཱ།'
+    access: 'འཛུལ་སྤྱོད།'
+    account:
+        type: 'རྩིས་ཐོའི་དབྱེ་བ།'
+    add:
+        this_record: 'Add this %{what}'
+    admin: 'བདག་སྐྱོང་གི་'
+    author: 'རྩོམ་པ་པོ།'
+    background:
+        this: 'རྒྱབ་གཞི།'
+    blacklist:
+        attempts: 'Attempts'
+        email: 'Email'
+        last_attempt: 'Last attempt'
+        this: 'Black List'
+    change:
+        picture: 'པར་སོར།'
+        instruction1: 'པར་གྱི་བཟོ་དབྱིབས་གྲུ་བཞི་འབད་མི་ལག་ལེན་འཐབ་ནིའི་འབད་རྩོལ་བསྐྱེད།'
+        instruction2: 'པར་གྱི་དབྱིབས་གྲུ་བཞི་མེན་རུང་བཏུབ། དེ་འབདཝ་ད་ པར་རིངམོ་མ་བཙུགས།'
+    contact_notes:
+        this: 'འབྲེལ་ས།'
+        tip: 'ཁྱོད་ར་ཡུན་རྒྱང་སྦེ་སྡེད་པ་ཅིན་ ཡང་ན་ ཁྱོད་དང་འབྲེལ་བ་འཐབ་ནི་ཨིན་ན་ བརྡ་སྟོན་འབདཝ་ཨིན།'
+    continue: 'འཕྲོ་མཐུད།'
+    delete:
+        confirm: 'Are you sure you wish to delete this %{what}?'
+    direct_contact:
+        this: 'ཐད་ཀར་འབྲེལ་ས།'
+        tip: 'བརྒྱུད་འཕྲིན་ཨང་གྲངས་ཀྱི་དོན་ལུ་ ཁྱོད་རའི་གནས་ཨང་གསལ་བཀོད་འབད་གནང་། དཔེར་ན་ ཡུ་ཨེསི་དང་ཀེ་ན་ཌ་གི་དོན་ལུ་ +༡ ལག་ལེན་འཐབ།'
+    disciplines: 'སྒྲིགས་ཁྲིམས།'
+    dynamic_list:
+        education:
+            this: 'Education/Credentials'
+            tip_one: 'Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution'
+            tip_two: '"Ph.D., University of Virginia"'
+        members: 'Memberships/Affiliations'
+        positions: 'Positions'
+        skills:
+            tip_one: 'Describe any relevant skills'
+            tip_two: 'languages, technologies, managerial, etc.'
+    events_calendar:
+        shanti: 'SHANTI Events Calendar'
+        this: 'Events Calendar'
+    expire:
+        s: 'དུས་ཡོལ་ཚུ།'
+        this: 'དུལ་ཡོལ།'
+    facets:
+        general_interests: 'General Interests'
+        scholarly_disciplines: 'Scholarly Disciplines'
+        time_periods_of_interest: 'Time Periods of Interest'
+        places_of_interest: 'Places of Interest'
+        technologies_of_interest: 'Technologies of Interest'
+    featured:
+        connections: 'བཀྲམ་སྟོན་འབད་ཡོད་པའི་ %{what}'
+        shanti: 'བཀྲམ་སྟོན་འབད་ཡོད་པའི་ ཡུ་ཝི་ཨེ་%{what}'
+        type: 'བཀྲམ་སྟོན་འབད་ཡོད་པའི་ %{what}'
+        this: 'བཀྲམ་སྟོན་འབད་ཡོདཔ།'
+    find:
+        record: '%{what} འཚོལ།'
+        a_join: 'Find a %{what} to Join'
+        an_join: 'Find an %{what} to Join'
+        empty_message: 'འཐུས་མི་སྦེ་ཁ་སྐོང་རྐྱབ་བཏུབ་ག་ཡང་མེད།'
+        join_empty_message: 'Not a member of any %{what}.'
+        relate_empty_message: 'Not related to any %{what}.'
+        team_members:
+            invite: 'Invite Team Members'
+            this: 'Find Team Members'
+            empty: 'No members in this %{what}.'
+            nobody: 'There is nobody who can be added as a member.'
+            select: 'Select the members of this %{what}'
+            selected_people: 'Selected People'
+            submit_message: 'Add Selected People'
+        record: '%{what} འཚོལ།'
+        to_relate: 'Find a %{what} to Relate'
+    focus: 'Focus'
+    forgot:
+        password:
+            question: 'ཁྱོད་ཀྱི་ཆོག་ཡིག་བརྗེད་སོང་ཡི་ཡ?'
+            title: 'གློག་རིམ་འདི་ལུ་མཁོ་མངགས་འབད་ནིའི་དོན་ལས་ ཁྱོད་རའི་གློག་འཕྲིན་ཁ་བྱང་བཙུགས་གནང་།'
+    full: 'ཆ་ཚང་།'
+    has:
+        not: '%{who} ལུ་  %{what} མེད།'
+        record: '%{what} ནང་ %{where} '
+    join:
+        this: 'མཐུད།'
+        this_record: 'Join this %{what}'
+    here:
+        all_caps: 'HERE'
+    home:
+        featured:
+            projects:
+                shanti: 'A Featured UVa %{what}'
+                interconnections: 'A Featured'
+            programs:
+                curricular_activities:
+                    intro: 'Courses to broaden student understanding of digital technology...'
+                    title: 'Curricular Activities'
+                digital_departments:
+                    intro: 'The initiative employs a two-pronged approach to creating and sustaining a dynamic digital infrastructure....'
+                    title: 'Digital Departments'
+                this: 'Featured Programs'
+                mandala_project:
+                    intro: 'A scholar’s system for creating powerful websites without the programmers.....'
+                    title: 'Mandala Project'
+                shanti_networking:
+                    intro: 'This website portal with its profiling and networking facilities for UVa people, projects, and organizations...'
+                    title: 'SHANTI Networking'
+                uva_community_tools:
+                    intro: 'Digital technologies which are powerful, easy to use, reliable, interoperable, and suited for academic use...'
+                    title: 'UVa Community Tools'
+                uva_knowledge_base:
+                    intro: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
+                    title: 'UVa Knowledge Base'
+        for: '%{what} མ་སྣོད།'
+        intro:
+            this: 'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
+        uva_om_initiative: 'UVa OM initiative'
+        page: 'མ་ཤོག'
+        read_more: 'Read more'
+        suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
+        this: 'མ་སྣོད།'
+    instructions:
+        interest:
+            describe:
+                this: 'Describe relevant interests and special focuses.'
+                your: 'Describe your relevant interests and special focuses.'
+            indicate:
+                part_one: 'Indicate various interests below by typing in items separated by commas in the relevant boxes.'
+                part_two: 'These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.'
+            this: 'Interests'
+        paste: 'NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.'
+        services: 'Detail the services your project or organization offers to others, whether in the form of websites (data), workshops, tools, or other formats.'
+    invalid:
+        link: 'ནུས་མེད་འབྲེལ་ལམ།'
+        title1: 'ཁྱོད་ཀྱིས་ ཤོག་ལེབ་ནང་འཛུལ་སྤྱོད་འབད་ནིའི་དོན་ལུ་ལག་ལེན་འཐབ་མི་འབྲེལ་ལམ་འདི་ ང་བཅས་ཀྱིས་བདེན་སྦྱོར་འབད་མ་ཚུགས་མི་ལུ་བཟོད་གསོལ་ཞུ་ནི།'
+        title2: 'མ་ཤོག་ནང་ལོག་ནི་གི་དོན་ལུ་ ལོག་འབད་ ཡང་ན་ “འཕྲོ་མཐུད་” སེལ་འཐུ་འབད་གནང་།'
+    invite:
+        members:
+            section1: 'Invite team members to join the Digital Humanities Portal.'
+            section2: 'You must use the format "first name" last name" email'
+            section3: '(e.g. Joe Scholar joescholar@virginia.edu).'
+            section4: 'Place additional invitees on separate lines.'
+        record: '%{what} མགྲོན་བརྡ་འབད།'
+        this: 'མགྲོན་བརྡ་འབད།'
+    item_list:
+        empty_message: 'ཐོ་ཡིག་ནང་དངོས་གྲངས་མིན་འདུག'
+    last_updated: 'དུས་མཐུན་མཇུག'
+    latest_news:
+        title: 'Read SHANTI News'
+        this: 'Latest News'
+    link:
+        s: 'Links'
+    login_page:
+        shanti:
+            title: 'Non-UVa Login'
+            login: 'University of Virginia Login'
+            paragraph1: 'People with a University of Virginia Computing ID Login '
+            here: 'here'
+            paragraph2: 'You do not need to create a new account for SHANTI - your UVa computing ID will allow you to login to the SHANTI portal, after which you can create your own personal entry in the portal, as well as describe projects, organizations, and tools.'
+            sign_up:
+                title: 'Non-UVa People Signup for a New Account'
+                guest_access:
+                    link: 'Sign up for Guest Access'
+                    tip: 'This will allow you to create a personal entry in the portal, as well as apply for full access, which will additionally allow you to make entries for projects, organizations, and tools.'
+        interconnection:
+            title: 'Interconnections Login'
+            sign_up:
+                title: 'Register for your Own Interconnections Account'
+                guest_access:
+                    link: 'Sign up for Guest Access'
+                    tip: 'This enables you to create an account to make your own entries in Interconnections for yourself, projects, and organizations.'
+        or_use: '...or use'
+        openid_url: 'OpenID URL'
+        login: 'E-mail'
+        password: 'Password'
+        remember_me: 'Remember me'
+        forgot_password: 'forgot your password?'
+    join:
+        empty_message: 'མཐུད་ནི་ལུ་ %{what} མིན་འདུག'
+        record: '%{what} མཐུད།'
+        submit_message: 'སེལ་འཐུ་འབད་ཡོད་པའི་ %{what} མཐུད།'
+        this: 'མཐུད།'
+        title: 'ཁྱོད་ཀྱིས་མཐུད་དགོ་མནོ་མི་ %{what} སེལ་འཐུ་འབད།'
+    knowledgeBase:
+        text: ' Uva ལུ་ ཞིབ་འཚོལ་ སློབ་སྟོན་དང་དལ་མེད་ལཱ་ནང་ ཌི་ཇི་ཊཱལ་འཕྲུལ་རིག་ལག་ལེན་འཐབ་ནི་གི་དོན་ལུ་ བཀོད་རྒྱ་ དཔེ་གཞི་དང་བསླབ་སྟོན།'
+        this: 'ཤེས་ཡོན་ལུ་བརྟེན་པ།'
+    last:
+        updated: 'དུས་མཐུན་མཇུག'
+    latest: 'འཕྲལ་ཁམས།'
+    level: 'གནས་རིམ།'
+    link: 'འབྲེལ་ལམ།'
+    list:
+        ing: 'ཐོ་བཀོད་འབད་དོ།'
+        this: 'ཐོ་ཡིག།'
+    mailing:
+        address: 'ཡིག་འཕྲིན་ཁ་བྱང་།'
+        this: 'ཡིག་འཕྲིན་གཏང་དོ།'
+    member:
+        s: 'Members'
+        this: 'འཐུས་མི།'
+        no: ' %{what} ནང་འཐུས་མི་མིན་འདུག'
+    memberships_affiliations: 'འཐུས་མིའི་གོ་གནས་/འབྲེལ་གཏོགས།'
+    my:
+        this: 'My %{what}'
+    mailing_address: 'ཡིག་འཕྲིན་ཁ་བྱང་།'
+    netbadge:
+        link_netbadge:
+            link: 'Link NetBadge ID?'
+            logged_in: 'You are logged into NetBadge as'
+            logged_into: 'You are logged into Digital Humanities Portal as'
+            intro: 'Would you like to link this NetBadge ID with your Digital Humanities Portal account? NetBadge users have full access to the portal capabilities, including joining <b>Projects</b> and <b>Organizations</b>, as well as creating new ones. Please note that only one account can be linked to a given NetBadge ID.'
+            yes: 'Yes, Link NetBadge ID'
+            no: 'No Thanks'
+        login_link: 'login link for UVa people'
+        uva: 'UVa NetBadge'
+        title: 'ཤཱན་ཏི་འཛུལ་སྒོ་ནང་ལུ་ ཝར་ཇི་ནི་ཡའི་བལྟ་སྤྱོདཔ་དང་པའི་གཙུག་ལག་སློབ་གྲྭ།'
+        paragraph1: '"ཤཱན་ཏི་(ཚན་རིག་ སྐྱེ་བོ་རིག་པ་དང་ནང་རིག་ཡོངས་འབྲེལ་འཕྲུལ་རིག་རྩོལ་སྒྲུབ་)གིས་ མཐོ་རིམ་ཅན་གྱི་ཌི་ཇི་ཊཱལ་འཕྲུལ་རིག་གཞི་བཙུགས་འབད་ཐོག་ལས་ ཝར་ཇི་ནི་ཡ་གཙུག་ལག་སློབ་གྲྭ་ནང་ ཞིབ་འཚོལ་དང་སློབ་སྟོན་ དཔེ་བསྐྲུན་ལ་སོགས་པ་ཚུ་ནང་རྒྱ་ཆེཝ་སྦེ་ཕན་ཐོགས་ཐབས་ལུ་ སྐྱེ་བོ་རིག་པ་ མི་སྡེ་ཚན་རིག་དང་ནང་རིག་གསར་བཙུགས་འབད་ནི་ཚུ་ཡར་བསྐྱེད་བཏངམ་ཨིན།
+    ང་བཅས་ཀྱི་དམིགས་དོན་ངོ་མ་ར་ མཐོ་རིམ་ཅན་གྱི་འཕྲུལ་རིག་འདི་ ཡིག་ཚང་ལས་གཡོགཔ་དང་སློབ་ཕྲུག་མང་ཤོས་ཅིག་ལུ་ ཐོགས་ཆགས་མེད་པར་རྒྱ་ཆེཝ་སྦེ་ཐོབ་ཚུགསཔ་བཟོ་ནི་དང་ མི་སྡེའི་ནང་ལུ་ ཡུན་བརྟན་ཐོག་ལས་ རང་རྐྱང་དང་སྡེ་ཚན་ནང་ལུ་ཕན་ཐོགས་ལུགས་ཚུ་ཧ་གོ་ཐབས་བཟོ་ནི་ཚུ་ཨིན། ང་བཅས་ཀྱི་ལས་རིམ་ནང་ ནུས་ཤུགས་ཅན་གྱི་མི་སྡེའི་ལག་ཆས་གོ་བཀྲམ་དང་ དེ་ཚུ་ལག་ལེན་འཐབ་ནི་འཇམ་པ་ ནང་འཁོད་གཡོག་བཀོལ་བཏུབ་དང་ སློབ་དཔོན་ ལས་གཡོགཔ་ སློབ་ཕྲུག་ཚུ་མོས་མཐུན་ཐོག་ལས་ ལས་འགུལ་འདི་ཡར་བསྐྱེད་བཏང་ནིའི་དོན་ལུ་ཡུན་རིང་མཐུན་ཚོགས་པའི་ཁྱད་ཆས་ཚུ་ཚང་པའི་ཁར་ གསལ་སྡུད་དང་ཡོངས་འབྲེལ་མཐུན་རྐྱེན་དང་ལྡན་པའི་ད་ལྟོའི་འཛུལ་སྒོ་དང་ཡན་ལག་ཆོས་ཚན་བཙུགས་ཏེ་ སློབ་ཕྲུག་ཚུ་གིས་ཌི་ཝི་ཊཱལ་འཕྲུལ་རིག་གི་སྐོར་ལས་ལེགས་ཤོམ་སྦེ་གོ་བ་ལེན་ཐབས་ལུ་དམིགས་གཏད་བསྐྱེདཔ་ཨི"'
+        paragraph2: 'ཡུ་ཝི་ཨེ་ལུ་སྡོད་མི་དང་ དེ་དང་གཅིག་ཁར་ལཱ་འབད་མི་ཚུ་ ལས་རིམ་གང་རུང་ནང་བཅའ་མར་གཏོགས་པར་འབྱོན་གནང་། ང་བཅས་ཀྱི་མཐོ་རིམ་ཅན་གྱི་ཞིབ་འཚོལ་རྒྱབ་སྐྱོར་ཚུ་ཡང་ སྐྱེ་བོ་རིག་པ་ མི་སྡེ་ཚན་རིག་དང་ནང་རིག་ཚུ་ནང་གཙོ་བོར་བཏོན་ཏེ་ཡོདཔ་ཨིན། དེ་གིས་མ་ཚད་པར་ འཕྲུལ་རིག་འབད་རྩོལ་དང་སྡེ་མཐུན་ལས་རིམ་ཚུ་ཡང་ སློབ་དཔོན་དང་མཐོ་རིམ་ཤེས་ཡོན་མཐར་འཁྱོལ་མི་གང་རུང་ ཡང་ན་ ཡུ་ཝི་ཨེ་གི་ལས་གཡོགཔ་ཚུ་ལུ་ སྒྲིགས་མེད་ཐོག་ལས་གོ་སྐབས་ལེན་ཆོག'
+    no: 'མེན་ %{what}'
+    networking:
+        text: 'གསལ་སྡུད་དང་ཡོངས་འབྲེལ་མཐུན་རྐྱེན་དང་ལྡན་པའི་ཝེབ་་ས་ཁོངས་འཛུལ་སྒོ་འདི་གིས་ ཡུ་ཝི་ཨེ་གི་མི་སེར་དང་ལས་འགུལ་ དེ་ལས་ལས་སྡེ་ལུ་་་་'
+        this: 'ཡོངས་འབྲེལ།'
+    news: 'གནས་ཚུལ།'
+    newsletter: 'གསར་ཤོག'
+    openid:
+        this: 'ཨོ་པཱན་ཨའི་ཌི།'
+        title1: 'ཨོ་པཱན་ཨའི་ཌི་ལག་ལེན་འཐབ་ཐོག་ལས་ ཤཱན་ཏི་འཛུལ་སྒོ་ནང་ལུ་ ཝར་ཇི་ནི་ཡ་གཙུག་ལག་མ་ཡིན་པའི་བལྟ་སྤྱོདཔ་དང་ཚུ།'
+        title2: 'ཨོ་པཱན་ཨའི་ཌི་ལག་ལེན་འཐབ་ཐོག་ལས་ ཊི་ཨེཆ་ཨེལ་ནང་མཐུད་འཛུལ་སྒོ་ཚུ་ནང་བཅའ་མར་གཏོགས་ནིའི་དོན་ལས་ ཐོ་བཀོད་འབད།'
+        not_using: 'ཨོ་པཱན་ཨའི་ཌི་ལག་ལེན་མི་འཐབ་ག?'
+    optional: 'གདམ་ཁ་ཅན།'
+    overview:
+        tip: '"
+    སྤྱི་མཐོང་གྲལ་ཐིག་ཁ་ཕྱེ་སྟེ་ཡོད་མི་འདི་ དཔེར་ན་ མ་ཤོག་གུ་ཐམ་ནེལ་དང་འོག་ཐིག་འགོ་བརྗོད་སྟོན་ཡོད་པའི་ཤོག་ལེབ་བཟུམ་ ཚིག་ཐོ་འགྲེལ་བཤད་ཐུང་ཀུ་རྐྱབ་ནི་གི་དོན་ལུ་ སྐབས་འབབ་སོར་སའི་ནང་ལག་ལེན་འཐབ་འོང་། དེ་ལས་ “ཁ་གསལ་ལྷག”གིས་ཁ་གསལ་སྟོན་འོང་།
+    "'
+    people:
+        tip: 'Describe directors, staff, participants, as you wish.'
+        this: 'People'
+    posts:
+        title: 'Posts can be made by anyone in SHANTI and should be used to advertise opportunities or needs that someone else could address. Thus you might be a student seeking an internship, a faculty seeking a programmer, a scholar seeking a collaborator on land-culture interaction studies, and so forth.'
+        list:
+            created_at: 'Posting date'
+            entity_for_post: 'Author'
+            expiration_date: 'Expiration date'
+            subject: 'Subject'
+            post_kind: 'Category'
+    pending:
+        shanti: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at %{mail_to}.'
+        connections: 'Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at %{mail_to}.'
+    positions: 'གནས་ས།'
+    public: 'མི་མང་།'
+    private: 'སྒེར།'
+    profile: 'གསལ་སྡུད།'
+    regenerate:
+        search:
+            index:
+                question: 'འཚོལ་ཞིབ་ཟུར་ཐོ་ལོག་བཟོ།'
+                confirm: 'འདི་གིས་ དུས་ཚོད་ཨ་ཙི་འགོར་འོང་། ཐད་རི་བ་རི་ཨིན་ན?'
+    register: 'ཐོ་དེབ།'
+    rejected:
+        shanti:
+            paragraph1: 'ཁྱོད་ཀྱི་གློག་འཕྲིན་འདི་ ཤཱན་ཏི་ལས་བཀག་ནུག'
+        connections:
+            paragrapsh2: 'ཁྱོད་ཀྱི་གློག་འཕྲིན་རྩིས་ཐོ་འདི་ ནང་འཁོད་མཐུད་ལམ་ལས་བཀག་ནུག'
+        paragraph2: 'ང་བཅས་ཀྱི་མ་སྒོ་ལུ་ཞུ་ཡིག་ཕུལ་མི་ལུ་བཀྲིན་ཆེ། ཨིན་རུང་ གློག་འཕྲིན་ཁ་བྱང་འདི་ བཀག་ཡོད་པའི་གློག་འཕྲིན་ཁ་བྱང་གི་ཐོ་ནང་ཚུད་སོང་ནུག་ ག་ཅི་འབད་ཟེར་བ་ཅིན་ ཨིསི་པེམ་གྱི་ལཱ་དང་གཞན་འབད་མ་ཆོག་པའི་ལཱ་ངན་འབད་མི་ལས་བརྟེན་ཏེ་ཨིན། དེ་འཛོལ་བ་ཨིན་པས་མནོ་བ་ཅིན་ %{mail_to} དང་འབྲེལ་བ་འཐབ་གནང་།'
+    relationbrowser:
+        missing_plugin: 'བལྟ་ནིའི་དོན་ལུ་ ཤོག་ལེབ་འདི་ལུ་ཕིལེཤ་དགོ'
+        my:
+            projects: 'ངེ་གི་ལས་འགུལ།'
+            organizations: 'ངེ་གི་ལས་སྡེ།'
+            tools: 'ངེ་གི་ལག་ཆས།'
+    relationships:
+        people: 'People'
+        organizations:
+            sub_projects_empty: 'Organization has no sub-projects.'
+        this: 'འབྲེལ་བ།'
+        no_flash: 'This page requires Flash in order to view. You can obtain the flash plugin '
+    request:
+        ed: 'ཞུ་བ་འབད་ཡོདཔ།'
+        record: '%{what} ཞུ་བ།'
+        this: 'ཞུ་བ།'
+        title: 'ཁྱོད་ཀྱིས་ འཛུལ་སྤྱོད་ཡོངས་རྫོགས་འབད་ནིའི་རེ་བ་ག་ཅི་འབད་སྦེ་བསྐྱེདཔ་ཨིན་ན་ འགྲེལ་བཤད་རྐྱབ་སྟེ་ འཕྲིན་དེན་ཐུང་ཀུ་ཅིག་བཙུགས་གནང་།'
+    remove: 'བཏོན་བཏང་།'
+    reset:
+        password: 'ཆོག་ཡིག་ལོག་བཟོ།'
+        title: '%{mail_to} གི་དོན་ལུ་ ཆོག་ཡིག་གསརཔ་ཅིག་འཐུ།'
+    return:
+        to: '%{what} ལོག'
+    review:
+        tip: 'Use title case for capitalization (e.g. An Exciting...)'
+    reviews:
+        for: 'Review for %{what}'
+        tip: 'please note that in reviews any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
+        title: 'Reviews'
+        by: ' by '
+        sources:
+            tip: 'བསྐྱར་ཞིབ་འབྱུང་ས་ནང་ བསྒྱུར་བཅོས་ག་ཅི་ཡོད་རུང་ དུས་འཕྲོས་ལས་ཕུལཝ་ཨིན་རུང་ གཞན་ས་སྒོ་ཚུ་ནང་ ཁྱོད་ཀྱིས་ དུས་མཐུན་ཨེབ་རྟ་གུ་ཨེབ་གཏང་མ་འབད་ཚུན་ ཕུལ་མི་ཚུགསཔ་ཨིནམ་ཤེས་དགོ '
+            title: 'འབྱུང་ས་བསྐྱར་ཞིབ་འབད།'
+    search:
+        last_updated_on: 'last updated on'
+        found: 'found'
+        limit_by: 'Limit by...'
+        for: 'for'
+        no_records_found: 'No records found'
+        record: 'Record'
+        begin_search: 'To begin, enter search terms and click Search'
+        regenerate_index: 'Search index regenerated'
+        indexing_complete: 'Indexing complete.'
+        records_indexed: 'records indexed'
+        return_to_admin: 'Return to administrative interface'
+        instructions: 'Use the search box below to explore our community, or register to make your own entries.....'
+    sent:
+        title: 'བཀྲིན་ཆེ། ཁྱོད་ཀྱི་ཞུ་བ་འདི་བཏང་ཡི། ང་བཅས་ཀྱི་ལས་གཡོགཔ་ཚུ་གིས་བརྩི་བཞག་འབད་འོང་།'
+        code_generated: 'འབྲེལ་ལམ་འདི་ ཁྱོད་རའི་གློག་འཕྲིན་ཁ་བྱང་ནང་བཏང་ཡི། དེ་གུ་ཨེབ་གཏང་འབད་དེ་ཆོག་ཡིག་ལོག་བཟོ།'
+        this: 'བཏང་ཡོདཔ།'
+    services:
+        lineq: 'ཝེབ་ས་ཁོངས་(གནས་སྡུད་) གྲོས་བསྡུར་ཞལ་འཛོམས་ ལག་ཆས་ ཡང་ན་ རྩ་སྒྲིག་གཞན་གྱི་ཐོག་ལུ་ ཁྱོད་རའི་ལས་འགུལ་ ཡང་ན་ ལས་སྡེའི་གྲོགས་རམ་ཚུ་གཞན་ལུ་བྱིན་པའི་ཞབསཏོག་ཁ་གསལ་བཀོད།'
+        this: 'ཞབས་ཏོག་ཚུ།'
+    shanti: '%{what} ཤཱན་ཏི'
+    skills:
+        message: 'འབྲེལ་བ་ཡོད་པའི་རིག་རྩལ་ &mdash; སྐད་ཡིག་ འཕྲུལ་རིག་ འཛིན་སྐྱོང་ལ་སོགས་པ་ཚུའི་སྐོར་ལས་འགྲེལ་བཤད་འབད།'
+    signup:
+        header:
+            title: 'Non-University of Virginia First Time Visitors to the SHANTI Portal'
+            paragraph1: 'SHANTI (Sciences, Humanities and the Arts Network of Technological Initiatives) promotes innovation in the humanities, social sciences, and arts at the University of Virginia through enabling advanced digital technology to be used effectively and broadly in research, teaching, publication and engagement.  Our focus is to make advanced technology widely and easily available to most faculty and students, and then build new patterns of community interaction to support the use of such technology and exploration of how it can help individuals and groups in sustainable ways.  Our programs include the deployment of community tools that are powerful, easy to use, and interoperable; our year-long Cohorts Fellowship to support groups of faculty, staff, and students with shared interests to use technologies to further their projects; the present portal with its profiling and networking facilities; and a curricular initiative aimed at broadening student understanding of digital technology.'
+            paragraph2: 'Everyone at UVa, or working closely with UVa, is welcome to participate in any of our programs. Our advanced research support is focused on the humanities, social sciences, and arts, but our broader efforts in technology as well as the Cohort programs are also open to any faculty, graduate student, or staff at UVa, regardless of disciplinary focus.'
+            paragraph3: 'Use of SHANTIs portal does not require a login account. However, if you want to create your own descriptions of your self, projects, or organizational units, you will need one. University of Virginia faculty, staff, and students should use their UVa Computing ID to login %{here} they do not need a separate account. If you do not have a UVa Computing ID, please fill out the form below to request a SHANTI account. You will be granted Guest Access and can request Full Access from your profile page, which will allow you to describe projects, organizations, and tools. SHANTI accounts are only available for individuals who have an ongoing relationship with UVa on academic work and/or technology.'
+            paragraph4: 'UNIVERSITY OF VIRGINIA PEOPLE SHOULD NOT FILL THIS FORM OUT - INSTEAD USE YOUR UVA COMPUTING ID TO LOGIN TO SHANTI %{here}'
+    sort:
+        by: 'དབྱེ་སེལ་འབད་མི།'
+        name: 'མིང་།'
+        most_recent: 'འཕྲལ་ཁམས།'
+        profession: 'ཁྱད་ལཱ།'
+    source:
+        for: ' %{what} དོན་ལུ་འབྱུང་ས།'
+    sub_project:
+        s: 'ཡན་ལག་ལས་འགུལ་ཚུ།'
+        this: 'ཡན་ལག་ལས་འགུལ།'
+    subscribe:
+        to: ' %{what} དོན་ལུ་མཁོ་མངགས་འབད།'
+    summary_sources:
+        this: 'Summary Sources'
+        tip: 'please note that in tool sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button.'
+    tag:
+        s: 'མིང་རྟགས་ཚུ།'
+        this: 'མིང་རྟགས།'
+    team: 'རུ་ཚན།'
+    thl: 'ཊི་ཨེཆ་ཨེལ།'
+    translation:
+        for: '%{what} དོན་ལུ་སྐད་བསྒྱུར།'
+        in: 'in'
+        from: 'from'
+        s:
+            title: 'སྐད་བསྒྱུར།'
+        this: 'སྐད་བསྒྱུར་ཚུ།'
+    title:
+        this: 'Title'
+        part_one: 'Specify main professional title, such as'
+        part_two: '"Assistant Professor" (use capital letters)'
+    tool_facets:
+        developer_list:
+            tip: 'Indicate various Developers below by typing in items separated by commas.'
+            title: 'Developers'
+        general_interest_list:
+            tip: 'Indicate various general interests below by typing in items separated by commas.'
+            title: 'General Associations'
+        operating_system_list:
+            tip: 'Indicate various operating systems below by typing in items separated by commas.'
+            title: 'Operating Systems'
+        platform_list:
+            tip: 'Indicate various platforms below by typing in items separated by commas.'
+            title: 'Platforms'
+        producer_list:
+            tip: 'Indicate various Producers below by typing in items separated by commas.'
+            title: 'Produced by'
+        language_list:
+            tip: 'Indicate various Interface Languages below by typing in items separated by commas.'
+            title: 'Interface Languages'
+        license_type_list:
+            tip: 'Indicate various licenses below by typing in items separated by commas.'
+            title: 'Licenses'
+        technologies_of_interests:
+            tip: 'Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.'
+            title: 'Technologies of Interest'
+        technologies_of_interest_list:
+            tip: 'Indicate various Technologies of Interest below by typing in items separated by commas.'
+    tool_type: 'Tool Type'
+    turn: 'སྐོར་རྒྱབ།'
+    usage_scenario:
+        a: 'A %{what} Usage Scenario'
+        author: 'Author'
+        by: ' by '
+        s:
+            tip: 'please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
+            title: 'Usage Scenarios'
+        tip: 'Use title case for capitalization (e.g. An Exciting...)'
+        sources:
+            tip: 'please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
+            title: 'Usage Scenario Sources'
+            this: 'Sources'
+            mms_id: 'MMS #'
+    tool_usage_scenarios:
+        tip: 'please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
+        title: 'Usage Scenarios'
+    updat:
+        ing: 'Updating %{what}'
+    upload:
+        image: 'Upload Image'
+        tip1: 'Please try to use a picture that is generally square shaped.'
+        tip2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
+        this: 'Upload'
+    url: 'ཡུ་ཨར་ཨེལ།'
+    uva: 'ཡུ་ཝི་ཨེ་ %{what}'
+    view:
+        details: 'View Details'
+    works: 'ལཱ།'
+    workshops:
+        text: 'ཌི་ཇི་ཊཱལ་འཕྲུལ་རིག་གསརཔ་ལག་ལེན་འགོ་བཙུགས་ ཡང་ན་ ཁྱོད་རའི་ཤེས་ཡོན་ཡར་རྒྱས་བཏང་ཐབས་ལུ་ ད་ལྟོ་འབད་བཞིན་ཡོད་པའི་ཞལ་འཛོམས་ཀྱིས་ཕན་ཐོགས་ཚུགས།'
+        this: 'གྲོས་བསྡུར་ཞལ་འཛོམས།'
