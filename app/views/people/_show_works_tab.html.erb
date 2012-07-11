@@ -2,27 +2,32 @@
 	<div id="works" class="item">
 		<% unless @person.person_profile.works_overview.blank? -%>
 			<h3>Overview</h3>
-			<%= rc @person.person_profile.works_overview.s %>				
+			<%#= rc @person.person_profile.works_overview.s %>
+			<%= @person.person_profile.works_overview.s.html_safe %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.publications.blank? -%>
 			<h3>Publications</h3>	
-			<%= rc @person.person_profile.publications.s %>				
+			<%#= rc @person.person_profile.publications.s %>	
+			<%= @person.person_profile.publications.s.html_safe %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.websites.blank? -%>
 			<h3>Websites</h3>
-			<%= rc @person.person_profile.websites.s %>				
+			<%#= rc @person.person_profile.websites.s %>	
+			<%= @person.person_profile.websites.s.html_safe %>				
 		<% end -%>
     
     <% unless @person.person_profile.tools.blank? -%>
 			<h3>Tools</h3>
-			<%= rc @person.person_profile.tools.s %>				
+			<%#= rc @person.person_profile.tools.s %>
+			<%= @person.person_profile.tools.s.html_safe %>				
 		<% end -%>
     
 		<% unless @person.person_profile.miscellaneous.blank? -%>
 			<h3>Miscellaneous</h3>
-			<%= rc @person.person_profile.miscellaneous.s %>	
+			<%#= rc @person.person_profile.miscellaneous.s %>
+			<%= @person.person_profile.miscellaneous.s.html_safe %>	
 		<% end -%>			
 	</div> <!-- END WORKS -->
 </div> <!-- END WORKS TAB -->

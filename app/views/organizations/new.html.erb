@@ -1,7 +1,7 @@
 <div id="main">
 <%= error_messages_for :organization %>
 <h3>Create an Organization</h3>
-<% form_for(@organization, :html => { :multipart => true }) do |f| %>
+<%= form_for(@organization, :html => { :multipart => true }) do |f| %>
 
 	<table class="entity-list-table">
 		<tr>

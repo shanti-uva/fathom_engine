@@ -12,17 +12,20 @@
 	  
 		<% unless project_profile.overview.blank? -%>			
 			<h3>Overview</h3>
-			<%= rc project_profile.overview.s %>
+			<%#= rc project_profile.overview.s %>
+			<%= project_profile.overview.s.html_safe %>
 		<% end -%>
 		
 		<% unless project_profile.people.blank? -%>			
 			<h3>People</h3>
-			<%= rc project_profile.people.s %>	
+			<%#= rc project_profile.people.s %>
+			<%= project_profile.people.s.html_safe %>	
 		<% end -%>
 		
 		<% unless project_profile.sponsors.blank? -%>			
 			<h3>Sponsors</h3>
-			<%= rc project_profile.sponsors.s %>	
+			<%#= rc project_profile.sponsors.s %>
+			<%= project_profile.sponsors.s.html_safe %>	
 		<% end -%>
 	</div>
 	

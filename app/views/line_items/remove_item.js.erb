@@ -1,0 +1,9 @@
+<% 
+case @line_item.category 
+	when "positions" %>
+	$("#positions_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @positions, :locals => { :category => 'positions'} )) %>")
+<%  when "credentials" %>
+	$("#credentials_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => 'credentials'} )) %>")
+<%  when "affiliations" %>
+	$("#affiliations_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @affiliations, :locals => { :category => 'affiliations'} )) %>")
+<% end %>

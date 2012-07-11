@@ -21,7 +21,8 @@
 
     <% unless @person.person_profile.skills.blank? -%>
       <h3>Skills</h3>
-      <%= rc @person.person_profile.skills.s %>
+      <%#= rc @person.person_profile.skills.s %>
+	  <%= @person.person_profile.skills.s.html_safe %>
     <% end -%>
 
   </div> <!-- END BACKGROUND -->

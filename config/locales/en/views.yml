@@ -2,13 +2,13 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 en:
     add:
-        this_record: 'Add this {{what}}'
+        this_record: 'Add this %{what}'
     admin: 'Admin'
     associate:
-        d: 'Associated {{what}}'
-        ion: '{{what}} Association'
-        record: 'Associate {{what}} to {{whom}}'
-        to: 'Associate to {{what}}'
+        d: 'Associated %{what}'
+        ion: '%{what} Association'
+        record: 'Associate %{what} to %{whom}'
+        to: 'Associate to %{what}'
     blacklist:
         attempts: 'Attempts'
         email: 'Email'
@@ -20,7 +20,7 @@ en:
         tip: 'Indicate if you are away for a sustained period of time, or anything else about how to best contact you.'
     dzongkha: 'Dzongkha'
     delete:
-        confirm: 'Are you sure you wish to delete this {{what}}?'
+        confirm: 'Are you sure you wish to delete this %{what}?'
     direct_contact: 
         this: 'Direct Contact' 
         tip: 'For phone numbers, please specify your country code. For example, use +1- for the US and Canada.'       
@@ -45,29 +45,29 @@ en:
         places_of_interest: 'Places of Interest'
         technologies_of_interest: 'Technologies of Interest'
     find: 
-        record: 'Find {{what}}'
-        a_join: 'Find a {{what}} to Join'
-        an_join: 'Find an {{what}} to Join'
-        to_relate: 'Find a {{what}} to Relate'
-        join_empty_message: 'Not a member of any {{what}}.'
-        relate_empty_message: 'Not related to any {{what}}.'
+        record: 'Find %{what}'
+        a_join: 'Find a %{what} to Join'
+        an_join: 'Find an %{what} to Join'
+        to_relate: 'Find a %{what} to Relate'
+        join_empty_message: 'Not a member of any %{what}.'
+        relate_empty_message: 'Not related to any %{what}.'
         team_members: 
             invite: 'Invite Team Members'
             this: 'Find Team Members'
-            empty: 'No members in this {{what}}.'
+            empty: 'No members in this %{what}.'
             nobody: 'There is nobody who can be added as a member.'
-            select: 'Select the members of this {{what}}'
+            select: 'Select the members of this %{what}'
             selected_people: 'Selected People'
             
     join:
         this: 'Join'
-        this_record: 'Join this {{what}}'  
+        this_record: 'Join this %{what}'  
     here:
         all_caps: 'HERE'  
     home:
         featured:
             projects: 
-                shanti: 'A Featured UVa {{what}}'
+                shanti: 'A Featured UVa %{what}'
                 interconnections: 'A Featured'
             programs:
                 curricular_activities:
@@ -89,11 +89,11 @@ en:
                 uva_knowledge_base:
                     intro: 'Instructions, models, and tips for using digital technologies in research, teaching, and engagement at UVa...'
                     title: 'UVa Knowledge Base'
-         intro: 
-             this:'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
-         uva_om_initiative: 'UVa OM initiative'
-         read_more: 'Read more'
-         suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
+            intro:
+                this: 'SHANTI promotes innovation at the University of Virginia through the use of advanced digital technologies in research, teaching, publishing and collaborative engagement...'
+        uva_om_initiative: 'UVa OM initiative'
+        read_more: 'Read more'
+        suscribe_shanti_newsletter: 'Subscribe to SHANTI Newsletter'
     instructions:
         interest:
             describe: 
@@ -147,7 +147,7 @@ en:
         forgot_password: 'forgot your password?'
 
     my: 
-        this: 'My {{what}}'
+        this: 'My %{what}'
     mailing_address: 'Mailing Address'
     netbadge:
         link_netbadge:
@@ -182,7 +182,7 @@ en:
     review:
         tip: 'Use title case for capitalization (e.g. An Exciting...)'
     reviews:
-        for: 'Review for {{what}}'
+        for: 'Review for %{what}'
         tip: 'please note that in reviews any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button'
         title: 'Reviews'
         by: ' by '
@@ -206,8 +206,8 @@ en:
             title: 'Non-University of Virginia First Time Visitors to the SHANTI Portal'
             paragraph1: 'SHANTI (Sciences, Humanities and the Arts Network of Technological Initiatives) promotes innovation in the humanities, social sciences, and arts at the University of Virginia through enabling advanced digital technology to be used effectively and broadly in research, teaching, publication and engagement.  Our focus is to make advanced technology widely and easily available to most faculty and students, and then build new patterns of community interaction to support the use of such technology and exploration of how it can help individuals and groups in sustainable ways.  Our programs include the deployment of community tools that are powerful, easy to use, and interoperable; our year-long Cohorts Fellowship to support groups of faculty, staff, and students with shared interests to use technologies to further their projects; the present portal with its profiling and networking facilities; and a curricular initiative aimed at broadening student understanding of digital technology.'
             paragraph2: 'Everyone at UVa, or working closely with UVa, is welcome to participate in any of our programs. Our advanced research support is focused on the humanities, social sciences, and arts, but our broader efforts in technology as well as the Cohort programs are also open to any faculty, graduate student, or staff at UVa, regardless of disciplinary focus.'
-            paragraph3: 'Use of SHANTIs portal does not require a login account. However, if you want to create your own descriptions of your self, projects, or organizational units, you will need one. University of Virginia faculty, staff, and students should use their UVa Computing ID to login {{here}} they do not need a separate account. If you do not have a UVa Computing ID, please fill out the form below to request a SHANTI account. You will be granted Guest Access and can request Full Access from your profile page, which will allow you to describe projects, organizations, and tools. SHANTI accounts are only available for individuals who have an ongoing relationship with UVa on academic work and/or technology.'
-            paragraph4: 'UNIVERSITY OF VIRGINIA PEOPLE SHOULD NOT FILL THIS FORM OUT - INSTEAD USE YOUR UVA COMPUTING ID TO LOGIN TO SHANTI {{here}}'
+            paragraph3: 'Use of SHANTIs portal does not require a login account. However, if you want to create your own descriptions of your self, projects, or organizational units, you will need one. University of Virginia faculty, staff, and students should use their UVa Computing ID to login %{here} they do not need a separate account. If you do not have a UVa Computing ID, please fill out the form below to request a SHANTI account. You will be granted Guest Access and can request Full Access from your profile page, which will allow you to describe projects, organizations, and tools. SHANTI accounts are only available for individuals who have an ongoing relationship with UVa on academic work and/or technology.'
+            paragraph4: 'UNIVERSITY OF VIRGINIA PEOPLE SHOULD NOT FILL THIS FORM OUT - INSTEAD USE YOUR UVA COMPUTING ID TO LOGIN TO SHANTI %{here}'
     sort:
         by: 'Sort by'
         name: 'Name'
@@ -259,7 +259,7 @@ en:
             tip: 'Indicate various Technologies of Interest below by typing in items separated by commas.'
     tool_type: 'Tool Type'
     usage_scenario:
-        a: 'A {{what}} Usage Scenario'
+        a: 'A %{what} Usage Scenario'
         author: 'Author'
         by: ' by '
         s:
@@ -276,10 +276,10 @@ en:
         title: 'Usage Scenarios'
         
     updat:
-        ing: 'Updating {{what}}'
+        ing: 'Updating %{what}'
     upload:
         image: 'Upload Image'
-        tip1: 'Please try to use a picture that is generally square shaped. 
+        tip1: 'Please try to use a picture that is generally square shaped.'
         tip2: 'It doesnt have to be a square, but please avoid using pictures that are extremely long on the side or height.'
         this: 'Upload'
     view:

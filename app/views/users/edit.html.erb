@@ -16,7 +16,7 @@
 					<dd>E-mail:<%= h(@user.email) %> </dd>
 				<% end -%>
 		  </dl>		
-			<% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
+			<%= form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
 			  
 			
 				

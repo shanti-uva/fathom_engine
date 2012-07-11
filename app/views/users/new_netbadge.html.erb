@@ -9,7 +9,7 @@
 
 
 	<div id="form-wrapper">
-		<% form_for :user, :url => users_path do |f| -%>
+		<%= form_for :user, :url => users_path do |f| -%>
 			<table>			
 			<tr><td><label for="full_name">First Name:</label></td><td><%= f.text_field :first_name %></td></tr>
 			<tr><td><label for="full_name">Last Name:</label></td><td><%= f.text_field :last_name %></td></tr>

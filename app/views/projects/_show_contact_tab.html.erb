@@ -6,13 +6,16 @@
 			<h3>Mailing Address</h3>
 			<p class="address">
 				<% unless project_profile.address_one.blank? -%>						
-					<%= rc project_profile.address_one.s %><br/>
+					<%#= rc project_profile.address_one.s %>
+					<%= project_profile.address_one.s.html_safe %><br/>
 				<% end -%>
 				<% unless project_profile.address_two.blank? -%>
-					<%= rc project_profile.address_two.s %><br/>
+					<%#= rc project_profile.address_two.s %>
+					<%= project_profile.address_two.s.html_safe %><br/>
 				<% end -%>
 				<% unless project_profile.city.blank? -%>
-					<%= rc project_profile.city.s %>, <%= rc project_profile.state.s %>, <%= rc project_profile.zipcode.s %><br/>
+					<!--<%#= rc project_profile.city.s %>, <%#= rc project_profile.state.s %>, <%#= rc project_profile.zipcode.s %>-->
+					<%= project_profile.city.s.html_safe %>, <%= project_profile.state.s.html_safe %>, <%= project_profile.zipcode.s.html_safe %><br/>
 				<% end -%>
 				<% unless project_profile.country.blank? -%>
 					<%= h(project_profile.country) %><br/>
@@ -52,7 +55,8 @@
 		<% unless project_profile.notes.blank? -%>
   		<h3>Notes</h3>
   		<div class="message">
-  			<%= rc project_profile.notes.s %>
+  			<%#= rc project_profile.notes.s %>
+			<%= project_profile.notes.s.html_safe %>
   		</div>
   	<% end -%>
     

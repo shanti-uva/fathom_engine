@@ -11,7 +11,7 @@ tabs += additional_tabs
 	<ul>
 	  <% tabs.each do |tab| %>
 	  <% k=tab.keys.first; v=tab.values.first %>
-    <li <% if sort_order == k.to_s -%>class="selected"<% end -%>><%= link_to "<span>#{v}</span>", "#{url}sort=#{k}" %></li>
+    <li <% if sort_order == k.to_s -%>class="selected"<% end -%>><%= link_to "<span>#{v}</span>".html_safe, "#{url}sort=#{k}" %></li>
     <% end %>
 	</ul>
 </div>

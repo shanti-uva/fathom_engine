@@ -5,7 +5,7 @@
       <%= error_messages_for :post %>
     </div>
 
-    <% form_for :post, :url => person_posts_url(@entity), :person_id => @entity_id do |f| -%>
+    <%= form_for :post, :url => person_posts_url(@entity), :person_id => @entity_id do |f| -%>
       <table id="post-header">
         <tr>
           <th scope="row" class="post-message">Title</th>

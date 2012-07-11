@@ -80,7 +80,7 @@ class Project < Entity
   end
   
   def invite_by_email( invitee, inviter )    
-    AccountMailer.deliver_invite_user( invitee, inviter, self )
+    AccountMailer.invite_user( invitee, inviter, self ).deliver
   end
 
   # TODO: Pull indexing into Entity; the only difference between Entity derivatives is

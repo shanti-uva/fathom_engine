@@ -1,7 +1,7 @@
 <div id="main">
 <%= error_messages_for :tool %>
 <h3>Create a Tool</h3>
-<% form_for(@tool, :html => { :multipart => true }) do |f| %>
+<%= form_for(@tool, :html => { :multipart => true }) do |f| %>
 
 	<table class="entity-list-table">
 		<tr>

@@ -1,3 +1,4 @@
+
 <% empty_message = "There are no items on this list." -%>
 <% @line_item = nil %>
 <div id="dynamic-list-table-<%= category %>">
@@ -9,7 +10,7 @@
 				<td><%= h(item.text) %></td>
 				<td><%#= button_to_function 'Remove', 
 						"removeItem('#{ person_line_item_url( entity, item ) }', '#{ form_authenticity_token }')" %></td>
-				<td><%= link_to_remote 'Remove', {:url => remove_item_person_line_item_path(entity, item),  :method => 'get'} %></td>
+				<td><%= link_to 'Remove', remove_item_person_line_item_path(entity, item),  :remote => true, :confirm => 'Are you sure?' %></td>
 			</tr>			
 		<% end -%>
 	</table>

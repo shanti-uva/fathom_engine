@@ -1,0 +1,10 @@
+<% case params[:line_item][:category] 
+	when "positions" %>
+$("#positions_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @positions, :locals => { :category => params[:line_item][:category]} )) %>")
+<% when "credentials" %>
+$("#credentials_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => params[:line_item][:category]} )) %>")
+<% when "affiliations"  %>
+$("#affiliations_div").html("<%= escape_javascript(render(:partial => 'common/dynamic_list', :object => @affiliations, :locals => { :category => params[:line_item][:category]} )) %>")
+<% end %>
+$("#popup_dialog").dialog("close"); 
+$("#popup_dialog").dialog("destroy");

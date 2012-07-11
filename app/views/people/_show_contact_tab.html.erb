@@ -4,13 +4,16 @@
 			<h3>Mailing Address</h3>
 			<p class="address">
 				<% unless @person.person_profile.address_one.blank? -%>						
-					<%= rc @person.person_profile.address_one.s %><br/>
+					<%#= rc @person.person_profile.address_one.s %><br/>
+					<%= @person.person_profile.address_one.s.html_safe %><br/>
 				<% end -%>
 				<% unless @person.person_profile.address_two.blank? -%>
-					<%= rc @person.person_profile.address_two.s %><br/>
+					<%#= rc @person.person_profile.address_two.s %><br/>
+					<%= @person.person_profile.address_two.s.html_safe %><br/>
 				<% end -%>
 				<% unless @person.person_profile.city.blank? -%>
-					<%= rc @person.person_profile.city.s %>, <%= rc @person.person_profile.state.s %>, <%= rc @person.person_profile.zipcode.s %><br/>
+					<%#= rc @person.person_profile.city.s %>, <%= rc @person.person_profile.state.s %>, <%= rc @person.person_profile.zipcode.s %><br/>
+					<%= @person.person_profile.city.s.html_safe %>, <%= @person.person_profile.state.s.html_safe %>, <%= @person.person_profile.zipcode.s.html_safe %><br/>
 				<% end -%>
 				<% unless @person.person_profile.country.blank? -%>
 					<%= h(@person.person_profile.country) %><br/>
@@ -53,7 +56,8 @@
 				<% unless @person.person_profile.other_contact.blank? -%>
 				<tr>
 					<th scope="row">Instant Message (IM):</th>
-					<td><%= rc @person.person_profile.other_contact.s %> (<%= rc @person.person_profile.other_contact_type.s %>)</td>
+					<!--<td><%#= rc @person.person_profile.other_contact.s %> (<%#= rc @person.person_profile.other_contact_type.s %>)</td>-->
+					<td><%= @person.person_profile.other_contact.s.html_safe %> (<%= @person.person_profile.other_contact_type.s.html_safe %>)</td>
 				</tr>
 				<% end -%>
 			</table>
@@ -62,7 +66,8 @@
 	<% unless @person.person_profile.notes.blank? -%>
 		<h3>Contact Notes</h3>
 		<div class="message">
-			<%= rc @person.person_profile.notes.s %>
+			<%#= rc @person.person_profile.notes.s %>
+			<%= @person.person_profile.notes.s.html_safe %>
 		</div>
 	<% end -%>	
  	</div> <!-- END CONTACT -->

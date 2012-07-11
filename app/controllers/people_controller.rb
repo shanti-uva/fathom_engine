@@ -346,6 +346,11 @@ class PeopleController < ApplicationController
     # prevent an authenticated user from editing someone else's profile  
     redirect_to(@person) unless content_author?(@person) || admin?
   end
+
+  # GET /people/1/edit
+  def dialog
+  @current_style = :details
+  end
   
   # GET /people/1/edit_picture
   def edit_picture
@@ -434,6 +439,24 @@ class PeopleController < ApplicationController
       end
     end   
   end
+   
+  def positions
+    @person = Person.find(params[:id])
+    init_line_items(@person)
+    #person = @person
+    #line_items = person.person_profile.line_items
+    #@positions = line_items.select { |item| item.category == 'positions' }
+  end 
+   
+  def credentials
+    @person = Person.find(params[:id])
+    init_line_items(@person)
+  end 
+  
+  def dynamic_list
+    @person = Person.find(params[:id])
+    init_line_items(@person)
+  end 
    
   protected
   def main_nav

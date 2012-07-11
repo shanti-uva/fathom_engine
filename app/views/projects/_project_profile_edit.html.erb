@@ -175,10 +175,10 @@ jQuery(function(){
 });
 </script>
 
-<%= tinymce_reinitialization_script %>
+<%#= tinymce_reinitialization_script %>
 
 <div id="main-content" class="narrow">		
-	<% form_for( :project_profile, project_profile, :url => { :action => "update_profile", :id => project.id }, :html=>{:id=>'profileForm'} ) do |f| -%>
+	<%= form_for( :project_profile, project_profile, :url => { :action => "update_profile", :id => project.id }, :html=>{:id=>'profileForm'} ) do |f| -%>
 	
 	<%= hidden_field_tag( :tab, @selected_tab ) %>
 	

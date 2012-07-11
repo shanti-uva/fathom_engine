@@ -66,7 +66,8 @@ class UsersController < ApplicationController
     @current_style = :gallery
     @uses_admin_grid = true
     @current_nav_item = :admin
-    @users = User.find(:all, :order => "access_level DESC")
+    #@users = User.find(:all, :order => "access_level DESC")
+    @users = User.Order("access_level DESC")
     render :action => 'index'#, :layout => 'main'
   end
   
@@ -165,7 +166,8 @@ class UsersController < ApplicationController
   def create
     cookies.delete :auth_token
     recaptcha_verified = false
-    blacklist = Blacklist.find(:first, :conditions => [ "email = ?", params[:user][:email]]  )
+    #blacklist = Blacklist.find(:first, :conditions => [ "email = ?", params[:user][:email]]  )
+    blacklist = Blacklist.first.where("email = ?", params[:user][:email])
     if !blacklist.blank?
       # the user is in the blacklist, so is turned down
       #update No. of attempts, and Last Attempt date of black list record

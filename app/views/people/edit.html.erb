@@ -8,7 +8,35 @@
   jQuery(document).ready(function() {
     var tabView = new YAHOO.widget.TabView('secondary-nav');
     tabView.addListener( 'click', updateShowProfileURL );
+
+
+
+	
+	// initialize the remove handlers...
+    // finds all links that use a class of "removeOrganizationRelationship" or "removeProjectRelationship" and then attaches click handlers.
+    $('a.removeOrganizationRelationship, a.removeProjectRelationship, a.removeToolRelationship').click(function(){
+      removeRelationshipHandler($(this));
+      return false;
+    });
+
+	// Used by Thickbox to display loading animation image
+    tb_pathToImage='<%= escape_javascript image_path('loadingAnimation.gif') %>';
+	
+	
   });
+</script>
+
+
+<script type="text/javascript">
+$(function() {
+<%= generate_js_for_tag_autocomplete( @tag_combiner, :person_profile, {
+    :disciplines=>'person_profile_discipline_list',
+    :general_interests=>'person_profile_general_interest_list',
+    :time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
+    :places_of_interest=>'person_profile_places_of_interest_list',
+    :technologies_of_interest=>'person_profile_technologies_of_interest_list'
+  }) %>
+});
 </script>
 
 <script>
@@ -132,29 +160,57 @@
     });
   };
 
-  jQuery(function(){
-    var $=jQuery;
 
-<%= generate_js_for_tag_autocomplete( @tag_combiner, :person_profile, {
-    :disciplines=>'person_profile_discipline_list',
-    :general_interests=>'person_profile_general_interest_list',
-    :time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
-    :places_of_interest=>'person_profile_places_of_interest_list',
-    :technologies_of_interest=>'person_profile_technologies_of_interest_list'
-  }) %>
-
-    // initialize the remove handlers...
-    // finds all links that use a class of "removeOrganizationRelationship" or "removeProjectRelationship" and then attaches click handlers.
-    $('a.removeOrganizationRelationship, a.removeProjectRelationship, a.removeToolRelationship').click(function(){
-      removeRelationshipHandler($(this));
-      return false;
-    });
-    // Used by Thickbox to display loading animation image
-    tb_pathToImage='<%= escape_javascript image_path('loadingAnimation.gif') %>';
-  });
 </script>
 
-<%= tinymce_reinitialization_script %>
+<script>
+	//$(function() {
+	//	$( "#dialog" ).dialog();
+	//});
+</script>
+
+<script type="text/javascript">
+//$(document).ready(function() {
+//	$('.ui_definition_dialog').live('click', function() {
+//	  //$("#popup_dialog").dialog('open');
+//	  $("#popup_dialog").html("<p></p>")
+//	  $("#popup_dialog").dialog( "destroy" );
+//      $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
+//      $("#popup_dialog").dialog('open');
+//	});
+//});
+//</script>	
+	
+<script>
+	$('.ui_definition_dialog').live('click', function() {
+	//alert('click');
+	
+  	$("#popup_dialog").html("<p></p>")
+  	//$("#popup_dialog").dialog( "destroy" );
+	$("#popup_dialog" ).dialog({ modal: true, width: 650});
+  	//$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
+  	//$("#popup_dialog").dialog('open');
+});
+</script>
+
+<script>
+  $(document).ready(function() {
+	//alert('initialized');
+	$("#popup_dialog").dialog( "destroy" );
+    //$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+	$("#popup_dialog").dialog({ autoOpen: false })
+	$("#popup_dialog").dialog("close");	
+  });
+
+</script>
+	<div id="dialog" title="Basic dialog">
+	</div>
+	
+<div id="popup_dialog">
+</div>
+
+
+<%#= tinymce_reinitialization_script %>
 
 <div id="main">
 <div id="secondary-nav" class="yui-navset">
@@ -170,7 +226,7 @@
   </ul>
 
   <div id="main-content"  class="narrow">
-    <% form_for( :person_profile, @person.person_profile, :url => { :action => "update_profile", :id => @person.id } ) do |f| -%>
+    <%= form_for( :person_profile, @person.person_profile, :url => { :action => "update_profile", :id => @person.id } ) do |f| -%>
       <%= hidden_field_tag( :tab, @selected_tab ) %>
       <h2>Updating Profile </h2>
       <h2 id="subject"><input name="person_profile[person_attrs][name]" type="text" value="<%= @person.name %>"/></h2>
@@ -347,21 +403,26 @@
 
             <h3>Positions</h3>
             <div id ="positions_div">
-				<%   remote_form_for(:line_item, :url => add_item_person_line_items_path(@person), :method => 'get') do |t| %>
-				<% end %>
+				<%#=   form_for(:line_item, :url => add_item_person_line_items_path(@person), :remote => true ) do |t| %>
+				<%# end %>
             	<%= render :partial => 'common/dynamic_list', :object => @positions, :locals => { :category => 'positions' } %>
 			</div>	
+				<%#= link_to 'Add Positions', {:controller => 'people', :action => 'positions', :id => @person.id, :positions => @positions, :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
+		<%= link_to 'Add Positions', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
 			
 			<h3>Education/Credentials</h3>
             <em>Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution &mdash; "Ph.D., University of Virginia"</em>
 			<div id ="credentials_div">
-				<%= render :partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => 'credentials' } %>
+				<%= render :partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => 'credentials' } %>				
 			</div>
+			<%#= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'credentials', :id => @person.id, :credentials => @credentials, :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
+			<%= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
 			
             <h3>Memberships/Affiliations</h3>
 			<div id ="affiliations_div">
             	<%= render :partial => 'common/dynamic_list', :object => @affiliations, :locals => { :category => 'affiliations' } %>
 			</div>
+			<%= link_to 'Add Memberships/Affiliations', {:controller => 'people', :action => 'dynamic_list', :id => @person.id, :category => 'affiliations'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Affiliations Add' %>
 			
             <h3>Skills</h3>
             <em>Describe any relevant skills &mdash; languages, technologies, managerial, etc.</em>

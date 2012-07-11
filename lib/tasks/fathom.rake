@@ -4,7 +4,7 @@ namespace :fathom do
   
   desc "Update the installed Cat4 Wordpress theme"
   task :update_theme do
-    copy_dir( "#{RAILS_ROOT}/wordpress/cat4", "#{RAILS_ROOT}/public/wp/wp-content/themes/cat4" )
+    copy_dir(Rails.root.join('wordpress', 'cat4'), "#{RAILS_ROOT}/public/wp/wp-content/themes/cat4" )
   end
   
   desc "Install Cat4 Wordpress theme"

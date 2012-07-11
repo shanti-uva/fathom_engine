@@ -1,6 +1,6 @@
 <h3><%= ('Review for '"<em>#{h(@tool.name)}</em>") %></h3>
 <%= error_messages_for :review %>
-  <% remote_form_for(:review, :url => tool_reviews_path(@tool), :before => "tinyMCE.triggerSave();", :update => 'descriptions_div') do |f| %>
+  <%= remote_form_for(:review, :url => tool_reviews_path(@tool), :before => "tinyMCE.triggerSave();", :update => 'descriptions_div') do |f| %>
 
 <%=  render :partial => 'reviews/form', :locals => {:f => f} %>
 

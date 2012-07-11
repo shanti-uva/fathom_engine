@@ -8,7 +8,7 @@
 	<div id="signupOpenId-page">
 	  
 	  <div id="form-wrapper">	
-        <% form_tag(openid_validate_path) do -%>
+        <%= form_tag(openid_validate_path) do -%>
           <p>
             <label for="openid_url">OpenID URL</label><br/><%= text_field_tag 'openid_url' %>
           </p>

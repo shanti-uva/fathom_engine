@@ -10,9 +10,9 @@ module ApplicationHelper
       ['fathom'] + super
     else #'thlib.org'
       if @current_style == :details
-        super + ['fathom','thickbox','communications'] 
+        super + ['fathom','thickbox','communications', 'jquery-ui-tabs', 'jquery-ui'] 
       else
-        super + ['fathom','communications']
+        super + ['fathom','communications', 'jquery-ui-tabs', 'jquery-ui']
       end
     end
   end
@@ -43,7 +43,7 @@ module ApplicationHelper
             super + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
           else
             #super + ['category_selector','application','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min']
-            ['jrails'] + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
+            super + ['jrails'] + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
           end          
         end
       else
@@ -174,7 +174,7 @@ module ApplicationHelper
         }
       });\n)
     end
-    js
+    js.html_safe
   end
   
   def entity_profile_tag_block(tag_combiner, entity, tag_list_name, label)
@@ -197,6 +197,7 @@ module ApplicationHelper
           "#{link_to(t.name.s, link_params)} <em>(#{complete_tag_list[t.name]})</em>"
         end.sort.join(', ')
         html += "</dd>"
+        html.html_safe
 		end
 	end
   
@@ -357,7 +358,7 @@ module ApplicationHelper
   end
   
   def editor_note_tip
-    return '<p class="text-editor-note">NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.</p>'
+    return '<p class="text-editor-note">NEVER paste text directly from other programs. Use the W button to paste from Word; use the T button to paste from other programs.</p>'.html_safe
   end
   
   def page_title()
@@ -731,7 +732,7 @@ module ApplicationHelper
   def tab_tag( tab_id, tab_label, selected_id )
     tab_name = tab_id.to_s
     selected = tab_id == selected_id ? "class='selected'" : ""
-    "<li id='#{tab_name}-tab-button' #{selected}><a href='##{tab_name}-tab'><span>#{tab_label}</span></a></li>"
+    "<li id='#{tab_name}-tab-button' #{selected}><a href='##{tab_name}-tab'><span>#{tab_label}</span></a></li>".html_safe
 	end
   
 end

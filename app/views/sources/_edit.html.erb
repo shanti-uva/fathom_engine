@@ -21,7 +21,7 @@
 <% end %>
 
 <%= error_messages_for :source %>
-<%   remote_form_for(:source, :url => source_path, :before => "tinyMCE.triggerSave();", :update => div_updated, :html => { :method => :put}) do |f| %>
+<%=   remote_form_for(:source, :url => source_path, :before => "tinyMCE.triggerSave();", :update => div_updated, :html => { :method => :put}) do |f| %>
 
 <%=  render :partial => 'form', :locals => {:f => f} %>
   <p>

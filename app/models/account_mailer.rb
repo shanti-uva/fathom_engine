@@ -6,6 +6,8 @@ class AccountMailer < ActionMailer::Base
     SERVICE_NAME = 'THL Interconnections'
   end
 
+  default :from => 'thl@collab.itc.virginia.edu', :sent_on => Time.now
+  
   def request_full( person, request_text )
     @subject    = "#{person.name} requests full access"
     @body       = { 'person' => person, 'request_text' => request_text }
@@ -44,12 +46,14 @@ class AccountMailer < ActionMailer::Base
 
 
   def invite_user( invitee, inviter, project )
-    @subject    = "#{inviter.person.name} has invited you to join #{SERVICE_NAME}."
+    debugger
+    #@subject    = "#{inviter.person.name} has invited you to join #{SERVICE_NAME}."
     @body       = { 'inviter' => inviter, 'invitee' => invitee, 'project' => project }
-    @recipients = "#{invitee[:full_name]} <#{invitee[:email]}>"
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
+    #@recipients = "#{invitee[:full_name]} <#{invitee[:email]}>"
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
     @headers    = {}
+    mail(:to => "#{invitee[:full_name]} <#{invitee[:email]}>", :subject => "#{inviter.person.name} has invited you to join #{SERVICE_NAME}.")
   end
 
   def forgot_password( user )

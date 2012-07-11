@@ -24,7 +24,7 @@
 <% end %>
 <h4><%= ('Translation for '"<em>#{h('MMS #'"#{@source.mms_id}"', ' + formated_mms_pages(@source))}</em>") %></h4>
 <%= error_messages_for :translated_source %>
-<% remote_form_for(:translated_source, :url => translated_path, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('translated_source_title');", :update => div_updated) do |f| %>
+<%= remote_form_for(:translated_source, :url => translated_path, :before => "tinyMCE.triggerSave(); unsetTextareaToTinyMCE('translated_source_title');", :update => div_updated) do |f| %>
   <p>
     <b>Language of Translation</b><br />
 <%= f.select(:language_id, @languages.collect {|l| [ h(l.title), l.id ] }, { :include_blank => false }) %>

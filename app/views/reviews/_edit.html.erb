@@ -1,7 +1,7 @@
 
 <h4><%= "Editing Review for <em>#{h(@tool.name)}</em>" %></h4>
 <%= error_messages_for :review %>
-<% remote_form_for(:review, :url => tool_review_path(@tool, @review), :before => "tinyMCE.triggerSave();", :update => 'descriptions_div', :html => { :method => :put}) do |f| %>
+<%= remote_form_for(:review, :url => tool_review_path(@tool, @review), :before => "tinyMCE.triggerSave();", :update => 'descriptions_div', :html => { :method => :put}) do |f| %>
  
 </p>
 <%= render :partial => 'form', :locals => {:f => f, :default_author_id => nil} %> 

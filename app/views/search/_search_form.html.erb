@@ -1,5 +1,5 @@
 <div id="searchForm">
-  <% form_tag search_path, :method=>:get do %>
+  <%= form_tag search_path, :method=>:get do %>
     <fieldset>
       <% if params[:f] %>
         <% params[:f].each do |facet_field,values| %>

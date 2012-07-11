@@ -140,7 +140,7 @@ class ReviewsController < ApplicationController
     @tool = Tool.find(params[:tool_id])   
     @d = Review.find(params[:id])
     @review =  Review.find(params[:id])
-    render_reviews
+    # NO LONGER NECESSARY: render_reviews. rendering expand.js.erb
   end
  
   def contract_show

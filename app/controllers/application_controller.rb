@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   include FathomAuthorizationSystem
-  include ExceptionNotification::Notifiable
+  #include ExceptionNotification::Notifiable
   include Spelling
   
   before_filter :dump_env_and_session

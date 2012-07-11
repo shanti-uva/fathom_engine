@@ -2,17 +2,20 @@
 	<div id="activities" class="item">
 		<% unless @person.person_profile.focus.blank? -%>
 			<h3>Current Focus</h3>	
-			<%= rc @person.person_profile.focus.s %>
+			<%#= rc @person.person_profile.focus.s %>
+			<%= @person.person_profile.focus.s.html_safe %>
 		<% end -%>
     
 		<% unless @person.person_profile.goals.blank? -%>
 			<h3>Future Goals</h3>
-			<%= rc @person.person_profile.goals.s %>				
+			<%#= rc @person.person_profile.goals.s %>
+			<%= @person.person_profile.goals.s.html_safe %>				
 		<% end -%>
 		
 		<% unless @person.person_profile.activities_overview.blank? -%>
     			<h3>History</h3>
-			<%= rc @person.person_profile.activities_overview.s %>
+			<%#= rc @person.person_profile.activities_overview.s %>
+			<%= @person.person_profile.activities_overview.s.html_safe %>
 		<% end -%>
 	</div> <!-- END ACTIVITIES -->
 </div> <!-- END ACTIVITIES TAB -->

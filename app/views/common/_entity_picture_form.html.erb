@@ -26,7 +26,7 @@ jQuery(function(){
 })
 </script>
 
-<% form_for(entity, :html => { :multipart => true, :id=>'edit_picture_form' }) do |f| -%>
+<%= form_for(entity, :html => { :multipart => true, :id=>'edit_picture_form' }) do |f| -%>
 	<label for="image">Upload Image:</label>
 	<%= f.file_field :uploaded_data %>
 	<p><em>Please try to use a picture that is generally square shaped. </em><br/><em>It doesn't have to be a square, but please avoid using pictures that are extremely long on the side or height.</em></p>

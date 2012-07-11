@@ -2,7 +2,7 @@
 
 <%= error_messages_for :image %>
 
-<% form_for(@image, :html => { :multipart => true } ) do |f| %>
+<%= form_for(@image, :html => { :multipart => true } ) do |f| %>
   <p>
     <label for="image">Upload Image:</label>
     <%= f.file_field :uploaded_data %>

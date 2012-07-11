@@ -4,17 +4,20 @@
 	<div id="activities" class="item">
 		<% unless project_profile.current_directions.blank? -%>
 			<h3>Current Focus</h3>
-			<%=rc project_profile.current_directions.s %>
+			<%#=rc project_profile.current_directions.s %>
+			<%= project_profile.current_directions.s.html_safe %>
 		<% end -%>
     
 		<% unless project_profile.outcomes.blank? -%>
 			<h3>Future Goals</h3>
-			<%=rc project_profile.outcomes.s %>
+			<%#=rc project_profile.outcomes.s %>
+			<%= project_profile.outcomes.s.html_safe %>
 		<% end -%>
 		
 		<% unless project_profile.history.blank? -%>
 			<h3>History</h3>
-			<%=rc project_profile.history.s %>
+			<%#=rc project_profile.history.s %>
+			<%= project_profile.history.s.html_safe %>
 		<% end -%>
 	</div>
 </div>

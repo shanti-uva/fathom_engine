@@ -149,7 +149,7 @@ jQuery(function(){
 
 
 <div id="main-content" class="narrow">		
-	<% form_for( :tool_profile, tool_profile, :url => { :action => "update_profile", :id => tool.id }, :before => "tinyMCE.triggerSave(); ", :html=>{:id=>'profileForm'} ) do |f| -%>
+	<%= form_for( :tool_profile, tool_profile, :url => { :action => "update_profile", :id => tool.id }, :before => "tinyMCE.triggerSave(); ", :html=>{:id=>'profileForm'} ) do |f| -%>
 	
 	<%= hidden_field_tag( :tab, @selected_tab ) %>
 	

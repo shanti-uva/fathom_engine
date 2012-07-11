@@ -1,6 +1,6 @@
 <h3><%= ('Usage Scenario for '"<em>#{h(@tool.name)}</em>") %></h3>
 <%= error_messages_for :usage_scenario %>
-  <% remote_form_for(:usage_scenario, :url => tool_usage_scenarios_path(@tool), :before => "tinyMCE.triggerSave();", :update => 'usage_scenarios_div') do |f| %>
+  <%= remote_form_for(:usage_scenario, :url => tool_usage_scenarios_path(@tool), :before => "tinyMCE.triggerSave();", :update => 'usage_scenarios_div') do |f| %>
 
 <%=  render :partial => 'usage_scenarios/form', :locals => {:f => f} %>
 

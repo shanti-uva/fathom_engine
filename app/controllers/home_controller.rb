@@ -4,19 +4,20 @@ class HomeController < ApplicationController
   before_filter :main_nav
   
   def index
-    @featured_projects = Project.find(:all, :order => 'RAND()', :limit => 7 )
-    @latest_registrants = Person.find(:all, :order => 'created_at DESC', :limit => 3)
+    @featured_projects = Project.order('RAND()').limit(7)
+    @latest_registrants = Person.order('created_at DESC').limit(3)
     session[:start_node_id] = "node#{@featured_projects.first.id}" unless @featured_projects.empty?
     #render :layout => 'home'
   end
   
   def relate    
     @start_node_id = session[:start_node_id] ? session[:start_node_id] : "node1"
-    @nodes = Entity.find(:all)
+    @nodes = Entity.all
 		@relations = Relationship.relations
 		
     respond_to do |format|
-      format.xml  { render :action => 'relate' }
+      #format.xml  { render :action => 'relate' }
+      format.xml { render 'relate' }
     end
   end
   

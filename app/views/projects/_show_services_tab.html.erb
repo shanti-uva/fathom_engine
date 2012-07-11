@@ -5,32 +5,32 @@
 		
 		<% unless project_profile.data.blank? -%>
 		<h3>Data</h3>
-	  <%= project_profile.data.s %>
+	  <%= project_profile.data.s.html_safe %>
 	  <% end -%>
 	  
 	  <% unless project_profile.tools.blank? -%>
 	  <h3>Tools</h3>
-	  <%= project_profile.tools.s %>
+	  <%= project_profile.tools.s.html_safe %>
 	  <% end -%>
 	  
 	  <% unless project_profile.training.blank? -%>
 	  <h3>Training</h3>
-	  <%= project_profile.training.s %>
+	  <%= project_profile.training.s.html_safe %>
 	  <% end -%>
 	  
 	  <% unless project_profile.events.blank? -%>
 	  <h3>Events</h3>
-	  <%= project_profile.events.s %>
+	  <%= project_profile.events.s.html_safe %>
 	  <% end -%>
 	  
 	  <% unless project_profile.opportunities.blank? -%>
 	  <h3>Opportunities</h3>
-	  <%= project_profile.opportunities.s %>
+	  <%= project_profile.opportunities.s.html_safe %>
 	  <% end -%>
 	  
 	  <% unless project_profile.other.blank? -%>
 	  <h3>Other</h3>
-	  <%= project_profile.other.s %>
+	  <%= project_profile.other.s.html_safe %>
 	  <% end -%>
 		
 	</div>													

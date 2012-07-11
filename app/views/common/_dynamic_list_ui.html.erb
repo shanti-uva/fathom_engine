@@ -1,0 +1,30 @@
+<script>
+$(document).ready(function() {
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+	
+});
+</script>
+	
+<%#= render :partial => '/line_items/item_list', :locals => { :item_list => item_list, :entity => person, :category => category  } %>
+<% case category
+	when "positions" 
+		caption = "Add Position"
+		title = "Positions"
+	when "credentials"
+		caption = "Add Education/Credentials"
+		title = "Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution — Ph.D., University of Virginia"
+	when "affiliations" 
+		caption = "Add Memberships/Affiliations"
+		title = "Memberships/Affiliations"
+	end
+%>
+<br/><br/>
+<em><%= title %></em>
+<%=  form_for(:line_item, :url => add_item_person_line_items_path(person), :remote => true) do |df| %>
+  <p> 							  
+    <%= df.text_field :text, :style=>"width:428px"  %>
+    <%= df.hidden_field :category, :value => category %>
+	
+    <%=    submit_tag (caption) %>
+  </p>
+<% end %>
