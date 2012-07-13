@@ -11,3 +11,11 @@ FATHOM_CONTACT_ADDRESS = FATHOM_NO_REPLY_ADDRESS
 ##ExceptionNotifier.exception_recipients = %w(ys2n@virginia.edu)
 ENV['RECAPTCHA_PUBLIC_KEY']  = '6LcK2gkAAAAAANGvhQ8jxCvvlXUulHx1RGUNhrd0'
 ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcK2gkAAAAAAGgFUYoC4ogH1xwcNKTfHMCwRVLG'
+
+class String
+  def span
+    #return self if blank?
+    return self
+  end      
+  alias :s :span
+end
