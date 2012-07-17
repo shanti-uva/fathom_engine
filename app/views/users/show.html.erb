@@ -39,7 +39,9 @@
 		
 		<ul class="gallery-button update btn-three">
 		<li><%= link_to 'Edit', edit_user_path(@user) %> </li>
-		<li><%= link_to 'Delete', @user, :confirm => 'Are you sure?', :method => :delete %></li> 
+		<li><%#= link_to 'Delete', @user, :confirm => 'Are you sure?', :method => :delete %></li> 
+		<li><%= button_to 'Delete', user_path(@user), :method => :delete, :confirm => 'Are you sure?' %></li> 
+		
 		<li><%= link_to 'Back to Admin', users_path %></li>
 		</ul>
 			

@@ -167,7 +167,7 @@ class UsersController < ApplicationController
     cookies.delete :auth_token
     recaptcha_verified = false
     #blacklist = Blacklist.find(:first, :conditions => [ "email = ?", params[:user][:email]]  )
-    blacklist = Blacklist.first.where("email = ?", params[:user][:email])
+    blacklist = Blacklist.where("email = ?", params[:user][:email]).first
     if !blacklist.blank?
       # the user is in the blacklist, so is turned down
       #update No. of attempts, and Last Attempt date of black list record

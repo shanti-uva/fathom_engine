@@ -106,16 +106,18 @@ class User < ActiveRecord::Base
       self.access_level = new_level
       self.request_full = false
       if prev_access_level == 'Pending'
-        AccountMailer.deliver_access_granted(self)
+        #AccountMailer.deliver_access_granted(self)
+        AccountMailer.access_granted(self).deliver
       else
-        AccountMailer.deliver_access_level_changed(self)
+        AccountMailer.access_level_changed(self).deliver
       end
     end
   end
 
   def notify_pending_level( )
     if self.access_level == 'Pending'
-        AccountMailer.deliver_notify_pending(self)
+        #AccountMailer.deliver_notify_pending(self)
+        AccountMailer.notify_pending(self).deliver
     end
   end
   

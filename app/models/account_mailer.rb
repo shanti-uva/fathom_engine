@@ -8,7 +8,7 @@ class AccountMailer < ActionMailer::Base
 
   #default :from => 'thl@collab.itc.virginia.edu', :sent_on => Time.now
   #default :from => FATHOM_NO_REPLY_ADDRESS, :sent_on => Time.now #'hmazariegos@inmotionconsulting.net'
-  default :from => 'hmazariegos@inmotionconsulting.net'
+  default :from => 'thl@inmotionconsulting.net'
   
   def registration_confirmation
     mail(:to => 'hmazariegos@inmotionconsulting.net', :subject => "Registered")
@@ -24,30 +24,36 @@ class AccountMailer < ActionMailer::Base
   end
   
   def access_level_changed( user )
-    @subject    = "#{SERVICE_NAME}: access level changed"
-    @body       = { 'user' => user }
-    @recipients = "#{user.person.name} <#{user.email}>"
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
-    @headers    = {}
+    @user = user
+    #@subject    = "#{SERVICE_NAME}: access level changed"
+    #@body       = { 'user' => user }
+    #@recipients = "#{user.person.name} <#{user.email}>"
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
+    #@headers    = {}
+    mail(:to => "#{user.person.name} <#{user.email}>", :subject => "#{SERVICE_NAME}: access level changed")
   end
   
   def access_granted( user )
-    @subject    = "#{SERVICE_NAME}: access granted"
-    @body       = { 'user' => user }
-    @recipients = "#{user.person.name} <#{user.email}>"
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
-    @headers    = {}
+    @user = user
+    #@subject    = "#{SERVICE_NAME}: access granted"
+    #@body       = { 'user' => user }
+    #@recipients = "#{user.person.name} <#{user.email}>"
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
+    #@headers    = {}
+    mail(:to => "#{user.person.name} <#{user.email}>", :subject => "#{SERVICE_NAME}: access granted")
   end
 
   def notify_pending( user )
-    @subject    = "#{SERVICE_NAME}: new user waiting for approval"
-    @body       = { 'user' => user }
-    @recipients = FATHOM_CONTACT_ADDRESS
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
-    @headers    = {}
+    @user = user
+    #@subject    = "#{SERVICE_NAME}: new user waiting for approval"
+    #@body       = { 'user' => user }
+    #@recipients = FATHOM_CONTACT_ADDRESS
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
+    #@headers    = {}
+    mail(:to => FATHOM_CONTACT_ADDRESS, :subject => "#{SERVICE_NAME}: new user waiting for approval")
   end
 
 
