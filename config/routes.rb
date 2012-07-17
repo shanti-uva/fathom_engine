@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :blacklists, :relationships, :languages, :posts
   resources :sessions, :except => [:index]
   
+  match '/testmail' => 'users#testmail', :as => :testmail
   match '/signup' => 'users#new', :as => :signup
   match '/signup_netbadge' => 'users#new_netbadge', :as => :signup_netbadge
   match '/signup_openid' => 'users#new_openid', :as => :signup_openid

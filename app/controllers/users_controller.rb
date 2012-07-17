@@ -380,6 +380,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def testmail
+    AccountMailer.registration_confirmation.deliver
+  end
+
   protected
   
   #

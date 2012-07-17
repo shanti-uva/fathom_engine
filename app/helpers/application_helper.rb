@@ -130,7 +130,7 @@ module ApplicationHelper
     str += "});" + "\n"
     str += "//]]>" + "\n"
     str += "</script> "
-    return str 
+    return str.html_safe 
   end
   
   def site_title(opts={:html=>true})
