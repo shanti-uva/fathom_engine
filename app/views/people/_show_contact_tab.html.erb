@@ -12,7 +12,7 @@
 					<%= @person.person_profile.address_two.s.html_safe %><br/>
 				<% end -%>
 				<% unless @person.person_profile.city.blank? -%>
-					<%#= rc @person.person_profile.city.s %>, <%= rc @person.person_profile.state.s %>, <%= rc @person.person_profile.zipcode.s %><br/>
+					<%#= rc @person.person_profile.city.s %>, <%#= rc @person.person_profile.state.s %>, <%#= rc @person.person_profile.zipcode.s %><br/>
 					<%= @person.person_profile.city.s.html_safe %>, <%= @person.person_profile.state.s.html_safe %>, <%= @person.person_profile.zipcode.s.html_safe %><br/>
 				<% end -%>
 				<% unless @person.person_profile.country.blank? -%>
