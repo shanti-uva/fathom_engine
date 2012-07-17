@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @uses_admin_grid = true
     @current_nav_item = :admin
     #@users = User.find(:all, :order => "access_level DESC")
-    @users = User.Order("access_level DESC")
+    @users = User.order("access_level DESC")
     render :action => 'index'#, :layout => 'main'
   end
   
