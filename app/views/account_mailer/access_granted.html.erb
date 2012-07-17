@@ -3,7 +3,7 @@ Dear <%= @user.person.name %>,
 <%  if APPLICATION_DOMAIN == 'shanti.virginia.edu'%>
 Welcome to the UVa SHANTI Portal. You can now proceed to create your own entry. <%= link_to 'Login', 'http://shanti.virginia.edu/login_page' %> with your previously selected login ID and password to get started.   
 <% else %>
-Welcome to the THL Interconnections Portal. You can now proceed to create your own entry. <%= link_to 'Login', 'http://connections.thlib.org/login_page' %> with your previously selected login ID and password to get started.   
+Welcome to the THL Connections Portal. You can now proceed to create your own entry. <%= link_to 'Login', 'http://connections.thlib.org/login_page' %> with your previously selected login ID and password to get started.   
 <% end %>
 If you have any questions, please contact us at <%= FATHOM_NO_REPLY_ADDRESS %>.
 

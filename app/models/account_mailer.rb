@@ -15,12 +15,15 @@ class AccountMailer < ActionMailer::Base
   end
   
   def request_full( person, request_text )
-    @subject    = "#{person.name} requests full access"
-    @body       = { 'person' => person, 'request_text' => request_text }
-    @recipients = FATHOM_CONTACT_ADDRESS
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
-    @headers    = {}
+    @person = person
+    @request_text = request_text
+    #@subject    = "#{person.name} requests full access"
+    #@body       = { 'person' => person, 'request_text' => request_text }
+    #@recipients = FATHOM_CONTACT_ADDRESS
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
+    #@headers    = {}
+    mail(:to => FATHOM_CONTACT_ADDRESS, :subject => "#{person.name} requests full access")
   end
   
   def access_level_changed( user )
@@ -71,13 +74,17 @@ class AccountMailer < ActionMailer::Base
   end
 
   def forgot_password( user )
-    @subject    = "Password reset for #{SERVICE_NAME}"
-    @body       = { 'user' => user }
-    @body[:url]  = "http://#{APPLICATION_DOMAIN}/reset/#{user.reset_code}"
-    @body[:service_name] = SERVICE_NAME
-    @recipients = "#{user.person.name} <#{user.email}>"
-    @from       = FATHOM_NO_REPLY_ADDRESS
-    @sent_on    = Time.now
-    @headers    = {}
+    @user = user
+    @url = "http://#{APPLICATION_DOMAIN}/reset/#{user.reset_code}"
+    @service_name = SERVICE_NAME
+    #@subject    = "Password reset for #{SERVICE_NAME}"
+    #@body       = { 'user' => user }
+    #@body[:url]  = "http://#{APPLICATION_DOMAIN}/reset/#{user.reset_code}"
+    #@body[:service_name] = SERVICE_NAME
+    #@recipients = "#{user.person.name} <#{user.email}>"
+    #@from       = FATHOM_NO_REPLY_ADDRESS
+    #@sent_on    = Time.now
+    #@headers    = {}
+    mail(:to => "#{user.person.name} <#{user.email}>", :subject => "Password reset for #{SERVICE_NAME}")
   end
 end

@@ -96,7 +96,8 @@ class User < ActiveRecord::Base
   def request_full_access( request_text )
     unless self.request_full
       self.request_full = true
-      AccountMailer.deliver_request_full(self.person,request_text)
+      #AccountMailer.deliver_request_full(self.person,request_text)
+      AccountMailer.request_full(self.person,request_text).deliver
     end         
   end
   
