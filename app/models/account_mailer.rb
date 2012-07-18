@@ -6,7 +6,7 @@ class AccountMailer < ActionMailer::Base
     SERVICE_NAME = 'THL Interconnections'
   end
 
-  default :from => 'thl@collab.itc.virginia.edu', :sent_on => Time.now
+  default :from => 'thl@collab.itc.virginia.edu'#, :sent_on => Time.now
   #default :from => FATHOM_NO_REPLY_ADDRESS, :sent_on => Time.now 
   #default :from => 'thl@inmotionconsulting.net'
   
