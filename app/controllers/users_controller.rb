@@ -382,6 +382,7 @@ class UsersController < ApplicationController
 
   def testmail
     AccountMailer.registration_confirmation.deliver
+    redirect_to(root_path)
   end
 
   protected

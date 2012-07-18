@@ -15,7 +15,6 @@ ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcK2gkAAAAAAGgFUYoC4ogH1xwcNKTfHMCwRVLG'
 
 class String
   def span
-    #return self if blank?
     return self
   end      
   alias :s :span
