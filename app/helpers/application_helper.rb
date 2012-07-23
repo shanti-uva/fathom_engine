@@ -90,10 +90,10 @@ module ApplicationHelper
     
   def javascripts
     if APPLICATION_DOMAIN == 'shanti.virginia.edu'
-      [super, include_tiny_mce_if_needed].join("\n")
+      [super, include_tiny_mce_if_needed].join("\n").html_safe
     else #'thlib.org'
       if @current_style == :details #edit mode then needs tiny_mce
-        [super, include_tiny_mce_if_needed].join("\n")
+        [super, include_tiny_mce_if_needed].join("\n").html_safe
       else
         super
       end
