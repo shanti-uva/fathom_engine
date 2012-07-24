@@ -11,7 +11,7 @@ class AccountMailer < ActionMailer::Base
   #default :from => 'thl@inmotionconsulting.net'
   
   def registration_confirmation
-    mail(:to => 'hmazariegos@inmotionconsulting.net', :subject => "Registered")
+    mail(:to => 'thl@collab.itc.virginia.edu', :subject => "Test")
   end
   
   def request_full( person, request_text )
