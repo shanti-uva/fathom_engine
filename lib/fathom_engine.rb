@@ -5,8 +5,8 @@ APPLICATION_DOMAIN = 'connections.thlib.org'
 
 # Target e-mails for exception handling.
 #FATHOM_NO_REPLY_ADDRESS = 'thl@inmotionconsulting.net'
-FATHOM_NO_REPLY_ADDRESS = 'thl@collab.itc.virginia.edu'
-#FATHOM_NO_REPLY_ADDRESS = 'hm5u@virginia.edu'
+#FATHOM_NO_REPLY_ADDRESS = 'thl@collab.itc.virginia.edu'
+FATHOM_NO_REPLY_ADDRESS = 'hm5u@virginia.edu'
 FATHOM_CONTACT_ADDRESS = FATHOM_NO_REPLY_ADDRESS
 
 ##ExceptionNotifier.sender_address = %Q("Application Error" <#{FATHOM_NO_REPLY_ADDRESS}>)
