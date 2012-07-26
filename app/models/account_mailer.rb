@@ -9,7 +9,7 @@ class AccountMailer < ActionMailer::Base
   default :from => FATHOM_NO_REPLY_ADDRESS
   
   def registration_confirmation
-    mail(:to => 'admin@thlib.org', :subject => "Test using admin@thlib.org")
+    mail(:to => 'thl@collab.itc.virginia.edu', :subject => "Test using admin@thlib.org")
   end
   
   def request_full( person, request_text )
