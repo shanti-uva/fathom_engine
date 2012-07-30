@@ -12,9 +12,3 @@ FATHOM_CONTACT_ADDRESS = FATHOM_NO_REPLY_ADDRESS
 ENV['RECAPTCHA_PUBLIC_KEY']  = '6LcK2gkAAAAAANGvhQ8jxCvvlXUulHx1RGUNhrd0'
 ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcK2gkAAAAAAGgFUYoC4ogH1xwcNKTfHMCwRVLG'
 
-class String
-  def span
-    return self
-  end      
-  alias :s :span
-end

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   								
   helper :all # include all helpers, all the time
   
-  include AuthenticatedSystem
+  include FathomAuthenticatedSystem
   include FathomAuthorizationSystem
   #include ExceptionNotification::Notifiable
   include Spelling
