@@ -1,7 +1,7 @@
 <div id="main">
   <div class="clearfloat">
     <div class="right" id="facets">
-      <div id="reset-search"><%= link_to '&raquo; reset search', search_path %></div>
+      <div id="reset-search"><%= link_to '&raquo; reset search'.html_safe, search_path %></div>
 
       <% unless @search_results.nil? or @search_results.size==0 %>
         <h3>Limit by...</h3>

@@ -26,6 +26,7 @@ class SearchController < ApplicationController
       1 : params[:page].to_i
 
     @search_query = params[:s].to_s
+    
     @solr = SolrSearch.new( SOLR_URL )
     @current_nav_item = :search
     
@@ -83,14 +84,18 @@ class SearchController < ApplicationController
     end
 
     begin
-      @solr_result_set = @solr.search(@search_query, solr_params)
+      #if @search_query.blank?
+      #  @solr_result_set = @solr.search("*:*", solr_params)
+      #else
+        @solr_result_set = @solr.search(@search_query, solr_params)
+      #end
+
     rescue Exception => e 
      #ExceptionNotifier.deliver_exception_notification(e, self, request)
     end
    
     @search_results = @solr_result_set.hits.map do |r|
       result = SearchResult.new(r)
-
       # TODO: Optimization: don't perform secondary search if we're not really
       # searching and we're just getting facet counts.
 

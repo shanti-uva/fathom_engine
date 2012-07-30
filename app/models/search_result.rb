@@ -50,8 +50,8 @@ class SearchResult
     # Look up the controller from the entityType.
     controller = controllerize result['entityType']
     @hit_url = "/#{controller}/#{result['entityID']}?tab=#{result['fieldSet'].downcase}"
-    @hit_name = "#{result['fieldSet']} &raquo; #{result['fieldName']}"
-    @fragment_name = "#{result['entityName']} &raquo; " + @hit_name
+    @hit_name = "#{result['fieldSet']} &raquo; #{result['fieldName']}".html_safe
+    @fragment_name = "#{result['entityName']} &raquo; ".html_safe + @hit_name
     @entity_url = "/#{controller}/#{result['entityID']}"
     @entity_image_url = result['imageURL']
     @entity_name = result['entityName']

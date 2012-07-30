@@ -29,6 +29,8 @@ class ProfileTagCombiner
     doctype_filter_query = " +(docType:\"#{SearchResult::ENTITY_TYPE}\" docType:\"#{SearchResult::EXTERNAL_TYPE}\")"
     solr_params = {:facets=>{:fields=>fields, :mincount=>1, :limit=>-1 }, :filter_queries => [ doctype_filter_query ] }
     solr_result_set = @solr.search("", solr_params)
+    #solr_result_set = @solr.search("*:*", solr_params)
+    
 
     @facet_fields = solr_result_set.data['facet_counts']['facet_fields']
   end
