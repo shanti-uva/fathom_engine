@@ -84,11 +84,11 @@ class SearchController < ApplicationController
     end
 
     begin
-      #if @search_query.blank?
-      #  @solr_result_set = @solr.search("*:*", solr_params)
-      #else
+      if @search_query.blank?
+        @solr_result_set = @solr.search("*:*", solr_params)
+      else
         @solr_result_set = @solr.search(@search_query, solr_params)
-      #end
+      end
 
     rescue Exception => e 
      #ExceptionNotifier.deliver_exception_notification(e, self, request)
