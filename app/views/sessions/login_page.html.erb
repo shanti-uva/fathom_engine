@@ -3,7 +3,7 @@
 	<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>	
 	  <h3>Non-UVa Login</h3>
 	<% else %>
-	  <h3>Interconnections Login</h3>
+	  <h3>Connections Login</h3>
 	<% end %>
 	<div id="login-page">
 			<%= form_tag sessions_path, :id => 'login_form' do -%>
@@ -43,8 +43,8 @@
 		<p><%= link_to 'Sign up for Guest Access', signup_openid_path %>. This will allow you to create a personal entry in the portal, as well as apply for full access, which will additionally allow you to make entries for projects, organizations, and tools.</p>
 	<% else %>
 		<br/>
-		<h3>Register for your Own Interconnections Account</h3>  
-		<p><%= link_to 'Sign up for Guest Access', signup_openid_path %>. This enables you to create an account to make your own entries in Interconnections for yourself, projects, and organizations.</p>
+		<h3>Register for your Own Connections Account</h3>  
+		<p><%= link_to 'Sign up for Guest Access', signup_openid_path %>. This enables you to create an account to make your own entries in Connections for yourself, projects, and organizations.</p>
 	<% end %>
 				
 	</div>

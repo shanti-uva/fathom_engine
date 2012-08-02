@@ -3,7 +3,7 @@ class AccountMailer < ActionMailer::Base
   if APPLICATION_DOMAIN == 'shanti.virginia.edu'
     SERVICE_NAME = 'SHANTI at the University of Virginia'
   else
-    SERVICE_NAME = 'THL Interconnections'
+    SERVICE_NAME = 'THL Connections'
   end
 
   default :from => FATHOM_NO_REPLY_ADDRESS
