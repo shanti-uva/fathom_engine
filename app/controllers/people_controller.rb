@@ -30,21 +30,25 @@ class PeopleController < ApplicationController
     
     @project = Project.find(params[:project_id]) if params[:project_id]
     unless admin?
-      @people = Person.paginate({
-          :page => params[:page],
-          :per_page => 20,
-          :conditions => ["user_id not in (select id from users where access_level = ?) and user_id not in (select id from users where private_profile = ?)", "Pending", true],
-          :order => order_string,
-          :include=>[:person_profile, {:person_profile=>:professional_profiles}]
-          })
+      #@people = Person.paginate({
+      #    :page => params[:page],
+      #    :per_page => 20,
+      #    :conditions => ["user_id not in (select id from users where access_level = ?) and user_id not in (select id from users where private_profile = ?)", "Pending", true],
+      #    :order => order_string,
+      #    :include=>[:person_profile, {:person_profile=>:professional_profiles}]
+      #    })
+      @people = Person.where(["user_id not in (select id from users where access_level = ?) and user_id not in (select id from users where private_profile = ?)", "Pending", true]).order(order_string).includes([:person_profile, {:person_profile=>:professional_profiles}]).paginate(:page => params[:page], :per_page => 20)
+      
     else
-      @people = Person.paginate({
-          :page => params[:page],
-          :per_page => 20,
-          :conditions => ["user_id not in (select id from users where access_level = ?)", "Pending"],
-          :order => order_string,
-          :include=>[:person_profile, {:person_profile=>:professional_profiles}]
-        })
+      #@people = Person.paginate({
+      #    :page => params[:page],
+      #    :per_page => 20,
+      #    :conditions => ["user_id not in (select id from users where access_level = ?)", "Pending"],
+      #    :order => order_string,
+      #    :include=>[:person_profile, {:person_profile=>:professional_profiles}]
+      #  })
+      @people = Person.where(["user_id not in (select id from users where access_level = ?)", "Pending"]).order(order_string).includes([:person_profile, {:person_profile=>:professional_profiles}]).paginate(:page => params[:page], :per_page => 20)
+      
     end
     
     @profile_view = false    

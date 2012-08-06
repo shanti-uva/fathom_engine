@@ -1,7 +1,7 @@
 
 # Fathom-engine
 # APPLICATION_DOMAIN = 'shanti.virginia.edu'
-APPLICATION_DOMAIN = 'connections.thlib.org'
+# APPLICATION_DOMAIN = 'connections.thlib.org'
 
 # Target e-mails for exception handling.
 FATHOM_NO_REPLY_ADDRESS = 'admin@thlib.org'
