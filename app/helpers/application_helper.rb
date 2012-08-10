@@ -7,7 +7,7 @@ module ApplicationHelper
   
   def stylesheet_files
     if APPLICATION_DOMAIN == 'shanti.virginia.edu'
-      ['fathom'] + super
+      ['fathom', 'jquery-ui'] + super
     else #'thlib.org'
       if @current_style == :details
         super + ['fathom','thickbox','communications', 'jquery-ui-tabs', 'jquery-ui'] 
@@ -33,7 +33,8 @@ module ApplicationHelper
       if @current_style == :details
         if APPLICATION_DOMAIN == 'shanti.virginia.edu'
           if logged_in?
-            super + ['category_selector','application','togglesections','thickbox-compressed','jquery-plugins','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min']
+            #['category_selector','application','togglesections','thickbox-compressed','jquery-plugins','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] + super
+            super + ['category_selector','application','togglesections','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min']
           else
             super + ['category_selector','application','thickbox-compressed','jquery-plugins','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min']
           end
