@@ -1,0 +1,13 @@
+<% if !params[:review_id].nil?
+     div_updated = 'reviewsources_div' %>
+	  $("#reviewsources_div").html("<%= escape_javascript(render(:partial => 'sources/index',  :locals => {:resource => @source.resource}  )) %>")
+<% else
+     if !params[:usage_scenario_id].nil?
+	   div_updated = 'usagescenariosources_div' %>
+	  $("#usagescenariosources_div").html("<%= escape_javascript(render(:partial => 'sources/index',  :locals => {:resource => @source.resource}  )) %>")
+<%   else
+	   div_updated = 'toolsources_div' %>
+	  $("#toolsources_div").html("<%= escape_javascript(render(:partial => 'sources/index',  :locals => {:resource => @source.resource}  )) %>")
+<%	 end
+   end
+%>

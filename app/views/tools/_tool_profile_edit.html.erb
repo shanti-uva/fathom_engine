@@ -148,6 +148,25 @@ jQuery(function(){
 </script>
 
 
+<script>
+	$('.ui_definition_dialog').live('click', function() {
+	//alert('click');
+	
+  	$("#popup_dialog").html("<p></p>")
+  	//$("#popup_dialog").dialog( "destroy" );
+	$("#popup_dialog" ).dialog({ modal: true, width: 650});
+  	//$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
+  	//$("#popup_dialog").dialog('open');
+});
+</script>
+	
+<div id="popup_dialog">
+</div>
+
+<!--<button type="button" class = 'ui_definition_dialog'>Click Me!</button> -->
+
+
+
 <div id="main-content" class="narrow">		
 	<%= form_for( :tool_profile, tool_profile, :url => { :action => "update_profile", :id => tool.id }, :before => "tinyMCE.triggerSave(); ", :html=>{:id=>'profileForm'} ) do |f| -%>
 	
@@ -178,7 +197,8 @@ jQuery(function(){
 			
 			<h3>Tool Type</h3>
 			  <p>
-			<%#=  category_selector(@tool_type, :tool_profile, :tool_type, true, :hasTree => 'true', :singleSelectionTree => 'true')%>
+				<%#=  category_selector(@tool_type, :tool_profile, :tool_type, true, :hasTree => 'true', :singleSelectionTree => 'true')%>
+				<%=	category_fields :subject => {:label => 'Tool Type'}, :root => nil, :var_name => :tool_profile, :field_name => :tool_type, :include_js => false, :include_styles => true, :selectable => true, :single_selection => true %>
 			  </p>
 			
 
@@ -236,7 +256,7 @@ jQuery(function(){
 			<h3>Usage Scenarios</h3>
 				<em>please note that in usage scenarios any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button</em>
 	  		    <div id='usage_scenarios_div'>
-
+				  <%# commented Aug 2012 until upgraded to rails 3%>
 			      <%=     render :partial => 'usage_scenarios/index', :locals => {:tool => tool, :usage_scenario => nil} %>	
 
 			    </div>
@@ -258,7 +278,7 @@ jQuery(function(){
   		  <h3>Reviews</h3>
 			<em>please note that in reviews any changes are immediately submitted, while with other tabs, no changes are committed until you click on the overall UPDATE  button</em>
   		    <div id='descriptions_div'>
-		      
+		      <%# commented Aug 2012 until upgraded to rails 3%>
 		      <%=     render :partial => 'reviews/index', :locals => {:tool => tool, :review => nil} %>	
 		     
 		    </div>

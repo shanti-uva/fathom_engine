@@ -1,4 +1,4 @@
-<% tool.usage_scenarios.find(:all, :order => 'id').each do |r| %>
+<% tool.usage_scenarios.order('id').each do |r| %>
 	<div id="<%= "#{r.id}_usagediv" %>">
 <%  if usage_scenario.nil? 		
       if r.is_primary? %>

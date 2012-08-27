@@ -4,7 +4,8 @@
 	<div id="technology" class="item">
 		<% unless tool_profile.technical_details.blank? -%>
 			<h3>Technical Details</h3>
-			<%=rc tool_profile.technical_details %>
+			<%#=rc tool_profile.technical_details %>
+			<%= tool_profile.technical_details.html_safe %>
 		<% end -%>
 
 		<dl>

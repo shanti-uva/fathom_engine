@@ -5,6 +5,7 @@
 <p>
   <b>Usage Scenario Title</b><br />
   <em>Use title case for capitalization (e.g. An Exciting...)</em>
+<br/>
   <%= f.text_field(:title, :size => 65) %>
 </p>
 <p> 
@@ -18,7 +19,7 @@
  //]]>
  </script>
 <p>
-<%= link_to_remote 'Add new Author', :url => add_author_tool_usage_scenarios_path(@tool), :update => 'usageupdate_div', :position => 'before', :method => 'get' %>
+  <%= link_to 'Add new Author', add_author_tool_usage_scenarios_path(@tool), :position => 'before', :remote => true, :title=>'Add new Author' %>
 </p>
 <div id="usageauthors_div">
 <%  for author in @usage_scenario.authors %>

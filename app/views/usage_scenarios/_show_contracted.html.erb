@@ -1,5 +1,5 @@
 <p>
-	<%= link_to_remote '.', {:url => expand_show_tool_usage_scenario_path(tool,d),  :method => 'get'},  { :class => 'descriptionplus_icon' } %>    
+	<%= link_to '.', expand_show_tool_usage_scenario_path(tool,d), :class => 'descriptionplus_icon', :remote => true %>   
 	<% if !d.title.blank? %>  
 	<%   if !d.authors.empty? %>
 		   <b class='title'><%= d.title %></b>

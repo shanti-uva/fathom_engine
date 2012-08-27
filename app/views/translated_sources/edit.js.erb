@@ -1,0 +1,9 @@
+<% if !params[:review_id].nil? %>
+	 $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/edit_ui', :locals => {:tool => @tool, :source => @source, :review => @review} )) %>")
+<% else 
+     if !params[:usage_scenario_id].nil? %>
+	   $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/edit_ui', :locals => {:tool => @tool, :source => @source, :usage_scenario => @usage_scenario} )) %>")
+<%   else %>
+	   $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/edit_ui', :locals => { :tool => @tool, :source => @source } )) %>")
+<%	 end
+   end %>

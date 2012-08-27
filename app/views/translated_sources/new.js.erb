@@ -1,0 +1,14 @@
+
+<% if !params[:review_id].nil?
+     div_updated = 'reviewsources_div' %>
+	 $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/new_ui' )) %>")
+<% else
+     if !params[:usage_scenario_id].nil?
+	   div_updated = 'usagescenariosources_div' %>
+	  $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/new_ui' )) %>")
+<%   else
+	   div_updated = 'toolsources_div' %>
+	   $("#popup_dialog").html("<%= escape_javascript(render(:partial => 'translated_sources/new_ui')) %>")
+<%	 end
+   end
+%>

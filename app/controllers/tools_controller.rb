@@ -71,6 +71,11 @@ class ToolsController < ApplicationController
     end  
   end
 
+  def dialog
+    @current_style = :details
+    render :layout => 'test_dialog'
+  end
+  
    # GET /tools/1/edit_picture
    def edit_picture
      @tool = Tool.find(params[:id])

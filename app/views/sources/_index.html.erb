@@ -20,7 +20,7 @@
 
 <% if !resource.sources.empty? %>
 <p><b>Detail for textual sources:</b></p>
-<%   resource.sources.find(:all).each do |s| %>
+<%   resource.sources.each do |s| %>
 	   <div id="<%= "#{s.id}_sourcediv" %>">
 <%     if @source.nil? 	%>	
 <%=      render :partial => 'sources/contracted', :locals => {:resource => resource, :s => s} %>
@@ -36,6 +36,7 @@
 <% end %>
 <% if full_access? -%>
   <p>
-  <%=  link_to_remote new_legend, :url => new_path, :update => div_updated, :method => 'get', :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %>
+  <%=  link_to new_legend, new_path, :remote => true, :method => 'get', :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');" %>
+
   </p>
 <% end -%>

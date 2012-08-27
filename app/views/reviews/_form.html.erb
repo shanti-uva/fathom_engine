@@ -1,6 +1,12 @@
+<script type="text/javascript">
+ //<![CDATA[
+   setTextareaToTinyMCE('review_content');
+ //]]>
+ </script>
 <p>
   <b>Review Title</b><br />
   <em>Use title case for capitalization (e.g. An Exciting...)</em>
+  <br/>
   <%= f.text_field(:title, :size => 65) %>
 </p>
 <p>
@@ -8,13 +14,9 @@
     <%= f.text_area :content, :rows => 16, :cols => 65, :class => 'mceEditor' %>
 </p>
 <%= f.hidden_field :tool_id %>
-<script type="text/javascript">
- //<![CDATA[
-   setTextareaToTinyMCE('review_content');
- //]]>
- </script>
+
 <p>
-<%= link_to_remote 'Add new Author', :url => add_author_tool_reviews_path(@tool), :update => 'update_div', :position => 'before', :method => 'get' %>
+  <%= link_to 'Add new Author', add_author_tool_reviews_path(@tool), :position => 'before', :remote => true, :title=>'Add new Author' %>
 </p>
 <div id="authors_div">
 <%  for author in @review.authors %>

@@ -4,7 +4,8 @@
   
 	<div id="profile" class="item">
     	<% unless tool_profile.summary.blank? -%>			
-        	<%= rc tool_profile.summary %>	
+        	<%#= rc tool_profile.summary %>	
+			<%= tool_profile.summary.html_safe %>	
 		<% end -%>
 		<%  if !tool.sources.empty? %>
 		    <h4><div class='padded'>Summary Sources</div></h4>
@@ -17,7 +18,9 @@
 		
     	<% unless tool_profile.tool_type_id.blank? -%>	
 			<h3>Tool Type</h3>		
-        	<%= rc tool_profile.tool_type.title %>	
+        	<%#= rc tool_profile.tool_type.title %>
+			<%= tool_profile.tool_type.title.html_safe %>	
+
 		<% end -%>
         
         <dl>  
@@ -28,7 +31,8 @@
 
     	<% unless tool_profile.operating_system.blank? -%>			
 		<h3>Notes on Operating Systems</h3>
-        	<%= rc tool_profile.operating_system %>	
+        	<%#= rc tool_profile.operating_system %>
+			<%= tool_profile.operating_system.html_safe %>		
 		<% end -%>
 		
 		<dl>
@@ -37,12 +41,14 @@
 
     	<% unless tool_profile.platform.blank? -%>			
 		<h3>Notes on Platforms</h3>
-        	<%= rc tool_profile.platform %>	
+        	<%#= rc tool_profile.platform %>	
+			<%= tool_profile.platform.html_safe %>	
 		<% end -%>
 		
     	<% unless tool_profile.system_requirements.blank? -%>			
 		<h3>System Requirements</h3>
-        	<%= rc tool_profile.system_requirements %>	
+        	<%#= rc tool_profile.system_requirements %>
+			<%= tool_profile.system_requirements.html_safe %>
 		<% end -%>
 		
 		<dl>
@@ -51,14 +57,14 @@
 
     	<% unless tool_profile.license.blank? -%>			
 		<h3>Notes on License</h3>
-        	<%= rc tool_profile.license %>	
+        	<%#= rc tool_profile.license %>	
+			<%= tool_profile.license.html_safe %>	
 		<% end -%>
-
-
 
     	<% unless tool_profile.cost.blank? -%>			
 		<h3>Cost</h3>
-        	<%= rc tool_profile.cost %>	
+        	<%#= rc tool_profile.cost %>	
+			<%= tool_profile.cost.html_safe %>	
 		<% end -%>
 		
 	</div>

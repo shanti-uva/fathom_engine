@@ -1,0 +1,1 @@
+$("#<%= @d.id %>_usagediv").html("<%= escape_javascript(render(:partial => 'usage_scenarios/show_contracted', :locals => { :tool => @tool, :d => @d })) %>")

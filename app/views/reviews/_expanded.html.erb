@@ -1,5 +1,6 @@
 <p>
-	<%=   link_to_remote '.', {:url => contract_tool_review_path(tool,d), :update => "#{d.id}_descdiv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %> 
+	<%=   link_to '.', contract_tool_review_path(tool,d), :class => 'descriptionminus_icon', :remote => true  %> 
+	
 	<% if !d.title.blank? %>  
 	<%   if !d.authors.empty? %>
 		   <b class='title'><%= d.title %></b>
@@ -18,12 +19,12 @@
 	<span class='last_updated'>(<%= 'last updated '"#{h(d.updated_at.to_date.to_formatted_s(:long))}" %>)</span>	
 </p>
 <p>
-	<%= d.content %>
+	<%= d.content.html_safe %>
 </p>
     <div class='padded'><b>Review Sources</b>
 	<em>please note that in review sources any changes are immediately submitted, while with other fields, no changes are committed until you click on the overall UPDATE  button</em></div>
     <div id='reviewsources_div' class='padded'>
-
+    
     <%=   render :partial => 'sources/index', :locals => {:resource => d} %>
 
     </div>
@@ -31,6 +32,6 @@
 
   <% if full_access? -%>
 	<p>
-  <%= link_to_remote 'edit review', :url => edit_tool_review_path(tool,d), :update => 'descriptions_div', :method => :get, :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+  <%= link_to 'edit review', edit_tool_review_path(tool,d), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('review_content');", :remote => true  %>
 	</p>
   <% end -%>

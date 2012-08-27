@@ -1,0 +1,9 @@
+<% if !params[:review_id].nil? %>
+	$("#reviewsources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @resource} )) %>")
+<% else
+     if !params[:usage_scenario_id].nil? %>
+	$("#usagescenariosources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @resource} )) %>")
+<%   else %>
+	$("#toolsources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @resource} )) %>")
+<%   end
+   end %>

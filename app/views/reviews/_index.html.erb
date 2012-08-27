@@ -1,4 +1,4 @@
-<% tool.reviews.find(:all, :order => 'id').each do |r| %>
+<% tool.reviews.order('id').each do |r| %>
 	<div id="<%= "#{r.id}_descdiv" %>">
 <%  if review.nil? 		
       if r.is_primary? %>
@@ -17,6 +17,6 @@
 <% end %>
 <% if full_access? -%>
   <p>
-  <%=  link_to_remote 'Add review', :url => new_tool_review_path(tool), :update => 'descriptions_div', :method => 'get', :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+  <%= link_to 'Add review', new_tool_review_path(tool), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('review_content');",  :remote => true, :title=>'Add Review' %>
   </p>
 <% end -%>

@@ -1,5 +1,5 @@
 <p>
-	<%=   link_to_remote '.', {:url => contract_tool_usage_scenario_path(tool,d), :update => "#{d.id}_usagediv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %>   
+	<%=   link_to '.', contract_tool_usage_scenario_path(tool,d), :class => 'descriptionminus_icon', :remote => true  %> 
 	<% if !d.title.blank? %>  
 	<%   if !d.authors.empty? %>
 		   <b class='title'><%= d.title %></b>
@@ -23,7 +23,7 @@
 	</p>
 <%  end %>
 <p>
-	<%= d.content %>
+	<%= d.content.html_safe %>
 </p>
 
     <div class='padded'><b>Usage Scenario Sources</b>
@@ -37,6 +37,6 @@
 
   <% if full_access? -%>
 	<p>
-  <%= link_to_remote 'edit usage scenario', :url => edit_tool_usage_scenario_path(tool,d), :update => 'usage_scenarios_div', :method => :get, :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');" %>
+  <%= link_to 'edit usage scenario', edit_tool_usage_scenario_path(tool,d), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');", :remote => true  %>
 	</p>
   <% end -%>

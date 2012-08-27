@@ -1,16 +1,2 @@
 
 <%= render :partial => '/line_items/item_list', :object => dynamic_list, :locals => { :entity => @person, :category => category  } %>
-
-<!-- <p><input id="add-item-field-<%= category %>" name="item-text" type="text" style="width:528px" /> <%#= button_to_function( 'Add Another', "addItem('#{person_line_items_url(@person)}', '#{category}', '#{ form_authenticity_token }')", :class=>'add-button' ) %></p> -->
-<%#= error_messages_for :line_item %>
-<%#   remote_form_for(:line_item, :url => person_line_items_path(@person), :update => 'credentials_div') do |f| %>
-
-<!--
-<%#=  form_for(:line_item, :url => add_item_person_line_items_path(@person), :remote => true) do |df| %>
-  <p> 							  
-    <%#= df.text_field :text, :style=>"width:528px"  %>
-    <%#= df.hidden_field :category, :value => category %>
-    <%#=    submit_tag ('Add Another') %>
-  </p>
-<%# end %>
--->

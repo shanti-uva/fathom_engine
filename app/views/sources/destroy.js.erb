@@ -1,0 +1,11 @@
+$("#popup_dialog").dialog("close");
+$("#popup_dialog").dialog("destroy");
+<% if !params[:review_id].nil? %>
+	$("#reviewsources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @current_resource} )) %>")
+<% else
+     if !params[:usage_scenario_id].nil? %>
+	$("#usagescenariosources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @current_resource} )) %>")
+<%   else %>
+	$("#toolsources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => { :resource => @current_resource} )) %>")
+<%   end
+   end %>

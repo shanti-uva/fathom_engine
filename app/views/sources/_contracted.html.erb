@@ -21,9 +21,8 @@
 <%   end %>
 <% end %>
 
-<% form_remote_tag :url => new_translated_path , :update => div_updated, :html => { :method => :get} do %>
 	<p>
-	<%= link_to_remote '.', {:url => expand_path,  :method => 'get'},  { :class => 'descriptionplus_icon' } %>
-	<%=  link_to_remote('MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s), :url => edit_path, :update => div_updated, :method => :get )  %>
+	<%= link_to '.', expand_path, :class => 'descriptionplus_icon', :remote => true %>  
+	
+	<%=  link_to('MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s), edit_path,:class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');", :remote => true, :method => :get )  %>
   	</p>
-<% end %>

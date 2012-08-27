@@ -1,4 +1,4 @@
-<% tool.usage_scenarios.find(:all, :order => 'id').each do |r| %>
+<% tool.usage_scenarios.order('id').each do |r| %>
 	<div id="<%= "#{r.id}_usagediv" %>">
 <%  if usage_scenario.nil? 		
       if r.is_primary? %>
@@ -17,6 +17,6 @@
 <% end %>
 <% if full_access? -%>
   <p>
-  <%=  link_to_remote 'Add usage scenario', :url => new_tool_usage_scenario_path(tool), :update => 'usage_scenarios_div', :method => 'get', :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');" %>
+  <%= link_to 'Add usage scenario', new_tool_usage_scenario_path(tool), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('usage_scenario_content');",  :remote => true, :title=>'Add usage scenario' %>
   </p>
 <% end -%>

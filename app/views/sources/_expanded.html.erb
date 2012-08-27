@@ -24,23 +24,24 @@
 <%   end %>
 <% end %>
 
-<% form_remote_tag :url => new_translated_path , :update => div_updated, :html => { :method => :get} do %>
 	<p>
-	<%= link_to_remote '.', {:url => contract_path, :update => "#{s.id}_sourcediv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %>
-	<%=  link_to_remote('MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s), :url => edit_path, :update => div_updated, :method => :get )  %>	
+	<%=   link_to '.', contract_path, :class => 'descriptionminus_icon', :remote => true  %> 
+	
+	<%=   link_to 'MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s), edit_path, :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('source_passage'); tinyMCE.execCommand('mceRemoveControl', true, 'source_note');", :remote => true  %> 
+		
   	</p>
 
     <div class='padded'>
 		<p>
 		  <% if !s.passage.blank? %>	
 			<b>Passage:</b>
-	  		<%= s.passage %>
+	  		<%= s.passage.html_safe %>
 	      <% end %>
 		</p>
 		<p>
 		  <% if !s.note.blank? %>
 	  		<b>Note:</b>
-	  		<%= s.note %>
+	  		<%= s.note.html_safe %>
 	      <% end %>
 		</p>
 
@@ -49,19 +50,18 @@
 		    <b>Source Translations:</b>
 			<div class='padded'>
 		    <% if s.resource_type == 'Review' %> 
-				<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to_remote("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>", {:url => edit_tool_review_source_translated_source_path(@tool,resource,s,t), :update => div_updated, :method => :get})  })" }).join(', ') %>		 
+				<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>".html_safe, edit_tool_review_source_translated_source_path(@tool,resource,s,t), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('translated_source_title');", :remote => true,  :method => :get)  })" }).join(', ').html_safe %>	
 		    <% else %>
 		    <%   if s.resource_type == 'UsageScenario' %>
-					<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to_remote("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>", {:url => edit_tool_usage_scenario_source_translated_source_path(@tool,resource,s,t), :update => div_updated, :method => :get})  })" }).join(', ') %>			
+					<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>".html_safe,  edit_tool_usage_scenario_source_translated_source_path(@tool,resource,s,t), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('translated_source_title');", :remote => true, :method => :get)  })" }).join(', ').html_safe %>	
 			<%   else %>
-				<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to_remote("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>", {:url => edit_tool_source_translated_source_path(@tool,s, t), :update => div_updated, :method => :get})  })" }).join(', ') %>	
+				<%= ( s.translated_sources.collect { |t| "#{t.title} (#{ link_to("<i>#{t.language.title}#{"#{", from #{join_with_and(t.authors.collect{|a| a.name})}" if !t.authors.empty?}"}</i>".html_safe, edit_tool_source_translated_source_path(@tool,s, t), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('translated_source_title');", :remote => true, :method => :get)  })" }).join(', ').html_safe %>	
 			<%   end%>	
 		    <% end %>
 		    </div>
 		  <% end %>
 		</p>
 		<p>
-		  <%=   link_to_remote 'add Source Translation', :url => new_translated_path, :update => div_updated, :method => 'get'%>
+		  <%= link_to 'add Source Translation', new_translated_path, :class => 'ui_definition_dialog',:onclick => "unsetTextareaToTinyMCE('translated_source_title');",  :remote => true  %>
 		</p>
 	</div>	
-<% end %>

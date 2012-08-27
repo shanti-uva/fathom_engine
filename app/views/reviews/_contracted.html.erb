@@ -19,6 +19,7 @@
 </p>
   <% if full_access? -%>
 	<p>
-  <%= link_to_remote 'edit review', :url => edit_tool_review_path(tool,d), :update => 'descriptions_div', :method => :get, :onclick => "unsetTextareaToTinyMCE('review_content');" %>
+  <%= link_to 'edit review', edit_tool_review_path(tool,d), :class => 'ui_definition_dialog', :onclick => "unsetTextareaToTinyMCE('review_content');", :remote => true  %>
+	</p>
 	</p>
   <% end -%>

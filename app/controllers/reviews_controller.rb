@@ -25,14 +25,14 @@ class ReviewsController < ApplicationController
     @tool = Tool.find(params[:tool_id])   
     @review = @tool.reviews.new
     @authors = Person.find(:all, :order => 'name')
-    respond_to do |format|
-      if request.xhr?
-        format.html {render :partial => 'new'}
-      else
-        format.html {redirect_to tool_url(@tool)}
-      end
-      format.xml  { render :xml => @review }
-    end    
+    #respond_to do |format|
+    #  if request.xhr?
+    #    format.html {render :partial => 'new'}
+    #  else
+    #    format.html {redirect_to tool_url(@tool)}
+    #  end
+    #  format.xml  { render :xml => @review }
+    #end    
   end
 
   # GET /reviews/1/edit
@@ -40,14 +40,14 @@ class ReviewsController < ApplicationController
     @tool = Tool.find(params[:tool_id])    
     @review = Review.find(params[:id])
     @authors = Person.find(:all, :order => 'name')    
-    respond_to do |format|
-      if request.xhr?
-        format.html {render :partial => 'edit'}
-      else
-        format.html {redirect_to tool_url(@tool)}
-      end
-      format.xml  { render :xml => @review }
-    end   
+    #respond_to do |format|
+    #  if request.xhr?
+    #    format.html {render :partial => 'edit'}
+    #  else
+    #    format.html {redirect_to tool_url(@tool)}
+    #  end
+    #  format.xml  { render :xml => @review }
+    #end   
   end
 
   # POST /reviews
@@ -60,21 +60,21 @@ class ReviewsController < ApplicationController
     end
     @review = Review.new(params[:review])
 
-    respond_to do |format|
+    #respond_to do |format|
       if @review.save
-        #flash[:notice] = 'Review was successfully created.'
-        #format.html { redirect_to(@review) }
-        if request.xhr?
-  		    format.html do
-  		      render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}
-  		    end  
-        end
-        format.xml  { render :xml => @review, :status => :created, :location => @review }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @review.errors, :status => :unprocessable_entity }
+        ##flash[:notice] = 'Review was successfully created.'
+        ##format.html { redirect_to(@review) }
+        #if request.xhr?
+  		  #  format.html do
+  		  #    render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}
+  		  #  end  
+        #end
+        #format.xml  { render :xml => @review, :status => :created, :location => @review }
+    #  else
+    #    format.html { render :action => "new" }
+    #    format.xml  { render :xml => @review.errors, :status => :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PUT /reviews/1
@@ -83,26 +83,25 @@ class ReviewsController < ApplicationController
     params[:review][:author_ids] ||= []
     @review = Review.find(params[:id])
     @tool = Tool.find(params[:tool_id])   
-
-    respond_to do |format|
+    #respond_to do |format|
       if @review.update_attributes(params[:review])      
-        #flash[:notice] = 'Review was successfully updated.'
-        #format.html { redirect_to(@review) }
-        if request.xhr?
-  		    format.html do
-  		      render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}
-  	      end
-  	    else
-  	      format.html do
-  	        redirect_to tool_url(@tool)
-  	      end
-  	    end      
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @review.errors, :status => :unprocessable_entity }
+    #    #flash[:notice] = 'Review was successfully updated.'
+    #    #format.html { redirect_to(@review) }
+    #    if request.xhr?
+  	#	    format.html do
+  	#	      render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}
+  	#      end
+  	#    else
+  	#      format.html do
+  	#        redirect_to tool_url(@tool)
+  	#      end
+  	#    end      
+    #    format.xml  { head :ok }
+    #  else
+    #    format.html { render :action => "edit" }
+    #    format.xml  { render :xml => @review.errors, :status => :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # DELETE /reviews/1
@@ -111,29 +110,30 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @tool = Tool.find(params[:tool_id])   
     @review.destroy
-
-    respond_to do |format|
-      #format.html { redirect_to(reviews_url) }
-      format.html do
-        if request.xhr?
- 		      render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}	  
-        else
- 		      redirect_to tool_url(@tool)           
-        end
-      end      
-      format.xml  { head :ok }
-    end
+    #respond_to do |format|
+    #  #format.html { redirect_to(reviews_url) }
+    #  format.html do
+    #    if request.xhr?
+ 		#      render :partial => 'reviews/index', :locals => {:tool => @tool, :review => nil}	  
+    #    else
+ 		#      redirect_to tool_url(@tool)           
+    #    end
+    #  end      
+    #  format.xml  { head :ok }
+    #end
   end
   
   def add_author
-    @authors = Person.find(:all, :order => 'name')
-    render :partial => 'authors_selector', :locals => {:selected => nil}
+    #@authors = Person.find(:all, :order => 'name')
+    @authors = Person.order('name')
+    #render :partial => 'authors_selector', :locals => {:selected => nil}
   end
 
   def contract
-    tool = Tool.find(params[:tool_id])   
-    d = Review.find(params[:id])
-    render :partial => 'contracted', :locals => {:tool => tool, :d => d}
+    @tool = Tool.find(params[:tool_id])   
+    @d = Review.find(params[:id])
+    #render :partial => 'contracted', :locals => {:tool => tool, :d => d}
+    # NO LONGER NECESSARY: contracted. rendering contract.js.erb
   end
   
   def expand
@@ -144,16 +144,18 @@ class ReviewsController < ApplicationController
   end
  
   def contract_show
-    tool = Tool.find(params[:tool_id])   
-    d = Review.find(params[:id])
-    render :partial => 'show_contracted', :locals => {:tool => tool, :d => d}
+    @tool = Tool.find(params[:tool_id])   
+    @d = Review.find(params[:id])
+    #render :partial => 'show_contracted', :locals => {:tool => tool, :d => d}
+    # NO LONGER NECESSARY: render_reviews. rendering contract_show.js.erb
   end
   
   def expand_show
     @tool = Tool.find(params[:tool_id])   
     @d = Review.find(params[:id])
     @review =  Review.find(params[:id])
-    render_reviews_show
+    #render_reviews_show
+    # NO LONGER NECESSARY: render_reviews_show. rendering expand_show.js.erb
   end
 
   

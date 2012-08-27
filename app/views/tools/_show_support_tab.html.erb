@@ -4,37 +4,44 @@
 	<div id="support" class="item">
 		<% unless tool_profile.support.blank? -%>
 			<h3>UVa Support</h3>
-			<%=rc tool_profile.support %>
+			<%#=rc tool_profile.support %>
+			<%= tool_profile.support.html_safe %>
 		<% end -%>
 
 		<% unless tool_profile.developer_resources.blank? -%>
 			<h3>Developer Resources</h3>
-			<%=rc tool_profile.developer_resources %>
+			<%#=rc tool_profile.developer_resources %>
+			<%= tool_profile.developer_resources.html_safe %>
 		<% end -%>
 		
 		<% unless tool_profile.mailing_list.blank? -%>
 			<h3>Mailing List</h3>
-			<%=rc tool_profile.mailing_list %>
+			<%#=rc tool_profile.mailing_list %>
+			<%= tool_profile.mailing_list.html_safe %>
 		<% end -%>
 		
 		<% unless tool_profile.discussion_forums.blank? -%>
 			<h3>Discussion Forums / User Groups</h3>
-			<%=rc tool_profile.discussion_forums %>
+			<%#=rc tool_profile.discussion_forums %>
+			<%= tool_profile.discussion_forums.html_safe %>
 		<% end -%>
 		
 		<% unless tool_profile.tutorials.blank? -%>
 			<h3>Tutorials/Training</h3>
-			<%=rc tool_profile.tutorials %>
+			<%#=rc tool_profile.tutorials %>
+			<%= tool_profile.tutorials.html_safe %>
 		<% end -%>
 		
 		<% unless tool_profile.tips.blank? -%>
 			<h3>Tips</h3>
-			<%=rc tool_profile.tips %>
+			<%#=rc tool_profile.tips %>
+			<%= tool_profile.tips.html_safe %>
 		<% end -%>		
 
 		<% unless tool_profile.more_information.blank? -%>
 			<h3>More Information</h3>
-			<%=rc tool_profile.more_information %>
+			<%#=rc tool_profile.more_information %>
+			<%= tool_profile.more_information.html_safe %>
 		<% end -%>		
 		
 	</div>

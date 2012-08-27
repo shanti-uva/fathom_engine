@@ -1,5 +1,5 @@
 <p>
-	<%=   link_to_remote '.', {:url => contract_show_tool_review_path(tool,d), :update => "#{d.id}_descdiv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %>  
+	<%=   link_to '.', contract_show_tool_review_path(tool,d), :class => 'descriptionminus_icon', :remote => true  %> 
 	<% if !d.title.blank? %>  
 	<%   if !d.authors.empty? %>
 		   <b class='title'><%= d.title %></b>
@@ -18,7 +18,7 @@
 	<span class='last_updated'>(<%= 'last updated '"#{h(d.updated_at.to_date.to_formatted_s(:long))}" %>)</span>
 </p>
 <p>
-	<%= d.content %>
+	<%= d.content.html_safe %>
 </p>
 <%  if !d.sources.empty? %>
     <h4><div class='padded'>Review Sources</div></h4>

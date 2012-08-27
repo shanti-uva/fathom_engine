@@ -1,4 +1,4 @@
-<% tool.reviews.find(:all, :order => 'id').each do |r| %>
+<% tool.reviews.order('id').each do |r| %>
 	<div id="<%= "#{r.id}_descdiv" %>">
 <%  if review.nil? 		
       if r.is_primary? %>

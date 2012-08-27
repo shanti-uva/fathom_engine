@@ -18,9 +18,9 @@
 <%   end %>
 <% end %>
 
-<% form_remote_tag :url => edit_path , :update => div_updated, :method => :get do %>
 	<p>
-	<%= link_to_remote '.', {:url => expand_path,  :method => 'get'},  { :class => 'descriptionplus_icon' } %>
+	<%= link_to '.', expand_path, :class => 'descriptionplus_icon', :remote => true %>  
+	
 	<%=  'MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s) %>
   	</p>
-<% end %>
+

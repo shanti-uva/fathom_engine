@@ -4,6 +4,7 @@
 		<h3>Reviews</h3>
 	      <div id='descriptions_div'>
 		    <%  if !tool.reviews.empty? %>
+			<%# commented Aug until editorial ready %>
 		    <%=     render :partial => 'reviews/show_reviews', :locals => {:tool => tool, :review => nil} %>	
 		    <%  end %>
 		  </div>

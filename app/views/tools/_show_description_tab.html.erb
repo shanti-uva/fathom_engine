@@ -4,7 +4,8 @@
 	<div id="description" class="item">
 		<% unless tool_profile.features.blank? -%>
 			<h3>Features</h3>
-			<%=rc tool_profile.features %>
+			<%#=rc tool_profile.features %>
+			<%= tool_profile.features.html_safe %>
 		<% end -%>
 
         <%  if !tool.usage_scenarios.empty? %>
@@ -18,7 +19,8 @@
 				
 		<% unless tool_profile.version_history.blank? -%>
 			<h3>Version and Plans</h3>
-			<%=rc tool_profile.version_history %>
+			<%#=rc tool_profile.version_history %>
+			<%= tool_profile.version_history.html_safe %>
 		<% end -%>
 		
 		<dl>

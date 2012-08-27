@@ -17,22 +17,20 @@
 <%   end %>
 <% end %>
 
-<% form_remote_tag :url => edit_path , :update => div_updated, :method => :get do %>
 	<p>
-	<%=   link_to_remote '.', {:url => contract_path, :update => "#{s.id}_sourcediv", :method => 'get'},  { :class => 'descriptionminus_icon' }  %>
+	<%=   link_to '.', contract_path, :class => 'descriptionminus_icon', :remote => true  %> 
+	
 	<%=  'MMS #'"#{s.mms_id}"', ' + formated_mms_pages(s) %>	
   	</p>
 		<p>
 			<% if !s.passage.blank? %>	
 			  <b>Passage:</b>
-		  	  <%= s.passage %>
+		  	  <%= s.passage.html_safe %>
 		    <% end %>
 		</p>
 		<p>
 			<% if !s.note.blank? %>
 		  	  <b>Note:</b>
-		      <%= s.note %>
+		      <%= s.note.html_safe %>
 		    <% end %>
 		</p>
-
-<% end %>

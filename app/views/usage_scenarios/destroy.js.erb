@@ -1,0 +1,3 @@
+$("#popup_dialog").dialog("close");
+$("#popup_dialog").dialog("destroy");
+$("#usage_scenarios_div").html("<%= escape_javascript(render(:partial => 'usage_scenarios/index',  :locals => {:tool => @tool, :usage_scenario => nil} )) %>")
