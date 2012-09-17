@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   # redirects back to the app.
   #
   def netbadge
+    debugger
     # save the REMOTE_USER is the session so we know how this session was authenticated
     # this is used by the sign up action
     session['REMOTE_USER'] = self.netbadgeid
