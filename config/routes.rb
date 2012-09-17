@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   resources :blacklists, :relationships, :languages, :posts
   resources :sessions, :except => [:index]
   
-  match '/netbadge_sessions' => 'sessions#netbadge', :constraints => { :protocol=>(SSL_ENABLED ? 'https' : 'http') }, :as => :netbadge_sessions
+  #match '/netbadge_sessions' => 'sessions#netbadge', :constraints => { :protocol=>(SSL_ENABLED ? 'https' : 'http') }, :as => :netbadge_sessions
+  match '/shibboleth' => 'sessions#netbadge', :constraints => { :protocol=>(SSL_ENABLED ? 'https' : 'http') }, :as => :shibboleth
   match '/testmail' => 'users#testmail', :as => :testmail
   match '/signup' => 'users#new', :as => :signup
   match '/signup_netbadge' => 'users#new_netbadge', :as => :signup_netbadge
