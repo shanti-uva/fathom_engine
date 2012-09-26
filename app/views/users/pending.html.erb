@@ -5,6 +5,7 @@
 	<div id="pending-page">
 	<% if APPLICATION_DOMAIN == 'shanti.virginia.edu' %>	
 	  <p>Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at <%= mail_to "shanticontact@collab.itc.virginia.edu"%>.</p>
+	  <p>Please add admin@shanti.virginia.edu to your contacts to avoid the confirmation e-mail getting tagged as spam by your mail client.</p>
 	<% else %>
 	  <p>Thanks for signing up to our portal. In order to block spammers, we use a review process involving someone checking your application. In most cases, this will happen very quickly and you will receive an email notifying you that you can begin using the portal to create your entry. If you have not heard from us within 24 hours, please write us at <%= mail_to "thl@collab.itc.virginia.edu"%>.</p>	
 	<% end %>
