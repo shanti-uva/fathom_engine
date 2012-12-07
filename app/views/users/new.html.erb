@@ -20,7 +20,7 @@
 			<tr><td><label for="password">Password:</label></td><td><%= f.password_field :password %></td></tr>
 			<tr><td><label for="password_confirmation">Confirm Password:</label></td><td><%= f.password_field :password_confirmation %></td></tr>
 			<% end %>
-			<tr><td><label for="background"> Please describe in a few sentences your relevant background so we can verify that you qualify for this portal:</label></td><td><%= f.text_area("background", :class => 'mceEditor2') %></td></tr>
+			<tr><td><label for="background"> Please describe in a few sentences your relevant background so we can verify that you qualify for this portal:</label></td><td><%= f.text_area(:background, :class => 'mceEditor2') %></td></tr>
 			
 			</table>
 			<%= f.hidden_field :identity_url %>

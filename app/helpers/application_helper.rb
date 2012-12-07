@@ -111,6 +111,7 @@ module ApplicationHelper
     str += "strict_loading_mode : tinymce.isWebKit," + "\n"
     str += "height : '220px'," + "\n"
     str += "mode : 'textareas'," + "\n"
+    str += "relative_urls : false," + "\n"
     str += "noneditable_leave_contenteditable : 'true'," + "\n"
     str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
     str += "template_external_list_url : '/templates/templates.js'," + "\n"

@@ -2,6 +2,10 @@ Dear Admin,
 
 The User "<%= @user.person.name %>" has pending level access, and needs to be either granted or banned from the list of users.
 
+	Professional Profile: <%= @user.person.person_profile.professional_profile %>
+	Title: <%= @user.person.person_profile.title %>
+	Background: <%= @user.background %>
+	
 --
 
 http://<%= APPLICATION_DOMAIN %>
