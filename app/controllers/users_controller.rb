@@ -98,7 +98,7 @@ class UsersController < ApplicationController
     if !background.blank?
        user.background = background
     end
-    unless access_level == 'Root' || ( access_level == 'Admin' and not root?() )
+    unless access_level == 'Root'
          user.adjust_access_level(access_level)
     end
     user.save!
