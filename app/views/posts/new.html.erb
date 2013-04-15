@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <th scope="row" class="post-message">Expires on</th>
-          <td><%= date_select("post", "expiration_date", {:start_year => Time.now.year, :end_year => Time.now.year + 1}) %></td>
+          <td><%= date_select(:post, :expiration_date, :order => [:day,:month,:year], :start_year => Time.now.year, :end_year => Time.now.year + 1) %> </td>
         </tr>
       </table>
 
