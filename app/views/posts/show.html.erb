@@ -21,7 +21,7 @@
         width:auto;
       }
     </style>
-<% debugger %>
+
     <h2><%= h(@post.subject) %></h2>
     <table class="listing">
       <tr><th scope="row">Author</th><td><%= link_to entity_for_post(@post).name.s, url_for(entity_for_post(@post)) %></td></tr>

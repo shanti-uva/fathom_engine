@@ -1,30 +1,11 @@
 <script>
-jQuery(function(){
-  var $=jQuery;
-  
-  //var join_url="<%= url_for(:action=>'edit_picture',:id=>nil) %>";
-  
-  var tbRemove = self.parent.tb_remove;
-  var sucessfullyUpdated = self.parent.successfullyUpdatedPicture;
-  
-  $('#edit_picture_form').ajaxForm({
-    beforeSubmit : function(a,f,o){
-      
-    },
-    success : function(data){
-      tbRemove();
-      sucessfullyUpdated();
-    }
-  });
-  
-  //$('#edit_picture_form input[type="submit"]').click(function(){
-  //  $('#edit_picture_form').submit(function(data){
-  //    self.parent.tb_remove();
-  //    self.parent.successfullyUpdatedPicture();
-  //  });
-  //});
-})
+$(document).ready(function() {
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});self.parent.successfullyUpdatedPicture();
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	
+});
 </script>
+
 
 <%= form_for(entity, :html => { :multipart => true, :id=>'edit_picture_form' }) do |f| -%>
 	<label for="image">Upload Image:</label>
@@ -33,7 +14,8 @@ jQuery(function(){
 		<div class="gallery-button update">
 			
 			  <%= f.submit "Update" %>
-			  <%= link_to_function "Cancel", "jQuery(function(){ self.parent.tb_remove(); })" %>
+			  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+			  
 			
 		</div>
 <% end -%>

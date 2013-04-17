@@ -405,17 +405,24 @@ class PeopleController < ApplicationController
     if params[:person][:uploaded_data] != ""
       @person.image = Image.new({ :uploaded_data => params[:person][:uploaded_data] })
       @person.image.save
-      @person.save
-    end
-      
-    respond_to do |format|
-      if @person.update_attributes(params[:person])
+      if @person.save
         flash[:notice] = 'Person was successfully updated.'
-        format.html { redirect_to(@person) }
+        redirect_to person_url(@person)
       else
-        format.html { render :action => "edit"  }
+        render :action => :edit
+      end
+    else
+      respond_to do |format|
+        if @person.update_attributes(params[:person])
+          flash[:notice] = 'Person was successfully updated.'
+          format.html { redirect_to(@person) }
+        else
+          format.html { render :action => "edit"  }
+        end
       end
     end
+      
+
   end
   
   def update_profile

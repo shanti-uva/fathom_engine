@@ -517,7 +517,12 @@ $(function() {
 
     <%= render :partial => '/common/image_carousel' %>
 
-    <% if @allowed_to_edit -%><h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @person, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %></h4><% end -%>
+    <% if @allowed_to_edit -%>
+		<h4>
+		<%= link_to 'Change Picture', {:controller => 'people', :action => 'edit_picture', :id => @person.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Change image' %>
+		</h4>
+		<%#= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @person, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %>
+	<% end -%>
     <%= render :partial => '/common/relationships' %>
     </div><!--END CAROUSEL-->
   </div><!--END MEDIA-->

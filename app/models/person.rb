@@ -7,7 +7,6 @@ class Person < Entity
   has_many :organizations, :through => :relationships
   
   attr_accessor :request_text
-
   
   has_and_belongs_to_many :reviews, :join_table => 'authors_reviews', :foreign_key => 'author_id'
   has_and_belongs_to_many :usage_scenarios, :join_table => 'authors_usage_scenarios', :foreign_key => 'author_id'
