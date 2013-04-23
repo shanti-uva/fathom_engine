@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+  attr_accessible :content_type, :temp_path, :filename, :uploaded_data
 
   has_one :entity
   
@@ -9,6 +10,7 @@ class Image < ActiveRecord::Base
                  :resize_to => '180x180',
                  :thumbnails => { :thumb => '60x60', :smaller => '35x35', :micro => '25x25' }
 
+  
   validates_as_attachment
   
   PERSON_PLACEHOLDER = 1

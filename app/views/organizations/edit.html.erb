@@ -19,6 +19,28 @@
   };
 </script>
 
+<script>
+	$('.ui_definition_dialog').live('click', function() {
+	
+  	$("#popup_dialog").html("<p></p>")
+	$("#popup_dialog" ).dialog({ modal: true, width: 650});
+});
+</script>
+<%  if APPLICATION_DOMAIN != 'shanti.virginia.edu' %>
+<script>
+  $(document).ready(function() {
+	$("#popup_dialog").dialog( "destroy" );
+	$("#popup_dialog").dialog({ autoOpen: false })
+	$("#popup_dialog").dialog("close");	
+  });
+
+</script>
+<% end %>
+	
+<div id="popup_dialog">
+</div>
+
+
 <div id="main">
 	<div id="secondary-nav" class="yui-navset">
 		<ul class="yui-nav">
@@ -45,7 +67,9 @@
 		<% end -%>
 		
 		<%= render :partial => '/common/image_carousel' %>
-		<% if @allowed_to_edit -%><h4><%= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @organization, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %></h4><% end -%>		
+		<% if @allowed_to_edit -%><h4>
+			<%= link_to 'Change Picture', {:controller => 'organizations', :action => 'edit_picture', :id => @organization.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Change image' %>
+			<%#= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @organization, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %></h4><% end -%>		
 		<%= render :partial => '/common/relationships' %>
 	  </div><!--END CAROUSEL-->	
 	</div><!--END MEDIA-->
