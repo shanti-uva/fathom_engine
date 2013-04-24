@@ -23,9 +23,10 @@
     <div id="main-content" class="narrow">
       <h2 id="subject"><%= @person.name.s %> / <span class="page-type">Profile <% if @allowed_to_edit -%><%= link_to '(Edit Profile)', edit_person_path(@person, :tab => @selected_tab), { :id => 'edit-profile-link' } %><% end -%></span></h2>
       <h3 id="title"><%= @person.person_profile.title.s %> 
-			<%= @person.person_profile.title.blank? ? "" : "|" %> <%= h(@person.person_profile.professional_profile) %>
-        <% unless @person.person_profile.professional_profiles.empty? -%>
-                                  ,
+			<%= @person.person_profile.title.blank? ? "" : "|" %> <%#= h(@person.person_profile.professional_profile) %>
+        <%= @person.person_profile.professional_profiles.empty? ? h(@person.person_profile.professional_profile) : h(@person.person_profile.professional_profile) + "," %>
+		<% unless @person.person_profile.professional_profiles.empty? -%>
+                                  
           <% last_profile = @person.person_profile.professional_profiles.last -%>
           <% for professional_profile in @person.person_profile.professional_profiles -%>
             <%= h(professional_profile.name) %><%= professional_profile == last_profile ? "" : "," %>
