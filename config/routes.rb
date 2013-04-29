@@ -145,6 +145,7 @@ Rails.application.routes.draw do
   resources :tag_projects, :controller => 'projects', :path_prefix => 'tags/:tag_string'
   
   match '/me' => 'people#me', :as => :me
+  match 'hypertree' => 'people#hypertree'
   match 'relationbrowser' => 'home#relationbrowser', :as => :relationbrowser
   match '/admin' => 'users#index', :as => :admin
   match '/admin/update_users' => 'users#update', :as => :admin_update_users

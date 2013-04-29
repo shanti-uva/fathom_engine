@@ -44,11 +44,31 @@ class ProjectsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @project }
       format.json do
-        # create hash that includes the "thumb" method output
-        json_out={:thumb=>@project.thumb_src, :image=>@project.image_src}
-        # populate hash with all column values
-        Project.columns.each{|c|json_out[c.name]=@project.send(c.name)}
-        # render json
+        ## create hash that includes the "thumb" method output
+        #json_out={:thumb=>@project.thumb_src, :image=>@project.image_src}
+        ## populate hash with all column values
+        #Project.columns.each{|c|json_out[c.name]=@project.send(c.name)}
+        ## render json
+        #render :json=>json_out
+        
+        adjacencies = []
+        @project.people.each do |per|
+          adjacencies << {:nodeTo => per.id.to_s }
+        end
+        #@person.organizations.each do |org|
+        #  adjacencies << {:nodeTo => "o_" + org.id.to_s }
+        #end
+        
+        json_out = []
+        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :adjacencies=>adjacencies}
+        
+
+        @project.people.each do |per|
+          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{:parent=>@project.name, :relation=>"People"}}
+        end
+        #@person.organizations.each do |org|
+        #  json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"organization"}}
+        #end
         render :json=>json_out
       end
     end

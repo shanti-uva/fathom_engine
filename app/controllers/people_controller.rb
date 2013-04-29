@@ -309,12 +309,45 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        # create hash that includes the "thumb" method output
-        json_out={:thumb=>@person.thumb_src, :image=>@person.image_src, :name=>@person.full_name}
-        # populate hash with all column values
-        Person.columns.each{|c|json_out[c.name]=@person.send(c.name)}
-        # render json
+        ## create hash that includes the "thumb" method output
+        #json_out={:thumb=>@person.thumb_src, :image=>@person.image_src, :name=>@person.full_name}
+        ## populate hash with all column values
+        #Person.columns.each{|c|json_out[c.name]=@person.send(c.name)}
+        ## render json
+        #render :json=>json_out
+        
+        @nodes = Entity.all
+    		@relations = Relationship.relations
+        
+        #for node in @nodes
+        #  json_node = {:id => node.id, :name=> node.name}
+        #    #json_out << {:id => node.id, :name=> node.name}
+        #end
+        
+        adjacencies = []
+        @person.projects.each do |proj|
+          adjacencies << {:nodeTo => "p_"+proj.id.to_s }
+        end
+        @person.organizations.each do |org|
+          adjacencies << {:nodeTo => "o_" + org.id.to_s }
+        end
+        
+        json_out = []
+        json_out << {:id=>@person.id, :name=>@person.full_name, :adjacencies=>adjacencies}
+        
+
+        @person.projects.each do |proj|
+          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{:parent=>@person.full_name, :relation=>"project"}}
+        end
+        @person.organizations.each do |org|
+          json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"organization"}}
+        end
+        #json_out ={:id=>@person.id, :name=>@person.full_name}
+        
         render :json=>json_out
+        #render :json => Hash.from_xml(render_to_string(:action => 'show.xml.builder'))
+        
+        
       end
       format.xml  { render :xml => @person }
     end
@@ -463,6 +496,17 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     init_line_items(@person)
   end 
+  
+  def hypertree
+    order_string = "name"
+      @people = Person.where(["user_id not in (select id from users where access_level = ?)", "Pending"]).order(order_string).includes([:person_profile, {:person_profile=>:professional_profiles}]).paginate(:page => params[:page], :per_page => 20)
+      @profile_view = false    
+      @current_style = :gallery
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @people }
+      end
+  end
    
   protected
   def main_nav

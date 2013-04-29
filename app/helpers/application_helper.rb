@@ -13,7 +13,7 @@ module ApplicationHelper
       if @current_style == :details
         super + ['fathom','thickbox','communications', 'jquery-ui-tabs', 'jquery-ui'] 
       else
-        super + ['fathom','communications', 'jquery-ui-tabs', 'jquery-ui']
+        super + ['fathom','communications', 'jquery-ui-tabs', 'jquery-ui', 'hypertreebase', 'hypertree']
       end
     end
   end
@@ -76,13 +76,13 @@ module ApplicationHelper
               if params[:inline]
                 ['jquery','jrails'] + ['encodemailto'] #jquery loaded locally since modal window loads no template
               else
-                ['jrails'] + ['encodemailto'] #jquery loaded from thl template
+                ['jrails'] + ['encodemailto','jit'] #jquery loaded from thl template
               end
             else
               if params[:inline]
                 ['jquery','jrails'] + ['encodemailto'] #jquery loaded locally since modal window loads no template
               else
-                ['jrails'] + ['encodemailto'] #jquery loaded from thl template
+                ['jrails'] + ['encodemailto', 'jit'] #jquery loaded from thl template
               end
             end
           end
