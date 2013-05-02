@@ -13,7 +13,7 @@ module ApplicationHelper
       if @current_style == :details
         super + ['fathom','thickbox','communications', 'jquery-ui-tabs', 'jquery-ui'] 
       else
-        super + ['fathom','communications', 'jquery-ui-tabs', 'jquery-ui', 'hypertreebase', 'hypertree']
+        super + ['fathom','communications', 'jquery-ui-tabs', 'jquery-ui', 'Hypertreebase', 'Hypertree']
       end
     end
   end
