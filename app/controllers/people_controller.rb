@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   
   #layout "main"
-  before_filter :login_required, :except => [ :index, :show ]
+  before_filter :login_required, :except => [ :index, :show, :hypertree ]
   before_filter :main_nav
   
   def profile_tags
@@ -337,10 +337,10 @@ class PeopleController < ApplicationController
         
 
         @person.projects.each do |proj|
-          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{:parent=>@person.full_name, :relation=>"project"}}
+          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{:parent=>@person.full_name, :relation=>"Project", :controller=>'projects'}}
         end
         @person.organizations.each do |org|
-          json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"organization"}}
+          json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"Organization", :controller=>'organizations'}}
         end
         #json_out ={:id=>@person.id, :name=>@person.full_name}
         

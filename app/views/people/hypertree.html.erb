@@ -13,8 +13,10 @@
 	
 	    // do something with the data here
 	    init(data);
-	});
 	
+		
+	});
+
 		
 	//alert('Fin Pagina');
   });
@@ -57,6 +59,7 @@ function init(somejson){
     var infovis = document.getElementById('infovis');
     var w = infovis.offsetWidth - 50, h = infovis.offsetHeight - 50;
     
+
     //init Hypertree
     var ht = new $jit.Hypertree({
       //id of the visualization container
@@ -67,15 +70,95 @@ function init(somejson){
       //Change node and edge styles such as
       //color, width and dimensions.
       Node: {
-          dim: 9,
-          color: "#f00"
+          dim: 15,
+          color: "#415C7E"
       },
       Edge: {
-          lineWidth: 2,
-          color: "#088"
+          lineWidth: 3,
+		  type: 'line',
+          color: "#A4A4A4"
       },
+	  Events: {  
+	    enable: true,  
+	    onClick: function(node, eventInfo, e) {  
+	     
+			//alert(node.name); 
+			//alert(node.data.controller);
+			//json_url = '' + node.data.relation + '/' + node.id + '.json';
+			var target_id = '';
+			var toRemove = '';
+			if (node.data.controller == "projects" ) { toRemove='p_'; target_id = node.id.replace(toRemove,'');}
+			if (node.data.controller == "organizations" ) { toRemove='o_'; target_id = node.id.replace(toRemove,'');}
+			if (node.data.controller == "people" ) { target_id = node.id;}
+			//json_url = '' + node.data.controller + '/' + node.id + '.json';
+			//alert(target_id);
+			json_url = '' + node.data.controller +  '/' + target_id+ '.json';
+			//alert(json_url);
+			//$.getJSON('people/384.json', function(data) {
+			
+			var target_node = node.id
+			
+			//ht.op.removeEdge([['p_385', "446"]], {  
+			//        type: 'replot',
+			//        duration: 1500 
+			//    });
+			
+			
+			
+	        	//ht.op.removeNode('4', {  
+				//  type: 'replot',  
+				//  duration: 1000,  
+				//  hideLabels: false,  
+				//  transition: $jit.Trans.Quart.easeOut  
+				//});
+				
+			//ht.op.removeNode(['392','400'], {  
+			// type: 'replot',  
+			//  duration: 1500  
+			//});
+			
+			//ht.op.removeNode(['p_385'], {  
+			// type: 'replot',  
+			//  duration: 1500  
+			//});
+			
+			//var n = ht.graph.getNode('p_385');
+		    //if(!n) return;
+		    //var subnodes = n.getSubnodes(0);	
+			//for (var i = 0; i < subnodes.length; i++) {
+	        //    alert(subnodes[i].id);
+	        //}
+			
+			//ht.graph.each(function(node_to_delete) {  
+			//	if (node_to_delete.id  == target_node){}
+			//	else {
+			//		//alert(node_to_delete.id); 
+			//		ht.op.removeNode([node_to_delete.id], {  
+			//		  type: 'replot',  
+			//		  duration: 1500  
+			//		});
+			//	}
+			//	});
+			
+			
+			
+			$.getJSON(json_url, function(data) {
+		    	
+				ht.loadJSON(data);
+			    ////compute positions and plot.
+			    ht.refresh();
+				ht.controller.onComplete();
+				
+				//ht.op.sum(data, {  
+				//  type: 'fade:con',  
+				//  duration: 1500  
+				//});
+			}); 
+	    } 
+	  },
       onBeforeCompute: function(node){
-          //Log.write("centering");
+		//alert('onBeforeCompute');
+          Log.write("centering");
       },
       //Attach event handlers and add text to the
       //labels. This method is only triggered on label
@@ -98,7 +181,7 @@ function init(somejson){
           style.cursor = 'pointer';
           if (node._depth <= 1) {
               style.fontSize = "0.8em";
-              style.color = "#ddd";
+              style.color = "#444";
 
           } else if(node._depth == 2){
               style.fontSize = "0.7em";
@@ -114,8 +197,8 @@ function init(somejson){
       },
       
       onComplete: function(){
-          //Log.write("done");
-          
+          Log.write("done");
+          //alert('right side column');
           //Build the right column relations list.
           //This is done by collecting the information (stored in the data property) 
           //for all the nodes adjacent to the centered node.
@@ -128,9 +211,32 @@ function init(somejson){
                   var rel = (child.data.parent == node.name) ? child.data.relation : node.data.relation;
                   html += "<li>" + child.name + " " + "<div class=\"relation\">(relation: " + rel + ")</div></li>";
               }
-          });
+		  });
           html += "</ul>";
           $jit.id('inner-details').innerHTML = html;
+
+          //load second level nodes
+		  //node.eachAdjacency(function(adj){
+			//var child = adj.nodeTo;
+			//alert(child.id);
+			//if(child._depth == 1){
+			//var target_id = '';
+			//var toRemove = '';
+			//if (child.data.controller == "projects" ) { toRemove='p_'; target_id = child.id.replace(toRemove,'');}
+			//if (child.data.controller == "organizations" ) { toRemove='o_'; target_id = child.id.replace(toRemove,'');}
+			//if (child.data.controller == "people" ) { target_id = child.id;}
+			//json_url = '' + child.data.controller +  '/' + target_id+ '.json';
+			//alert(json_url);
+			//$.getJSON(json_url, function(data) {
+			//	ht.op.sum(data, {  
+			//	  type: 'fade:con',  
+			//	  duration: 1500  
+			//	});
+			//});
+		   // }
+		  //});
+			
+			
       }
     });
     //load JSON data.
@@ -153,7 +259,7 @@ function init(somejson){
 <div id="container">
 
 <div id="left-container">
-
+		
         <div class="text">
         <h4>
    			
@@ -167,6 +273,7 @@ function init(somejson){
 </div>
 
 <div id="center-container">
+	<div id="inner-description"></div>
     <div id="infovis"></div>    
 </div>
 

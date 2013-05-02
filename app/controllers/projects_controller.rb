@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
         
 
         @project.people.each do |per|
-          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{:parent=>@project.name, :relation=>"People"}}
+          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{:parent=>@project.name, :relation=>"People", :controller=>'people'}}
         end
         #@person.organizations.each do |org|
         #  json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"organization"}}
