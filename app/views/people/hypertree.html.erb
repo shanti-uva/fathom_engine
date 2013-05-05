@@ -181,6 +181,12 @@ function init(somejson){
           style.cursor = 'pointer';
           if (node._depth <= 1) {
               style.fontSize = "0.8em";
+			  style.paddingTop = '7px'; 
+			 
+			  alert(node.color); 
+			  //if (node.data.controller == "projects" ) {alert(tempnode.color);}//node.color = "#633";}
+			  //if (node.data.controller == "organizations" ) { node.color = "#900";}
+			  //if (node.data.controller == "people" ) { node.color = "#444";}
               style.color = "#444";
 
           } else if(node._depth == 2){

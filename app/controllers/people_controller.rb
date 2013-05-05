@@ -333,7 +333,7 @@ class PeopleController < ApplicationController
         end
         
         json_out = []
-        json_out << {:id=>@person.id, :name=>@person.full_name, :adjacencies=>adjacencies}
+        json_out << {:id=>@person.id, :name=>@person.full_name, :data=>{:controller=>'people'}, :adjacencies=>adjacencies}
         
 
         @person.projects.each do |proj|

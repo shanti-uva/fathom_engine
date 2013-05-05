@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
         #end
         
         json_out = []
-        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :adjacencies=>adjacencies}
+        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :data=>{:controller=>'projects'}, :adjacencies=>adjacencies}
         
 
         @project.people.each do |per|
