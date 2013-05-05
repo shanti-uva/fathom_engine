@@ -60,11 +60,11 @@ class ProjectsController < ApplicationController
         #end
         
         json_out = []
-        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :data=>{:controller=>'projects'}, :adjacencies=>adjacencies}
+        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :data=>{"$color" => "#4B8A08", :controller=>'projects'}, :adjacencies=>adjacencies}
         
 
         @project.people.each do |per|
-          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{:parent=>@project.name, :relation=>"People", :controller=>'people'}}
+          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{"$color" => "#415C7E", :parent=>@project.name, :relation=>"People", :controller=>'people'}}
         end
         #@person.organizations.each do |org|
         #  json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"organization"}}

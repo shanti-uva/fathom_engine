@@ -333,14 +333,14 @@ class PeopleController < ApplicationController
         end
         
         json_out = []
-        json_out << {:id=>@person.id, :name=>@person.full_name, :data=>{:controller=>'people'}, :adjacencies=>adjacencies}
+        json_out << {:id=>@person.id, :name=>@person.full_name, :data=>{"$color" => "#415C7E", :controller=>'people'}, :adjacencies=>adjacencies}
         
 
         @person.projects.each do |proj|
-          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{:parent=>@person.full_name, :relation=>"Project", :controller=>'projects'}}
+          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{"$color" => "#4B8A08",:parent=>@person.full_name, :relation=>"Project", :controller=>'projects'}}
         end
         @person.organizations.each do |org|
-          json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{:parent=>@person.full_name, :relation=>"Organization", :controller=>'organizations'}}
+          json_out << {:id => "o_" + org.id.to_s, :name=> org.name, :data=>{"$color" => "#886A08", :parent=>@person.full_name, :relation=>"Organization", :controller=>'organizations'}}
         end
         #json_out ={:id=>@person.id, :name=>@person.full_name}
         

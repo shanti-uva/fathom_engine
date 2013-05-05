@@ -70,6 +70,7 @@ function init(somejson){
       //Change node and edge styles such as
       //color, width and dimensions.
       Node: {
+	      overridable: true,
           dim: 15,
           color: "#415C7E"
       },
@@ -183,8 +184,8 @@ function init(somejson){
               style.fontSize = "0.8em";
 			  style.paddingTop = '7px'; 
 			 
-			  alert(node.color); 
-			  //if (node.data.controller == "projects" ) {alert(tempnode.color);}//node.color = "#633";}
+			  //alert(node.data.$color);
+			  //if (node.data.controller == "projects" ) {alert(tempnode.color);}//node.color = "#966";}
 			  //if (node.data.controller == "organizations" ) { node.color = "#900";}
 			  //if (node.data.controller == "people" ) { node.color = "#444";}
               style.color = "#444";

@@ -47,13 +47,13 @@ class OrganizationsController < ApplicationController
           adjacencies << {:nodeTo => "p_" + proj.id.to_s }
         end
         json_out = []
-        json_out << {:id=>"o_" + @organization.id.to_s, :name=>@organization.name, :data=>{:controller=>'organizations'}, :adjacencies=>adjacencies}
+        json_out << {:id=>"o_" + @organization.id.to_s, :name=>@organization.name, :data=>{"$color" => "#886A08", :controller=>'organizations'}, :adjacencies=>adjacencies}
         
         @organization.people.each do |per|
-          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{:parent=>@organization.name, :relation=>"People", :controller=>'people'}}
+          json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{"$color" => "#415C7E", :parent=>@organization.name, :relation=>"People", :controller=>'people'}}
         end
         @organization.projects.each do |proj|
-          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{:parent=>@organization.name, :relation=>"Project"}}
+          json_out << {:id => "p_" + proj.id.to_s, :name=> proj.name, :data=>{"$color" => "#4B8A08", :parent=>@organization.name, :relation=>"Project", :controller=>'projects'}}
         end
         render :json=>json_out
         
