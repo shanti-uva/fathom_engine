@@ -324,6 +324,15 @@ class PeopleController < ApplicationController
         #    #json_out << {:id => node.id, :name=> node.name}
         #end
         
+        if !@person.person_profile.overview.blank? 
+          if(@person.person_profile.overview.length > 300)
+            overview = @person.person_profile.overview[0,299].html_safe + "..."
+          else 
+            overview = @person.person_profile.overview.html_safe
+          end
+        else
+           overview = ''
+        end
         adjacencies = []
         @person.projects.each do |proj|
           adjacencies << {:nodeTo => "p_"+proj.id.to_s }
@@ -333,7 +342,7 @@ class PeopleController < ApplicationController
         end
         
         json_out = []
-        json_out << {:id=>@person.id, :name=>@person.full_name, :data=>{"$color" => "#415C7E", :controller=>'people'}, :adjacencies=>adjacencies}
+        json_out << {:id=>@person.id, :name=>@person.full_name, :data=>{"$color" => "#415C7E", :controller=>'people', :overview => overview}, :adjacencies=>adjacencies}
         
 
         @person.projects.each do |proj|

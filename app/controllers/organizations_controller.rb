@@ -39,6 +39,16 @@ class OrganizationsController < ApplicationController
         ## render json
         #render :json=>json_out
         
+        if !@organization.project_profile.overview.blank? 
+          if(@organization.project_profile.overview.length > 300)
+            overview = @organization.project_profile.overview[0,299].html_safe + "..."
+          else 
+            overview = @organization.project_profile.overview.html_safe
+          end
+        else
+           overview = ''
+        end
+        
         adjacencies = []
         @organization.people.each do |per|
           adjacencies << {:nodeTo => per.id.to_s }
@@ -47,7 +57,7 @@ class OrganizationsController < ApplicationController
           adjacencies << {:nodeTo => "p_" + proj.id.to_s }
         end
         json_out = []
-        json_out << {:id=>"o_" + @organization.id.to_s, :name=>@organization.name, :data=>{"$color" => "#886A08", :controller=>'organizations'}, :adjacencies=>adjacencies}
+        json_out << {:id=>"o_" + @organization.id.to_s, :name=>@organization.name, :data=>{"$color" => "#886A08", :controller=>'organizations', :overview => overview}, :adjacencies=>adjacencies}
         
         @organization.people.each do |per|
           json_out << {:id => per.id.to_s, :name=> per.full_name, :data=>{"$color" => "#415C7E", :parent=>@organization.name, :relation=>"People", :controller=>'people'}}

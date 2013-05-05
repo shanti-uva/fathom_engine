@@ -222,6 +222,9 @@ function init(somejson){
           html += "</ul>";
           $jit.id('inner-details').innerHTML = html;
 
+		  overview_html = "<h4><b>Description:</b></h4>"
+		  overview_html += node.data.overview;	
+		  $jit.id('inner-description').innerHTML = 	overview_html;
           //load second level nodes
 		  //node.eachAdjacency(function(adj){
 			//var child = adj.nodeTo;
