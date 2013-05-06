@@ -325,8 +325,8 @@ class PeopleController < ApplicationController
         #end
         
         if !@person.person_profile.overview.blank? 
-          if(@person.person_profile.overview.length > 300)
-            overview = @person.person_profile.overview[0,299].html_safe + "..."
+          if(@person.person_profile.overview.length > 400)
+            overview = @person.person_profile.overview[0,399].html_safe + "..."
           else 
             overview = @person.person_profile.overview.html_safe
           end

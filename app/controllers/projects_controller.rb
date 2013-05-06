@@ -52,8 +52,8 @@ class ProjectsController < ApplicationController
         #render :json=>json_out
         
         if !@project.project_profile.overview.blank? 
-          if(@project.project_profile.overview.length > 300)
-            overview = @project.project_profile.overview[0,299].html_safe + "..."
+          if(@project.project_profile.overview.length > 400)
+            overview = @project.project_profile.overview[0,399].html_safe + "..."
           else 
             overview = @project.project_profile.overview.html_safe
           end

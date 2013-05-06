@@ -71,7 +71,8 @@ function init(somejson){
       //color, width and dimensions.
       Node: {
 	      overridable: true,
-          dim: 15,
+          //dim: 15,
+		  dim: 90,
           color: "#415C7E"
       },
       Edge: {
@@ -181,14 +182,13 @@ function init(somejson){
           style.display = '';
           style.cursor = 'pointer';
           if (node._depth <= 1) {
-              style.fontSize = "0.8em";
-			  style.paddingTop = '7px'; 
-			 
-			  //alert(node.data.$color);
-			  //if (node.data.controller == "projects" ) {alert(tempnode.color);}//node.color = "#966";}
-			  //if (node.data.controller == "organizations" ) { node.color = "#900";}
-			  //if (node.data.controller == "people" ) { node.color = "#444";}
-              style.color = "#444";
+              //style.fontSize = "0.8em";
+			  //style.paddingTop = '7px'; 
+              //style.color = "#444";
+			if (node._depth == 0){ style.fontSize = "1.5em";}
+			if (node._depth == 1) { style.fontSize = "1.1em";}
+			
+			  style.color = "#FFFFFF";
 
           } else if(node._depth == 2){
               style.fontSize = "0.7em";
@@ -205,24 +205,24 @@ function init(somejson){
       
       onComplete: function(){
           Log.write("done");
-          //alert('right side column');
           //Build the right column relations list.
           //This is done by collecting the information (stored in the data property) 
           //for all the nodes adjacent to the centered node.
           var node = ht.graph.getClosestNodeToOrigin("current");
-          var html = "<h4>" + node.name + "</h4><b>Connections:</b>";
-          html += "<ul>";
+          var html = "<b>" + node.name + "</b><b>Connections:</b><br/>";
+          html += "<select style='width: 170px;'>";
           node.eachAdjacency(function(adj){
               var child = adj.nodeTo;
               if (child.data) {
                   var rel = (child.data.parent == node.name) ? child.data.relation : node.data.relation;
-                  html += "<li>" + child.name + " " + "<div class=\"relation\">(relation: " + rel + ")</div></li>";
+                  //html += "<li>" + child.name + " " + "<div class=\"relation\">(relation: " + rel + ")</div></li>";
+					html += "<option value='" + child.id + "'>" + child.name + "</option>"
               }
 		  });
-          html += "</ul>";
-          $jit.id('inner-details').innerHTML = html;
+          html += "</select>";
+          //$jit.id('inner-details').innerHTML = html;
 
-		  overview_html = "<h4><b>Description:</b></h4>"
+		  overview_html = "<b>Description:</b>"
 		  overview_html += node.data.overview;	
 		  $jit.id('inner-description').innerHTML = 	overview_html;
           //load second level nodes
@@ -283,13 +283,24 @@ function init(somejson){
 </div>
 
 <div id="center-container">
-	<div id="inner-description"></div>
+	
     <div id="infovis"></div>    
 </div>
 
 <div id="right-container">
-
+	<div id="inner-legend">
+		<br/>
+		<b>Legend</b>
+		<ul>
+			<li id='people-circle'>People</li>
+			<li>Organizations</li>
+			<li>Projects</li>
+		</ul>
+	</div>
+	<br />
 	<div id="inner-details"></div>
+	<br /><br />
+	<div id="inner-description"></div>
 
 </div>
 

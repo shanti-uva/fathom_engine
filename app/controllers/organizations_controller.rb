@@ -40,8 +40,8 @@ class OrganizationsController < ApplicationController
         #render :json=>json_out
         
         if !@organization.project_profile.overview.blank? 
-          if(@organization.project_profile.overview.length > 300)
-            overview = @organization.project_profile.overview[0,299].html_safe + "..."
+          if(@organization.project_profile.overview.length > 400)
+            overview = @organization.project_profile.overview[0,399].html_safe + "..."
           else 
             overview = @organization.project_profile.overview.html_safe
           end
