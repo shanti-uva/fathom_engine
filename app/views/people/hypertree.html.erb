@@ -57,8 +57,9 @@ function init(somejson){
 	var json = somejson
     //end
     var infovis = document.getElementById('infovis');
-    var w = infovis.offsetWidth - 50, h = infovis.offsetHeight - 50;
-    
+    //var w = infovis.offsetWidth - 50, h = infovis.offsetHeight - 50;
+    var w = infovis.offsetWidth, h = infovis.offsetHeight;
+	
 
     //init Hypertree
     var ht = new $jit.Hypertree({
@@ -72,7 +73,7 @@ function init(somejson){
       Node: {
 	      overridable: true,
           //dim: 15,
-		  dim: 90,
+		  dim: 100,
           color: "#415C7E"
       },
       Edge: {
@@ -80,6 +81,15 @@ function init(somejson){
 		  type: 'line',
           color: "#A4A4A4"
       },
+	  Tips: {  
+	    enable: false,  
+	    type: 'Native',  
+	    offsetX: 10,  
+	    offsetY: 10,  
+	    onShow: function(tip, node) {  
+	      tip.innerHTML = node.name;  
+	    }  
+	  },
 	  Events: {  
 	    enable: true,  
 	    onClick: function(node, eventInfo, e) {  
@@ -186,8 +196,15 @@ function init(somejson){
 			  //style.paddingTop = '7px'; 
               //style.color = "#444";
 			if (node._depth == 0){ style.fontSize = "1.5em";}
-			if (node._depth == 1) { style.fontSize = "1.1em";}
-			
+			if (node._depth == 1) { 
+				style.fontSize = "1.1em";
+				var top = parseInt(style.top);
+				style.top = (top - 5 ) + 'px';
+				
+				style.width = '95px';
+				if (node.name.length >= 25){style.top = (top - 15 ) + 'px';}
+			}
+			  
 			  style.color = "#FFFFFF";
 
           } else if(node._depth == 2){
@@ -201,6 +218,7 @@ function init(somejson){
           var left = parseInt(style.left);
           var w = domElement.offsetWidth;
           style.left = (left - w / 2) + 'px';
+		  
       },
       
       onComplete: function(){
@@ -210,7 +228,7 @@ function init(somejson){
           //for all the nodes adjacent to the centered node.
           var node = ht.graph.getClosestNodeToOrigin("current");
           var html = "<b>" + node.name + "</b><b>Connections:</b><br/>";
-          html += "<select style='width: 170px;'>";
+          html += "<select id='connection_dropdown', style='width: 170px;'>";
           node.eachAdjacency(function(adj){
               var child = adj.nodeTo;
               if (child.data) {
@@ -220,9 +238,40 @@ function init(somejson){
               }
 		  });
           html += "</select>";
-          //$jit.id('inner-details').innerHTML = html;
+          $jit.id('inner-details').innerHTML = html;
 
-		  overview_html = "<b>Description:</b>"
+		  var dropdown_element = $jit.id('connection_dropdown'); 
+		  $jit.util.addEvent(dropdown_element, 'change', function(){
+			 //alert('hello');
+			 var myselect = $jit.id('connection_dropdown'); 
+			 
+			 //ht.onClick(myselect.options[myselect.selectedIndex].value, {
+             //     onComplete: function() {
+             //         ht.controller.onComplete();
+             //     }
+             // });
+			var target_id = '';
+			var toRemove = '';
+			//alert(myselect.options[myselect.selectedIndex].value);
+			var node_id = myselect.options[myselect.selectedIndex].value.toString() ;
+			//alert(node_id);
+			var node = ht.graph.getNode(node_id); 
+			//alert(node.id);
+			if (node.data.controller == "projects" ) { toRemove='p_'; target_id = node.id.replace(toRemove,'');}
+			if (node.data.controller == "organizations" ) { toRemove='o_'; target_id = node.id.replace(toRemove,'');}
+			if (node.data.controller == "people" ) { target_id = node.id;}
+			json_url = '' + node.data.controller +  '/' + target_id+ '.json';
+			$.getJSON(json_url, function(data) {
+		    	
+				ht.loadJSON(data);
+			    ////compute positions and plot.
+			    ht.refresh();
+				ht.controller.onComplete();
+			});
+			
+		 });
+
+		  overview_html = "<p style='color: #BDBDBD;'>Description:</p>"
 		  overview_html += node.data.overview;	
 		  $jit.id('inner-description').innerHTML = 	overview_html;
           //load second level nodes
