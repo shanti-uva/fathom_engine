@@ -25,6 +25,7 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     session[:start_node_id] = @tool.node_id
+    session[:hypertree_start_node_id] = 'tools/' + @tool.id.to_s + '.json' 
     @current_style = :showview #@current_style = :details
     @selected_tab = determine_selected_tab(@tool)    
     @tag_combiner = ProfileTagCombiner.new

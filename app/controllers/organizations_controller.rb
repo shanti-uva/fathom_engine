@@ -24,6 +24,8 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.find(params[:id])
     session[:start_node_id] = @organization.node_id
+    session[:hypertree_start_node_id] = 'organizations/' + @organization.id.to_s + '.json' 
+    
     @current_style = :showview #@current_style = :details
     @selected_tab = determine_selected_tab(@organization,false)        
     @tag_combiner = ProfileTagCombiner.new

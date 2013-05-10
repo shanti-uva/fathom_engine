@@ -204,8 +204,10 @@ function init(somejson){
 				var top = parseInt(style.top);
 				style.top = (top - 5 ) + 'px';
 				
-				style.width = '90px';
+				style.width = '87px';
+				if (node.name.length >= 15){style.top = (top - 10 ) + 'px';}
 				if (node.name.length >= 25){style.top = (top - 15 ) + 'px';}
+				if (node.name.length >= 35){style.top = (top - 15 ) + 'px';}
 			}
 			  
 			  style.color = "#FFFFFF";

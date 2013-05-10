@@ -80,6 +80,8 @@ class PeopleController < ApplicationController
       render :action => 'new'
     else
       session[:start_node_id] = @person.node_id
+      session[:hypertree_start_node_id] = 'people/' + @person.id.to_s + '.json'  
+      
       render :action => 'show'
     end
   end

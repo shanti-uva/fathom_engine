@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     session[:start_node_id] = @project.node_id
+    session[:hypertree_start_node_id] = 'projects/' + @project.id.to_s + '.json' 
     @current_style = :showview #@current_style = :details
     @selected_tab = determine_selected_tab(@project)    
     @tag_combiner = ProfileTagCombiner.new

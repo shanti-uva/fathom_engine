@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @featured_projects = Project.order('RAND()').limit(7)
     @latest_registrants = Person.order('created_at DESC').limit(3)
     session[:start_node_id] = "node#{@featured_projects.first.id}" unless @featured_projects.empty?
+    session[:hypertree_start_node_id] = 'projects/' + @featured_projects.first.id.to_s + '.json' unless @featured_projects.empty?
     #render :layout => 'home'
   end
   
