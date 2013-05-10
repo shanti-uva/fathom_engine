@@ -305,7 +305,8 @@ class PeopleController < ApplicationController
     
     # set the relation browser to show this person
     session[:start_node_id] = @person.node_id
-
+    session[:hypertree_start_node_id] = 'people/' + @person.id.to_s + '.json' 
+    
     respond_to do |format|
       format.html
       format.json do

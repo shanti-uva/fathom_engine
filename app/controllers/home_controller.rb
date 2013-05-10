@@ -37,12 +37,17 @@ class HomeController < ApplicationController
   end
   
   def relationbrowser
-    @current_nav_item = :relations 
-    @relation_browser_enabled = true
-    @login_enabled = true
-    @nav_enabled = true
-    @relation_browser_full = true
-    #render :layout => 'simpler_main'   
+    #@current_nav_item = :relations 
+    #@relation_browser_enabled = true
+    #@login_enabled = true
+    #@nav_enabled = true
+    #@relation_browser_full = true
+    ##render :layout => 'simpler_main'  
+     
+    @json_start_url = session[:hypertree_start_node_id]
+    
+    @profile_view = false    
+    @current_style = :gallery
   end
   
   protected
