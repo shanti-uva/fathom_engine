@@ -73,7 +73,7 @@ function init(somejson){
       Node: {
 	      overridable: true,
           //dim: 15,
-		  dim: 100,
+		  dim: 102,
           color: "#415C7E"
       },
       Edge: {
@@ -195,13 +195,13 @@ function init(somejson){
               //style.fontSize = "0.8em";
 			  //style.paddingTop = '7px'; 
               //style.color = "#444";
-			if (node._depth == 0){ style.fontSize = "1.5em";}
+			if (node._depth == 0){ style.fontSize = "1.5em";style.width = '190px';}
 			if (node._depth == 1) { 
 				style.fontSize = "1.1em";
 				var top = parseInt(style.top);
 				style.top = (top - 5 ) + 'px';
 				
-				style.width = '95px';
+				style.width = '90px';
 				if (node.name.length >= 25){style.top = (top - 15 ) + 'px';}
 			}
 			  
@@ -238,38 +238,32 @@ function init(somejson){
               }
 		  });
           html += "</select>";
-          $jit.id('inner-details').innerHTML = html;
+		  //ataching the dropdown
+          //$jit.id('inner-details').innerHTML = html;
 
-		  var dropdown_element = $jit.id('connection_dropdown'); 
-		  $jit.util.addEvent(dropdown_element, 'change', function(){
-			 //alert('hello');
-			 var myselect = $jit.id('connection_dropdown'); 
-			 
-			 //ht.onClick(myselect.options[myselect.selectedIndex].value, {
-             //     onComplete: function() {
-             //         ht.controller.onComplete();
-             //     }
-             // });
-			var target_id = '';
-			var toRemove = '';
-			//alert(myselect.options[myselect.selectedIndex].value);
-			var node_id = myselect.options[myselect.selectedIndex].value.toString() ;
-			//alert(node_id);
-			var node = ht.graph.getNode(node_id); 
-			//alert(node.id);
-			if (node.data.controller == "projects" ) { toRemove='p_'; target_id = node.id.replace(toRemove,'');}
-			if (node.data.controller == "organizations" ) { toRemove='o_'; target_id = node.id.replace(toRemove,'');}
-			if (node.data.controller == "people" ) { target_id = node.id;}
-			json_url = '' + node.data.controller +  '/' + target_id+ '.json';
-			$.getJSON(json_url, function(data) {
-		    	
-				ht.loadJSON(data);
-			    ////compute positions and plot.
-			    ht.refresh();
-				ht.controller.onComplete();
-			});
-			
-		 });
+		//  var dropdown_element = $jit.id('connection_dropdown'); 
+		//  $jit.util.addEvent(dropdown_element, 'change', function(){
+		//	 var myselect = $jit.id('connection_dropdown'); 
+		//	 //ht.onClick(myselect.options[myselect.selectedIndex].value, {
+        //     //     onComplete: function() {
+        //     //         ht.controller.onComplete();
+        //     //     }
+        //     // });
+		//	var target_id = '';
+		//	var toRemove = '';
+		//	var node_id = myselect.options[myselect.selectedIndex].value.toString() ;
+		//	var node = ht.graph.getNode(node_id); 
+		//	if (node.data.controller == "projects" ) { toRemove='p_'; target_id = node.id.replace(toRemove,'');}
+		//	if (node.data.controller == "organizations" ) { toRemove='o_'; target_id = node.id.replace(toRemove,'');}
+		//	if (node.data.controller == "people" ) { target_id = node.id;}
+		//	json_url = '' + node.data.controller +  '/' + target_id+ '.json';
+		//	$.getJSON(json_url, function(data) {
+		//		ht.loadJSON(data);
+		//	    ////compute positions and plot.
+		//	    ht.refresh();
+		//		ht.controller.onComplete();
+		//	});
+		// });
 
 		  overview_html = "<p style='color: #BDBDBD;'>Description:</p>"
 		  overview_html += node.data.overview;	
@@ -340,10 +334,11 @@ function init(somejson){
 	<div id="inner-legend">
 		<br/>
 		<b>Legend</b>
+		<br/><br/>
 		<ul>
-			<li id='people-circle'>People</li>
-			<li>Organizations</li>
-			<li>Projects</li>
+			<li id='people-circle'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People</li>
+			<li id='organization-circle'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organizations</li>
+			<li id='project-circle'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projects</li>
 		</ul>
 	</div>
 	<br />
