@@ -17,9 +17,9 @@ module HomeHelper
     if not overview.nil?
       if not overview.empty?
         if overview.length > 264
-          return overview.to(264) + '...'
+          return (overview.to(264) + '...').html_safe
         else
-          return overview
+          return overview.html_safe
         end
       end
     end
