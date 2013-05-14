@@ -19,6 +19,13 @@
 </script>
 
 <script>
+	$('.ui_join_dialog').live('click', function() {	
+  	$("#popup_dialog").html("<p></p>")
+	$("#popup_dialog" ).dialog({ modal: true, width: 900, height: 450});
+});
+</script>
+
+<script>
 	$('.ui_definition_dialog').live('click', function() {
 	
   	$("#popup_dialog").html("<p></p>")

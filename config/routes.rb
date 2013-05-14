@@ -143,6 +143,9 @@ Rails.application.routes.draw do
   
   resources :projects do
       resources :posts, :people
+      member do
+        get :find_member
+      end
       collection do
         get :available_projects
       end

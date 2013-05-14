@@ -175,6 +175,9 @@ jQuery(function(){
 });
 </script>
 
+
+
+
 <%#= tinymce_reinitialization_script %>
 
 <div id="main-content" class="narrow">		
@@ -349,7 +352,9 @@ jQuery(function(){
       		  <p>
       		  <% if (project_type == :project && full_access_project_member?(project)) || 
     					  (project_type == :organization && full_access_organization_member?(project)) -%>
-        		<%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find Team Members' %>
+        		<%#= link_to 'Find Team Members', url_for( :action => 'find_member', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find Team Members' %>
+				<%= link_to 'Find Team Members', {:controller => 'projects', :action => 'find_member',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Find Team Members' %>
+
         		 | <%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Invite Team Members' %>
       		  <% end -%>
       		  </p>
