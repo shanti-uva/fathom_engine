@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   
   resources :organizations do
     resources :posts
+    collection do
+      get :available_organizations
+    end
   end
 
   resources :people do
@@ -140,6 +143,9 @@ Rails.application.routes.draw do
   
   resources :projects do
       resources :posts, :people
+      collection do
+        get :available_projects
+      end
   end
 
   resources :tag_projects, :controller => 'projects', :path_prefix => 'tags/:tag_string'

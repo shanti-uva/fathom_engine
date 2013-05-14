@@ -1,0 +1,80 @@
+<script>
+  jQuery(function(){
+    var $=jQuery;
+    var join_url="<%= url_for(:action=>'join_project',:id=>nil) %>";
+    $('.joinProject').click(function(){
+      var el = $(this);
+      var item_id = el.attr('title');
+      var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
+      //$.post(url, function(data){
+      //  self.parent.tb_remove();
+      //  self.parent.successfullyJoined('project', item_id);
+      //});
+	  $.post(url);
+	  $("#popup_dialog").dialog("destroy");
+      self.parent.successfullyJoined('project', item_id);
+      return false;
+    })
+  })
+</script>
+
+<% # the :inline param is used for creating a view that fits into thickbox (no header, no footer) :: see layouts/main.html.erb for logic -%>
+
+<div id="main">
+  <% if full_access? and ! params[:inline] -%>
+    <div class="gallery-button" style="float: right;"><span><%= link_to 'Create Project', new_project_path %></span></div>
+  <% end -%>
+  <%= render :partial => '/common/sort_tabs', :locals => { :url => projects_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
+
+  <div id="main-content">
+    <% i = 1 %>
+    <% for project in @projects -%>
+
+      <% # don't display the project if it's in the "find projects" popup view and the user already belongs to it -%>
+      <% next if params[:inline] and !logged_in? %>
+      <% next if params[:inline] and current_user.person.projects.include?(project) -%>
+
+      <% alt = ((i % 2) == 0) -%>
+
+      <div class="profile-block-wrapper <%= "alt" if alt %>">
+        <div class="profile-block">
+          <% # if the view is NOT in a window ("Thickbox") -%>
+          <% unless params[:inline] %>
+
+            <%= link_to(image_tag(project.thumb_src),  project, :class => "profile-thm") %>
+
+            <div class="profile-block-main">
+              <h4><%= link_to project.name.s, project %></h4>
+              <div class="date"><%= simple_date(project.updated_at) %></div>
+            </div>
+            <% # ... else the view is in a popup window ("Thickbox") set from ?inline=true. In this view, the links displayed will load content into the iframe unless intercepted by javascript. -%>
+          <% else %>
+
+            <%= image_tag(project.thumb_src, :class => "profile-thm") %>
+
+            <div class="profile-block-main">	
+              <h5><%= project.name.s %></h5>
+              <div class="date"><%= simple_date(project.updated_at) %></div>
+              <div class="right">
+                <% if full_access? and !full_access_project_member?(@project)  and !private_user?-%>
+                  <% # javascript intercepts this click -%>
+                  <%= button_to( "Join this Project", url_for( :action => 'join_project', :id => @project), :class=>'joinProject', :title=>project.id ) %>
+                  <%#= button_to( ts('join.this_record', Project.human_name.titleize.s), url_for( :action => 'join_project', :id => @project), :class=>'joinProject', :title=>project.id ) %>
+
+                <% end -%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div><!--END PROFILE-BLOCK-WRAPPER-->
+      <% i = i + 1 -%>
+    <% end -%>
+
+    <% if params[:inline] and (@projects - current_user.person.projects).blank? -%>
+	  <h4>No projects to join</h4>
+    <% end %>
+
+    <%= will_paginate @projects %>
+  </div><!--END CONTENT-->
+
+</div><!--END MAIN-->

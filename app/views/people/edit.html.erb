@@ -182,6 +182,15 @@ $(function() {
 //</script>	
 	
 <script>
+	$('.ui_join_dialog').live('click', function() {
+	
+  	$("#popup_dialog").html("<p></p>")
+
+	$("#popup_dialog" ).dialog({ modal: true, width: 950, height: 600});
+
+});
+</script>	
+<script>
 	$('.ui_definition_dialog').live('click', function() {
 	//alert('click');
 	
@@ -318,7 +327,8 @@ $(function() {
 
                 <h3>My Projects</h3>
 
-                <p><%= link_to 'Find Projects', projects_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find a Project to Join' %></p>
+                <p><%#= link_to 'Find Projects', projects_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find a Project to Join' %>
+					<%= link_to 'Find Projects', {:controller => 'projects', :action => 'available_projects',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Find a Project to Join' %></p>
 
                 <%
                 project_list = { :partial => 'common/entity_list', :object => @person.projects,
@@ -338,7 +348,8 @@ $(function() {
 
                 <h3>My Organizations</h3>
 
-                <p><%= link_to 'Find Organizations', organizations_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find an Organization to Join' %></p>
+                <p><%#= link_to 'Find Organizations', organizations_path(:inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Find an Organization to Join' %>
+				<%= link_to 'Find Organizations', {:controller => 'organizations', :action => 'available_organizations',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Find an Organization to Join' %></p>
 
                 <%
                 organization_list = {   :partial => 'common/entity_list', :object => @person.organizations,

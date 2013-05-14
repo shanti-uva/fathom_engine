@@ -161,6 +161,34 @@ class ProjectsController < ApplicationController
     end
   end
   
+  # GET /projects
+  # GET /projects.xml
+  def available_projects
+    @tag_string = params[:tag_string]
+    if !@tag_string.nil?
+      @search_projects = get_by_solr_tag(@tag_string)
+      # only accept valid sort param
+      @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+      order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+      # condition is necessary to fix a rails model caching bug in production mode.
+      @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => {:id => @search_projects}
+    else
+      # only accept valid sort param
+      @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+      order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+      # condition is necessary to fix a rails model caching bug in production mode.
+      @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
+    end
+    @profile_view = false    
+    @current_style = :gallery
+
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.xml  { render :xml => @projects }
+    #end
+  end
+  
+  
   # GET /projects/1/find_member
   def find_member
     @project = Project.find(params[:id])
