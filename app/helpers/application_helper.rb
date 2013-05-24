@@ -46,7 +46,7 @@ module ApplicationHelper
             super + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
           else
             #super + ['category_selector','application','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min']
-            super + ['jrails'] + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
+            super + ['category_selector','thickbox-compressed','encodemailto','profile-detail-view','yahoo-dom-event','element-beta-min','tabview-min'] #jquery loaded from thl template
           end          
         end
       else
@@ -96,46 +96,49 @@ module ApplicationHelper
       [super, include_tiny_mce_if_needed].join("\n").html_safe
     else #'thlib.org'
       if @current_style == :details #edit mode then needs tiny_mce
-        [super, include_tiny_mce_if_needed].join("\n").html_safe
+        #Commented - on May 21, 2013 - temporary removal of tinymce
+        #[super, include_tiny_mce_if_needed].join("\n").html_safe
+        super
       else
         super
       end
     end
   end 
-   
-  def tinymce_reinitialization_script
-    str = "<script type='text/javascript'>"+ "\n"
-    str += "//<![CDATA[" + "\n"
-    str += "tinyMCE.init({" + "\n"
-    str += "editor_selector : 'mceEditor'," + "\n"
-    str += "strict_loading_mode : tinymce.isWebKit," + "\n"
-    str += "height : '220px'," + "\n"
-    str += "mode : 'textareas'," + "\n"
-    str += "relative_urls : false," + "\n"
-    str += "noneditable_leave_contenteditable : 'true'," + "\n"
-    str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
-    str += "template_external_list_url : '/templates/templates.js'," + "\n"
-    str += "content_css : '/stylesheets/customtinymce.css'," + "\n"
-    str += "theme : 'advanced'," + "\n"
-    str += "theme_advanced_blockformats : 'p,h1,h2,h3,h4,h5,h6'," + "\n"
-    str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
-    str += "theme_advanced_buttons2 : 'cut,copy,paste,separator,pastetext,pasteword,separator,bullist,numlist,outdent,indent,separator,justifyleft,justifycenter,justifyright,justifiyfull,separator,removeformat,charmap'," + "\n"
-    str += "theme_advanced_buttons3 : 'spellchecker,tablecontrols '," + "\n"
-    str += "spellchecker_languages : '+English=en'," + "\n"
-    str += "spellchecker_rpc_url : '/application/spellchecker'," + "\n"
-    str += "gecko_spellcheck : 'true'," + "\n"
-    str += "table_styles : 'Header 1=header1;Header 2=header2;Header 3=header3'," + "\n"
-    str += "table_cell_styles : 'Header 1=header1;Header 2=header2;Header 3=header3;Table Cell=tableCel1'," + "\n"
-    str += "table_row_styles : 'Header 1=header1;Header 2=header2;Header 3=header3;Table Row=tableRow1'," + "\n"
-    str += "theme_advanced_resizing : 'true'," + "\n"
-    str += "theme_advanced_toolbar_align : 'left'," + "\n"
-    str += "theme_advanced_toolbar_location : 'top'," + "\n"
-    str += "width : '550px'"  + "\n"
-    str += "});" + "\n"
-    str += "//]]>" + "\n"
-    str += "</script> "
-    return str.html_safe 
-  end
+  
+  #Commented - on May 21, 2013 - temporary removal of tinymce 
+  #def tinymce_reinitialization_script
+  #  str = "<script type='text/javascript'>"+ "\n"
+  #  str += "//<![CDATA[" + "\n"
+  #  str += "tinyMCE.init({" + "\n"
+  #  str += "editor_selector : 'mceEditor'," + "\n"
+  #  str += "strict_loading_mode : tinymce.isWebKit," + "\n"
+  #  str += "height : '220px'," + "\n"
+  #  str += "mode : 'textareas'," + "\n"
+  #  str += "relative_urls : false," + "\n"
+  #  str += "noneditable_leave_contenteditable : 'true'," + "\n"
+  #  str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
+  #  str += "template_external_list_url : '/templates/templates.js'," + "\n"
+  #  str += "content_css : '/stylesheets/customtinymce.css'," + "\n"
+  #  str += "theme : 'advanced'," + "\n"
+  #  str += "theme_advanced_blockformats : 'p,h1,h2,h3,h4,h5,h6'," + "\n"
+  #  str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
+  #  str += "theme_advanced_buttons2 : 'cut,copy,paste,separator,pastetext,pasteword,separator,bullist,numlist,outdent,indent,separator,justifyleft,justifycenter,justifyright,justifiyfull,separator,removeformat,charmap'," + "\n"
+  #  str += "theme_advanced_buttons3 : 'spellchecker,tablecontrols '," + "\n"
+  #  str += "spellchecker_languages : '+English=en'," + "\n"
+  #  str += "spellchecker_rpc_url : '/application/spellchecker'," + "\n"
+  #  str += "gecko_spellcheck : 'true'," + "\n"
+  #  str += "table_styles : 'Header 1=header1;Header 2=header2;Header 3=header3'," + "\n"
+  #  str += "table_cell_styles : 'Header 1=header1;Header 2=header2;Header 3=header3;Table Cell=tableCel1'," + "\n"
+  #  str += "table_row_styles : 'Header 1=header1;Header 2=header2;Header 3=header3;Table Row=tableRow1'," + "\n"
+  #  str += "theme_advanced_resizing : 'true'," + "\n"
+  #  str += "theme_advanced_toolbar_align : 'left'," + "\n"
+  #  str += "theme_advanced_toolbar_location : 'top'," + "\n"
+  #  str += "width : '550px'"  + "\n"
+  #  str += "});" + "\n"
+  #  str += "//]]>" + "\n"
+  #  str += "</script> "
+  #  return str.html_safe 
+  #end
   
   def site_title(opts={:html=>true})
     opts[:html] ? 'SHANTI UVa' : 'SHANTI UVa' #'SHANTI at the University of Virginia' : 'SHANTI at the University of Virginia'
@@ -144,6 +147,43 @@ module ApplicationHelper
   def banner_title(opts={:html=>true})
     opts[:html] ? 'SHANTI - Sciences, Humanities, and Arts Network of Technological Initiatives' : 'SHANTI - Sciences, Humanities, and Arts Network of Technological Initiatives'
   end
+  
+  # takes :person_profile / :profile_profile etc. for the "profile_type"
+  # The "fields"  is a hash where the keys match the profiles' tag attributes (see PersonProfile etc..)
+  # and the values map to HTML elements (the id attribute)
+  # EXAMPLE:
+  #
+  #   generate_js_for_tag_autocomplete(:person_profile, {:general_interests=>'person_profile_general_interest_list'})
+  #
+  def generate_js_tag_jquery_ui_autocomplete(tag_combiner, profile_type, fields)
+    js = ''
+    fields.each_pair do |tag_field,tag_field_input_id|
+      # list of tag values, var name prefixed by the tag field
+      js << %(var #{tag_field}_profile_tags = [];\n)
+      # the key is the tag, the value is the hit count, var name prefixed by the tag field
+      #js << %(var #{tag_field}_profile_tag_counts = {};\n)
+      
+      # Get a hash of the tags for this field
+      tag_set = tag_combiner.tag_counts(tag_field)
+
+      tag_set.keys.each do |tag|
+        js << %(#{tag_field}_profile_tags.push('#{escape_javascript tag}');\n)
+        #js << %(#{tag_field}_profile_tag_counts['#{escape_javascript tag}'] = #{tag_set[tag].to_i};\n)
+      end
+      
+      #js << %($("##{escape_javascript tag_field_input_id}").autocomplete(#{tag_field}_profile_tags, {
+      #	multiple : true,
+      #	formatItem : function(row) {
+      #    return row + " (" + #{tag_field}_profile_tag_counts[row] + ")";
+      #  },
+      #	formatResult : function(row) {
+      #    return row
+      #  }
+      #});\n)
+    end
+    js.html_safe
+  end
+  
   
   # takes :person_profile / :profile_profile etc. for the "profile_type"
   # The "fields"  is a hash where the keys match the profiles' tag attributes (see PersonProfile etc..)

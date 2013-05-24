@@ -1,3 +1,4 @@
+$("#popup_dialog" ).dialog({ modal: true, width: 650});
 <% case params[:category] 
 	when "positions" %>
 	$("#popup_dialog").html("<%= escape_javascript(render(:partial => 'common/dynamic_list_ui', :object => @positions, :locals => { :category => 'positions', :item_list => @positions, :person => @person })) %>")
@@ -6,3 +7,4 @@
 <% when "affiliations"  %>
 	$("#popup_dialog").html("<%= escape_javascript(render(:partial => 'common/dynamic_list_ui', :object => @affiliations, :locals => { :category => 'affiliations', :item_list => @affiliations, :person => @person })) %>")
 <% end %>
+

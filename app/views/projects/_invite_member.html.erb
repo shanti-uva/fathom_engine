@@ -1,5 +1,5 @@
-<div id="main">
-	<div id="main-content" class="narrow">
+<div id="main-invite">
+	<div id="main-content-intent" class="narrow">
 		<%= render :partial => 'common/invite_member', :locals => { :team => @project, :team_type => :project } %>
 	</div> <!--END CONTENT-->
 	<%= render :partial => '/common/media', :locals => { :entity => @project } unless params[:inline] %>

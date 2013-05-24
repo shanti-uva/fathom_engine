@@ -1,3 +1,5 @@
+<%# debugger %>
+
 <%
 empty_message ||= ""
 submit_message ||= "Submit" 
@@ -30,7 +32,7 @@ remove_link_proc||=nil
  		</tr>
 		<% end -%>
 	</table>
-	<p class="button-to"><%= submit_tag(submit_message, :onclick => "self.parent.tb_remove();") if form_url %></p>
+	<p class="button-to"><%= submit_tag(submit_message, :onclick => '$("#popup_dialog").dialog("destroy");') if form_url %></p>
 	<% if form_url -%></form><% end -%>
 <% else -%>
 	<% if empty_message -%><br/><p><%= empty_message %></p><% end -%>

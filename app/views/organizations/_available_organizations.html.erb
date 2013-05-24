@@ -1,30 +1,23 @@
 <script>
-//$(document).ready(function() {
-//	$(".joinOrganization").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});self.parent.successfullyUpdatedPicture();
-//	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
-//	
-//});
+$(".joinOrganization").on("click", function(event){
+
+   	var join_url="<%= url_for(:action=>'join_organization',:id=>nil) %>";
+	    
+	//alert('join');
+	var el = $(this);
+	var item_id = el.attr('title');
+	//alert(item_id);
+	var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
+
+	$.post(url);
+	
+	$("#popup_dialog").dialog("destroy");
+	self.parent.successfullyJoined('organization', item_id);
+	return false;
+  
+});
 </script>
 
-<script>
-  jQuery(function(){
-    var $=jQuery;
-    var join_url="<%= url_for(:action=>'join_organization',:id=>nil) %>";
-    $('.joinOrganization').click(function(){
-      var el = $(this);
-      var item_id = el.attr('title');
-      var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
-      //$.post(url, function(data){
-      //  self.parent.tb_remove();
-      //  self.parent.successfullyJoined('organization', item_id);
-      //});
-      $.post(url);
-	  $("#popup_dialog").dialog("destroy");
-      self.parent.successfullyJoined('organization', item_id);
-      return false;
-    })
-  })
-</script>
 
 <div id="main">
   <% if full_access? and !params[:inline] -%>
@@ -56,12 +49,14 @@
 
             <div class="profile-block-main">
               <h3><%= organization.name.s %></h3>
-              <div class="date"><%= simple_date(organization.updated_at) %></div>
+              
               <div class="right">
-                <% if full_access? and !full_access_organization_member?(@organization) -%>
+                <% if full_access? and !full_access_organization_member?(organization) -%>
                   <% # javascript intercepts this click -%>
                   <%= button_to( "Join this Organization", url_for( :action => 'join_organization', :id => @project), :class=>'joinOrganization', :title=>organization.id ) %>
-                <% end -%>
+				  <%#= button_to( "Join this Organization", join_organization_organization_path(:id => @project), :class=>'joinOrganization', :title=>organization.id ) %>
+                  <%#= link_to "Join this Organization", url_for( :action => 'join_organization', :id => @project), :remote => true, :class=>'joinOrganization', :title=>organization.id  %>
+				<% end -%>
               </div>
             </div>
 

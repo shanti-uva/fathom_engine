@@ -53,12 +53,26 @@ Rails.application.routes.draw do
   
   resources :organizations do
     resources :posts
+    member do
+      get :find_member
+      get :invite_member
+      get :new_subproject
+      get :update_profile
+      get :join_organization
+      get :new_subproject
+    end    
     collection do
       get :available_organizations
     end
   end
 
   resources :people do
+    member do
+      get :update_profile
+      get :dynamic_list
+      get :edit_picture
+      post :update_profile
+    end
     collection do
       get :profile_tags
     end
@@ -145,6 +159,7 @@ Rails.application.routes.draw do
       resources :posts, :people
       member do
         get :find_member
+        get :invite_member
       end
       collection do
         get :available_projects

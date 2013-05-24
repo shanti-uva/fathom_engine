@@ -1,4 +1,4 @@
-<%= tinymce_reinitialization_script %>
+<%#= tinymce_reinitialization_script %>
 
 <% if params[:inline] %>
 <script>
@@ -10,7 +10,9 @@ jQuery(function(){
     var opts={
       success:function(response){
         // close thickbox
-        self.parent.tb_remove();
+        //self.parent.tb_remove();
+		$("#popup_dialog").dialog("close"); 
+		$("#popup_dialog").dialog("destroy");
         // callback function inside of parent window (if params[:inline] is set, then this is in a "lightbox")
         self.parent.successfullyInvitedTeamMembers();
       }
@@ -25,9 +27,9 @@ jQuery(function(){
 
 <%= error_messages_for team_type %>
 <h2>Invite Team Members</h2>
-<%= form_for(team, :url => { :action => 'create_member_email', :id => team.id }, :html=>{:class=>'invite_form'}) do |f| %>
+<%= form_for(team, :url => { :action => 'create_member_email', :id => team.id }, :remote => true, :html=>{:class=>'invite_form'}) do |f| %>
   <p>Invite team members to join the Digital Humanities Portal.<br/><strong>You must use the format "first name" last name" email</strong> (e.g. 'Joe Scholar joescholar@virginia.edu').<br/>Place additional invitees on separate lines.</p>
 	<%#= f.text_area('invite_list', :class => 'mceEditor') %>
 	<%= f.text_area('invite_list') %>
-	<p><%= f.submit "Invite", :onclick => "self.parent.tb_remove();" %></p>
+	<p><%= f.submit "Invite", :onclick => '$("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");' %></p>
 <% end %>

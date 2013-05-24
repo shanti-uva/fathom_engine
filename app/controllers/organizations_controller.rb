@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  respond_to :json
   
   #layout "main"
   before_filter :login_required, :except => [ :index, :show ]
@@ -91,12 +92,11 @@ class OrganizationsController < ApplicationController
     @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
     order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
     @organizations = Organization.paginate :page => params[:page], :per_page => 20, :order => order_string
+    
     @current_style = :gallery
-
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  format.xml  { render :xml => @organizations }
-    #end
+    respond_to do |format|
+        format.js { render :layout=>false }
+    end
   end
  
   # GET /organizations/1/find_member
@@ -214,7 +214,6 @@ class OrganizationsController < ApplicationController
   end
   
   def join_organization
-    
     @organization = Organization.find(params[:id])           
 
     # prevent unauthorized access

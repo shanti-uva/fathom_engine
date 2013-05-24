@@ -1,11 +1,12 @@
+
 <% if params[:inline] %>
-<%= javascript_include_tag 'add_ajax_multi_assoc' %>
+<%#= javascript_include_tag 'add_ajax_multi_assoc' %>
 <script>
-jQuery(function(){addAjaxMultiAssoc('member')});
+//jQuery(function(){addAjaxMultiAssoc('member')});
 </script>
 <% end %>
 
-<%= error_messages_for team_type %>
+<%#= error_messages_for team_type %>
 <h2>Find Team Members</h2>
 <p>Select the members of this <%= team_type %>.</p>
 <%= render :partial => 'common/entity_list', :object => entity_list, 

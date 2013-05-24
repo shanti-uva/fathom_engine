@@ -5,7 +5,20 @@
 	jQuery(document).ready(function() {
 		var tabView = new YAHOO.widget.TabView('secondary-nav');
 		tabView.addListener( 'click', updateShowProfileURL );	
+		
+		$(".memberRemove").on("click", function(event){
+			//alert('member remove');
+			removeAssociationHandler('member', $(this));
+			return false;
+		});
+		$(".projectRemove").on("click", function(event){
+		    removeAssociationHandler('project', $(this));
+			return false;
+		});
+			
 	});
+	
+	
   function successfullyUpdatedPicture(){
     $('<p class="image_loading_text">LOADING NEW IMAGE...</p>').insertAfter('#main-img');
     // Fade out previous image
@@ -19,23 +32,7 @@
   };
 </script>
 
-<script>
-	$('.ui_definition_dialog').live('click', function() {
-	
-  	$("#popup_dialog").html("<p></p>")
-	$("#popup_dialog" ).dialog({ modal: true, width: 650});
-});
-</script>
-<%  if APPLICATION_DOMAIN != 'shanti.virginia.edu' %>
-<script>
-  $(document).ready(function() {
-	$("#popup_dialog").dialog( "destroy" );
-	$("#popup_dialog").dialog({ autoOpen: false })
-	$("#popup_dialog").dialog("close");	
-  });
 
-</script>
-<% end %>
 	
 <div id="popup_dialog">
 </div>

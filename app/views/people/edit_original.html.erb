@@ -1,6 +1,6 @@
-<%#= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
+<%= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
 
-<%#= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
+<%= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
 
 <script type="text/javascript">
   var TARGET_PROFILE_BASE_URL = '<%= escape_javascript person_path(@person) %>';
@@ -28,62 +28,16 @@
 
 
 <script type="text/javascript">
-//$(function() {
-//<%#= generate_js_for_tag_autocomplete( @tag_combiner, :person_profile, {
-//    :disciplines=>'person_profile_discipline_list',
-//    :general_interests=>'person_profile_general_interest_list',
-//    :time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
-//    :places_of_interest=>'person_profile_places_of_interest_list',
-//    :technologies_of_interest=>'person_profile_technologies_of_interest_list'
-//  }) %>
-//});
-</script>
-
-<script type="text/javascript">
-//$(function() {
-//<%#= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
-//	:time_periods_of_interest=>'person_profile_time_periods_of_interest_list'
-//    }) %>
-//});
-</script>
-
-
-<script type="text/javascript">
 $(function() {
-
+<%= generate_js_for_tag_autocomplete( @tag_combiner, :person_profile, {
+    :disciplines=>'person_profile_discipline_list',
+    :general_interests=>'person_profile_general_interest_list',
+    :time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
+    :places_of_interest=>'person_profile_places_of_interest_list',
+    :technologies_of_interest=>'person_profile_technologies_of_interest_list'
+  }) %>
 });
 </script>
-
-<script>
-  $(function() {
-    
-	
-	<%= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
-		:disciplines=>'person_profile_discipline_list',
-		:general_interests=>'person_profile_general_interest_list',
-		:time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
-		:places_of_interest=>'person_profile_places_of_interest_list',
-		:technologies_of_interest=>'person_profile_technologies_of_interest_list'
-	}) %>
-	
-    $( "#person_profile_discipline_list" ).autocomplete({
-      source: disciplines_profile_tags
-    });
-	$( "#person_profile_general_interest_list" ).autocomplete({
-      source: general_interests_profile_tags
-    });
-	$( "#person_profile_time_periods_of_interest_list" ).autocomplete({
-      source: time_periods_of_interest_profile_tags
-    });
-	$( "#person_profile_places_of_interest_list" ).autocomplete({
-      source: places_of_interest_profile_tags
-    });
-	$( "#person_profile_technologies_of_interest_list" ).autocomplete({
-      source: technologies_of_interest_profile_tags
-    });
-  });
-  </script>
-
 
 <script>
 <%
@@ -105,8 +59,7 @@ $(function() {
       el.parent().parent().parent().fadeOut('fast', function(){$(this).remove()});
       // build the query string; set the type (project or organization) and the id of the project/organization from the "title" attribute...
       var query_string='?person_profile[person_attrs][relationships_to_delete_by_' + type + '_ids][]=' + el.attr('title');
-      //alert(update_url + query_string);
-	  $.post(update_url + query_string);
+      $.post(update_url + query_string);
       //$.post(update_url + query_string, function(data){
         // do nothing...
       //});
@@ -210,6 +163,60 @@ $(function() {
 
 </script>
 
+<script>
+	//$(function() {
+	//	$( "#dialog" ).dialog();
+	//});
+</script>
+
+<script type="text/javascript">
+//$(document).ready(function() {
+//	$('.ui_definition_dialog').live('click', function() {
+//	  //$("#popup_dialog").dialog('open');
+//	  $("#popup_dialog").html("<p></p>")
+//	  $("#popup_dialog").dialog( "destroy" );
+//      $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
+//      $("#popup_dialog").dialog('open');
+//	});
+//});
+//</script>	
+	
+<script>
+
+	$('.ui_join_dialog').live('click', function() {
+			
+  	$("#popup_dialog").html("<p></p>")
+	$("#popup_dialog" ).dialog({ modal: true, width: 900, height: 500});
+
+});
+</script>	
+<script>
+	$('.ui_definition_dialog').live('click', function() {
+	//alert('click');
+	
+  	$("#popup_dialog").html("<p></p>")
+  	//$("#popup_dialog").dialog( "destroy" );
+	$("#popup_dialog" ).dialog({ modal: true, width: 650});
+  	//$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
+  	//$("#popup_dialog").dialog('open');
+});
+</script>
+
+<%  if APPLICATION_DOMAIN != 'shanti.virginia.edu' %>
+<script>
+  $(document).ready(function() {
+	//alert('initialized');
+	$("#popup_dialog").dialog( "destroy" );
+    //$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+	$("#popup_dialog").dialog({ autoOpen: false })
+	$("#popup_dialog").dialog("close");	
+  });
+
+</script>
+<% end %>
+
+	<div id="dialog" title="Basic dialog">
+	</div>
 	
 <div id="popup_dialog">
 </div>
@@ -235,8 +242,6 @@ $(function() {
       <%= hidden_field_tag( :tab, @selected_tab ) %>
       <h2>Updating Profile </h2>
       <h2 id="subject"><input name="person_profile[person_attrs][name]" type="text" value="<%= @person.name %>"/></h2>
-		 <%#= link_to 'Find Organizations', available_organizations_organizations_path(:inline=>true), :remote => true %>
-
       <div class="yui-content">
 
         <div id="profile-tab">
@@ -263,7 +268,7 @@ $(function() {
 
 			<em>The opening lines of the Overview will be used in various contexts to give short text descriptions of the entry, such as on a home page, where a thumbnail, and underlying caption are presented. Then "read more" will go to the full entry.</em>  
             <h3>Overview</h3>
-            <%= f.text_area('overview', :class => 'mceEditor') %>
+            <%=th f.text_area('overview', :class => 'mceEditor') %>
 
           </div><!--END OVERVIEW-->
         </div> <!-- END PROFILE -->
@@ -272,13 +277,13 @@ $(function() {
           <div id="activities" class="item">
 			<%= editor_note_tip %>
             <h3>Current Focus</h3>
-            <%= f.text_area('focus', :class => 'mceEditor') %>
+            <%=th f.text_area('focus', :class => 'mceEditor') %>
 
             <h3>Future Goals</h3>
-            <%= f.text_area('goals', :class => 'mceEditor') %>
+            <%=th f.text_area('goals', :class => 'mceEditor') %>
 
             <h3>History</h3>
-            <%= f.text_area('activities_overview', :class => 'mceEditor') %>
+            <%=th f.text_area('activities_overview', :class => 'mceEditor') %>
 
           </div> <!-- END ACTIVITIES -->
         </div> <!-- END ACTIVITIES TAB -->
@@ -289,15 +294,14 @@ $(function() {
 			<%= editor_note_tip %>
             <h3>Interests</h3>
             <em>Describe your relevant interests and special focuses.</em>
-            <%= f.text_area('interests', :class => 'mceEditor') %>
-			
+            <%=th f.text_area('interests', :class => 'mceEditor') %>
+
 			<p>
 			  <em>Indicate various interests below by typing in items separated by commas in the relevant boxes.</em><br /><em>These will become tags that will connect this entry to other entries with like interests. As you type in words, the interface will suggest matches from already used tags, with a number indicating how many entries already use that tag. Try to use tags already used if applicable, rather than changing the spelling slightly.</em>
 			</p>
 
             <h3>General Interests</h3>
             <div><%= f.text_field(:general_interest_list) %></div>
-			
 
             <h3>Scholarly Disciplines</h3>
             <div><%= f.text_field(:discipline_list) %></div>
@@ -306,8 +310,7 @@ $(function() {
             <div><%= f.text_field(:time_periods_of_interest_list) %></div>
 
             <h3>Places of Interest</h3>
-            <div><%#= f.text_field(:places_of_interest_list) %></div>
-			<div><%= f.text_field :places_of_interest_list %> </div>
+            <div><%= f.text_field(:places_of_interest_list) %></div>
 
             <h3>Technologies of Interest</h3>
             <div><%= f.text_field(:technologies_of_interest_list) %></div>
@@ -324,8 +327,7 @@ $(function() {
 
                 <h3>My Projects</h3>
 
-                <p>	<%#= link_to 'Find Projects', {:controller => 'projects', :action => 'available_projects',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Find a Project to Join' %>
-				<%= link_to 'Find Projects', available_projects_projects_path(:inline=>true), :remote => true %></p>
+                <p>	<%= link_to 'Find Projects', {:controller => 'projects', :action => 'available_projects',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Find a Project to Join' %></p>
 
                 <%
                 project_list = { :partial => 'common/entity_list', :object => @person.projects,
@@ -390,19 +392,19 @@ $(function() {
           <div id="works" class="item">
 			<%= editor_note_tip %>
             <h3>Overview</h3>
-            <%= f.text_area('works_overview', :class => 'mceEditor') %>
+            <%=th f.text_area('works_overview', :class => 'mceEditor') %>
 
             <h3>Publications</h3>
-            <%= f.text_area('publications', :class => 'mceEditor') %>
+            <%=th f.text_area('publications', :class => 'mceEditor') %>
 
             <h3>Websites</h3>
-            <%= f.text_area('websites', :class => 'mceEditor') %>
+            <%=th f.text_area('websites', :class => 'mceEditor') %>
 
             <h3>Tools</h3>
-            <%= f.text_area('tools', :class => 'mceEditor') %>
+            <%=th f.text_area('tools', :class => 'mceEditor') %>
 
             <h3>Miscellaneous</h3>
-            <%= f.text_area('miscellaneous', :class => 'mceEditor') %>
+            <%=th f.text_area('miscellaneous', :class => 'mceEditor') %>
           </div> <!-- END WORKS -->
         </div> <!-- END WORKS TAB -->
 
@@ -417,29 +419,26 @@ $(function() {
 				<%# end %>
             	<%= render :partial => 'common/dynamic_list', :object => @positions, :locals => { :category => 'positions' } %>
 			</div>	
-				<%##= link_to 'Add Positions', {:controller => 'people', :action => 'positions', :id => @person.id, :positions => @positions, :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
-				<%#= link_to 'Add Positions', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
-				<%= link_to 'Add Positions', dynamic_list_person_path(:id => @person.id,:category => 'positions'), :remote => true, :title=>'Positions Add' %>
-				
+				<%#= link_to 'Add Positions', {:controller => 'people', :action => 'positions', :id => @person.id, :positions => @positions, :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
+		<%= link_to 'Add Positions', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'positions'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Positions Add' %>
+			
 			<h3>Education/Credentials</h3>
             <em>Specify degree (B.A., B.S., M.A., Ph.D., etc.) comma, and then the institution &mdash; "Ph.D., University of Virginia"</em>
 			<div id ="credentials_div">
 				<%= render :partial => 'common/dynamic_list', :object => @credentials, :locals => { :category => 'credentials' } %>				
 			</div>
-			<%##= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'credentials', :id => @person.id, :credentials => @credentials, :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
-			<%#= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
-			<%= link_to 'Add Education/Credentials', dynamic_list_person_path(:id => @person.id,:category => 'credentials'), :remote => true, :title=> 'Credentials Add' %>
+			<%#= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'credentials', :id => @person.id, :credentials => @credentials, :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
+			<%= link_to 'Add Education/Credentials', {:controller => 'people', :action => 'dynamic_list', :id => @person.id,  :category => 'credentials'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Credentials Add' %>
 			
             <h3>Memberships/Affiliations</h3>
 			<div id ="affiliations_div">
             	<%= render :partial => 'common/dynamic_list', :object => @affiliations, :locals => { :category => 'affiliations' } %>
 			</div>
-			<%#= link_to 'Add Memberships/Affiliations', {:controller => 'people', :action => 'dynamic_list', :id => @person.id, :category => 'affiliations'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Affiliations Add' %>
-			<%= link_to 'Add Memberships/Affiliations', dynamic_list_person_path(:id => @person.id,:category => 'affiliations'), :remote => true, :title=>'Affiliations Add' %>
+			<%= link_to 'Add Memberships/Affiliations', {:controller => 'people', :action => 'dynamic_list', :id => @person.id, :category => 'affiliations'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Affiliations Add' %>
 			
             <h3>Skills</h3>
             <em>Describe any relevant skills &mdash; languages, technologies, managerial, etc.</em>
-            <%= f.text_area('skills', :class => 'mceEditor') %>
+            <%=th f.text_area('skills', :class => 'mceEditor') %>
 
           </div> <!-- END BACKGROUND -->
         </div> <!-- END BACKGROUND TAB -->
@@ -508,23 +507,20 @@ $(function() {
 
             <h3>Contact Notes</h3>
             <em>Indicate if you are away for a sustained period of time, or anything else about how to best contact you.</em>
-            <%= f.text_area('notes', :class => 'mceEditor') %>
+            <%=th f.text_area('notes', :class => 'mceEditor') %>
 
           </div> <!-- END CONTACT -->
         </div> <!-- END CONTACT TAB -->
 
-        <%#= render :partial => 'show_account_tab' %>
+        <%= render :partial => 'show_account_tab' %>
 
         <div class="gallery-button update"><%= f.submit "Update" %><%= link_to 'Cancel', person_path(@person, :tab => @selected_tab), :id => 'cancel-button' %></div>
-
+      <% end -%> <!-- END FORM -->
     </div> <!-- END YUI CONTENT -->
-
-    <% end -%> <!-- END FORM -->
-
-  </div> <!--END main-content-->
+  </div> <!--END CONTENT-->
 </div> <!-- END SECONDARY NAV -->
-  <div id="media">
-    <div id="carousel">
+<div id="media">
+  <div id="carousel">
 
     <%= image_tag(@person.image_src, :id => "main-img", :alt => h(@person.person_profile.first_name)) %>
 
@@ -532,11 +528,9 @@ $(function() {
 
     <% if @allowed_to_edit -%>
 		<h4>
-		<%#= link_to 'Change Picture', {:controller => 'people', :action => 'edit_picture', :id => @person.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Change image' %>
-		<%= link_to 'Change Picture', edit_picture_person_path(:id => @person.id), :remote => true, :title=> 'Change image' %>
-		
+		<%= link_to 'Change Picture', {:controller => 'people', :action => 'edit_picture', :id => @person.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Change image' %>
 		</h4>
-		<%##= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @person, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %>
+		<%#= link_to 'Change Picture', url_for( :action => 'edit_picture', :id => @person, :inline=>true, :height=>300,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Change image' %>
 	<% end -%>
     <%= render :partial => '/common/relationships' %>
     </div><!--END CAROUSEL-->
