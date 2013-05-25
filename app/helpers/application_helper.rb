@@ -160,26 +160,14 @@ module ApplicationHelper
     fields.each_pair do |tag_field,tag_field_input_id|
       # list of tag values, var name prefixed by the tag field
       js << %(var #{tag_field}_profile_tags = [];\n)
-      # the key is the tag, the value is the hit count, var name prefixed by the tag field
-      #js << %(var #{tag_field}_profile_tag_counts = {};\n)
       
       # Get a hash of the tags for this field
       tag_set = tag_combiner.tag_counts(tag_field)
 
       tag_set.keys.each do |tag|
-        js << %(#{tag_field}_profile_tags.push('#{escape_javascript tag}');\n)
-        #js << %(#{tag_field}_profile_tag_counts['#{escape_javascript tag}'] = #{tag_set[tag].to_i};\n)
+        js << %(#{tag_field}_profile_tags.push({value: '#{escape_javascript tag}' , label:'#{escape_javascript tag} (#{tag_set[tag].to_i})' });\n)
       end
-      
-      #js << %($("##{escape_javascript tag_field_input_id}").autocomplete(#{tag_field}_profile_tags, {
-      #	multiple : true,
-      #	formatItem : function(row) {
-      #    return row + " (" + #{tag_field}_profile_tag_counts[row] + ")";
-      #  },
-      #	formatResult : function(row) {
-      #    return row
-      #  }
-      #});\n)
+     
     end
     js.html_safe
   end

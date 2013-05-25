@@ -42,7 +42,20 @@
 
 <script>
   $(function() {
-    
+     var projects = [
+	      {
+	        value: "jquery",
+	        label: "jQuery"
+	      },
+	      {
+	        value: "jquery-ui",
+	        label: "jQuery UI"
+	      },
+	      {
+	        value: "sizzlejs",
+	        label: "Sizzle JS"
+	      }
+	    ];
 	
 	<%= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
 		:disciplines=>'person_profile_discipline_list',
@@ -659,14 +672,11 @@
           </div> <!-- END CONTACT -->
         </div> <!-- END CONTACT TAB -->
 
-        <%#= render :partial => 'show_account_tab' %>
+        <%= render :partial => 'show_account_tab' %>
 
         <div class="gallery-button update"><%= f.submit "Update" %><%= link_to 'Cancel', person_path(@person, :tab => @selected_tab), :id => 'cancel-button' %></div>
-
+ 	  <% end -%> <!-- END FORM -->
     </div> <!-- END YUI CONTENT -->
-
-    <% end -%> <!-- END FORM -->
-
   </div> <!--END main-content-->
 </div> <!-- END SECONDARY NAV -->
   <div id="media">
