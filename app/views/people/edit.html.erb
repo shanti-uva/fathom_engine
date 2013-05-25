@@ -39,20 +39,6 @@
 //});
 </script>
 
-<script type="text/javascript">
-//$(function() {
-//<%#= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
-//	:time_periods_of_interest=>'person_profile_time_periods_of_interest_list'
-//    }) %>
-//});
-</script>
-
-
-<script type="text/javascript">
-$(function() {
-
-});
-</script>
 
 <script>
   $(function() {
@@ -65,24 +51,184 @@ $(function() {
 		:places_of_interest=>'person_profile_places_of_interest_list',
 		:technologies_of_interest=>'person_profile_technologies_of_interest_list'
 	}) %>
-	
-    $( "#person_profile_discipline_list" ).autocomplete({
-      source: disciplines_profile_tags
+	function split( val ) {
+		return val.split( /,\s*/ );
+	}
+	function extractLast( term ) {
+	  	return split( term ).pop();
+	}
+	$( "#person_profile_discipline_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            disciplines_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#person_profile_general_interest_list" )// don't navigate away from the field on tab when selecting an item
+     .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            general_interests_profile_tags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
     });
-	$( "#person_profile_general_interest_list" ).autocomplete({
-      source: general_interests_profile_tags
-    });
-	$( "#person_profile_time_periods_of_interest_list" ).autocomplete({
-      source: time_periods_of_interest_profile_tags
-    });
-	$( "#person_profile_places_of_interest_list" ).autocomplete({
-      source: places_of_interest_profile_tags
-    });
-	$( "#person_profile_technologies_of_interest_list" ).autocomplete({
-      source: technologies_of_interest_profile_tags
-    });
+	$( "#person_profile_time_periods_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            time_periods_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#person_profile_places_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            places_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#person_profile_technologies_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            technologies_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});	
+
+    //$( "#person_profile_discipline_list" ).autocomplete({
+    //  source: disciplines_profile_tags
+    //});
+	//$( "#person_profile_general_interest_list" ).autocomplete({
+    //  source: general_interests_profile_tags
+    //});
+	//$( "#person_profile_time_periods_of_interest_list" ).autocomplete({
+    //  source: time_periods_of_interest_profile_tags
+    //});
+	//$( "#person_profile_places_of_interest_list" ).autocomplete({
+    //  source: places_of_interest_profile_tags
+    //});
+	//$( "#person_profile_technologies_of_interest_list" ).autocomplete({
+    //  source: technologies_of_interest_profile_tags
+    //});
   });
-  </script>
+</script>
 
 
 <script>

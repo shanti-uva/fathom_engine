@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       get :update_profile
       get :join_organization
       get :new_subproject
+      post :update_profile
     end    
     collection do
       get :available_organizations
@@ -160,6 +161,7 @@ Rails.application.routes.draw do
       member do
         get :find_member
         get :invite_member
+        post :update_profile
       end
       collection do
         get :available_projects

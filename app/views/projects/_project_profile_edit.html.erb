@@ -1,6 +1,6 @@
-<%= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
+<%#= javascript_include_tag 'jquery-autocomplete/jquery.autocomplete.js' %>
 
-<%= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
+<%#= stylesheet_link_tag '/javascripts/jquery-autocomplete/jquery.autocomplete.css' %>
 
 <% project_profile = project.project_profile -%>
 
@@ -9,6 +9,180 @@
 object_path_method = "#{project_type}_path".to_sym
 collection_path = send("#{project_type.to_s.pluralize}_path")
 -%>
+
+<script>
+  $(function() {
+    <%= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :project_profile, {
+	    :disciplines=>'project_profile_discipline_list',
+	    :general_interests=>'project_profile_general_interest_list',
+	    :time_periods_of_interest=>'project_profile_time_periods_of_interest_list',
+	    :places_of_interest=>'project_profile_places_of_interest_list',
+	    :technologies_of_interest=>'project_profile_technologies_of_interest_list'
+	 }) %>
+
+	function split( val ) {
+		return val.split( /,\s*/ );
+	}
+	function extractLast( term ) {
+	  	return split( term ).pop();
+	}
+	$( "#project_profile_discipline_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            disciplines_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#project_profile_general_interest_list" )// don't navigate away from the field on tab when selecting an item
+     .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            general_interests_profile_tags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+    });
+	$( "#project_profile_time_periods_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            time_periods_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#project_profile_places_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            places_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});
+	$( "#project_profile_technologies_of_interest_list" )
+		// don't navigate away from the field on tab when selecting an item
+	     .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            technologies_of_interest_profile_tags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	});	
+
+  });
+</script>
 
 <script>
 <% # given a type of 'member' or 'projects', this function returns the correct base path/url -%>
@@ -108,20 +282,14 @@ function removeAssociationHandler(type, el){
 jQuery(function(){
   var $=jQuery;
   
-  <%= generate_js_for_tag_autocomplete( @tag_combiner, :project_profile, {
-    :disciplines=>'project_profile_discipline_list',
-    :general_interests=>'project_profile_general_interest_list',
-    :time_periods_of_interest=>'project_profile_time_periods_of_interest_list',
-    :places_of_interest=>'project_profile_places_of_interest_list',
-    :technologies_of_interest=>'project_profile_technologies_of_interest_list'
-  }) %>
+  //<%#= generate_js_for_tag_autocomplete( @tag_combiner, :project_profile, {
+  //  :disciplines=>'project_profile_discipline_list',
+  //  :general_interests=>'project_profile_general_interest_list',
+  //  :time_periods_of_interest=>'project_profile_time_periods_of_interest_list',
+  //  :places_of_interest=>'project_profile_places_of_interest_list',
+  //  :technologies_of_interest=>'project_profile_technologies_of_interest_list'
+  //}) %>
   
-  // display default status of synopsis char limit:
-  //$('#charcount').html('0/400');
-  // count the lines in the synopsis (limited to 400 characters)
-  //$('#project_profile_synopsis').keyup(function(){
-  //  $('#charcount').html($(this).val().length + '/400');
-  //})
   
   // When a .subjectCheckbox element is checked, initially... nothing happens.
   // If it's unchecked, a new element is placed into the form with the name "project_profile[subject_ids_for_deletion][]"
@@ -193,13 +361,7 @@ jQuery(function(){
 	  <div id="profile-tab">	
   		<div id="profile" class="item">
 			<%= editor_note_tip %>
-  		<!-- Profile
-  			    Name
-  			    Home Page
-  			    Primary Image (could be logo or icon)
-  			    Images/Screenshots (likewise, allow for five if possible)
-  			    Technologies (text block for now; David wants to explore user-extensible controlled vocabulary later)   
-  			    Seeking (free-form, for now, as we discussed) -->
+  		
 					
   				<table class="entity-list-table">
   					<tr>
@@ -274,34 +436,8 @@ jQuery(function(){
 			<h3>Technologies of Interest</h3>
 			<div><%= f.text_field(:technologies_of_interest_list) %></div>
   		
-<%
-=begin
-%>
-				<h3>Scholarly Disciplines</h3>
-				<table class="entity-list-table">
-         	<% Discipline.find(:all).each do |d| -%>
-         	<tr>
-            <td><%= check_box_tag "discipline[#{d.id}]", "true", project_profile.disciplines.include?(d), :id=>"discipline_#{d.id}" %></td>
-            <td><label for="discipline_<%= d.id %>"><%= d.name %></label></td>
-         	</tr>
-        	<% end -%>
-        </table>
-				
-				<h3>Time Periods of Interest</h3>
-                                <em>Indicate scholarly focus in terms of historical or current periods.</em>
-				<%= f.text_area('time_periods_of_interest') %>
-				
-				<h3>Places of Interest</h3>
-                                <em>Indicate scholarly focus in terms of geographical and/or cultural regions.</em>
-				<%= f.text_area('places_of_interest') %>
-				
-				<h3>Technologies</h3>
-                                <em>Indicate the technologies used by the organization.</em>
-				<%= f.text_area('technologies') %>
-<%
-=end
-%>
-			</div> <!-- END INTERESTS -->
+
+		</div> <!-- END INTERESTS -->
     </div>
     
     <div id="services-tab">	
@@ -337,16 +473,6 @@ jQuery(function(){
     	    <!-- PEOPLE RELATIONSHIPS -->
     	    <% # use a 2 column layout if the project type is an organization -%>
       		<div class="<%= 'left halfWidth' if project_type==:organization %> peopleRelationships">
-      		
-        		<!--
-        		<% if (project_type == :project && full_access_project_member?(project)) || 
-    					  (project_type == :organization && full_access_organization_member?(project)) -%>
-    					<div class="gallery-button">
-    						<span><%= link_to 'Find Team Members', url_for( :action => 'find_member', :id => project.id ) %></span>
-    						<span><%= link_to 'Invite Team Members', url_for( :action => 'invite_member', :id => project.id ) %></span>
-    					</div>
-    				<% end -%>
-      		  -->
       		  
       		  <h3>People</h3>
       		  
@@ -392,21 +518,13 @@ jQuery(function(){
       		<!-- SUB-PROJECTS (for organizations only) -->
       		<div class="right halfWidth subRelationships">
       		  
-      		  <!--
-      		  <% if full_access_organization_member?(project) -%>
-      			<div class="gallery-button">
-      				<span><%= link_to 'Add Sub-Projects', url_for( :controller => 'organizations', :action => 'new_subproject', :id => project.id ) %></span>
-      			</div>
-      			<% end -%>
-      		  -->
-      		  
-      		  <h3>Sub-Projects</h3>
+      		  <h3>Projects</h3>
       		  
       		  <p>
       		  <% if full_access_organization_member?(project) -%>
         		  <%##= link_to 'Add Sub-Projects', url_for( :controller => 'organizations', :action => 'new_subproject', :id => project.id, :inline=>true, :height=>450,:width=>900) + '&TB_iframe=true', :class=>:thickbox, :title=>'Add Sub-Projects' %>
       		  	  <%#= link_to 'Add Sub-Projects', {:controller => 'organizations', :action => 'new_subproject',:inline=>true},  :remote => true, :class => 'ui_join_dialog', :title=>'Add Sub-Projects' %>
-			  	  <%= link_to 'Add Sub-Projects', new_subproject_organization_path(:inline=>true), :remote => true %>	
+			  	  <%= link_to 'Add Projects', new_subproject_organization_path(:inline=>true), :remote => true %>	
 			  <% end -%>
       		  </p>
       		  
