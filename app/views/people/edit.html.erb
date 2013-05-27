@@ -42,22 +42,7 @@
 
 <script>
   $(function() {
-     var projects = [
-	      {
-	        value: "jquery",
-	        label: "jQuery"
-	      },
-	      {
-	        value: "jquery-ui",
-	        label: "jQuery UI"
-	      },
-	      {
-	        value: "sizzlejs",
-	        label: "Sizzle JS"
-	      }
-	    ];
-	
-	<%= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
+ 	<%= generate_js_tag_jquery_ui_autocomplete( @tag_combiner, :person_profile, {
 		:disciplines=>'person_profile_discipline_list',
 		:general_interests=>'person_profile_general_interest_list',
 		:time_periods_of_interest=>'person_profile_time_periods_of_interest_list',
@@ -314,7 +299,7 @@
     var table_selector=opts['table_selector'];
     // This template should really be in a partial, which could also used by the /common/_entity_list.html.erb template
     var row_template_string="<tr><td><a href='" + opts['base_url'] + "/0'><img src='' alt=''/></a></td><td><a href='" + opts['base_url'] + "/0'></a></td><td><div class='gallery-button'><a title='' class='" + opts['remove_class'] + "' href='#'>Remove</a></div></td></tr>";
-    $.getJSON(opts['base_url'] + '/' + entity_id + '.json', function(data){
+ 	$.getJSON(opts['base_url'] + '/' + entity_id + '/join_info.json', function(data){
       var row_template = $(row_template_string);
       row_template.hide();
       // reference to the links

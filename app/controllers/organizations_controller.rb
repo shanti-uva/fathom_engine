@@ -99,6 +99,23 @@ class OrganizationsController < ApplicationController
     end
   end
  
+  def join_info
+    @organization = Organization.find(params[:id])
+  
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @organization }
+      format.json do
+        # create hash that includes the "thumb" method output
+        json_out={:thumb=>@organization.thumb_src, :image=>@organization.image_src}
+        # popuplate hash with all column values
+        Organization.columns.each{|c|json_out[c.name]=@organization.send(c.name)}
+        # render json
+        render :json=>json_out
+      end
+    end
+  end
+  
   # GET /organizations/1/find_member
   def find_member   
     @organization = Organization.find(params[:id])
@@ -140,6 +157,12 @@ class OrganizationsController < ApplicationController
     @projects = Project.find(:all) - (@organization.projects + [@organization])
     # Project.find(:all) returns Organizations too!? Manually filter them out... 
     @projects.delete_if{|p|p.class==Organization}
+       
+    @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+    order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+    # condition is necessary to fix a rails model caching bug in production mode.
+    @projects = @projects.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
+    
   end
   
   # DELETE /organizations/remove_subproject/1?entity=2
@@ -242,8 +265,41 @@ class OrganizationsController < ApplicationController
     end
   end
 
+
   # POST /organizations/1/create_subproject
   def create_subproject
+    
+    @organization = Organization.find(params[:id])
+
+    # prevent unauthorized access
+    unless full_access_organization_member?(@organization)
+      redirect_to(@organization)
+      return
+    end
+
+    # nothing selected
+    #if params['entity'].nil?
+    #  redirect_to(@organization)
+    #  return
+    #end
+
+    respond_to do |format|
+  
+      project = Project.find(params[:entity_id])
+      relation = Relationship.add_project_to_organization(project,@organization)
+      relation.save!
+      if @organization.save
+        ##flash[:notice] = "You have joined #{@project.name}."
+        format.html { redirect_to(@organization) }
+      else
+        # TODO add flash message?
+        format.html { render :action => "show" }
+      end
+    end
+  end
+   
+  
+  def deprecated_create_subproject
     @organization = Organization.find(params[:id])
 
     # prevent unauthorized access

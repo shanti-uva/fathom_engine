@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
         #end
         
         json_out = []
-        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :data=>{"$color" => "#4B8A08", :controller=>'projects', :overview => overview}, :adjacencies=>adjacencies}
+        json_out << {:id=>"p_" + @project.id.to_s, :name=>@project.name, :thumb=>@project.thumb_src, :image=>@project.image_src, :data=>{"$color" => "#4B8A08", :controller=>'projects', :overview => overview}, :adjacencies=>adjacencies}
         
 
         @project.people.each do |per|
@@ -186,6 +186,21 @@ class ProjectsController < ApplicationController
     #  format.html # index.html.erb
     #  format.xml  { render :xml => @projects }
     #end
+  end
+  
+  def join_info
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.json do
+        # create hash that includes the "thumb" method output
+        json_out={:thumb=>@project.thumb_src, :image=>@project.image_src}
+        # populate hash with all column values
+        Project.columns.each{|c|json_out[c.name]=@project.send(c.name)}
+        # render json
+        render :json=>json_out
+      end
+    end
   end
   
   

@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       get :update_profile
       get :join_organization
       get :new_subproject
+      get :join_info
       post :update_profile
     end    
     collection do
@@ -77,7 +78,6 @@ Rails.application.routes.draw do
     collection do
       get :profile_tags
     end
-    
     resources :line_items do
       collection do
         post :add_item
@@ -89,6 +89,18 @@ Rails.application.routes.draw do
     resources :links, :posts
   end
 
+  resources :projects do
+      resources :posts, :people
+      member do
+        get :find_member
+        get :invite_member
+        get :join_info
+        post :update_profile
+      end
+      collection do
+        get :available_projects
+      end
+  end
   
   resources :tools do
     resources :posts, :people
@@ -156,17 +168,7 @@ Rails.application.routes.draw do
   end
 
   
-  resources :projects do
-      resources :posts, :people
-      member do
-        get :find_member
-        get :invite_member
-        post :update_profile
-      end
-      collection do
-        get :available_projects
-      end
-  end
+
 
   resources :tag_projects, :controller => 'projects', :path_prefix => 'tags/:tag_string'
   

@@ -344,6 +344,77 @@ jQuery(function(){
 });
 </script>
 
+<script>
+<%
+#  This function is called from the UIDialog after a Organization->project has been joined.
+# 
+#  ******** see (projects and/or organization and/or tool)/index.html.erb for how this is called
+# 
+#  The iframe javascript calls this function with the type of relationship joined and the id (after the relationship has been established) 
+#  It then querys the /projects or /organizations controller for an item's data in JSON format.
+#  Once the JSON is received, a row template is prepared to be appended to the relationships (projects, orgs or tools) "table.entity-list-table" table; if the table doesn't exist, one is created
+#  The data within the row template is then updated using the JSON data.
+#  Finally, the row template is appended to the table.
+#  
+#  "type" is either 'project' or 'organization' or 'tool'
+#  "entity_id" is the ID of the project/org/tool that was "joined"
+#  
+-%>
+  function successfullyJoined(type, entity_id){
+    var opts={
+      'project':{
+        'container_class':'subRelationships',
+        'table_selector':'.subRelationships .entity-list-table',
+        'base_url':'<%= escape_javascript projects_path %>',
+        'remove_class':'projectRemove'
+      }
+    }
+    // switch the opts to the "type" variable key
+    opts=opts[type];
+    var $=jQuery;
+    var table_selector=opts['table_selector'];
+    // This template should really be in a partial, which could also used by the /common/_entity_list.html.erb template
+    var row_template_string="<tr><td><a href='" + opts['base_url'] + "/0'><img src='' alt=''/></a></td><td><a href='" + opts['base_url'] + "/0'></a></td><td><div class='gallery-button'><a title='' class='" + opts['remove_class'] + "' href='#'>Remove</a></div></td></tr>";
+ 	$.getJSON(opts['base_url'] + '/' + entity_id + '/join_info.json', function(data){
+      var row_template = $(row_template_string);
+      row_template.hide();
+      // reference to the links
+      var entity_link=$('td a', row_template);
+      // reset the href attribute (replace the id on the end of the path)
+      entity_link.attr('href', entity_link.attr('href').replace(/\d+$/, entity_id));
+      // reset the value of the title to the new entity_id (used for removing a relationship)
+      var remove_link=$('a.' + opts['remove_class'], row_template);
+      remove_link.attr('title', entity_id);
+      remove_link.attr('href', '#');
+      // apply the remove relationship handler to "a.removeXXXRelationship"
+      remove_link.click(function(){removeRelationshipHandler($(this))});
+      // reset the src to the new projects/organizations thumb src
+      var img=$('img', row_template);
+      img.attr('src', data['thumb']);
+      // set the image's alt attribute to the name of the project + _thumb
+      img.attr('alt', data['name'] + '_thumb');
+      // reset the text for the textual a/link
+      $('td a', row_template).each(function(i,e){
+        // the name of the project/organization is in the second column
+        if(i==1){$(e).html(data['name'])}
+      });
+      // attempt to use an existing table (normally created from looping through existing relationships using the common/_entity_list.html.erb template)
+      var table = $(table_selector);
+      if(table.length==0){
+        // if the table wasn't found, it means there were no relationships before this update
+        // ... there must be a table, so we create it via JS:
+        table=$('<table class="entity-list-table"></table>');
+        // remove the "Not a member of any projects/organizations." message (in p element)
+        $('.' + opts['container_class'] + ' p').remove();
+        // append the table the the relationships container
+        $('.' + opts['container_class']).append(table);
+      }
+      // append the cloned row to the table
+      table.append(row_template);
+      row_template.fadeIn('fast');
+    });
+  };
+</script>
 
 
 
@@ -530,10 +601,9 @@ jQuery(function(){
       		  
       		  <%
       				list_render_options = { :partial => 'common/entity_list', :object => project.projects, :allow_remove_self => true,
-      					   				:locals =>{ :empty_message => "Organization has no sub-projects.", :parent_entity => project } }
-      				#list_render_options[:locals].merge!({:remove_action => 'remove_subproject'}) if full_access_project_member?(project) and @allowed_to_edit
+      					:locals =>{ :empty_message => "Organization has no Projects.", :parent_entity => project } }
       				list_render_options[:locals].merge!({
-        			  :remove_link_proc => proc{|entity|
+        			  	:remove_link_proc => proc{|entity|
         			    content_tag(:div, link_to('Remove', '#', :class=>'projectRemove', :title=>entity.id), :class=>'gallery-button')
         			  }
         			}) if @allowed_to_edit
