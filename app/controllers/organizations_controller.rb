@@ -161,7 +161,7 @@ class OrganizationsController < ApplicationController
     @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
     order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
     # condition is necessary to fix a rails model caching bug in production mode.
-    @projects = @projects.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
+    @projects = Project.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Project'"
     
   end
   
