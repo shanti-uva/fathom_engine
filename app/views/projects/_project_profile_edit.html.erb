@@ -405,7 +405,7 @@ jQuery(function(){
         // ... there must be a table, so we create it via JS:
         table=$('<table class="entity-list-table"></table>');
         // remove the "Not a member of any projects/organizations." message (in p element)
-        $('.' + opts['container_class'] + ' p').remove();
+        $('.' + opts['container_class'] + ' #projects p').remove();
         // append the table the the relationships container
         $('.' + opts['container_class']).append(table);
       }

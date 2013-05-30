@@ -24,7 +24,7 @@ $(".joinOrganization").on("click", function(event){
     <div class="gallery-button" style="float: right;"><span><%= link_to 'Create Organization', new_organization_path %></span></div>
   <% end -%>
 
-  <%= render :partial => '/common/sort_tabs', :locals => { :url => organizations_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
+  <%= render :partial => '/common/sort_tabs_ui', :locals => { :url => available_organizations_organizations_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
 
   <div id="main-content">	
     <% i = 1 %>

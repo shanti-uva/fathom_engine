@@ -1,0 +1,17 @@
+<%
+url = url.sub(/sort%3D.*&?/, '') # remove the existing sort param
+url += url=~/\?/ ? '&' : '?' # append a & or ? so the links below can easily be created
+tabs||=[{:name=>'Name'}, {:updated_at=>'Most Recent'}]
+#tabs||=[{:name=>ts('sort.name')}, {:updated_at=>ts('sort.most_recent')}]
+additional_tabs||=[]
+tabs += additional_tabs
+%>
+<div id="secondary-nav">
+	<span class="nav-sort-by">Sort by:</span>
+	<ul>
+	  <% tabs.each do |tab| %>
+	  <% k=tab.keys.first; v=tab.values.first %>
+    <li <% if sort_order == k.to_s -%>class="selected"<% end -%>><%= link_to "<span>#{v}</span>".html_safe, "#{url}sort=#{k}", :remote => true %></li>
+    <% end %>
+	</ul>
+</div>

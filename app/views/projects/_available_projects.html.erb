@@ -23,7 +23,7 @@ $(".joinProject").on("click", function(event){
   <% if full_access? and ! params[:inline] -%>
     <div class="gallery-button" style="float: right;"><span><%= link_to 'Create Project', new_project_path %></span></div>
   <% end -%>
-  <%= render :partial => '/common/sort_tabs', :locals => { :url => projects_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
+  <%= render :partial => '/common/sort_tabs_ui', :locals => { :url => available_projects_projects_path(:inline=>params[:inline]), :sort_order => @sort_order } %>
 
   <div id="main-content">
     <% i = 1 %>

@@ -28,7 +28,7 @@ jQuery(function(){
 <%= error_messages_for team_type %>
 <h2>Invite Team Members</h2>
 <%= form_for(team, :url => { :action => 'create_member_email', :id => team.id }, :remote => true, :html=>{:class=>'invite_form'}) do |f| %>
-  <p>Invite team members to join the <%= team.name %> <%= team.type %>.<br/><strong>You must use the format "first name" last name" email</strong> (e.g. 'Joe Scholar joescholar@virginia.edu').<br/>Place additional invitees on separate lines.</p>
+  <p>Invite team members to join the <%= team.name %> <%= team.type %>.<br/><strong>You must use the format: first name last name email</strong> (e.g. 'Joe Scholar joescholar@virginia.edu').<br/>Place additional invitees on separate lines.</p>
 	<%#= f.text_area('invite_list', :class => 'mceEditor') %>
 	<%= f.text_area('invite_list') %>
 	<p><%= f.submit "Invite", :onclick => '$("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");' %></p>

@@ -1,0 +1,47 @@
+
+<%
+empty_message ||= ""
+submit_message ||= "Submit" 
+exclude_list ||= []
+form_url ||= nil 
+remove_action ||= nil
+allow_remove_self = false
+remove_link_proc||=nil
+-%>
+
+<% unless entity_list_two_columns.empty? -%>
+	<%= form_tag(form_url) if form_url %>
+
+		<% i = 1 %>
+		<% for entity in entity_list_two_columns -%>
+			<% alt = ((i % 2) == 0) -%>
+			<div class="profile-block-wrapper <%= "alt" if alt %>">
+	        	<div class="profile-block">
+			
+					
+				
+					<div class="profile-block-main">
+						<table>
+							<tr>
+								<td><%= link_to image_tag(entity.thumb_src), entity  %></td>
+							<% if form_url -%><td><%= check_box_tag "entity[#{entity.id}]" %></td><% end -%>
+							<td><h3><%=  entity.name.s %></h3></td>
+							</tr>	
+						</table>
+					</div>
+ 
+				</div>
+  			</div><!--END PROFILE-BLOCK-WRAPPER-->
+
+			<% i = i + 1 -%>
+		<% end -%>
+		
+
+	
+
+	
+	<p class="button-to"><%= submit_tag(submit_message, :onclick => '$("#popup_dialog").dialog("destroy");') if form_url %></p>
+	<% if form_url -%></form><% end -%>
+<% else -%>
+	<% if empty_message -%><br/><p><%= empty_message %></p><% end -%>
+<% end -%>

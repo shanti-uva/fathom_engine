@@ -383,7 +383,7 @@ class PeopleController < ApplicationController
     @allowed_to_delete = allowed_to_delete?(@person)
     
     @tag_combiner = ProfileTagCombiner.new
- 
+
     @disciplines = Discipline.find(:all)
     @professional_profiles = ProfessionalProfile.find(:all)
     @uses_text_editor = true    

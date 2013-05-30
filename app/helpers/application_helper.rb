@@ -156,6 +156,7 @@ module ApplicationHelper
   #   generate_js_for_tag_autocomplete(:person_profile, {:general_interests=>'person_profile_general_interest_list'})
   #
   def generate_js_tag_jquery_ui_autocomplete(tag_combiner, profile_type, fields)
+    
     js = ''
     fields.each_pair do |tag_field,tag_field_input_id|
       # list of tag values, var name prefixed by the tag field
@@ -163,8 +164,8 @@ module ApplicationHelper
       
       # Get a hash of the tags for this field
       tag_set = tag_combiner.tag_counts(tag_field)
-
-      tag_set.keys.each do |tag|
+      
+      tag_set.keys.sort.each do |tag|
         js << %(#{tag_field}_profile_tags.push({value: '#{escape_javascript tag}' , label:'#{escape_javascript tag} (#{tag_set[tag].to_i})' });\n)
       end
      

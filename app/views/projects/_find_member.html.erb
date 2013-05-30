@@ -41,8 +41,8 @@ function addAjaxMultiAssoc(type){
 </script>
 
 <div id="main">
-	<div id="main-content" class="narrow">	
-		<%= render :partial => 'common/find_member', 
+	<div id="main-content">	
+		<%= render :partial => 'common/find_member_two_columns', 
 				   :locals => { :team => @project, :team_type => @project.class.to_s.humanize.to_sym, :entity_list => @people } %>
 	</div> <!--END CONTENT-->
 	<%#= render :partial => '/common/media', :locals => { :entity => @project } unless params[:inline] %>
