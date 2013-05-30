@@ -164,6 +164,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def available_projects
+     sleep 1
     @tag_string = params[:tag_string]
     if !@tag_string.nil?
       @search_projects = get_by_solr_tag(@tag_string)

@@ -19,6 +19,16 @@ $(".joinProject").on("click", function(event){
 });
 </script>
 
+
+<script>
+$(function () {
+        $('.pagination a').on("click", function(event) {
+                $.get(this.href, null, null, 'script');
+                return false;
+        });
+});
+</script>
+
 <div id="main">
 
   <%= render :partial => '/common/sort_tabs_ui', :locals => { :url => new_subproject_organization_path(:inline=>params[:inline]), :sort_order => @sort_order } %>

@@ -88,6 +88,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def available_organizations
+    sleep 1
     # only accept valid sort param
     @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
     order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
@@ -144,6 +145,7 @@ class OrganizationsController < ApplicationController
    
   # GET /organizations/new_subproject/1
   def new_subproject
+    sleep 1
     @organization = Organization.find(params[:id])  
     @current_style = :details
 

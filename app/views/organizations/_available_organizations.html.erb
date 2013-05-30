@@ -18,6 +18,15 @@ $(".joinOrganization").on("click", function(event){
 });
 </script>
 
+<script>
+$(function () {
+        $('.pagination a').on("click", function(event) {
+                $.get(this.href, null, null, 'script');
+                return false;
+        });
+});
+</script>
+
 
 <div id="main">
   <% if full_access? and !params[:inline] -%>

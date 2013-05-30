@@ -17,6 +17,15 @@ $(".joinProject").on("click", function(event){
 });
 </script>
 
+<script>
+$(function () {
+        $('.pagination a').on("click", function(event) {
+                $.get(this.href, null, null, 'script');
+                return false;
+        });
+});
+</script>
+
 <% # the :inline param is used for creating a view that fits into thickbox (no header, no footer) :: see layouts/main.html.erb for logic -%>
 
 <div id="main">
