@@ -356,6 +356,62 @@ class ProjectsController < ApplicationController
     end      
   end
   
+  
+  # GET /organizations/new_subproject/1
+  def new_suborganization
+    sleep 1
+    @project = Project.find(params[:id])  
+    @current_style = :details
+
+    # prevent unauthorized access
+    unless full_access_project_member?(@project) 
+      redirect_to(@project) 
+      return
+    end
+      
+    # display only organizations which are not already part of this project
+    @organizations = Organization.find(:all) - (@project.organizations + [@project])
+    # Project.find(:all) returns Organizations too!? Manually filter them out... 
+    @organizations.delete_if{|p|p.class==Project}
+       
+    @sort_order = params[:sort] == "name" || params[:sort] == "updated_at" ? params[:sort] : "name"
+    order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
+    # condition is necessary to fix a rails model caching bug in production mode.
+    @organizations = Organization.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Organization'"
+  end
+  
+  # POST /organizations/1/create_suborganization
+  def create_suborganization
+    debugger
+    @project = Project.find(params[:id])
+
+    # prevent unauthorized access
+    unless full_access_project_member?(@project)
+      redirect_to(@project)
+      return
+    end
+
+    # nothing selected
+    #if params['entity'].nil?
+    #  redirect_to(@organization)
+    #  return
+    #end
+
+    respond_to do |format|
+  
+      organization = Organization.find(params[:entity_id])
+      relation = Relationship.add_organization_to_project(organization,@project)
+      relation.save!
+      if @project.save
+        ##flash[:notice] = "You have joined #{@project.name}."
+        format.html { redirect_to(@project) }
+      else
+        # TODO add flash message?
+        format.html { render :action => "show" }
+      end
+    end
+  end
+  
   # PUT /projects/1
   # PUT /projects/1.xml
   def update

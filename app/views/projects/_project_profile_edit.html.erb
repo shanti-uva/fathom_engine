@@ -367,7 +367,13 @@ jQuery(function(){
         'table_selector':'.subRelationships .entity-list-table',
         'base_url':'<%= escape_javascript projects_path %>',
         'remove_class':'projectRemove'
-      }
+      },
+	  'organization':{
+	    'container_class':'subRelationships',
+	    'table_selector':'.subRelationships .entity-list-table',
+	    'base_url':'<%= escape_javascript organizations_path %>',
+	    'remove_class':'organizationRemove'
+	  }
     }
     // switch the opts to the "type" variable key
     opts=opts[type];
@@ -543,7 +549,7 @@ jQuery(function(){
     		<div class="clearfloat">
     	    <!-- PEOPLE RELATIONSHIPS -->
     	    <% # use a 2 column layout if the project type is an organization -%>
-      		<div class="<%= 'left halfWidth' if project_type==:organization %> peopleRelationships">
+      		<div class="left halfWidth  peopleRelationships">
       		  
       		  <h3>People</h3>
       		  
@@ -585,8 +591,9 @@ jQuery(function(){
         	  
       		</div>
       		
+			<!-- SUB-PROJECTS (for organizations only) -->
       		<% if project_type==:organization %>
-      		<!-- SUB-PROJECTS (for organizations only) -->
+      		
       		<div class="right halfWidth subRelationships">
       		  
       		  <h3>Projects</h3>
@@ -613,6 +620,35 @@ jQuery(function(){
       			
       		</div><!-- END SUB-PROJECTS -->
       		<% end %>
+
+			<!-- ORGANIZATIONS (for projects only) -->
+      		<% if project_type==:project %>
+      		
+      		<div class="right halfWidth subRelationships">
+      		  
+      		  <h3>Organizations</h3>
+      		  
+      		  <p>
+      		  <% if full_access_project_member?(project) -%>
+        		  	  <%= link_to 'Add Organizations', new_suborganization_project_path(:inline=>true), :remote => true %>	
+			  <% end -%>
+      		  </p>
+      		  
+      		  <%
+      				list_render_options = { :partial => 'common/entity_list', :object => project.organizations, :allow_remove_self => true,
+      					:locals =>{ :empty_message => "Project has no Organizations.", :parent_entity => project } }
+      				list_render_options[:locals].merge!({
+        			  	:remove_link_proc => proc{|entity|
+        			    content_tag(:div, link_to('Remove', '#', :class=>'organizationRemove', :title=>entity.id), :class=>'gallery-button')
+        			  }
+        			}) if @allowed_to_edit
+      			-%>
+      			
+      			<div id="organizations"><%= render list_render_options %></div>
+      			
+      		</div><!-- END SUB-PROJECTS -->
+      		<% end %>
+
       		
   		  </div><!-- END clearfloat -->
   		  

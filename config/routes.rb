@@ -95,6 +95,7 @@ Rails.application.routes.draw do
         get :find_member
         get :invite_member
         get :join_info
+        get :new_suborganization
         post :update_profile
       end
       collection do

@@ -64,9 +64,9 @@
 	        }
 	      })
 	      .autocomplete({
-	        minLength: 0,
+	        minLength: 2,
 	        source: function( request, response ) {
-	          // delegate back to autocomplete, but extract the last term
+	          // delegate back to autocomplete, but extract the last term			
 	          response( $.ui.autocomplete.filter(
 	            disciplines_profile_tags, extractLast( request.term ) ) );
 	        },
@@ -86,6 +86,7 @@
 	          return false;
 	        }
 	});
+	
 	$( "#person_profile_general_interest_list" )// don't navigate away from the field on tab when selecting an item
      .bind( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
