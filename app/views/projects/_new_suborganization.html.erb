@@ -6,10 +6,10 @@ $(".joinOrganization").on("click", function(event){
 
       var el = $(this);
       var item_id = el.attr('title');
-alert(item_id);
+
       //var url = join_url + '/' + item_id + '?authenticity_token=' + '<%= form_authenticity_token %>';
 	  var url = join_url + '/' + '<%= @project.id %>' + '?authenticity_token=' + '<%= form_authenticity_token %>' + '&entity_id=' +item_id;
-alert(url);
+
 	  $.post(url);
 	  $("#popup_dialog").dialog("destroy");
       self.parent.successfullyJoined('organization', item_id);

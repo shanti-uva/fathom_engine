@@ -20,6 +20,15 @@ class Project < Entity
     end
   end
   
+  attr_accessor :organization_ids_to_delete
+  attr_accessible :organization_ids_to_delete
+  def organization_ids_to_delete=(organization_ids)
+    relationships.each do |relationship|
+      next unless relationship.organization
+      relationships.delete(relationship) if organization_ids.include?(relationship.organization.id.to_s)
+    end
+  end
+  
   #
   # Just in case the database gets cleared after a migration (db/migrate/009_populate_placeholder_images.rb)
   # this method creates the placeholder if it doesn't exist

@@ -357,7 +357,7 @@ class ProjectsController < ApplicationController
   end
   
   
-  # GET /organizations/new_subproject/1
+  # GET /projects/new_suborganization/1
   def new_suborganization
     sleep 1
     @project = Project.find(params[:id])  
@@ -380,9 +380,9 @@ class ProjectsController < ApplicationController
     @organizations = Organization.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Organization'"
   end
   
-  # POST /organizations/1/create_suborganization
+  # POST /projects/1/create_suborganization
   def create_suborganization
-    debugger
+    
     @project = Project.find(params[:id])
 
     # prevent unauthorized access
@@ -398,7 +398,7 @@ class ProjectsController < ApplicationController
     #end
 
     respond_to do |format|
-  
+
       organization = Organization.find(params[:entity_id])
       relation = Relationship.add_organization_to_project(organization,@project)
       relation.save!
@@ -411,6 +411,8 @@ class ProjectsController < ApplicationController
       end
     end
   end
+  
+  
   
   # PUT /projects/1
   # PUT /projects/1.xml

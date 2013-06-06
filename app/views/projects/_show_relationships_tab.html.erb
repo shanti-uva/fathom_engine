@@ -7,7 +7,7 @@
 	    
 	    <!-- MEMBERS -->
 	    <% # use a 2 column layout if the project type is an organization -%>
-  		<div class="<%= 'left halfWidth' if project_type==:organization %>">
+  		<div class="<%= 'left halfWidth' %>">
     		<h3>Members</h3>
     		<%= render ({
     			:partial => 'common/entity_list',
@@ -20,7 +20,7 @@
   		<% if project_type == :organization -%>
   		<!-- SUB-PROJECTS -->
   		<div class="right halfWidth">
-  			<h3>Sub-Projects</h3>
+  			<h3>Projects</h3>
   			<%= render ({
   			  :partial => 'common/entity_list',
   			  :object => project.projects,
@@ -29,7 +29,20 @@
         }) -%>
   		</div>
       <% end %>
-      
+     
+		<% if project_type == :project -%>
+		<!-- SUB-organizations -->
+		<div class="right halfWidth">
+			<h3>Organizations</h3>
+			<%= render ({
+			  :partial => 'common/entity_list',
+			  :object => project.organizations,
+			  :allow_remove_self => true,
+        :locals => { :empty_message => "Project has no organizations.", :parent_entity => project }
+      }) -%>
+		</div>
+    <% end %>
+
     </div><!-- end div.clearfloat -->
     
 	</div>

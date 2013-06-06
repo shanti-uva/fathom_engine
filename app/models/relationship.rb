@@ -35,6 +35,14 @@ class Relationship < ActiveRecord::Base
     organization.relationships << relation
     relation
   end
+  
+  def self.add_organization_to_project(organization, project)
+    relation = Relationship.new
+    relation.organization = organization
+    relation.project = project
+    project.relationships << relation
+    relation
+  end
     
   def self.remove_person_from_project(person, project)
     Relationship.delete_all ["person_id = ? and project_id = ?", person.id, project.id]
@@ -51,6 +59,11 @@ class Relationship < ActiveRecord::Base
   def self.remove_person_from_organization( person, organization )
     Relationship.delete_all ["person_id = ? and organization_id = ?", person.id, organization.id ]
   end
+  
+  def self.remove_organization_from_project( organization , project )
+    Relationship.delete_all ["organization_id = ? and project_id = ?", organization.id, project.id]
+  end
+  
   
   def self.relations()
     Relationship.find(:all).map { |relationship|

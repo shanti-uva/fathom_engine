@@ -267,7 +267,6 @@ function removeAssociationHandler(type, el){
   }
   var query_string='/update/' + '<%= project.id %>'
   query_string += '?<%= project_type %>[' + type + '_ids_to_delete][]=' + el.attr('title');
-	
   if(confirm('Are you sure you want to remove this ' + type + '?')){
     // remove the table row that holds this relationship
     el.parent().parent().parent().fadeOut('fast', function(){$(this).remove()});
