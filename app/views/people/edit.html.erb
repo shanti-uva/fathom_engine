@@ -64,7 +64,7 @@
 	        }
 	      })
 	      .autocomplete({
-	        minLength: 2,
+	        minLength: 0,
 	        source: function( request, response ) {
 	          // delegate back to autocomplete, but extract the last term	
 			  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
