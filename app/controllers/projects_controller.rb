@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  respond_to :json
   
   #layout "main"
   before_filter :login_required, :except => [ :index, :show ]
@@ -378,6 +379,10 @@ class ProjectsController < ApplicationController
     order_string = (@sort_order == "updated_at") ? "updated_at DESC" : @sort_order
     # condition is necessary to fix a rails model caching bug in production mode.
     @organizations = Organization.paginate :page => params[:page], :per_page => 20, :order => order_string, :conditions => "type = 'Organization'"
+    
+    respond_to do |format|
+        format.js { render :layout=>false }
+    end
   end
   
   # POST /projects/1/create_suborganization

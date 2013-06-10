@@ -38,8 +38,10 @@ collection_path = send("#{project_type.to_s.pluralize}_path")
 	        minLength: 0,
 	        source: function( request, response ) {
 	          // delegate back to autocomplete, but extract the last term
-	          response( $.ui.autocomplete.filter(
-	            disciplines_profile_tags, extractLast( request.term ) ) );
+			  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
+		      response( $.grep( disciplines_profile_tags, function( item ){
+		      	return matcher.test( item.value);
+		      }) );	
 	        },
 	        focus: function() {
 	          // prevent value inserted on focus
@@ -68,8 +70,10 @@ collection_path = send("#{project_type.to_s.pluralize}_path")
         minLength: 0,
         source: function( request, response ) {
           // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            general_interests_profile_tags, extractLast( request.term ) ) );
+		  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
+	      response( $.grep( general_interests_profile_tags, function( item ){
+	      	return matcher.test( item.value);
+	      }) );
         },
         focus: function() {
           // prevent value inserted on focus
@@ -99,8 +103,10 @@ collection_path = send("#{project_type.to_s.pluralize}_path")
 	        minLength: 0,
 	        source: function( request, response ) {
 	          // delegate back to autocomplete, but extract the last term
-	          response( $.ui.autocomplete.filter(
-	            time_periods_of_interest_profile_tags, extractLast( request.term ) ) );
+			  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
+		      response( $.grep( time_periods_of_interest_profile_tags, function( item ){
+		      	return matcher.test( item.value);
+		      }) );
 	        },
 	        focus: function() {
 	          // prevent value inserted on focus
@@ -130,8 +136,10 @@ collection_path = send("#{project_type.to_s.pluralize}_path")
 	        minLength: 0,
 	        source: function( request, response ) {
 	          // delegate back to autocomplete, but extract the last term
-	          response( $.ui.autocomplete.filter(
-	            places_of_interest_profile_tags, extractLast( request.term ) ) );
+			  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
+		      response( $.grep( places_of_interest_profile_tags, function( item ){
+		      	return matcher.test( item.value);
+		      }) );
 	        },
 	        focus: function() {
 	          // prevent value inserted on focus
@@ -161,8 +169,10 @@ collection_path = send("#{project_type.to_s.pluralize}_path")
 	        minLength: 0,
 	        source: function( request, response ) {
 	          // delegate back to autocomplete, but extract the last term
-	          response( $.ui.autocomplete.filter(
-	            technologies_of_interest_profile_tags, extractLast( request.term ) ) );
+			  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( extractLast( request.term )  ), "i" );
+		      response( $.grep( technologies_of_interest_profile_tags, function( item ){
+		      	return matcher.test( item.value);
+		      }) );
 	        },
 	        focus: function() {
 	          // prevent value inserted on focus

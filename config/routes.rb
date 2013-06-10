@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       get :invite_member
       get :new_subproject
       get :update_profile
-      get :join_organization
+      #get :join_organization
       get :new_subproject
       get :join_info
       post :update_profile
